@@ -1,3 +1,9 @@
+#SSH aliases
+alias dev='ssh dev'
+alias pi='ssh root@pi'
+alias obs='ssh observium'
+alias swdev='ssh sw'
+alias debian='ssh debian'
 #Misc#
 alias ..="cd ../"
 alias ...=".. && .."
