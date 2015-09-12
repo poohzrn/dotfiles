@@ -1,4 +1,5 @@
 #SSH aliases
+alias ukuk='ssh ukuk'
 alias dev='ssh dev'
 alias pi='ssh root@pi'
 alias obs='ssh observium'
