@@ -6,9 +6,9 @@ fi
 ln -s ~/.dotfiles/.bash_aliases ~/.bash_aliases
 
 if [ -e ~/.bash_aliases_private ]; then
-    mv ~/.bash_aliases_private ~/.bash_aliases.old
+    mv ~/.bash_aliases_private ~/.bash_aliases.private.old
 fi
-ln -s ~/.dotfiles/.bash_aliases_private ~/.bash_aliases_private
+ln -s ~/.dotfiles/private/.bash_aliases_private ~/.bash_aliases_private
 if [ -e ~/.bashrc ]; then
     mv ~/.bashrc ~/.bashrc.old
 fi
