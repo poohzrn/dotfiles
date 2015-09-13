@@ -14,6 +14,7 @@ alias vi='vim'
 alias nano='vim'
 alias tma='tmux attach #'
 alias tmux='tmux -2' #256 color
+alias dmgmt='tmux kill-session -t mgmt'
 
 #_UniAliases_#
 alias sw="cd ~/aau/sw7/"
