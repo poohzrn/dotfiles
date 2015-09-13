@@ -5,6 +5,7 @@ alias pi='ssh root@pi'
 alias obs='ssh observium'
 alias swdev='ssh sw'
 alias debian='ssh debian'
+alias mgmt='~/.dotfiles/servermgmt.sh'
 #Misc#
 alias ..="cd ../"
 alias ...=".. && .."
