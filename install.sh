@@ -63,4 +63,25 @@ else
     echo "Installing vim-airline addon.."
     cd ~/.vim/bundle/ && git clone https://github.com/kien/ctrlp.vim
 fi
+if [ -e ~/.vim/bundle/YouCompleteMe ]; then
+    echo "Updating YouCompleteMe addon.."
+    cd ~/.vim/bundle/YouCompleteMe/ && git pull
+else
+    echo "Installing YouCompleteMe addon.."
+    cd ~/.vim/bundle/ && git clone https://github.com/Valloric/YouCompleteMe && git submodule update --init --recursive && cd ~/.vim/bundle/YouCompleteMe && ./install.py
+fi
+if [ -e ~/.vim/bundle/seoul256.vim ]; then
+    echo "Updating seoul256 addon.."
+    cd ~/.vim/bundle/seoul256.vim/ && git pull
+else
+    echo "Installing seoul256 addon.."
+    cd ~/.vim/bundle/ && git clone https://github.com/junegunn/seoul256.vim.git
+fi
+if [ -e ~/.vim/bundle/vim-fugitive ]; then
+    echo "Updating vim-fugitive addon.."
+    cd ~/.vim/bundle/vim-fugitive.vim/ && git pull
+else
+    echo "Installing vim-fugitive addon.."
+    cd ~/.vim/bundle/ && git clone https://github.com/tpope/vim-fugitive 
+fi
 source ~/.bashrc
