@@ -32,6 +32,7 @@ alias st='git status'
 #alias cmc="git commit -a -m \"$(command cowsay $(fortune -n45 -s zippy))\" && . ~/.bashrc"
 
 #_MacSpecificAliases_#
+alias update='~/.dotfiles/install.sh && bup;'
 alias poweroff='sudo /sbin/shutdown -h now'
 alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
 alias sleep='pmset sleepnow'
