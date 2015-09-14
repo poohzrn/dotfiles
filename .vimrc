@@ -36,5 +36,6 @@ set laststatus=2
 let g:airline_theme='simple'
 " enable 256 colors
 set t_Co=256
+colo molokai
 " enable wild menu
 set wildmenu
