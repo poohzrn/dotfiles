@@ -5,10 +5,6 @@ if [ -e ~/.bash_aliases ]; then
 fi
 ln -s ~/.dotfiles/.bash_aliases ~/.bash_aliases
 
-if [ -e ~/.bash_aliases_private ]; then
-    mv ~/.bash_aliases_private ~/.bash_aliases.private.old
-fi
-ln -s ~/.dotfiles/private/.bash_aliases_private ~/.bash_aliases_private
 if [ -e ~/.bashrc ]; then
     mv ~/.bashrc ~/.bashrc.old
 fi
@@ -79,7 +75,7 @@ else
 fi
 if [ -e ~/.vim/bundle/vim-fugitive ]; then
     echo "Updating vim-fugitive addon.."
-    cd ~/.vim/bundle/vim-fugitive.vim/ && git pull
+    cd ~/.vim/bundle/vim-fugitive/ && git pull
 else
     echo "Installing vim-fugitive addon.."
     cd ~/.vim/bundle/ && git clone https://github.com/tpope/vim-fugitive 
