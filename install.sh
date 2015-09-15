@@ -1,36 +1,17 @@
 #!/usr/bin/env bash
 # symlinks to homefolder
-if [ -e ~/.bash_aliases ]; then
-    mv ~/.bash_aliases ~/.bash_aliases.old
-fi
-ln -s ~/.dotfiles/.bash_aliases ~/.bash_aliases
-
-if [ -e ~/.bashrc ]; then
-    mv ~/.bashrc ~/.bashrc.old
-fi
-ln -s ~/.dotfiles/.bashrc ~/.bashrc
-if [ -e ~/.bash_prompt ]; then
-    mv ~/.bash_prompt ~/.bash_prompt.old
-fi
-ln -s ~/.dotfiles/.bash_prompt ~/.bash_prompt
-if [ -e ~/.vimrc ]; then
-    mv ~/.vimrc ~/.vimrc.old
-fi
-ln -s ~/.dotfiles/.vimrc ~/.vimrc
-if [ -e ~/.tmux.conf ]; then
-    mv ~/.tmux.conf ~/.tmux.conf.old
-fi
-ln -s ~/.dotfiles/.tmux.conf ~/.tmux.conf
-
-if [ -e ~/.profile ]; then
-    mv ~/.profile ~/.profile.old
-fi
-ln -s ~/.dotfiles/.profile ~/.profile
-
-if [ -e ~/.slate ]; then
-    mv ~/.slate ~/.slate.old
-fi
-ln -s ~/.dotfiles/.slate ~/.slate
+dotfiles=(".bash_aliases" ".bashrc" ".bash_prompt" ".vimrc" ".profile" ".slate" ".tmux.conf")
+#Create a folder for old dotfiles
+mkdir -p ~/.olddotfiles
+#create backup and symlinks to dotfiles
+for i in "${dotfiles[@]}"
+do
+    if [ -e ~/$i ]; then
+        mv ~/$i ~/.olddotfiles/$i.old
+        echo ~/$i.old
+    fi
+    ln -s ~/.dotfiles/$i ~/$i
+done
 
 #VIM plugins - Update / install
 mkdir -p ~/.vim/autoload
