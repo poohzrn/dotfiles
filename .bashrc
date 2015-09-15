@@ -33,3 +33,6 @@ fi
 if [ -f ~/.bash_aliases_private ]; then
     . ~/.bash_aliases_private
 fi
+if [ -f ~/.private ]; then
+    . ~/.private
+fi
