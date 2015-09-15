@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-##reata symlinks
+# symlinks to homefolder
 if [ -e ~/.bash_aliases ]; then
     mv ~/.bash_aliases ~/.bash_aliases.old
 fi
@@ -27,9 +27,14 @@ if [ -e ~/.profile ]; then
 fi
 ln -s ~/.dotfiles/.profile ~/.profile
 
+if [ -e ~/.slate ]; then
+    mv ~/.slate ~/.slate.old
+fi
+ln -s ~/.dotfiles/.slate ~/.slate
+
+#VIM plugins - Update / install
 mkdir -p ~/.vim/autoload
 mkdir -p ~/.vim/bundle
-
 if [ ! -e ~/.vim/autoload/pathogen.vim ]; then
     echo "installing pathogen.."
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
@@ -80,4 +85,5 @@ else
     echo "Installing vim-fugitive addon.."
     cd ~/.vim/bundle/ && git clone https://github.com/tpope/vim-fugitive 
 fi
+# Reload dotfiles
 source ~/.bashrc

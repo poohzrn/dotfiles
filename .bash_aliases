@@ -17,7 +17,7 @@ alias tmux='tmux -2' #256 color
 alias dmgmt='tmux kill-session -t mgmt'
 
 #_UniAliases_#
-alias sw="cd ~/aau/sw7/"
+alias sw="cd ~/git/sw7/"
 alias swpull="sw; pull;"
 alias op="open master.pdf"
 alias mm="make clean && make"
