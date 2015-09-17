@@ -7,7 +7,7 @@ alias ca='gob;'
 alias go='git checkout -b $1 2> /dev/null || git checkout $1'
 alias lo='git shortlog --summary --numbered'
 gob(){
-    git commit . -m \"$*\"
+    git commit . -m $*
 }
 #
 #alias cm="git commit . -m \"$fortune -s zippy\" && . ~/.bashrc"
