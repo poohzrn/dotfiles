@@ -14,6 +14,7 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/tpope/vim-fugitive"
     "https://github.com/junegunn/seoul256.vim.git" 
     "https://github.com/Valloric/YouCompleteMe"
+    "https://github.com/FredKSchott/CoVim.git"
 )
 #Create folders
 mkdir -p ~/.olddotfiles #backup for old dots
