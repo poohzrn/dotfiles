@@ -3,9 +3,12 @@ alias pull='git pull'
 alias push='git push'
 alias st='git status -s'
 alias d='git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat'
-alias ca='git add -A && git commit . -m $1'
+alias ca='gob;'
 alias go='git checkout -b $1 2> /dev/null || git checkout $1'
 alias lo='git shortlog --summary --numbered'
+gob(){
+    git commit . -m \"$*\"
+}
 #
 #alias cm="git commit . -m \"$fortune -s zippy\" && . ~/.bashrc"
 #alias cm="git commit -a -m \"$(fortune -n45 -s zippy)\" && . ~/.bashrc"
