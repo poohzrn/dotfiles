@@ -1,20 +1,18 @@
+default dLayout count:2
 config defaultToCurrentScreen true
 config nudgePercentOf screenSize
 config resizePercentOf screenSize
-
 # Aliases
 alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
 alias lefthalf move screenOriginX;screenOriginY screenSizeX/2;screenSizeY
-alias leftthird move screenOriginX;screenOriginY screenSizeX/3;screenSizeY
 alias righthalf move screenOriginX+screenSizeX/2;screenOriginY screenSizeX/2;screenSizeY
-alias rightthird move screenOriginX+screenSizeX/3+screenSizeX/3;screenOriginY screenSizeX/3;screenSizeY
-alias middlethird move screenOriginX+screenSizeX/3;screenOriginY screenSizeX/3;screenSizeY
 alias tophalf move screenOriginX;screenOriginY screenSizeX;screenSizeY/2
 alias bottomhalf move screenOriginX;screenOriginY+screenSizeY/2 screenSizeX;screenSizeY/2
-alias topleft corner top-left resize:screenSizeX/2;screenSizeY/2
-alias topright corner top-right resize:screenSizeX/2;screenSizeY/2
-alias bottomleft corner bottom-left resize:screenSizeX/2;screenSizeY/2
-alias bottomright corner bottom-right resize:screenSizeX/2;screenSizeY/2
+
+alias topleft       corner top-left
+alias topright      corner top-right    resize:screenSizeX/2;screenSizeY/2
+alias bottomleft    corner bottom-left  resize:screenSizeX/2;screenSizeY/2
+alias bottomright   corner bottom-right resize:screenSizeX/2;screenSizeY/2
 
 # Resize Bindings
 bind l:alt resize +1% +0
@@ -27,22 +25,18 @@ bind k:ctrl;alt resize +0 +1% bottom-right
 bind j:ctrl;alt resize +0 -1% bottom-right
 
 # Move/Corner bindings
-bind return:shift;cmd ${full}
+bind f:shift;cmd ${full}
 bind k:shift;cmd ${tophalf}
 bind j:shift;cmd ${bottomhalf}
-bind h:shift;cmd ${lefthalf} 0
-bind h:shift;cmd;ctrl ${lefthalf} 1
-
-bind h:shift;alt;cmd ${leftthird}
-bind i:shift;alt;cmd ${middlethird}
-bind l:shift;cmd ${righthalf} 0
-bind l:shift;cmd;ctrl ${righthalf} 1
-bind l:shift;alt;cmd ${rightthird}
+bind h:shift;cmd ${lefthalf}
+bind l:shift;cmd ${righthalf}
+bind 1:shift,cmd throw 0
+bind 2:shift,cmd throw 1
 
 # Corner Bindings:
 bind p:shift;cmd ${topright}
 bind n:shift;cmd ${bottomright}
-bind u:shift;cmd ${topleft};
+bind u:shift;cmd ${topleft}
 bind b:shift;cmd ${bottomleft}
 
 # Nudge Bindings
@@ -56,5 +50,3 @@ bind l:cmd;ctrl focus right
 bind h:cmd;ctrl focus left
 bind k:cmd;ctrl focus up
 bind j:cmd;ctrl focus down
-bind k:cmd;ctrl;alt focus above
-bind j:cmd;ctrl;alt focus behind
