@@ -3,7 +3,7 @@ alias ukuk='ssh ukuk'
 alias dev='ssh dev'
 alias pi='ssh root@pi'
 alias obs='ssh observium'
-alias swdev='ssh sw'
+alias swdev='ssh swdev'
 alias debian='ssh debian'
 alias mgmt='~/.dotfiles/servermgmt.sh'
 #Misc#
