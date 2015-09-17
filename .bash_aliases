@@ -23,13 +23,6 @@ alias op="open master.pdf"
 alias mm="make clean && make"
 alias mop="make && op"
 
-#_GitAliases_#
-alias pull='git pull'
-alias push='git push'
-alias st='git status'
-#alias cm="git commit . -m \"$fortune -s zippy\" && . ~/.bashrc"
-#alias cm="git commit -a -m \"$(fortune -n45 -s zippy)\" && . ~/.bashrc"
-#alias cmc="git commit -a -m \"$(command cowsay $(fortune -n45 -s zippy))\" && . ~/.bashrc"
 
 #_MacSpecificAliases_#
 alias update='~/.dotfiles/install.sh && bup;'
