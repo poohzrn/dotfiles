@@ -11,7 +11,7 @@ gob(){
     git add -A && git commit . -m $*
 }
 co(){
-    git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"
+    git checkout -b $1 2> /dev/null || git checkout $1
 }
 #
 #alias cm="git commit . -m \"$fortune -s zippy\" && . ~/.bashrc"
