@@ -1,6 +1,6 @@
 " set spelllang=en_gb spell
-autocmd BufNewFile,BufRead *.tex set spell
 execute pathogen#infect()
+autocmd BufNewFile,BufRead *.tex set spell
 syntax on
 filetype plugin indent on
 
