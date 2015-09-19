@@ -28,5 +28,5 @@ if [ -f ~/.private ]; then
     . ~/.private
 fi
 if [ -f ~/.git_aliases ]; then
-    . ~/.git_aliases
+    source ~/.git_aliases
 fi
