@@ -23,6 +23,21 @@ alias op="open master.pdf"
 alias mm="make clean && make"
 alias mop="make && op"
 
+alias pull='git pull'
+alias push='git push'
+alias st='git status -s'
+alias d='git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat'
+alias ca=gob
+alias go=co
+alias l='git log --pretty=oneline -n 20 --graph --abbrev-commit'
+alias lo='git shortlog --summary --numbered'
+
+gob(){
+    git add -A && git commit . -m $@
+}
+co(){
+    git checkout -b $1 2> /dev/null || git checkout $1
+}
 
 #_MacSpecificAliases_#
 alias update='~/.dotfiles/install.sh && bup;'
