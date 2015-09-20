@@ -39,3 +39,8 @@ set t_Co=256
 colo molokai
 " enable wild menu
 set wildmenu
+
+" Trigger configuration. Do not use <tab> if you use
+let g:UltiSnipsExpandTrigger="<enter>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"

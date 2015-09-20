@@ -18,6 +18,8 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/tomasr/molokai"
     "https://github.com/LaTeX-Box-Team/LaTeX-Box"
     "https://github.com/christoomey/vim-tmux-navigator"
+    "https://github.com/honza/vim-snippets"
+    "https://github.com/SirVer/ultisnips"
 )
 #Create folders
 mkdir -p ~/.olddotfiles #backup for old dots
@@ -50,6 +52,5 @@ do
         cd ~/.vim/bundle/ && git clone $P
     fi
 done
-
 # Reload dotfiles
 source ~/.bashrc
