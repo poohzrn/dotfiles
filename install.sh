@@ -20,6 +20,7 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/christoomey/vim-tmux-navigator"
     "https://github.com/honza/vim-snippets"
     "https://github.com/SirVer/ultisnips"
+    "https://github.com/ervandew/supertab"
 )
 #Create folders
 mkdir -p ~/.olddotfiles #backup for old dots
