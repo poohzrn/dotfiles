@@ -16,6 +16,7 @@ alias nano='vim'
 #Tmux
 alias tma='tmux attach #'
 alias tmux='tmux -2' #256 color
+alias tmate='tmate -2' #256 color
 alias dmgmt='tmux kill-session -t mgmt'
 
 #Uni
