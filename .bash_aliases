@@ -12,9 +12,10 @@ alias ..="cd ../"
 alias c='clear'
 alias vi='vim'
 alias nano='vim'
+alias g='cd ~/git/ && clear; ls' 
 
 #Tmux
-alias tma='tmux attach #'
+alias tma='tmux attach' 
 alias tmux='tmux -2' #256 color
 alias tmate='tmate -2' #256 color
 alias dmgmt='tmux kill-session -t mgmt'
