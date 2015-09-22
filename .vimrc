@@ -3,7 +3,10 @@ execute pathogen#infect()
 autocmd BufNewFile,BufRead *.tex set spell
 syntax on
 filetype plugin indent on
-
+" disable .swp files
+set noswapfile
+set nobackup
+set nowb
 " enable syntax highlighting
 syntax enable
 
