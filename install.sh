@@ -30,7 +30,7 @@ do
     if [ -e ~/$file ]; then
         mv ~/$file ~/.olddotfiles/$file.old
     fi
-    ln -s ~/.dotfiles/$file ~/$file
+    ln -s ~/git/dotfiles/$file ~/$file
 done
 
 # Install Pathogen
