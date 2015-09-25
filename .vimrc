@@ -7,6 +7,7 @@ filetype plugin indent on
 set noswapfile
 set nobackup
 set nowb
+let g:tex_flavor='latex'
 " enable syntax highlighting
 syntax enable
 
