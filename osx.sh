@@ -16,10 +16,6 @@ sudo pmset -a standbydelay 86400
 # Wipe all (default) app icons from the Dock
 defaults write com.apple.dock persistent-apps -array
 echo ""
-echo "Setting the icon size of Dock items to 36 pixels for optimal size/screen-realestate"
-defaults write com.apple.dock tilesize -int 36
-
-echo ""
 echo "Disabling Mission Control animations and grouping windows by application"
 defaults write com.apple.dock expose-animation-duration -int 0
 defaults write com.apple.dock "expose-group-by-app" -bool true
