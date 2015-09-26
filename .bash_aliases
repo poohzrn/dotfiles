@@ -35,7 +35,7 @@ alias d='git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-wi
 alias ca=gob
 alias go=co
 alias l="git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(bold red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n20"
-alias gl="git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(bold red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n0"
+alias gl="git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(bold red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n"
 alias lo='git shortlog --summary --numbered'
 gob(){
     git add -A && git commit . -m $@
