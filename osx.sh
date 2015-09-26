@@ -13,17 +13,15 @@ sudo pmset -a standbydelay 86400
 ###############################################################################
 # Dock & Mission Control
 ###############################################################################
-
 # Wipe all (default) app icons from the Dock
 defaults write com.apple.dock persistent-apps -array
-
 echo ""
 echo "Setting the icon size of Dock items to 36 pixels for optimal size/screen-realestate"
 defaults write com.apple.dock tilesize -int 36
 
 echo ""
-echo "Speeding up Mission Control animations and grouping windows by application"
-defaults write com.apple.dock expose-animation-duration -float 0.1
+echo "Disabling Mission Control animations and grouping windows by application"
+defaults write com.apple.dock expose-animation-duration -int 0
 defaults write com.apple.dock "expose-group-by-app" -bool true
 
 echo ""
@@ -50,15 +48,9 @@ echo ""
 echo "Avoiding the creation of .DS_Store files on network volumes"
 defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
 
-echo ""
-echo "Disabling disk image verification"
-defaults write com.apple.frameworks.diskimages skip-verify -bool true
-defaults write com.apple.frameworks.diskimages skip-verify-locked -bool true
-defaults write com.apple.frameworks.diskimages skip-verify-remote -bool true
 ###############################################################################
 # Screen
 ###############################################################################
-
 echo ""
 echo "Requiring password immediately after sleep or screen saver begins"
 defaults write com.apple.screensaver askForPassword -int 1
@@ -69,7 +61,7 @@ echo "Enabling subpixel font rendering on non-Apple LCDs"
 defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 echo ""
-echo "Enable HiDPI display modes (requires restart)"
+echo "Enabling HiDPI display modes (requires restart)"
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool true
 ###############################################################################
 # Keyboard
