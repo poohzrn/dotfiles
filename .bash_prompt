@@ -15,7 +15,7 @@ if tput setaf 1 &> /dev/null; then
   # done
 
   # Save common color actions
-  bash_bold="$(tput)"
+  bash_bold="$()"
   bash_reset="$(tput sgr0)"
 
   # If the terminal supports at least 256 colors, write out our 256 color based set
