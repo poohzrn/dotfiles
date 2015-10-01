@@ -43,7 +43,8 @@ set t_Co=256
 colo molokai
 " enable wild menu
 set wildmenu
-
+" bind , to :
+nnoremap , :
 " Trigger configuration. 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
