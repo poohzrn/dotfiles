@@ -10,8 +10,6 @@ alias mgmt='~/git/dotfiles/servermgmt.sh'
 #Misc
 alias ..="cd ../"
 alias c='clear'
-alias vi='vim'
-alias nano='vim'
 alias g='cd ~/git/ && clear; ls' 
 
 #Tmux
