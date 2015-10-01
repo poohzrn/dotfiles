@@ -1,14 +1,14 @@
 # hide borders
 hide_edge_borders both
+new_window none
 # Should you change your keyboard layout some time, delete
 set $mod Mod1
 font pango:DejaVu Sans Mono 8
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec xterm
 
 # kill focused window
 bindsym $mod+Shift+q kill
