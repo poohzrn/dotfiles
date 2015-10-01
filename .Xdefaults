@@ -1,2 +1,3 @@
 XTerm*Background: black
 XTerm*Foreground: white
+xterm*font:     *-fixed-*-*-*-13-*
