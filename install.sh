@@ -6,6 +6,9 @@ DOTFILES=(".bash_aliases"
     ".profile" 
     ".slate" 
     ".tmux.conf"
+    ".i3status.conf"
+    ".Xdefaults"
+    ".i3/config"
 )
 PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/kien/ctrlp.vim"
@@ -14,7 +17,6 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/tpope/vim-fugitive"
     "https://github.com/junegunn/seoul256.vim.git" 
     "https://github.com/Valloric/YouCompleteMe"
-    "https://github.com/FredKSchott/CoVim.git"
     "https://github.com/tomasr/molokai"
     "https://github.com/LaTeX-Box-Team/LaTeX-Box"
     "https://github.com/honza/vim-snippets"
@@ -24,6 +26,7 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
 #Create folders
 mkdir -p ~/.olddotfiles #backup for old dots
 mkdir -p ~/.vim/bundle #folder for vim plugins
+mkdir -p ~/.i3/ #folder for i3 config 
 #create backup and symlinks to dotfiles
 for file in "${DOTFILES[@]}"
 do
