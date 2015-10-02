@@ -1,0 +1,22 @@
+Host *
+ServerAliveInterval 60
+### OBSERVIUM
+Host observium
+    HostName observium.mynet
+    ProxyCommand  ssh jumphost netcat -w 120 %h %p
+### DEBIAN-Pi
+Host dev
+    HostName lasse-dev.mynet
+    ProxyCommand  ssh jumphost netcat -w 120 %h %p
+### sw504
+Host sw
+    HostName sw504.mynet
+    ProxyCommand  ssh jumphost netcat -w 120 %h %p
+### Deiban
+Host debian
+    HostName debianPi.mynet
+    ProxyCommand  ssh jumphost netcat -w 120 %h %p
+### pi
+Host pi
+    HostName 192.168.1.129
+    ProxyCommand  ssh jumphost netcat -w 120 %h %p
