@@ -31,7 +31,7 @@ mkdir -p ~/.i3/ #folder for i3 config
 for file in "${DOTFILES[@]}"
 do
     if [ -e ~/$file ]; then
-        mv ~/$file ~/.olddotfiles/$file.old
+        mv ~/$file ~/.olddotfiles/$file
     fi
     ln -s ~/git/dotfiles/$file ~/$file
 done
@@ -42,6 +42,7 @@ if [ ! -e ~/.vim/autoload/pathogen.vim ]; then
     mkdir ~/.vim/autoload
     curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim
 fi
+
 #VIM plugins - Update / install
 for P in "${PLUGINS[@]}"
 do
