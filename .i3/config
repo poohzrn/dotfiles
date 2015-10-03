@@ -1,15 +1,23 @@
+# Definie tags for workspaces
+set $tag1 1:main
+set $tag2 2:www
+set $tag3 3:Code
+set $tag4 4:uni
+set $tag5 5:ssh
+set $tag6 6:
+set $tag7 7:
+set $tag8 8:
+set $tag9 9:
+set $tag10 10:Spotify
 # hide borders
 hide_edge_borders both
 new_window none
 
 #Move programs to corret workspaces
-for_window [class="Spotify"] border none, move container to workspace 10:Spotify
-for_window [class="Chromium"] move container to workspace 2:web
-for_window [class="chrome"] move container to workspace 2:web
+for_window [class="Spotify"] border none, move container to workspace $tag10
+for_window [class="Chromium"] move container to workspace $tag2
+for_window [class="chrome"] move container to workspace $tag2
 
-# Move workspaces between monitors
-bindsym $mod+Control+l move workspace to output right
-bindsym $mod+Control+h move workspace to output left
 # set mod key
 set $mod Mod1
 
@@ -39,6 +47,10 @@ bindsym $mod+Shift+j move down
 bindsym $mod+Shift+k move up
 bindsym $mod+Shift+l move right
 
+# Move workspaces between monitors
+bindsym $mod+Control+l move workspace to output right
+bindsym $mod+Control+h move workspace to output left
+#
 # split in horizontal orientation
 bindsym $mod+t split h
 
@@ -66,28 +78,28 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace 1:main
-bindsym $mod+2 workspace 2:web
-bindsym $mod+3 workspace 3:dev
-bindsym $mod+4 workspace 4:uni
-bindsym $mod+5 workspace 5:ssh
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8 
-bindsym $mod+9 workspace 9
+bindsym $mod+1 workspace $tag1
+bindsym $mod+2 workspace $tag2
+bindsym $mod+3 workspace $tag3
+bindsym $mod+4 workspace $tag4
+bindsym $mod+5 workspace $tag5
+bindsym $mod+6 workspace $tag6
+bindsym $mod+7 workspace $tag7
+bindsym $mod+8 workspace $tag8 
+bindsym $mod+9 workspace $tag9
 bindsym $mod+0 workspace 10:spotify
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1:main
-bindsym $mod+Shift+2 move container to workspace 2:web
-bindsym $mod+Shift+3 move container to workspace 3:dev
-bindsym $mod+Shift+4 move container to workspace 4:uni
-bindsym $mod+Shift+5 move container to workspace 5:ssh
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10:Spotify
+bindsym $mod+Shift+1 move container to workspace $tag1
+bindsym $mod+Shift+2 move container to workspace $tag2
+bindsym $mod+Shift+3 move container to workspace $tag3
+bindsym $mod+Shift+4 move container to workspace $tag4
+bindsym $mod+Shift+5 move container to workspace $tag5
+bindsym $mod+Shift+6 move container to workspace $tag6
+bindsym $mod+Shift+7 move container to workspace $tag7
+bindsym $mod+Shift+8 move container to workspace $tag8
+bindsym $mod+Shift+9 move container to workspace $tag9
+bindsym $mod+Shift+0 move container to workspace $tag10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -111,34 +123,27 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 # lock i3
-bindsym $mod+Shift+p exec "$HOME/scripts/lock.sh"
+bindsym $mod+Control+f exec "$HOME/scripts/lock.sh"
 #Volume up / down / mute
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
-# Colors
-#name                   #top    #border #text
-client.focused          #747C84 #F3F4F5 #747C84 #F3F4F5
-client.unfocused        #747C84 #747C84 #F3F4F5 #747C84
-client.focused_inactive #747C84 #747C84 #F3F4F5 #747C84
-client.urgent           #747C84 #747C84 #F3F4F5 #747C84
-
 # Start i3bar
 bar {
-        status_command i3status -c ~/.i3/i3status.conf
-        strip_workspace_numbers no
-
+    status_command i3status -c ~/.i3/i3status.conf
+    strip_workspace_numbers no
 	colors {
-	    statusline  #F3F4F5
-	    background  #1C2023
-
-		#name              #border #bg     #text
-	    focused_workspace  #F3F4F5 #747C84 #F3F4F5
-	    active_workspace   #747C84 #747C84 #F3F4F5
-	    inactive_workspace #747C84 #747C84 #F3F4F5
-	    urgent_workspace   #747C84 #747C84 #F3F4F5
+        background #000000
+        statusline #ffffff
+        separator  #666666
+        # Type             border  background font
+        focused_workspace  #008fff #007fff #ffffff
+        active_workspace   #333333 #5f676a #ffffff
+        inactive_workspace #333333 #222222 #888888
+        urgent_workspace   #aa0000 #990000 #ffffff
 	}
 }
 #Start at startup
 exec --no-startup-id i3-msg 'exec spotify'
 exec --no-startup-id i3-msg 'exec google-chrome'
+exec --no-startup-id feh --bg-fill ~/.wallpaper/wallpaper.jpg 
