@@ -9,6 +9,7 @@ DOTFILES=(".bash_aliases"
     ".i3status.conf"
     ".Xdefaults"
     ".i3/config"
+    ".xsessionrc"
 )
 PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/kien/ctrlp.vim"
