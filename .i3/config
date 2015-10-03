@@ -123,7 +123,7 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 # lock i3
-bindsym $mod+Control+f exec "$HOME/scripts/lock.sh"
+bindsym $mod+Control+o exec "$HOME/scripts/lock.sh"
 #Volume up / down / mute
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
