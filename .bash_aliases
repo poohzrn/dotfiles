@@ -11,7 +11,7 @@ alias ..="cd ../"
 alias c='clear'
 alias g='cd ~/git/ && clear; ls' 
 alias flux='cd /home/lasse/programs/flux && ./xflux -l 57'
-alias sleep='sudo sh -c "echo mem > /sys/power/state"'
+alias sleep='sudo -v; afk; sudo sh -c "echo mem > /sys/power/state"'
 alias update='~/git/dotfiles/scripts/install.sh'
 alias afk='~/git/dotfiles/scripts/lock.sh'
 
