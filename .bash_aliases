@@ -38,11 +38,12 @@ co(){
     git checkout -b $1 2> /dev/null || git checkout $1
 }
 
+
+alias sleep='sudo sh -c "echo mem > /sys/power/state"'
 #OS X
 alias update='~/.dotfiles/install.sh && bup;'
 alias poweroff='sudo /sbin/shutdown -h now'
 alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
-alias sleep='pmset sleepnow'
 alias wifi='sudo ifconfig en0 down && sudo ifconfig en0 up'
 
 #Home Brew
