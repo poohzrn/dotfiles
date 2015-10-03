@@ -11,6 +11,7 @@ alias mgmt='~/git/dotfiles/servermgmt.sh'
 alias ..="cd ../"
 alias c='clear'
 alias g='cd ~/git/ && clear; ls' 
+alias flux='cd /home/lasse/programs/flux && ./xflux -l 57'
 
 #Tmux
 alias tma='tmux attach' 
