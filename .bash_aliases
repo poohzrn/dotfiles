@@ -5,26 +5,27 @@ alias pi='ssh root@pi'
 alias obs='ssh observium'
 alias we='ssh websrv'
 alias debian='ssh debian'
-alias mgmt='~/git/dotfiles/servermgmt.sh'
 
 #Misc
 alias ..="cd ../"
 alias c='clear'
 alias g='cd ~/git/ && clear; ls' 
 alias flux='cd /home/lasse/programs/flux && ./xflux -l 57'
+alias sleep='sudo sh -c "echo mem > /sys/power/state"'
+alias update='~/git/dotfiles/scripts/install.sh'
+alias afk='~/git/dotfiles/scripts/lock.sh'
 
 #Tmux
 alias tma='tmux attach' 
 alias tmux='tmux -2' #256 color
 alias tmate='tmate -2' #256 color
+alias mgmt='~/scripts/servermgmt.sh'
 alias dmgmt='tmux kill-session -t mgmt'
 
 #Uni
 alias sw="cd ~/git/sw7/"
 alias swpull="sw; pull;"
-alias op="open master.pdf"
 alias mm="make clean && make"
-alias mop="make && op"
 
 #Git
 alias pull='git pull'
@@ -39,14 +40,8 @@ co(){
     git checkout -b $1 2> /dev/null || git checkout $1
 }
 
-
-alias sleep='sudo sh -c "echo mem > /sys/power/state"'
-#OS X
-alias update='~/.dotfiles/install.sh && bup;'
-alias poweroff='sudo /sbin/shutdown -h now'
-alias afk='/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend'
+#OSX
 alias wifi='sudo ifconfig en0 down && sudo ifconfig en0 up'
-
 #Home Brew
 alias bs=bs 		#Brew Search
 alias bi=bi 		#Brew Install
