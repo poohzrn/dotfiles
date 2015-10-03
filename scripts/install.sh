@@ -1,4 +1,12 @@
 #!/usr/bin/env bash
+
+#Create folders
+mkdir -p ~/.olddotfiles #backup for old dots
+mkdir -p ~/.olddotfiles/scripts/ #backup for old dots
+mkdir -p ~/.vim/bundle #folder for vim plugins
+mkdir -p ~/.i3/ #folder for i3 config 
+mkdir -p ~/scripts/ #folder for different scripts
+
 DOTFILES=(".bash_aliases"
     ".bashrc"
     ".bash_prompt"
@@ -10,13 +18,14 @@ DOTFILES=(".bash_aliases"
     ".Xdefaults"
     ".i3/config"
     ".xsessionrc"
+    "scripts/lock.sh"
+    "scripts/servermgmt.sh"
 )
 PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/kien/ctrlp.vim"
     "https://github.com/bling/vim-airline"
     "https://github.com/kien/ctrlp.vim"
     "https://github.com/tpope/vim-fugitive"
-    "https://github.com/junegunn/seoul256.vim.git" 
     "https://github.com/Valloric/YouCompleteMe"
     "https://github.com/tomasr/molokai"
     "https://github.com/LaTeX-Box-Team/LaTeX-Box"
@@ -24,10 +33,6 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/SirVer/ultisnips"
     "https://github.com/ervandew/supertab"
 )
-#Create folders
-mkdir -p ~/.olddotfiles #backup for old dots
-mkdir -p ~/.vim/bundle #folder for vim plugins
-mkdir -p ~/.i3/ #folder for i3 config 
 #create backup and symlinks to dotfiles
 for file in "${DOTFILES[@]}"
 do

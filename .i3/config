@@ -4,8 +4,8 @@ new_window none
 
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace 10:Spotify
-for_window [class="Chromium"] move container to workspace 2:web
-for_window [class="chrome"] move container to workspace 2:web
+for_window [class="Chromium"] move container to workspace web
+for_window [class="chrome"] move container to workspace web
 
 # Move workspaces between monitors
 bindsym $mod+Control+l move workspace to output right
@@ -110,6 +110,9 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+# lock i3
+bindsym $mod+Shift+p exec "$HOME/scripts/lock.sh"
+#Volume up / down / mute
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
