@@ -1,17 +1,28 @@
+# Define workspaces
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 0
 # Definie tags for workspaces
 set $tag1 1:main
 set $tag2 2:www
-set $tag3 3:Code
+set $tag3 3:code
 set $tag4 4:uni
 set $tag5 5:ssh
 set $tag6 6:
 set $tag7 7:
 set $tag8 8:
 set $tag9 9:
-set $tag10 10:Spotify
-# hide borders
-#hide_edge_borders both
-#new_window none
+set $tag10 10:spotify
+# Hide borders
+hide_edge_borders both
+new_window none
 
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace $tag10
@@ -78,28 +89,28 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace $tag1
-bindsym $mod+2 workspace $tag2
-bindsym $mod+3 workspace $tag3
-bindsym $mod+4 workspace $tag4
-bindsym $mod+5 workspace $tag5
-bindsym $mod+6 workspace $tag6
-bindsym $mod+7 workspace $tag7
-bindsym $mod+8 workspace $tag8 
-bindsym $mod+9 workspace $tag9
-bindsym $mod+0 workspace 10:spotify
+bindsym $mod+$ws1 workspace $tag1
+bindsym $mod+$ws2 workspace $tag2
+bindsym $mod+$ws3 workspace $tag3
+bindsym $mod+$ws4 workspace $tag4
+bindsym $mod+$ws5 workspace $tag5
+bindsym $mod+$ws6 workspace $tag6
+bindsym $mod+$ws7 workspace $tag7
+bindsym $mod+$ws8 workspace $tag8 
+bindsym $mod+$ws9 workspace $tag9
+bindsym $mod+$ws10 workspace $tag10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $tag1
-bindsym $mod+Shift+2 move container to workspace $tag2
-bindsym $mod+Shift+3 move container to workspace $tag3
-bindsym $mod+Shift+4 move container to workspace $tag4
-bindsym $mod+Shift+5 move container to workspace $tag5
-bindsym $mod+Shift+6 move container to workspace $tag6
-bindsym $mod+Shift+7 move container to workspace $tag7
-bindsym $mod+Shift+8 move container to workspace $tag8
-bindsym $mod+Shift+9 move container to workspace $tag9
-bindsym $mod+Shift+0 move container to workspace $tag10
+bindsym $mod+Shift+$ws1 move container to workspace $tag1
+bindsym $mod+Shift+$ws2 move container to workspace $tag2
+bindsym $mod+Shift+$ws3 move container to workspace $tag3
+bindsym $mod+Shift+$ws4 move container to workspace $tag4
+bindsym $mod+Shift+$ws5 move container to workspace $tag5
+bindsym $mod+Shift+$ws6 move container to workspace $tag6
+bindsym $mod+Shift+$ws7 move container to workspace $tag7
+bindsym $mod+Shift+$ws8 move container to workspace $tag8
+bindsym $mod+Shift+$ws9 move container to workspace $tag9
+bindsym $mod+Shift+$ws10 move container to workspace $tag10
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -122,15 +133,15 @@ mode "resize" {
         bindsym Escape mode "default"
 }
 
-# brightness up / down
-bindsym $mod+F10 exec xbacklight -inc 10
-bindsym $mod+F9 exec xbacklight -dec 10
 # lock i3
 bindsym $mod+Control+o exec "$HOME/scripts/lock.sh"
 #Volume up / down / mute
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
+# Sreen brightness controls (brightness up, brightness down)
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 # Start i3bar
 bar {
     status_command i3status -c ~/.i3/i3status.conf
@@ -149,4 +160,6 @@ bar {
 #Start at startup
 exec --no-startup-id i3-msg 'exec spotify'
 exec --no-startup-id i3-msg 'exec google-chrome'
+exec --no-startup-id dropbox
+# wallpaper
 exec --no-startup-id feh --bg-fill ~/.wallpaper/wallpaper.jpg 
