@@ -146,6 +146,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 bar {
     status_command i3status -c ~/.i3/i3status.conf
     strip_workspace_numbers no
+    font pango:terminus, FontAwesome 9
 	colors {
         background #000000
         statusline #ffffff
