@@ -14,7 +14,7 @@ XTerm*utf8Title: True
 XTerm*renderFont: True
 XTerm*preeditType: Root
 XTerm*xftAntialias: true
-XTerm*faceName: xft:Inconsolata-12
+XTerm*faceName: xft:Inconsolata-10
 
 ! Trim trailing spaces
 XTerm*trimSelection: true
