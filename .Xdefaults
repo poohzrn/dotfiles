@@ -1,11 +1,12 @@
 XTerm*Background: black
 XTerm*Foreground: white
-#xterm*font:     *-fixed-*-*-*-13-*
+
+#XTerm*font: pango:Source Code Pro 10
+!
 ! Forbid bold font faces; bold type is light blue.
 XTerm*colorBDMode: true
 XTerm*colorBD: rgb:82/a4/d3
 ! Do not underscore text, underlined text is white.
 XTerm*colorULMode: true
 XTerm*colorUL: rgb:e4/e4/e4
-xterm*faceName: Liberation Mono:size=10:antialias=false
-xterm*font: 7x13
+xTerm*faceName: Liberation Mono:size=10:antialias=false

@@ -18,7 +18,7 @@ set $tag5 5:ssh
 set $tag6 6:
 set $tag7 7:
 set $tag8 8:
-set $tag9 9:
+set $tag9 9:mail
 set $tag10 10:spotify
 # Hide borders
 hide_edge_borders both
@@ -28,12 +28,10 @@ new_window none
 for_window [class="Spotify"] border none, move container to workspace $tag10
 for_window [class="Chromium"] move container to workspace $tag2
 for_window [class="chrome"] move container to workspace $tag2
-
+for_window [class="claws-mail"] move container to workspace $tag9
 # set mod key
 set $mod Mod1
 
-#Font
-font -*-terminus-*-*-*-*-*-*-*-*-*-*-*-*
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -146,7 +144,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 bar {
     status_command i3status -c ~/.i3/i3status.conf
     strip_workspace_numbers no
-    font pango:terminus, FontAwesome 9
+    #font pango:Source Sans Pro 10
+    font pango:Source Code Pro 10
+    #font pango:terminus 30, FontAwesome 9
 	colors {
         background #000000
         statusline #ffffff
@@ -161,6 +161,8 @@ bar {
 #Start at startup
 exec --no-startup-id i3-msg 'exec spotify'
 exec --no-startup-id i3-msg 'exec google-chrome'
+exec --no-startup-id i3-msg 'exec claws-mail'
 exec --no-startup-id dropbox
+
 # wallpaper
 exec --no-startup-id feh --bg-fill ~/.wallpaper/wallpaper.jpg 
