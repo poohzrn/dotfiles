@@ -33,7 +33,7 @@ alias push='git push'
 alias st='git status -s'
 alias d='git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat'
 alias go=co
-alias l="git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(bold red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n20"
+alias l="git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n20"
 alias gl="git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(bold red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n"
 alias lo='git shortlog --summary --numbered'
 co(){
