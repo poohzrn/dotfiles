@@ -18,6 +18,7 @@ DOTFILES=(".bash_aliases"
     ".i3/config"
     ".i3/i3status.conf"
     ".xsessionrc"
+    ".Xmodmap"
     "scripts/lock.sh"
     "scripts/servermgmt.sh"
 )
