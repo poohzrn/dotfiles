@@ -15,6 +15,18 @@ alias sleep='sudo -v; afk; sudo sh -c "echo mem > /sys/power/state"'
 alias update='~/git/dotfiles/scripts/install.sh'
 alias afk='~/git/dotfiles/scripts/lock.sh'
 
+#ls
+# export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
+
+Some more alias to avoid making mistakes:
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+
 #Tmux
 alias tma='tmux attach' 
 alias tmux='tmux -2' #256 color
