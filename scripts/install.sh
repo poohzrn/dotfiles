@@ -19,7 +19,6 @@ DOTFILES=(".bash_aliases"
     ".i3/config"
     ".i3/i3status.conf"
     ".xsessionrc"
-    ".Xmodmap"
     "scripts/lock.sh"
     "scripts/servermgmt.sh"
 )
@@ -59,9 +58,15 @@ do
     if [ -e ~/.vim/bundle/$PLUGINNAME/ ]; then
         echo "Updating $PLUGINNAME addon.." 
         cd ~/.vim/bundle/$PLUGINNAME && git pull
+        if [ $PLUGINNAME = "YouCompleteMe" ]; then
+            git submodule update --recursive
+        fi
     else
         echo "Installing $PLUGINNAME addon.." 
         cd ~/.vim/bundle/ && git clone $P
+        if [ $PLUGINNAME = "YouCompleteMe" ]; then
+            cd ~/.vim/bundle/$PLUGINNAME && git pull && git submodule update --init --recursive && python install.py
+        fi
     fi
 done
 # Reload dotfiles
