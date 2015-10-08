@@ -27,9 +27,5 @@ fi
 if [ -f ~/.private ]; then
     . ~/.private
 fi
-# keybindings
-if [ -f ~/.Xmodmap ]; then
-    xmodmap ~/.Xmodmap
-fi
 # autostart x when log in at tty 1
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
