@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 #Create folders
 mkdir -p ~/.olddotfiles #backup for old dots
 mkdir -p ~/.olddotfiles/scripts/ #backup for old dots
