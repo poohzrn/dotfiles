@@ -27,6 +27,11 @@ fi
 if [ -f ~/.private ]; then
     . ~/.private
 fi
+# Mac Specific aliases
+if [ -f ~/.bash_aliases_mac ]; then
+    . ~/.bash_aliases_mac
+fi
+
 # autostart x when log in at tty 1
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
 #setxkbmap -option ctrl:nocaps

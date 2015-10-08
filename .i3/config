@@ -160,9 +160,9 @@ bar {
 }
 #Start at startup
 exec --no-startup-id i3-msg 'exec spotify'
-exec --no-startup-id i3-msg 'exec google-chrome'
-exec --no-startup-id i3-msg 'exec claws-mail'
-exec --no-startup-id dropbox
+exec --no-startup-id i3-msg 'exec chromeium'
+#exec --no-startup-id i3-msg 'exec claws-mail'
+#exec --no-startup-id dropbox
 
 # wallpaper
-exec --no-startup-id feh --bg-fill ~/.wallpaper/wallpaper.jpg 
+exec --no-startup-id feh --bg-fill ~/.wallpaper.jpg 

@@ -43,6 +43,11 @@ do
     ln -s ~/git/dotfiles/$file ~/$file
 done
 
+#Install Mac aliases if OSX
+case $OSTYPE in darwin*)
+    ln -s ~/git/dotfiles/.bash_aliases_mac ~/.bash_aliases_mac
+    ;; esac
+
 # Install Pathogen
 if [ ! -e ~/.vim/autoload/pathogen.vim ]; then
     echo "installing pathogen.."
@@ -70,4 +75,4 @@ do
     fi
 done
 # Reload dotfiles
-source ~/.bashrc
+. ~/.bashrc
