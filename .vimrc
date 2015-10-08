@@ -1,8 +1,8 @@
 " set spelllang=en_gb spell
 execute pathogen#infect()
 autocmd BufNewFile,BufRead *.tex set spell
-syntax on
 filetype plugin indent on
+syntax on
 " disable .swp files
 set noswapfile
 set nobackup
