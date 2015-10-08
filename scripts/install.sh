@@ -3,6 +3,7 @@
 #Create folders
 mkdir -p ~/.olddotfiles #backup for old dots
 mkdir -p ~/.olddotfiles/scripts/ #backup for old dots
+mkdir -p ~/.olddotfiles/.i3/ #backup for old dots
 mkdir -p ~/.vim/bundle #folder for vim plugins
 mkdir -p ~/.i3/ #folder for i3 config 
 mkdir -p ~/scripts/ #folder for different scripts
