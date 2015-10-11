@@ -14,6 +14,7 @@ alias flux='cd /home/lasse/programs/flux && ./xflux -l 57'
 alias sleep='sudo -v; afk; sudo sh -c "echo mem > /sys/power/state"'
 alias update='~/git/dotfiles/scripts/install.sh'
 alias afk='~/git/dotfiles/scripts/lock.sh'
+alias apt='sudo apt'
 
 #ls
 export LS_OPTIONS='--color=auto'
