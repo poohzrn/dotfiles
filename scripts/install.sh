@@ -32,6 +32,7 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/honza/vim-snippets"
     "https://github.com/SirVer/ultisnips"
     "https://github.com/ervandew/supertab"
+    "https://github.com/majutsushi/tagbar"
 )
 #create backup and symlinks to dotfiles
 for file in "${DOTFILES[@]}"
