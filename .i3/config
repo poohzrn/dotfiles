@@ -10,16 +10,16 @@ set $ws8 8
 set $ws9 9
 set $ws10 0
 # Definie tags for workspaces
-set $tag1 1:main
-set $tag2 2:www
-set $tag3 3:code
-set $tag4 4:uni
-set $tag5 5:ssh
-set $tag6 6:
-set $tag7 7:
-set $tag8 8:
-set $tag9 9:mail
-set $tag10 10:spotify
+set $tag1 1main
+set $tag2 2www
+set $tag3 3
+set $tag4 4
+set $tag5 5
+set $tag6 6
+set $tag7 7
+set $tag8 8
+set $tag9 9
+set $tag10 10spotify
 # Hide borders
 hide_edge_borders both
 new_window none
@@ -62,7 +62,7 @@ bindsym $mod+Control+l move workspace to output right
 bindsym $mod+Control+h move workspace to output left
 #
 # split in horizontal orientation
-bindsym $mod+t split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
