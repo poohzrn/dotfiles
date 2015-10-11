@@ -10,8 +10,8 @@ set $ws8 8
 set $ws9 9
 set $ws10 0
 # Definie tags for workspaces
-set $tag1 1main
-set $tag2 2www
+set $tag1 1
+set $tag2 www
 set $tag3 3
 set $tag4 4
 set $tag5 5
@@ -27,8 +27,6 @@ new_window none
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace $tag10
 for_window [class="Chromium"] move container to workspace $tag2
-for_window [class="chrome"] move container to workspace $tag2
-for_window [class="claws-mail"] move container to workspace $tag9
 # set mod key
 set $mod Mod1
 
@@ -71,9 +69,9 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+#bindsym $mod+s layout stacking
+#bindsym $mod+w layout tabbed
+bindsym $mod+g layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
