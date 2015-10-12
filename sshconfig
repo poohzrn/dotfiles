@@ -4,17 +4,21 @@ ServerAliveInterval 60
 Host observium
     HostName observium.mynet
     ProxyCommand  ssh jumphost netcat -w 120 %h %p
-### DEBIAN-Pi
-Host dev
-    HostName lasse-dev.mynet
+###
+Host apache
+    HostName apache.mynet
     ProxyCommand  ssh jumphost netcat -w 120 %h %p
-### sw504
+### sw
 Host sw
-    HostName sw504.mynet
+    HostName sw.mynet
     ProxyCommand  ssh jumphost netcat -w 120 %h %p
-### Deiban
-Host debian
-    HostName debianPi.mynet
+### mediasrv
+Host mediasrv
+    HostName mediasrv.mynet
+    ProxyCommand  ssh jumphost netcat -w 120 %h %p
+### mediasrv
+Host plexsrv
+    HostName plexsrv.mynet
     ProxyCommand  ssh jumphost netcat -w 120 %h %p
 ### pi
 Host pi
