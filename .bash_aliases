@@ -16,6 +16,7 @@ alias update='~/git/dotfiles/scripts/install.sh'
 alias afk='~/git/dotfiles/scripts/lock.sh'
 alias apt='sudo apt'
 alias r='ranger'
+alias updateDisplay='xrandr --output VGA1 --auto --right-of LVDS1'
 
 #ls
 export LS_OPTIONS='--color=auto'
