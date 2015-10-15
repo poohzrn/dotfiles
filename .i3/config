@@ -11,15 +11,15 @@ set $ws9 9
 set $ws10 0
 # Definie tags for workspaces
 set $tag1 1
-set $tag2 www
+set $tag2 2www
 set $tag3 3
 set $tag4 4
 set $tag5 5
 set $tag6 6
 set $tag7 7
 set $tag8 8
-set $tag9 9
-set $tag10 10spotify
+set $tag9 9Skype
+set $tag10 10Spotify
 # Hide borders
 hide_edge_borders both
 new_window none
@@ -27,6 +27,7 @@ new_window none
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace $tag10
 for_window [class="Chromium"] move container to workspace $tag2
+for_window [class="Skype"] move container to workspace $tag9
 # set mod key
 set $mod Mod1
 
@@ -93,7 +94,7 @@ bindsym $mod+$ws4 workspace $tag4
 bindsym $mod+$ws5 workspace $tag5
 bindsym $mod+$ws6 workspace $tag6
 bindsym $mod+$ws7 workspace $tag7
-bindsym $mod+$ws8 workspace $tag8 
+bindsym $mod+$ws8 workspace $tag8
 bindsym $mod+$ws9 workspace $tag9
 bindsym $mod+$ws10 workspace $tag10
 
