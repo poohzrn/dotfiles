@@ -1,21 +1,21 @@
 #SSH
-alias ukuk='ssh ukuk'
-alias dev='ssh dev'
-alias pi='ssh root@pi'
+alias ukuk='ssh jumphost'
 alias obs='ssh observium'
-alias we='ssh websrv'
-alias debian='ssh debian'
+alias ssw='ssh sw'
+alias tvh='ssh tvheadend'
+alias pi='ssh root@pi'
 
 #Misc
 alias ..="cd ../"
 alias c='clear'
 alias g='cd ~/git/ && clear; ls' 
+alias r='ranger'
+alias q='exit'
 alias flux='cd /home/lasse/programs/flux && ./xflux -l 57'
 alias sleep='sudo -v; afk; sudo sh -c "echo mem > /sys/power/state"'
 alias update='~/git/dotfiles/scripts/install.sh'
 alias afk='~/git/dotfiles/scripts/lock.sh'
 alias apt='sudo apt'
-alias r='ranger'
 alias updateDisplay='xrandr --output VGA1 --auto --right-of LVDS1'
 
 #ls
