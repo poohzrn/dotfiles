@@ -39,7 +39,7 @@ font pango:Source Code Pro 10
 bindsym $mod+Return exec xterm
 
 # kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+c kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
