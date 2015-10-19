@@ -5,21 +5,21 @@ set $ws3 3
 set $ws4 4
 set $ws5 5
 set $ws6 6
-set $ws7 7
-set $ws8 8
-set $ws9 9
-set $ws10 0
+set $ws7 w
+set $ws8 m
+set $ws9 comma
+set $ws10 period
 # Definie tags for workspaces
 set $tag1 1
-set $tag2 2www
+set $tag2 2
 set $tag3 3
 set $tag4 4
 set $tag5 5
 set $tag6 6
-set $tag7 7
-set $tag8 8Mail
-set $tag9 9Skype
-set $tag10 10Spotify
+set $tag7 chrome
+set $tag8 mail
+set $tag9 skype
+set $tag10 spotify
 # Hide borders
 hide_edge_borders both
 new_window none
@@ -43,7 +43,7 @@ bindsym $mod+Return exec xterm
 bindsym $mod+c kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+space exec dmenu_run
 
 # change focus
 bindsym $mod+h focus left
@@ -71,15 +71,10 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen
 
 # change container layout (stacked, tabbed, toggle split)
-#bindsym $mod+s layout stacking
-#bindsym $mod+w layout tabbed
 bindsym $mod+g layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
-
-# change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -133,11 +128,14 @@ mode "resize" {
 }
 
 # lock i3
-bindsym $mod+Control+o exec "$HOME/scripts/lock.sh"
+bindsym $mod+Escape exec "$HOME/scripts/lock.sh"
 #Volume up / down / mute
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym XF86AudioPlay exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+bindsym XF86AudioNext exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+bindsym XF86AudioPrev exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
 # Sreen brightness controls (brightness up, brightness down)
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
