@@ -1,4 +1,5 @@
 # Define workspaces
+# Keys
 set $ws1 1
 set $ws2 2
 set $ws3 3
@@ -9,12 +10,12 @@ set $ws7 7
 set $ws8 8
 set $ws9 9
 set $ws10 0
-
 set $wschrome w
 set $wsmail m
 set $wsskype comma
 set $wsspotify period
 # Definie tags for workspaces
+# Names
 set $tag1 1
 set $tag2 2
 set $tag3 3
@@ -24,12 +25,12 @@ set $tag6 6
 set $tag7 7
 set $tag8 8
 set $tag9 9
-set $tag10 0
-
+set $tag10 10
 set $tagchrome chrome
 set $tagmail mail
 set $tagskpe skype
 set $tagspotify spotify
+#
 # Hide borders
 hide_edge_borders both
 new_window none
@@ -176,6 +177,7 @@ bar {
 exec --no-startup-id i3-msg 'exec spotify'
 exec --no-startup-id i3-msg 'exec chromeium'
 exec --no-startup-id i3-msg 'exec icedove'
+exec --no-startup-id i3-msg 'exec skype'
 #exec --no-startup-id dropbox
 
 # wallpaper
