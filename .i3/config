@@ -5,10 +5,15 @@ set $ws3 3
 set $ws4 4
 set $ws5 5
 set $ws6 6
-set $ws7 w
-set $ws8 m
-set $ws9 comma
-set $ws10 period
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 0
+
+set $wschrome w
+set $wsmail m
+set $wsskype comma
+set $wsspotify period
 # Definie tags for workspaces
 set $tag1 1
 set $tag2 2
@@ -16,19 +21,24 @@ set $tag3 3
 set $tag4 4
 set $tag5 5
 set $tag6 6
-set $tag7 chrome
-set $tag8 mail
-set $tag9 skype
-set $tag10 spotify
+set $tag7 7
+set $tag8 8
+set $tag9 9
+set $tag10 0
+
+set $tagchrome chrome
+set $tagmail mail
+set $tagskpe skype
+set $tagspotify spotify
 # Hide borders
 hide_edge_borders both
 new_window none
 
 #Move programs to corret workspaces
-for_window [class="Spotify"] border none, move container to workspace $tag10
-for_window [class="Chromium"] move container to workspace $tag2
-for_window [class="Skype"] move container to workspace $tag9
-for_window [class="Icedove"] move container to workspace $tag8
+for_window [class="Spotify"] border none, move container to workspace $tagspotify
+for_window [class="Chromium"] move container to workspace $tagchrome
+for_window [class="Skype"] move container to workspace $tagskpe
+for_window [class="Icedove"] move container to workspace $tagmail
 # set mod key
 set $mod Mod1
 
@@ -93,6 +103,11 @@ bindsym $mod+$ws7 workspace $tag7
 bindsym $mod+$ws8 workspace $tag8
 bindsym $mod+$ws9 workspace $tag9
 bindsym $mod+$ws10 workspace $tag10
+
+bindsym $mod+$wsskype workspace $tagskpe
+bindsym $mod+$wsmail workspace $tagmail
+bindsym $mod+$wsspotify workspace $tagspotify
+bindsym $mod+$wschrome workspace $tagchrome
 
 # move focused container to workspace
 bindsym $mod+Shift+$ws1 move container to workspace $tag1
