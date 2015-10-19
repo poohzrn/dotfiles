@@ -17,7 +17,7 @@ set $tag4 4
 set $tag5 5
 set $tag6 6
 set $tag7 7
-set $tag8 8
+set $tag8 8Mail
 set $tag9 9Skype
 set $tag10 10Spotify
 # Hide borders
@@ -28,6 +28,7 @@ new_window none
 for_window [class="Spotify"] border none, move container to workspace $tag10
 for_window [class="Chromium"] move container to workspace $tag2
 for_window [class="Skype"] move container to workspace $tag9
+for_window [class="Icedove"] move container to workspace $tag8
 # set mod key
 set $mod Mod1
 
@@ -161,7 +162,7 @@ bar {
 #Start at startup
 exec --no-startup-id i3-msg 'exec spotify'
 exec --no-startup-id i3-msg 'exec chromeium'
-#exec --no-startup-id i3-msg 'exec claws-mail'
+exec --no-startup-id i3-msg 'exec icedove'
 #exec --no-startup-id dropbox
 
 # wallpaper
