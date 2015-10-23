@@ -37,7 +37,7 @@ new_window none
 
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace $tagspotify
-for_window [class="Chromium"] move container to workspace $tagchrome
+for_window [class="chromium"] move container to workspace $tagchrome
 for_window [class="Skype"] move container to workspace $tagskpe
 for_window [class="Icedove"] move container to workspace $tagmail
 # set mod key
@@ -172,6 +172,9 @@ bar {
         inactive_workspace #333333 #222222 #888888
         urgent_workspace   #aa0000 #990000 #ffffff
 	}
+    mode hide
+    hidden_state hide
+    modifier Mod1
 }
 #Start at startup
 exec --no-startup-id i3-msg 'exec spotify'
