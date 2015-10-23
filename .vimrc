@@ -8,6 +8,7 @@ set noswapfile
 set nobackup
 set nowb
 let g:tex_flavor='latex'
+nnoremap <F11> :Latexmk<CR>
 " enable syntax highlighting
 syntax enable
 
@@ -54,3 +55,10 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<c-n>'
 " Tagbar mapping:
 nmap <F12> :TagbarToggle<CR>
+" Buffers
+nnoremap <C-l> :bnext<CR>
+nnoremap <C-h> :bprevious<CR>
+" vim-notes
+let g:notes_directories = ['~/Dropbox/notes']
+let g:notes_suffix = '.txt'
+
