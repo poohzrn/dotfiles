@@ -1,5 +1,4 @@
-# Define workspaces
-# Keys
+# Define keys for workspaces
 set $ws1 1
 set $ws2 2
 set $ws3 3
@@ -14,8 +13,7 @@ set $wschrome w
 set $wsmail m
 set $wsskype comma
 set $wsspotify period
-# Definie tags for workspaces
-# Names
+# Definie tags/names for workspaces
 set $tag1 1
 set $tag2 2
 set $tag3 3
@@ -30,69 +28,6 @@ set $tagchrome chrome
 set $tagmail mail
 set $tagskpe skype
 set $tagspotify spotify
-#
-# Hide borders
-hide_edge_borders both
-new_window none
-
-#Move programs to corret workspaces
-for_window [class="Spotify"] border none, move container to workspace $tagspotify
-for_window [class="chromium"] move container to workspace $tagchrome
-for_window [class="Skype"] move container to workspace $tagskpe
-for_window [class="Icedove"] move container to workspace $tagmail
-# set mod key
-set $mod Mod1
-
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
-font pango:Source Code Pro 10
-# start a terminal
-bindsym $mod+Return exec xterm
-
-# kill focused window
-bindsym $mod+c kill
-
-# start dmenu (a program launcher)
-bindsym $mod+space exec dmenu_run
-
-# change focus
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-
-# move focused window
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-
-# Move workspaces between monitors
-bindsym $mod+Control+l move workspace to output right
-bindsym $mod+Control+h move workspace to output left
-#
-# split in horizontal orientation
-bindsym $mod+b split h
-
-# split in vertical orientation
-bindsym $mod+v split v
-
-# enter fullscreen mode for the focused container
-bindsym $mod+f fullscreen
-
-# change container layout (stacked, tabbed, toggle split)
-bindsym $mod+g layout toggle split
-
-# toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# focus the parent container
-bindsym $mod+a focus parent
-
-# focus the child container
-#bindsym $mod+d focus child
-
 # switch to workspace
 bindsym $mod+$ws1 workspace $tag1
 bindsym $mod+$ws2 workspace $tag2
@@ -104,12 +39,10 @@ bindsym $mod+$ws7 workspace $tag7
 bindsym $mod+$ws8 workspace $tag8
 bindsym $mod+$ws9 workspace $tag9
 bindsym $mod+$ws10 workspace $tag10
-
 bindsym $mod+$wsskype workspace $tagskpe
 bindsym $mod+$wsmail workspace $tagmail
 bindsym $mod+$wsspotify workspace $tagspotify
 bindsym $mod+$wschrome workspace $tagchrome
-
 # move focused container to workspace
 bindsym $mod+Shift+$ws1 move container to workspace $tag1
 bindsym $mod+Shift+$ws2 move container to workspace $tag2
@@ -122,6 +55,57 @@ bindsym $mod+Shift+$ws8 move container to workspace $tag8
 bindsym $mod+Shift+$ws9 move container to workspace $tag9
 bindsym $mod+Shift+$ws10 move container to workspace $tag10
 
+#Move programs to corret workspaces
+for_window [class="Spotify"] border none, move container to workspace $tagspotify
+for_window [class="chromium"] move container to workspace $tagchrome
+for_window [class="Skype"] move container to workspace $tagskpe
+for_window [class="Icedove"] move container to workspace $tagmail
+
+# set mod key
+set $mod Mod1
+ 
+# Hide borders
+hide_edge_borders both
+new_window none
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+font pango:Source Code Pro 10
+# start a terminal
+bindsym $mod+Return exec xterm
+
+# kill focused window
+bindsym $mod+c kill
+
+# start dmenu (a program launcher)
+bindsym $mod+space exec dmenu_run
+## Navigation
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+# Move workspaces between monitors
+bindsym $mod+Control+l move workspace to output right
+bindsym $mod+Control+h move workspace to output left
+# split in horizontal orientation
+bindsym $mod+b split h
+# split in vertical orientation
+bindsym $mod+v split v
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+g layout toggle split
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# focus the parent container
+bindsym $mod+a focus parent
+# focus the child container
+#
 # reload the configuration file
 bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -181,7 +165,6 @@ exec --no-startup-id i3-msg 'exec spotify'
 exec --no-startup-id i3-msg 'exec chromeium'
 exec --no-startup-id i3-msg 'exec icedove'
 exec --no-startup-id i3-msg 'exec skype'
-#exec --no-startup-id dropbox
-
+exec --no-startup-id dropbox
 # wallpaper
 exec --no-startup-id feh --bg-fill ~/.wallpaper.jpg 
