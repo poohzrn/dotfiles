@@ -20,8 +20,6 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/SirVer/ultisnips"
     "https://github.com/ervandew/supertab"
     "https://github.com/majutsushi/tagbar"
-    "https://github.com/xolox/vim-notes"
-    "https://github.com/xolox/vim-misc"
 )
 
 #VIM plugins - Update / install

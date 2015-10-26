@@ -58,7 +58,4 @@ nmap <F12> :TagbarToggle<CR>
 " Buffers
 nnoremap <C-l> :bnext<CR>
 nnoremap <C-h> :bprevious<CR>
-" vim-notes
-let g:notes_directories = ['~/Dropbox/notes']
-let g:notes_suffix = '.txt'
 
