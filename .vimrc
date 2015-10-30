@@ -40,7 +40,7 @@ set hlsearch        " Highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 set nohlsearch      " Noh after search
-" Syntastic
+" Fantastic
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
 "set statusline+=%*
@@ -51,13 +51,14 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<c-n>'
-" Keybindings
+" Key bindings
 let mapleader="\<Space>"
-nnoremap <mapleader-k> :!ls <CR>
-nnoremap <Leader>w z=
-nnoremap <F11> :Latexmk<CR>
-nnoremap <F12> :TagbarToggle<CR>
+nnoremap <Space> <NOP>
+nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
+nnoremap <Leader>r z=
+nnoremap <Leader>m :Latexmk<CR>
+nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap , :
-nnoremap <C-l> :bnext<CR>
-nnoremap <C-h> :bprevious<CR>
-nnoremap <C-o> :Gcommit % <CR>i
+nnoremap <Leader>l :bnext<CR>
+nnoremap <Leader>h :bprevious<CR>
+nnoremap <Leader>u :Gcommit % <CR>i
