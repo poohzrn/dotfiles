@@ -21,6 +21,7 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/ervandew/supertab"
     "https://github.com/majutsushi/tagbar"
     "https://github.com/bling/vim-bufferline"
+    "https://github.com/scrooloose/syntastic"
 )
 
 #VIM plugins - Update / install
