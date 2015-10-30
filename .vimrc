@@ -35,6 +35,11 @@ set t_Co=256
 colo molokai
 " enable wild menu
 set wildmenu
+set incsearch       " Find the next match as we type the search
+set hlsearch        " Highlight searches by default
+set ignorecase      " Ignore case when searching...
+set smartcase       " ...unless we type a capital
+set nohlsearch      " Noh after search
 " Syntastic
 "set statusline+=%#warningmsg#
 "set statusline+=%{SyntasticStatuslineFlag()}
