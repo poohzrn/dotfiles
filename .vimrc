@@ -53,6 +53,8 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<c-n>'
 " Keybindings
 let mapleader="\<Space>"
+nnoremap <mapleader-k> :!ls <CR>
+nnoremap <Leader>w z=
 nnoremap <F11> :Latexmk<CR>
 nnoremap <F12> :TagbarToggle<CR>
 nnoremap , :
