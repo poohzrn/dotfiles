@@ -156,9 +156,9 @@ bar {
         inactive_workspace #333333 #222222 #888888
         urgent_workspace   #aa0000 #990000 #ffffff
 	}
-    mode hide
-    hidden_state hide
-    modifier Mod1
+#  mode hide
+#  hidden_state hide
+#  modifier Mod1
 }
 #Start at startup
 exec --no-startup-id i3-msg 'exec spotify'
