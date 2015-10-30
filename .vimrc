@@ -59,4 +59,4 @@ nmap <F12> :TagbarToggle<CR>
 nnoremap <C-l> :bnext<CR>
 nnoremap <C-h> :bprevious<CR>
 " Git
-nnoremap <C-o> :Gcommit<CR>i
+nnoremap <C-o> :Gcommit . <CR>i
