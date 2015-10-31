@@ -72,4 +72,5 @@ nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>j gj
 nnoremap <Leader>k gk
 nnoremap <Leader>h :bprevious<CR>
-nnoremap <Leader>o :Gcommit % <CR>i
+nnoremap <Leader>c :Gcommit % <CR>i
+nnoremap <Leader>d :Gdiff <CR>
