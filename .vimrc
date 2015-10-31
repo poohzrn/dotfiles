@@ -1,4 +1,3 @@
-" set spelllang=en_gb spell
 execute pathogen#infect()
 autocmd BufNewFile,BufRead *.tex set spell
 filetype plugin indent on
@@ -54,7 +53,7 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
-" YCM
+" YMCA
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<c-n>'
