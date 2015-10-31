@@ -67,6 +67,7 @@ nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
 nnoremap <Leader>r z=
 nnoremap <Leader>w ]s
 nnoremap <Leader>b [s
+nnoremap <Leader>s :w <CR>
 nnoremap <Leader>m :Latexmk<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <Leader>l :bnext<CR>
