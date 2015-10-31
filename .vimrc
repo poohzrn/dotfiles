@@ -60,6 +60,7 @@ let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<c-n>'
 " Key bindings
 nnoremap , :
+nnoremap ½ $
 let mapleader="\<Space>"
 nnoremap <Space> <NOP>
 nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
