@@ -63,6 +63,7 @@ nnoremap ½ $
 let mapleader="\<Space>"
 nnoremap <Space> <NOP>
 nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
+nnoremap <Leader>sy :SyntasticToggleMode <CR>
 nnoremap <Leader>r z=
 nnoremap <Leader>w ]s
 nnoremap <Leader>b [s
@@ -75,3 +76,4 @@ nnoremap <Leader>k gk
 nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>c :Gcommit % <CR>i
 nnoremap <Leader>d :Gdiff <CR>
+nnoremap <Leader>st :Gstatus <CR>
