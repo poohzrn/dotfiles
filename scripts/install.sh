@@ -35,4 +35,4 @@ case $OSTYPE in darwin*)
     ;; esac
 
 # Reload dotfiles
-. ~/.bashrc
+source ~/.bashrc

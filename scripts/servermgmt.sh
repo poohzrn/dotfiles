@@ -1,14 +1,14 @@
 #!/bin/sh
 tmux new-session -d -s mgmt
-tmux splitw -v 
-tmux splitw -h 
-tmux splitw -h 
-tmux splitw -h 
-tmux send-keys -t 1 'dev' enter C-1
-tmux send-keys -t 2 'ukuk' enter C-1
-tmux send-keys -t 3 'debian' enter C-1
-tmux send-keys -t 4 'obs' enter C-1
-tmux send-keys -t 5 'we' enter C-1
+tmux splitw -v
+tmux splitw -v
+tmux splitw -v
+#tmux splitw -h
+
+tmux send-keys -t 1 'obs' enter C-1
+tmux send-keys -t 2 'ssw' enter C-1
+tmux send-keys -t 3 'tvh' enter C-1
+tmux send-keys -t 4 'ukuk' enter C-1
 
 tmux select-layout tiled
 
