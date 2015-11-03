@@ -64,6 +64,8 @@ let g:SuperTabDefaultCompletionType = '<c-n>'
 nnoremap , :
 nnoremap ½ $
 let mapleader="\<Space>"
+nnoremap <F1> : set paste
+nnoremap <F2> : set nopaste
 nnoremap <Space> <NOP>
 nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
 nnoremap <Leader>sy :SyntasticToggleMode <CR>
@@ -80,3 +82,4 @@ nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>c :Gcommit % <CR>i
 nnoremap <Leader>d :Gdiff <CR>
 nnoremap <Leader>st :Gstatus <CR>
+
