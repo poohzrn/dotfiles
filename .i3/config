@@ -167,6 +167,7 @@ exec --no-startup-id i3-msg 'exec chromeium'
 exec --no-startup-id i3-msg 'exec icedove'
 exec --no-startup-id i3-msg 'exec rescuetime'
 exec --no-startup-id i3-msg 'exec skype'
+exec --no-startup-id i3-msg 'exec redshift'
 exec --no-startup-id dropbox
 # wallpaper
 exec --no-startup-id feh --bg-fill ~/.wallpaper.jpg 
