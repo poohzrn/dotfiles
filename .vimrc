@@ -65,6 +65,7 @@ nnoremap , :
 nnoremap ½ $
 let mapleader="\<Space>"
 nnoremap <F2> :set invpaste paste?<CR>
+nnoremap <F12> :Latexmk <CR>
 set pastetoggle=<F2>
 nnoremap <Space> <NOP>
 nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
