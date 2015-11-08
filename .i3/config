@@ -162,8 +162,8 @@ bar {
 #  modifier Mod1
 }
 #Start at startup
-exec --no-startup-id i3-msg 'exec spotify'
-exec --no-startup-id i3-msg 'exec chromeium'
+#exec --no-startup-id i3-msg 'exec spotify'
+#exec --no-startup-id i3-msg 'exec chromeium'
 exec --no-startup-id i3-msg 'exec icedove'
 exec --no-startup-id i3-msg 'exec rescuetime'
 exec --no-startup-id i3-msg 'exec skype'
