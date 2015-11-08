@@ -25,6 +25,7 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/majutsushi/tagbar"
     "https://github.com/bling/vim-bufferline"
     "https://github.com/scrooloose/syntastic"
+    "https://github.com/scrooloose/nerdtree"
 )
 #VIM plugins - Update / install
 for P in "${PLUGINS[@]}"
