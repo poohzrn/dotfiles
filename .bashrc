@@ -59,4 +59,8 @@ fi
 
 # autostart x when log in at tty 1
 [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]] && exec startx
-#setxkbmap -option ctrl:nocaps
+# bind Capslock to Escape when tapped,
+# Bind Capslock to Control when pressed
+# depends on xcape
+setxkbmap -option 'caps:ctrl_modifier'
+xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
