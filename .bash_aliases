@@ -8,17 +8,15 @@ alias pi='ssh root@pi'
 #Misc
 alias ..="cd ../"
 alias c='clear'
-alias g='cd ~/git/ && clear; ls' 
+alias g='cd ~/git; clear; ls' 
 alias r='ranger'
 alias q='exit'
-alias flux='cd /home/lasse/programs/flux && ./xflux -l 57'
 alias sleep='sudo -v; afk; sudo sh -c "echo mem > /sys/power/state"'
 alias update-dotfiles='~/git/dotfiles/scripts/install.sh'
 alias update-vim-plugins='~/git/dotfiles/scripts/updatevim.sh'
 alias update-display-setup='xrandr --output VGA1 --auto --right-of LVDS1 && feh --bg-fill ~/.wallpaper.jpg'
-alias afk='~/git/dotfiles/scripts/lock.sh'
-alias update='sudo apt-get update && sudo apt-get upgrade'
-alias yolo='sudo apt-get update && sudo apt-get upgrade -y'
+alias update='sudo apt-get update; sudo apt-get upgrade; update-vim-plugins'
+alias yolo='sudo apt-get update; sudo apt-get upgrade -y'
 
 #ls
 export LS_OPTIONS='--color=auto'
