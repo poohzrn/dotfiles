@@ -17,7 +17,8 @@ alias update-dotfiles='~/git/dotfiles/scripts/install.sh'
 alias update-vim-plugins='~/git/dotfiles/scripts/updatevim.sh'
 alias update-display-setup='xrandr --output VGA1 --auto --right-of LVDS1 && feh --bg-fill ~/.wallpaper.jpg'
 alias afk='~/git/dotfiles/scripts/lock.sh'
-alias apt='sudo apt'
+alias update='sudo apt-get update && sudo apt-get upgrade'
+alias yolo='sudo apt-get update && sudo apt-get upgrade -y'
 
 #ls
 export LS_OPTIONS='--color=auto'
