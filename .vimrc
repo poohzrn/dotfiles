@@ -63,10 +63,16 @@ let g:SuperTabDefaultCompletionType = '<c-n>'
 " Key bindings
 nnoremap , :
 nnoremap ½ $
+noremap <space><space> <PageDown>zz
+noremap j jzz
+noremap k kzz
+noremap q :q<CR>
+nnoremap n nzzzv
+set pastetoggle=<F2>
+
 let mapleader="\<Space>"
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F12> :Latexmk <CR>
-set pastetoggle=<F2>
 nnoremap <Space> <NOP>
 nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
 nnoremap <Leader>sy :SyntasticToggleMode <CR>
