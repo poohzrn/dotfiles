@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 mkdir -p ~/.vim/bundle #folder for vim plugins
 mkdir -p ~/.vim/autoload
+mkdir -p ~/.vim/colors
 # Install Pathogen
 if [ ! -e ~/.vim/autoload/pathogen.vim ]; then
     echo "installing pathogen.."
@@ -9,7 +10,6 @@ else
     echo "updating pathogen.."
     cd ~/.vim/autoload && { rm -f pathogen.vim ; wget https://tpo.pe/pathogen.vim ; }
 fi
-
 # Plugins for vim
 PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/kien/ctrlp.vim"
@@ -31,18 +31,27 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
 for P in "${PLUGINS[@]}"
 do
     PLUGINNAME=${P##https://github.com/*/}
-    PLUGINNAME=${PLUGINNAME%.git} #remove .git 
-    if [ -e ~/.vim/bundle/$PLUGINNAME/ ]; then
-        echo "Updating $PLUGINNAME addon.." 
-        cd ~/.vim/bundle/$PLUGINNAME && git pull
-        if [ $PLUGINNAME = "YouCompleteMe" ]; then
-            git submodule update --recursive
+    PLUGINNAME=${PLUGINNAME%.git} #remove .git
+    if [ -e ~/.vim/bundle/$PLUGINNAME/ ] || [ -e ~/.vim/colors/$PLUGINNAME/ ]; then
+        echo "Updating $PLUGINNAME addon.."
+        if [[ -e ~/.vim/colors/$PLUGINNAME ]]; then
+            cd ~/.vim/colors/$PLUGINNAME && git pull
+        elif [[ -e ~/.vim/bundle/$PLUGINNAME/ ]]; then
+            cd ~/.vim/bundle/$PLUGINNAME && git pull
+            if [ $PLUGINNAME = "YouCompleteMe" ]; then
+                git submodule update --recursive
+            fi
         fi
+    elif [[ $PLUGINNAME = "molokai" ]]; then
+        echo "Installing $PLUGINNAME"
+        cd ~/.vim/colors/ && git clone $P
     else
-        echo "Installing $PLUGINNAME addon.." 
         cd ~/.vim/bundle/ && git clone $P
         if [ $PLUGINNAME = "YouCompleteMe" ]; then
-            cd ~/.vim/bundle/$PLUGINNAME && git pull && git submodule update --init --recursive && python install.py
+                cd ~/.vim/bundle/$PLUGINNAME && \
+                git pull && \
+                git submodule update --init --recursive \
+                && python install.py
         fi
     fi
 done
