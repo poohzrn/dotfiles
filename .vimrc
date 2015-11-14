@@ -98,3 +98,6 @@ nnoremap <Leader>k gkzz
 nnoremap <Leader>c :Gcommit % <CR>i
 nnoremap <Leader>d :Gdiff <CR>
 nnoremap <Leader>st :Gstatus <CR>
+
+nnoremap <Leader>h :bprevious<CR>
+nnoremap <Leader>l :bnext<CR>
