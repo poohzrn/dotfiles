@@ -39,7 +39,6 @@ alias dmgmt='tmux kill-session -t mgmt'
 #Uni
 alias sw="cd ~/git/sw7/"
 alias swpull="sw; pull;"
-alias mm="make clean && make"
 
 #Git
 alias pull='git pull'
