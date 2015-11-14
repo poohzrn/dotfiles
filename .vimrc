@@ -74,17 +74,20 @@ noremap j jzz
 noremap k kzz
 noremap q :q<CR>
 "
-" bindnings for tabbing
+" bindnings for tabbing und buffering
 noremap tl :tabnext<CR>
 noremap th :tabprev<CR>
 noremap tn :tabnew<space>
 noremap tc :tabclose<CR>
 noremap bh :bprevious<CR>
 noremap bl :bnext<CR>
-noremap cc :Gcommit % <CR>i
+noremap bd :bdelete<CR>
 "
 noremap sp :setlocal spell! spelllang=en_us<CR>
 noremap sy :SyntasticToggleMode <CR>
+noremap cc :Gcommit % <CR>i
+noremap gd :Gdiff <CR>
+noremap st :Gstatus <CR>
 
 let mapleader="\<Space>"
 nnoremap <Leader>r z=
