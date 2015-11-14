@@ -73,8 +73,9 @@ noremap <space><space> <PageDown>zz
 noremap <BS> <PageUp>zz
 noremap j jzz
 noremap k kzz
-noremap q :q<CR>
+"noremap q :q<CR>
 noremap xx :x<CR>
+noremap qq :q<CR>
 " Tabbing und buffering
 noremap tl :tabnext<CR>
 noremap th :tabprev<CR>
@@ -87,6 +88,8 @@ noremap bd :bdelete<CR>
 noremap S :%s::g<Left><Left>
 noremap s :s::g<Left><Left>
 vmap s :s::g<Left><Left>
+vmap <tab> >
+vmap <Leader><tab> <
 
 noremap sp :setlocal spell! spelllang=en_us<CR>
 noremap sy :SyntasticToggleMode <CR>
@@ -104,3 +107,5 @@ nnoremap <Leader>j gjzz
 nnoremap <Leader>k gkzz
 nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>l :bnext<CR>
+nnoremap <Leader>o qp
+nnoremap <Leader>p @p
