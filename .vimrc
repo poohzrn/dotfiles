@@ -65,6 +65,7 @@ set pastetoggle=<F2>
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap , :
 nnoremap ½ $
+cmap , :
 nnoremap <space> <NOP>
 nnoremap n nzzzv
 
@@ -73,8 +74,8 @@ noremap <BS> <PageUp>zz
 noremap j jzz
 noremap k kzz
 noremap q :q<CR>
-"
-" bindnings for tabbing und buffering
+noremap xx :x<CR>
+" Tabbing und buffering
 noremap tl :tabnext<CR>
 noremap th :tabprev<CR>
 noremap tn :tabnew<space>
@@ -82,13 +83,16 @@ noremap tc :tabclose<CR>
 noremap bh :bprevious<CR>
 noremap bl :bnext<CR>
 noremap bd :bdelete<CR>
-"
+"Substitutions
+noremap S :%s::g<Left><Left>
+noremap s :s::g<Left><Left>
+vmap s :s::g<Left><Left>
+
 noremap sp :setlocal spell! spelllang=en_us<CR>
 noremap sy :SyntasticToggleMode <CR>
 noremap cc :Gcommit % <CR>i
 noremap gd :Gdiff <CR>
 noremap st :Gstatus <CR>
-
 let mapleader="\<Space>"
 nnoremap <Leader>r z=
 nnoremap <Leader>w ]s
