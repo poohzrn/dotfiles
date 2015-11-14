@@ -61,31 +61,40 @@ let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<c-n>'
 " Key bindings
+set pastetoggle=<F2>
+nnoremap <F2> :set invpaste paste?<CR>
 nnoremap , :
 nnoremap ½ $
+nnoremap <space> <NOP>
+nnoremap n nzzzv
+
 noremap <space><space> <PageDown>zz
+noremap <BS> <PageUp>zz
 noremap j jzz
 noremap k kzz
 noremap q :q<CR>
-nnoremap n nzzzv
-set pastetoggle=<F2>
+"
+" bindnings for tabbing
+noremap tl :tabnext<CR>
+noremap th :tabprev<CR>
+noremap tn :tabnew<space>
+noremap tc :tabclose<CR>
+noremap bh :bprevious<CR>
+noremap bl :bnext<CR>
+noremap cc :Gcommit % <CR>i
+"
+noremap sp :setlocal spell! spelllang=en_us<CR>
+noremap sy :SyntasticToggleMode <CR>
 
 let mapleader="\<Space>"
-nnoremap <F2> :set invpaste paste?<CR>
-nnoremap <F12> :Latexmk <CR>
-nnoremap <Space> <NOP>
-nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
-nnoremap <Leader>sy :SyntasticToggleMode <CR>
 nnoremap <Leader>r z=
 nnoremap <Leader>w ]s
 nnoremap <Leader>b [s
 nnoremap <Leader>s :w <CR>
 nnoremap <Leader>m :Latexmk<CR>
 nnoremap <Leader>t :TagbarToggle<CR>
-nnoremap <Leader>l :bnext<CR>
-nnoremap <Leader>j gj
-nnoremap <Leader>k gk
-nnoremap <Leader>h :bprevious<CR>
+nnoremap <Leader>j gjzz
+nnoremap <Leader>k gkzz
 nnoremap <Leader>c :Gcommit % <CR>i
 nnoremap <Leader>d :Gdiff <CR>
 nnoremap <Leader>st :Gstatus <CR>
