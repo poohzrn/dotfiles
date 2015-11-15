@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 mkdir -p ~/.vim/bundle #folder for vim plugins
 mkdir -p ~/.vim/autoload
-mkdir -p ~/.vim/colors
 # Install Pathogen
 if [ ! -e ~/.vim/autoload/pathogen.vim ]; then
     echo "installing pathogen.."
@@ -34,17 +33,12 @@ do
     PLUGINNAME=${PLUGINNAME%.git} #remove .git
     if [ -e ~/.vim/bundle/$PLUGINNAME/ ] || [ -e ~/.vim/colors/$PLUGINNAME/ ]; then
         echo "Updating $PLUGINNAME addon.."
-        if [[ -e ~/.vim/colors/$PLUGINNAME ]]; then
-            cd ~/.vim/colors/$PLUGINNAME && git pull
-        elif [[ -e ~/.vim/bundle/$PLUGINNAME/ ]]; then
+        if [[ -e ~/.vim/bundle/$PLUGINNAME/ ]]; then
             cd ~/.vim/bundle/$PLUGINNAME && git pull
             if [ $PLUGINNAME = "YouCompleteMe" ]; then
                 git submodule update --recursive
             fi
         fi
-    elif [[ $PLUGINNAME = "molokai" ]]; then
-        echo "Installing $PLUGINNAME"
-        cd ~/.vim/colors/ && git clone $P
     else
         cd ~/.vim/bundle/ && git clone $P
         if [ $PLUGINNAME = "YouCompleteMe" ]; then
