@@ -88,8 +88,8 @@ noremap bd :bdelete<CR>
 noremap S :%s::g<Left><Left>
 noremap s :s::g<Left><Left>
 vmap s :s::g<Left><Left>
-vmap <tab> >
-vmap <Leader><tab> <
+vmap <Tab> >
+vmap <Leader><Tab> <
 
 noremap sp :setlocal spell! spelllang=en_us<CR>
 noremap sy :SyntasticToggleMode <CR>
