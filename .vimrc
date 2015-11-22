@@ -63,6 +63,7 @@ let g:SuperTabDefaultCompletionType = '<c-n>'
 " Key bindings
 set pastetoggle=<F2>
 nnoremap <F2> :set invpaste paste?<CR>
+nnoremap <F9> :!python %<CR>
 nnoremap , :
 nnoremap ½ $
 cmap , :
@@ -88,8 +89,7 @@ noremap bd :bdelete<CR>
 noremap S :%s::g<Left><Left>
 noremap s :s::g<Left><Left>
 vmap s :s::g<Left><Left>
-vmap <Tab> >
-vmap <Leader><Tab> <
+vmap S :s::g<Left><Left>
 
 noremap sp :setlocal spell! spelllang=en_us<CR>
 noremap sy :SyntasticToggleMode <CR>
