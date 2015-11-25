@@ -93,7 +93,7 @@ vmap S :s::g<Left><Left>
 
 noremap sp :setlocal spell! spelllang=en_us<CR>
 noremap sy :SyntasticToggleMode <CR>
-noremap cc :Gcommit % <CR>i
+noremap cc :Gcommit %:p <CR>i
 noremap gd :Gdiff <CR>
 noremap st :Gstatus <CR>
 let mapleader="\<Space>"
