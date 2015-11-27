@@ -13,6 +13,7 @@ set $wschrome w
 set $wsmail m
 set $wsskype comma
 set $wsspotify period
+set $wsevince p
 # Definie tags/names for workspaces
 set $tag1 1
 set $tag2 2
@@ -24,10 +25,11 @@ set $tag7 7
 set $tag8 8
 set $tag9 9
 set $tag10 10
-set $tagchrome chrome
+set $tagchrome web
 set $tagmail mail
 set $tagskpe skype
 set $tagspotify spotify
+set $tagevince evince
 # switch to workspace
 bindsym $mod+$ws1 workspace $tag1
 bindsym $mod+$ws2 workspace $tag2
@@ -43,6 +45,7 @@ bindsym $mod+$wsskype workspace $tagskpe
 bindsym $mod+$wsmail workspace $tagmail
 bindsym $mod+$wsspotify workspace $tagspotify
 bindsym $mod+$wschrome workspace $tagchrome
+bindsym $mod+$wsevince workspace $tagevince
 # move focused container to workspace
 bindsym $mod+Shift+$ws1 move container to workspace $tag1
 bindsym $mod+Shift+$ws2 move container to workspace $tag2
@@ -54,12 +57,16 @@ bindsym $mod+Shift+$ws7 move container to workspace $tag7
 bindsym $mod+Shift+$ws8 move container to workspace $tag8
 bindsym $mod+Shift+$ws9 move container to workspace $tag9
 bindsym $mod+Shift+$ws10 move container to workspace $tag10
+bindsym $mod+Shift+$wsskype move container to workspace $tagskype
+bindsym $mod+Shift+$wschrome move container to workspace $tagchrome
+bindsym $mod+Shift+$wsevince move container to workspace $tagevince
 
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace $tagspotify
 for_window [class="chromium"] move container to workspace $tagchrome
 for_window [class="Skype"] move container to workspace $tagskpe
 for_window [class="Icedove"] move container to workspace $tagmail
+for_window [class="Evince"] move container to workspace $tagevince
 
 # set mod key
 set $mod Mod1
@@ -72,22 +79,15 @@ floating_modifier $mod
 
 font pango:Source Code Pro 10
 # start a terminal
-bindsym $mod+Return exec xterm
+bindsym $mod+t exec xterm
+bindsym $mod+c exec xterm
 
 # kill focused window
-bindsym $mod+c kill
-
-#        background #000000
-#        statusline #ffffff
-#        separator  #666666
-#        # Type             border  background font
-#        focused_workspace  #008fff #007fff #ffffff
-#        active_workspace   #333333 #5f676a #ffffff
-#        inactive_workspace #333333 #222222 #888888
-#        urgent_workspace   #aa0000 #990000 #ffffff
-# start dmenu (a program launcher)
-bindsym $mod+space exec rofi -show run  -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" #-width 100 -padding 400
-#bindsym $mod+space exec dmenu_run
+bindsym $mod+q kill
+#
+# start rofi (a program launcher)
+bindsym $mod+space exec rofi -show run  -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob-hide-scrollbar -glob
+bindsym $mod+Return exec rofi -show window -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob
 ## Navigation
 # change focus
 bindsym $mod+h focus left
@@ -166,9 +166,6 @@ bar {
         inactive_workspace #333333 #222222 #888888
         urgent_workspace   #aa0000 #990000 #ffffff
 	}
-#mode hide
-#hidden_state hide
-#modifier Mod1
 }
 #Start at startup
 exec --no-startup-id i3-msg 'exec rescuetime'
