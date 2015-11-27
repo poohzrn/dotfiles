@@ -67,35 +67,19 @@ nnoremap <F9> :!python %<CR>
 nnoremap , :
 nnoremap ½ $
 nnoremap <space> <NOP>
-nnoremap n nzzzv
-
-noremap <space><space> <PageDown>zz
-noremap <BS> <PageUp>zz
-noremap j jzz
-noremap k kzz
-"noremap q :q<CR>
+noremap <space><space> zz
 noremap xx :x<CR>
 noremap qq :q<CR>
-" Tabbing und buffering
-noremap tl :tabnext<CR>
-noremap th :tabprev<CR>
-noremap tn :tabnew<space>
-noremap tc :tabclose<CR>
-noremap bh :bprevious<CR>
-noremap bl :bnext<CR>
-noremap bd :bdelete<CR>
-"Substitutions
-noremap S :%s::g<Left><Left>
-noremap s :s::g<Left><Left>
-vnoremap s :s::g<Left><Left>
-vnoremap S :s::g<Left><Left>
 
-noremap sp :setlocal spell! spelllang=en_us<CR>
-noremap sy :SyntasticToggleMode <CR>
+" Commit amazingly super FaZssT
 noremap cc :Gcommit %:p <CR>i
-noremap gd :Gdiff <CR>
-noremap st :Gstatus <CR>
+
+" # Follow the Leader
 let mapleader="\<Space>"
+nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
+nnoremap <Leader>sy :SyntasticToggleMode <CR>
+nnoremap <Leader>gd :Gdiff <CR>
+nnoremap <Leader>st :Gstatus <CR>
 nnoremap <Leader>r z=
 nnoremap <Leader>w ]s
 nnoremap <Leader>b [s
@@ -108,10 +92,18 @@ nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>o qp
 nnoremap <Leader>p @p
+" Tabbing und buffering
+noremap <Leader>tl :tabnext<CR>
+noremap <Leader>th :tabprev<CR>
+noremap <Leader>tn :tabnew<space>
+noremap <Leader>tc :tabclose<CR>
+noremap <Leader>bh :bprevious<CR>
+noremap <Leader>bl :bnext<CR>
+noremap <Leader>bd :bdelete<CR>
 " LOS COMANDOS MODE
-cmap , :
-cmap <C-a> <Home>
-cmap <C-h> <Left>
-cmap <C-l> <Right>
-cmap <C-d> <Delete>
-cmap <C-e> <End>
+cnoremap , :
+cnoremap <C-a> <Home>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <C-d> <Delete>
+cnoremap <C-e> <End>
