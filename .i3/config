@@ -77,8 +77,17 @@ bindsym $mod+Return exec xterm
 # kill focused window
 bindsym $mod+c kill
 
+#        background #000000
+#        statusline #ffffff
+#        separator  #666666
+#        # Type             border  background font
+#        focused_workspace  #008fff #007fff #ffffff
+#        active_workspace   #333333 #5f676a #ffffff
+#        inactive_workspace #333333 #222222 #888888
+#        urgent_workspace   #aa0000 #990000 #ffffff
 # start dmenu (a program launcher)
-bindsym $mod+space exec dmenu_run
+bindsym $mod+space exec rofi -show run  -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" #-width 100 -padding 400
+#bindsym $mod+space exec dmenu_run
 ## Navigation
 # change focus
 bindsym $mod+h focus left

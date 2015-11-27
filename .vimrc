@@ -50,8 +50,8 @@ let g:syntastic_check_on_wq = 0
 "
 " Trigger configuration. 
 let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Rescue Time
 set title
 set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
@@ -59,14 +59,13 @@ set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
 " YMCA
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<c-n>'
+let g:SuperTabDefaultCompletionType = '<C-n>'
 " Key bindings
 set pastetoggle=<F2>
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
 nnoremap , :
 nnoremap ½ $
-cmap , :
 nnoremap <space> <NOP>
 nnoremap n nzzzv
 
@@ -88,8 +87,8 @@ noremap bd :bdelete<CR>
 "Substitutions
 noremap S :%s::g<Left><Left>
 noremap s :s::g<Left><Left>
-vmap s :s::g<Left><Left>
-vmap S :s::g<Left><Left>
+vnoremap s :s::g<Left><Left>
+vnoremap S :s::g<Left><Left>
 
 noremap sp :setlocal spell! spelllang=en_us<CR>
 noremap sy :SyntasticToggleMode <CR>
@@ -109,3 +108,10 @@ nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>o qp
 nnoremap <Leader>p @p
+" LOS COMANDOS MODE
+cmap , :
+cmap <C-a> <Home>
+cmap <C-h> <Left>
+cmap <C-l> <Right>
+cmap <C-d> <Delete>
+cmap <C-e> <End>
