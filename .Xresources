@@ -60,4 +60,18 @@ XTerm*color14 : #34E2E2
 ! white
 XTerm*color7  : #D3D7CF
 XTerm*color15 : #EEEEEC
-
+! Rofi configuration
+! Hide Scrollbar
+rofi.hide-scrollbar : true
+rofi.font           : pango:Source Code Pro 10
+rofi.fuzzy          : true
+rofi.fg-active      : #5f676a
+rofi.bg             : #000000
+rofi.hlbg           : #5f676a
+rofi.bc             : #333333
+rofi.color-normal   : #333333 #222222 #888888
+rofi.kb-clear-line  : Control+d
+rofi.kb-mode-next   : Control+l
+rofi.kb-mode-previous:Control+h
+rofi.kb-row-up      : Control+k, Up
+rofi.kb-row-Down    : Control+j, down

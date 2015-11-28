@@ -40,13 +40,6 @@ if tput setaf 1 &> /dev/null; then
 
 else
 # Otherwise, use ANSI escape sequences for coloring
-  # If you would like to customize your colors, use
-  # DEV: 30-39 lines up 0-9 from `tput`
-  # for i in $(seq 0 109); do
-  #   echo -n -e "\033[1;${i}mText$(tput sgr0) "
-  #   echo "\033[1;${i}m"
-  # done
-
   bash_reset="\033[m"
   bash_user_color="\033[1;34m" # BLUE
   bash_preposition_color="\033[1;37m" # WHITE

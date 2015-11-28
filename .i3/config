@@ -86,7 +86,7 @@ bindsym $mod+c exec xterm
 bindsym $mod+q kill
 #
 # start rofi (a program launcher)
-bindsym $mod+space exec rofi -show run  -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob-hide-scrollbar -glob
+bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob-hide-scrollbar
 bindsym $mod+Return exec rofi -show window -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob
 ## Navigation
 # change focus
@@ -153,9 +153,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 bar {
     status_command i3status -c ~/.i3/i3status.conf
     strip_workspace_numbers no
-    #font pango:Source Sans Pro 10
     font pango:Source Code Pro 10
-    #font pango:terminus 30, FontAwesome 9
 	colors {
         background #000000
         statusline #ffffff
