@@ -14,9 +14,14 @@ alias q='exit'
 alias sleep='sudo -v; afk; sudo sh -c "echo mem > /sys/power/state"'
 alias update-dotfiles='~/git/dotfiles/scripts/install.sh'
 alias update-vim-plugins='~/git/dotfiles/scripts/updatevim.sh'
-alias update-display-setup='xrandr --output VGA1 --auto --right-of LVDS1 && feh --bg-fill ~/.wallpaper.jpg'
+alias set-wallpaper='feh --bg-fill ~/.wallpaper.jpg'
 alias update='sudo apt-get update; sudo apt-get upgrade; update-vim-plugins'
-alias yolo='sudo apt-get update; sudo apt-get upgrade -y'
+
+#Display
+#should be done with acpi ..
+alias dock='xrandr -d :0.0 --output VGA1 --auto --primary --output LVDS1 --off; set-wallpaper'
+alias undock='xrandr --output LVDS1 --auto --primary --output VGA1 --off; set-wallpaper'
+alias vga='xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1; set-wallpaper;'
 
 #ls
 export LS_OPTIONS='--color=auto'
@@ -30,7 +35,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 #Tmux
-alias tma='tmux attach' 
+alias tma='tmux attach'
 alias tmux='tmux -2' #256 color
 alias tmate='tmate -2' #256 color
 alias mgmt='~/scripts/servermgmt.sh'

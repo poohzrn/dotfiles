@@ -1,10 +1,15 @@
 #!/bin/bash
 
-IN="LVDS1"
-EXT="VGA1"
+PRIMARY="LVDS1"
+EXTDISPLAYS=("VGA1" "HDMI1" "HDMI2" "HDMI3")
 
-if (xrandr | grep "$EXT disconnected"); then
-    xrandr --output $IN --auto --output $EXT --off 
-else
-    xrandr --output $IN --auto --primary --output $EXT --auto --right-of $IN
-fi
+
+for EXTDISPLAY in "${EXTDISPLAYS[@]}"
+do
+    if (xrandr | grep "$EXTDISPLAY disconnected");
+    then
+        xrandr --output $PRIMARY --auto --output $EXTDISPLAY --off
+    else
+        xrandr --output $PRIMARY --auto --primary --output $EXTDISPLAY --auto --right-of $PRIMARY
+    fi
+done
