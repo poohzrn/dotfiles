@@ -15,7 +15,7 @@ if tput setaf 1 &> /dev/null; then
   # done
 
   # Save common color actions
-  bash_bold="$()"
+  bash_bold="$(tput bold)"
   bash_reset="$(tput sgr0)"
 
   # If the terminal supports at least 256 colors, write out our 256 color based set
@@ -40,6 +40,13 @@ if tput setaf 1 &> /dev/null; then
 
 else
 # Otherwise, use ANSI escape sequences for coloring
+  # If you would like to customize your colors, use
+  # DEV: 30-39 lines up 0-9 from `tput`
+  # for i in $(seq 0 109); do
+  #   echo -n -e "\033[1;${i}mText$(tput sgr0) "
+  #   echo "\033[1;${i}m"
+  # done
+
   bash_reset="\033[m"
   bash_user_color="\033[1;34m" # BLUE
   bash_preposition_color="\033[1;37m" # WHITE
@@ -249,14 +256,13 @@ bash_get_git_info () {
 }
 
 # Define the sexy-bash-prompt
-PS1="\[$bash_user_color\]\u\[$bash_reset\] \
-\[$bash_preposition_color\]@\[$bash_reset\] \
+PS1="\[$bash_user_color\]\u\[$bash_reset\]\
+\[$bash_preposition_color\]@\[$bash_reset\]\
 \[$bash_device_color\]\h\[$bash_reset\] \
-\[$bash_preposition_color\]in\[$bash_reset\] \
-\[$bash_dir_color\]\w\[$bash_reset\]\
+\[$bash_dir_color\][\w]\[$bash_reset\]\
 \$( bash_is_on_git && \
   echo -n \" \[$bash_preposition_color\]on\[$bash_reset\] \" && \
   echo -n \"\[$bash_git_status_color\]\$(bash_get_git_info)\" && \
   echo -n \"\[$bash_git_progress_color\]\$(bash_get_git_progress)\" && \
   echo -n \"\[$bash_preposition_color\]\")\n\[$bash_reset\]\
-\[$bash_symbol_color\]$bash_symbol \[$sexy_bash_prompt_reset\]"
+\[$bash_symbol_color\]$bash_symbol \[$bash_prompt_reset\]"
