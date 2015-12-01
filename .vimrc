@@ -68,6 +68,7 @@ nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
 nnoremap , :
 nnoremap ½ $
+vnoremap ½ $
 nnoremap <space> <NOP>
 noremap <space><space> zz
 noremap xx :x<CR>
