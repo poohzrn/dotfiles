@@ -35,8 +35,9 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 #Tmux
-alias tma='tmux attach'
+alias tma='tmux attach-session -t'
 alias tmux='tmux -2' #256 color
+alias tmuxls='tmux list-sessions'
 alias tmate='tmate -2' #256 color
 alias mgmt='~/scripts/servermgmt.sh'
 alias dmgmt='tmux kill-session -t mgmt'
