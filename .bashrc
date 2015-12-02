@@ -35,5 +35,12 @@ fi
 # bind Capslock to Escape when tapped,
 # Bind Capslock to Control when pressed
 # depends on xcape
-setxkbmap -option 'caps:ctrl_modifier'
-xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
+#setxkbmap -option 'caps:ctrl_modifier'
+if X &>/dev/null; then
+    if setxkbmap &>/dev/null; then
+        setxkbmap -option 'caps:ctrl_modifier'
+    fi
+    if xcape &>/dev/null; then
+        xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
+    fi
+fi
