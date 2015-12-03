@@ -1,6 +1,7 @@
 #ls color
 export TERM=xterm-256color
 export CLICOLOR=1
+export HVMOUTPUTFOLDER=~/git/sw7/code/hvm
 export LSCOLORS=GxFxCxDxBxegedabagaced
 case "$TERM" in
     xterm-color) color_prompt=yes;;
@@ -36,7 +37,8 @@ fi
 # Bind Capslock to Control when pressed
 # depends on xcape
 #setxkbmap -option 'caps:ctrl_modifier'
-if X &>/dev/null; then
+if ! -z xset q &>/dev/null; then
+
     if setxkbmap &>/dev/null; then
         setxkbmap -option 'caps:ctrl_modifier'
     fi
@@ -44,5 +46,7 @@ if X &>/dev/null; then
         xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
     fi
 fi
+
+
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
