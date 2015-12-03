@@ -60,7 +60,7 @@ set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
 "" ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
 " Only works all the time.
-if has('persistent_undo') && !isdirectory(expand('~').'/.vim/backups')
+if has('persistent_undo')
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
   set undodir=~/.vim/backups
   set undofile
@@ -85,10 +85,11 @@ noremap qq :q<CR>
 " Commit amazingly super FaZssT
 noremap cc :Gcommit %:p <CR>i
 
-" # Follow the Leader
+"Follow the Leader
 let mapleader="\<Space>"
 nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
 nnoremap <Leader>sy :SyntasticToggleMode <CR>
+nnoremap <Leader>u :UndotreeToggle<CR><C-w>h
 nnoremap <Leader>gd :Gdiff <CR>
 nnoremap <Leader>st :Gstatus <CR>
 nnoremap <Leader>r z=

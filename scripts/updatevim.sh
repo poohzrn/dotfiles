@@ -26,6 +26,7 @@ PLUGINS=("https://github.com/hdima/python-syntax.git"
     "https://github.com/scrooloose/syntastic"
     "https://github.com/terryma/vim-multiple-cursors"
     "https://github.com/laurentgoudet/vim-howdoi"
+    "https://github.com/mbbill/undotree"
 )
 #VIM plugins - Update / install
 for P in "${PLUGINS[@]}"
