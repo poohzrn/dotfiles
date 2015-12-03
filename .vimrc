@@ -1,34 +1,38 @@
+
+"" ================ Plugins ==================
+
 call plug#begin('~/.vim/plugged')
-Plug 'bling/vim-airline'
-Plug 'tpope/vim-fugitive'
-Plug 'Valloric/YouCompleteMe'
-Plug 'tomasr/molokai'
-Plug 'LaTeX-Box-Team/LaTeX-Box'
-Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
-Plug 'ervandew/supertab'
-Plug 'majutsushi/tagbar'
-Plug 'bling/vim-bufferline'
-Plug 'scrooloose/syntastic'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'laurentgoudet/vim-howdoi'
-Plug 'mbbill/undotree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
+    "Lean & mean status/tabline for vim that's light as air.
+    Plug 'bling/vim-airline'
+    " A git wrapper
+    Plug 'tpope/vim-fugitive'
+    " Code completeon engine for Vim
+    Plug 'Valloric/YouCompleteMe'
+    " Colorscheme
+    Plug 'tomasr/molokai'
+    " Latex tool box
+    Plug 'LaTeX-Box-Team/LaTeX-Box'
+    " Vim-snippets depends on ultisnips
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+    Plug 'ervandew/supertab'
+    Plug 'majutsushi/tagbar'
+    Plug 'bling/vim-bufferline'
+    Plug 'scrooloose/syntastic'
+    Plug 'terryma/vim-multiple-cursors'
+    Plug 'laurentgoudet/vim-howdoi'
+    Plug 'mbbill/undotree'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
 call plug#end()
 
-"execute pathogen#infect()
-autocmd BufNewFile,BufRead *.tex set spell
 filetype plugin indent on
 " disable .swp files
 set noswapfile
 set nobackup
 set nowb
-let g:tex_flavor='latex'
 " enable syntax highlighting
 syntax enable
 syntax on
-let python_highlight_all = 1
 " Display tabs and trailing spaces visually
 set list listchars=tab:\ \ ,trail:·
 " show line numbers
@@ -52,6 +56,8 @@ let g:airline_theme='simple'
 set t_Co=256
 let g:molokai_original = 1
 let g:rehash256 = 1
+let python_highlight_all = 1
+let g:tex_flavor='latex'
 colorscheme molokai
 " enable wild menu
 set wildmenu
@@ -73,38 +79,44 @@ let g:syntastic_check_on_wq = 0
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" Rescue Time
-set title
-set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
+
+set pastetoggle=<F2>
+set rtp+=/home/lasse/.fzf
+"
 "" ================ Persistent Undo ==================
 " Keep undo history across sessions, by storing in file.
-" Only works all the time.
 if has('persistent_undo')
   silent !mkdir ~/.vim/backups > /dev/null 2>&1
   set undodir=~/.vim/backups
   set undofile
 endif
+
 "
 " YMCA
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
 " Key bindings
-set pastetoggle=<F2>
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
 nnoremap , :
 nnoremap ½ $
 vnoremap ½ $
 nnoremap <space> <NOP>
+"
+"Use FZF (Fazt Zearch Fandme)
+nnoremap <C-t> :FZF<CR>
+nnoremap <C-b> :Buffers<CR>
 noremap <space><space> zz
+" Handy shortcuts
+" save and close
 noremap xx :x<CR>
-noremap qq :q<CR>
 
 " Commit amazingly super FaZssT
 noremap cc :Gcommit %:p <CR>i
 
-"Follow the Leader
+"
+" Follow the Leader
 let mapleader="\<Space>"
 nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
 nnoremap <Leader>sy :SyntasticToggleMode <CR>
@@ -123,14 +135,16 @@ nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>o qp
 nnoremap <Leader>p @p
+"
 " Tabbing und buffering
 noremap <Leader>tl :tabnext<CR>
 noremap <Leader>th :tabprev<CR>
 noremap <Leader>tn :tabnew<space>
-noremap <Leader>tc :tabclose<CR>
+noremap <Leader>td :tabclose<CR>
 noremap <Leader>bh :bprevious<CR>
 noremap <Leader>bl :bnext<CR>
 noremap <Leader>bd :bdelete<CR>
+"
 " LOS COMANDOS MODE
 cnoremap , :
 cnoremap <C-a> <Home>
@@ -138,4 +152,3 @@ cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <C-d> <Delete>
 cnoremap <C-e> <End>
-set rtp+=/home/lasse/.fzf
