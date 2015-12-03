@@ -57,6 +57,14 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " Rescue Time
 set title
 set titlestring=%t%(\ %M%)%(\ (%{expand(\"%:p:h\")})%)%(\ %a%)
+"" ================ Persistent Undo ==================
+" Keep undo history across sessions, by storing in file.
+" Only works all the time.
+if has('persistent_undo') && !isdirectory(expand('~').'/.vim/backups')
+  silent !mkdir ~/.vim/backups > /dev/null 2>&1
+  set undodir=~/.vim/backups
+  set undofile
+endif
 "
 " YMCA
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
