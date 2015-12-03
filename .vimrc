@@ -1,4 +1,23 @@
-execute pathogen#infect()
+call plug#begin('~/.vim/plugged')
+Plug 'bling/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'Valloric/YouCompleteMe'
+Plug 'tomasr/molokai'
+Plug 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'ervandew/supertab'
+Plug 'majutsushi/tagbar'
+Plug 'bling/vim-bufferline'
+Plug 'scrooloose/syntastic'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'laurentgoudet/vim-howdoi'
+Plug 'mbbill/undotree'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+call plug#end()
+
+"execute pathogen#infect()
 autocmd BufNewFile,BufRead *.tex set spell
 filetype plugin indent on
 " disable .swp files
@@ -119,3 +138,4 @@ cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <C-d> <Delete>
 cnoremap <C-e> <End>
+set rtp+=/home/lasse/.fzf

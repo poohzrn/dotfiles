@@ -44,3 +44,5 @@ if X &>/dev/null; then
         xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
     fi
 fi
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
