@@ -15,7 +15,7 @@ alias sleep='sudo -v; afk; sudo sh -c "echo mem > /sys/power/state"'
 alias update-dotfiles='~/git/dotfiles/scripts/install.sh'
 alias update-vim-plugins='~/git/dotfiles/scripts/updatevim.sh'
 alias set-wallpaper='feh --bg-fill ~/.wallpaper.jpg'
-alias update='sudo apt-get update; sudo apt-get upgrade; update-vim-plugins'
+alias update='sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q'
 
 #Display
 #should be done with acpi ..
