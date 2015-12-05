@@ -16,6 +16,7 @@ alias update-dotfiles='~/git/dotfiles/scripts/install.sh'
 alias update-vim-plugins='~/git/dotfiles/scripts/updatevim.sh'
 alias set-wallpaper='feh --bg-fill ~/.wallpaper.jpg'
 alias update='sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q'
+alias clean='sudo apt-get autoclean; sudo apt-get clean; sudo apt-get autoremove'
 
 #Display
 #should be done with acpi ..

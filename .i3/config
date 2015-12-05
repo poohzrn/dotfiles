@@ -46,6 +46,7 @@ bindsym $mod+$wsmail workspace $tagmail
 bindsym $mod+$wsspotify workspace $tagspotify
 bindsym $mod+$wschrome workspace $tagchrome
 bindsym $mod+$wsevince workspace $tagevince
+bindsym $mod+Tab workspace next
 # move focused container to workspace
 bindsym $mod+Shift+$ws1 move container to workspace $tag1
 bindsym $mod+Shift+$ws2 move container to workspace $tag2
@@ -151,13 +152,14 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 # Start i3bar
 bar {
-    status_command i3status -c ~/.i3/i3status.conf
-    strip_workspace_numbers no
-    font pango:Source Code Pro 10
+    status_command i3status     -c ~/.i3/i3status.conf
+    strip_workspace_numbers     no
+    font pango:Source Code Pro  8
+    position                    top
 	colors {
-        background #000000
-        statusline #ffffff
-        separator  #666666
+        background          #000000
+        statusline          #ffffff
+        separator           #666666
         # Type             border  background font
         focused_workspace  #008fff #007fff #ffffff
         active_workspace   #333333 #5f676a #ffffff
