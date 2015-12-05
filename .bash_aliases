@@ -19,9 +19,6 @@ alias update='sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :
 alias clean='sudo apt-get autoclean; sudo apt-get clean; sudo apt-get autoremove'
 
 #Display
-#should be done with acpi ..
-alias dock='xrandr -d :0.0 --output VGA1 --auto --primary --output LVDS1 --off; set-wallpaper'
-alias undock='xrandr --output LVDS1 --auto --primary --output VGA1 --off; set-wallpaper'
 alias vga='xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1; set-wallpaper;'
 
 #ls

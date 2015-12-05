@@ -6,7 +6,8 @@ mkdir -p ~/.olddotfiles/.i3/ #backup for old dots
 mkdir -p ~/.i3/ #folder for i3 config 
 mkdir -p ~/scripts/ #folder for different scripts
 
-DOTFILES=(".bash_aliases"
+DOTFILES=(
+    ".bash_aliases"
     ".bashrc"
     ".bash_prompt"
     ".vimrc"
@@ -20,6 +21,7 @@ DOTFILES=(".bash_aliases"
     "scripts/lock.sh"
     "scripts/servermgmt.sh"
 )
+
 #create backup and symlinks to dotfiles
 for file in "${DOTFILES[@]}"
 do
