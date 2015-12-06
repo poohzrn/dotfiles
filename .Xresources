@@ -1,78 +1,67 @@
-! XTerm
-! General settings
+! -----------------------------------------------------------------------------
+
+! --- Xft {{{1
+! -----------------------------------------------------------------------------
+! calculate dpi with xdpyinfo | grep resolution
+Xft*dpi: 96
+Xft*antialias: true
+Xft*hinting: true
+! font-dependant. also try hintslight, hintfull, hintmedium, or hintnone.
+Xft*hintstyle: hintslight
+! set to vrgb for subpixel hinting on LCDs, or none on CRTs
+Xft*rgba: rgb
+! Choices: lcdnone, lcddefault, lcdlight, lcdlegacy
+Xft.lcdfilter: lcddefault
+Xft.embolden: true
+
+
+! --- xterm {{{1
+! -----------------------------------------------------------------------------
+! -- Basic settings, colors, & visuals (also fix too-dark blue)
 XTerm*termName: xterm-256color
-XTerm*geometry: 80x24
-XTerm*saveLines: 1024
-XTerm*scrollBar: False
-XTerm*loginshell: False
-XTerm*cursorBlink: False
-
-! Fonts and Encoding
-XTerm*utf8: True
-XTerm*locale: True
-XTerm*utf8Title: True
-XTerm*renderFont: True
-XTerm*preeditType: Root
-XTerm*xftAntialias: True
-XTerm*faceName: xft:Inconsolata-10
-XTerm*font: -*-pango:Source Code Pro-medium-r-normal--18-*-*-*-*-*-utf8
-
-! Trim trailing spaces
-XTerm*trimSelection: true
-
-! Fix alt-key inputting
-XTerm*eightBitInput: false
-XTerm*metaSendsEscape: true
-
+xterm*loginShell: true
+xterm*scrollBar: false
+xterm*background: grey9
+xterm*foreground: white
+xterm*cursorColor: red
+xterm*cursorUnderline: true
+xterm*cursorBlink: false
+xterm*color4: DodgerBlue1
+xterm*color12: SteelBlue1
+xterm*dynamicColors: true
+xterm*saveLines: 5000
+! -- Allow utf8 in/out
+xterm*utf8: 2
+xterm*eightBitInput: true
+xtere*eightBitControl: false
+xterm*eightBitOutput: true
+! -- Enables True-Type rendering:
+xterm*renderFont: true
+xterm*faceName: DejaVuSansMono
+xterm*faceNameDoublesize: DejaVuSansMono
+xterm*wideChars: true
+xterm*wideFont: DejaVuSansMono
+! -- Define the size increments used when changing font size
+xterm*faceSize: 10
+xterm*faceSize1: 6
+xterm*faceSize2: 8
+xterm*faceSize3: 12
+xterm*faceSize4: 16
+xterm*faceSize5: 20
+xterm*faceSize6: 24
+! -- Scroll multiple lines at a time for faster redrawing:
+xterm*jumpScroll: true
+xterm*multiScroll: true
+! -- trim whitespace from selection before copying
+xterm*trimSelection: true
+!
 ! Copy and paste with clipboard
 XTerm*translations: #override \
 	Ctrl Shift <KeyPress> C: copy-selection(CLIPBOARD) \n\
 	Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD)
 
-! Allow selecting email/url by double-click
-XTerm*charClass: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35:48
+xterm*charClass: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35:48
+! map the tab key to escape in xterm (becase we can!)
+! xterm.vt100.translations: #override\n\
+!        <Key>Tab: string("\033")\n\
 
-! Tango Theme
-
-XTerm*background: #1C1C1C
-XTerm*foreground: #DEDEDE
-
-! black
-XTerm*color0  : #2E3436
-XTerm*color8  : #555753
-! red
-XTerm*color1  : #CC0000
-XTerm*color9  : #EF2929
-! green
-XTerm*color2  : #4E9A06
-XTerm*color10 : #8AE234
-! yellow
-XTerm*color3  : #C4A000
-XTerm*color11 : #FCE94F
-! blue
-XTerm*color4  : #3465A4
-XTerm*color12 : #729FCF
-! magenta
-XTerm*color5  : #75507B
-XTerm*color13 : #AD7FA8
-! cyan
-XTerm*color6  : #06989A
-XTerm*color14 : #34E2E2
-! white
-XTerm*color7  : #D3D7CF
-XTerm*color15 : #EEEEEC
-! Rofi configuration
-! Hide Scrollbar
-rofi.hide-scrollbar : true
-rofi.font           : pango:Source Code Pro 10
-rofi.fuzzy          : true
-rofi.fg-active      : #0000ff
-rofi.bg             : #000000
-rofi.hlbg           : #5f676a
-rofi.bc             : #333333
-rofi.color-normal   : #333333 #222222 #888888
-rofi.kb-clear-line  : Control+d
-rofi.kb-mode-next   : Control+l
-rofi.kb-mode-previous:Control+h
-rofi.kb-row-up      : Control+k, up
-rofi.kb-row-Down    : Control+j, down
