@@ -37,14 +37,8 @@ fi
 # Bind Capslock to Control when pressed
 # depends on xcape
 #setxkbmap -option 'caps:ctrl_modifier'
-if ! -z xset q &>/dev/null; then
-
-    if setxkbmap &>/dev/null; then
-        setxkbmap -option 'caps:ctrl_modifier'
-    fi
-    if xcape &>/dev/null; then
-        xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
-    fi
+if [ -z xset q &>/dev/null && xcape &>/dev/null ]; then
+    xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
 fi
 
 

@@ -10,7 +10,7 @@ set __fish_git_prompt_char_stagedstate '→'
 set __fish_git_prompt_char_stashstate '✔'
 set __fish_git_prompt_char_upstream_ahead '↑'
 set __fish_git_prompt_char_upstream_behind '↓'
-
+#(git status --porcelain  | wc -l | sed "s/ //g")
 #prompt
 set fish_color_cwd white --bold
 set fish_greeting ''
@@ -34,7 +34,11 @@ end
 function fuckdebian
     sudo acpid -d &
 end
-
+#bind caps to ESC when tapped, CTRL otherwise
+function make_capskey_usefull
+    xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
+end
+make_capskey_usefull
 #
 #Misc aliases
 alias c "clear"
@@ -79,3 +83,7 @@ alias st "git status -s"
 alias l "git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n20"
 alias gl "git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(bold red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n"
 alias lo "git shortlog --summary --numbered"
+
+function git_dirty_count
+    set -g git_dirty_count (git status --porcelain  | wc -l | sed "s/ //g")
+end
