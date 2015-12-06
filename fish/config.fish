@@ -14,18 +14,17 @@ set __fish_git_prompt_char_upstream_behind '↓'
 #prompt
 set fish_color_cwd white --bold
 set fish_greeting ''
-set usr $USER
 function fish_prompt
         set_color $fish_color_cwd
-        printf '%s' $usr
+        printf '%s' (whoami)
         set_color red --bold
         printf '@'
         set_color $fish_color_cwd
         printf '%s'(hostname)
         set_color $fish_color_cwd
-        printf '%s' (prompt_pwd)
+        printf ' %s' (prompt_pwd)
         set_color normal
-        printf '%s ' (__fish_git_prompt)
+        printf '%s\n~>' (__fish_git_prompt)
        set_color normal
 end
 #Enable VGA output
