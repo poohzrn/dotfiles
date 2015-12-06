@@ -37,10 +37,12 @@ alias g "cd ~/git; clear; ls"
 alias q "exit"
 alias r "ranger"
 alias update "sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q"
-#alias fuckdebian "sudo acpid -d &"
-
+#
+#acpid bug
+alias fuckdebian "sudo bash -c 'acpid -d &'"
 #Display
-#alias vga "xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1; set-wallpaper;"
+alias set-wallpaper "feh --bg-fill ~/.wallpaper.jpg"
+alias vga "xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1;  set-wallpaper"
 
 #Some more alias to avoid making mistakes:
 alias rm "rm -i"
