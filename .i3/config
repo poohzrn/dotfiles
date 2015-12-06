@@ -161,10 +161,10 @@ bar {
         statusline          #ffffff
         separator           #666666
         # Type             border  background font
-        focused_workspace  #007fff #007fff #ffffff
-        active_workspace   #0000ff #0000ff #ffffff
-        urgent_workspace   #990000 #990000 #ffffff
+        focused_workspace  #ffffff #ffffff #999999
+        active_workspace   #333333 #333333 #666666
         inactive_workspace #333333 #333333 #666666
+        urgent_workspace   #990000 #990000 #ffffff
 	}
 }
 #Start at startup
