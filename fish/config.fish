@@ -13,7 +13,7 @@ set __fish_git_prompt_char_upstream_behind '↓'
 
 set fish_color_cwd white --bold
 set fish_greeting ''
- 
+
 function fish_prompt
         set last_status $status
         set_color $fish_color_cwd
@@ -21,6 +21,13 @@ function fish_prompt
         set_color normal
         printf '%s ' (__fish_git_prompt)
        set_color normal
+end
+#Enable VGA output
+function vga
+	xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1 $argv;
+end
+function fuckdebian
+    sudo acpid -d &
 end
 
 #
@@ -30,10 +37,10 @@ alias g "cd ~/git; clear; ls"
 alias q "exit"
 alias r "ranger"
 alias update "sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q"
-alias fuckdebian "sudo acpid -d &"
+#alias fuckdebian "sudo acpid -d &"
 
 #Display
-alias vga "xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1; set-wallpaper;"
+#alias vga "xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1; set-wallpaper;"
 
 #Some more alias to avoid making mistakes:
 alias rm "rm -i"
@@ -52,6 +59,13 @@ alias dmgmt "tmux kill-session -t mgmt"
 alias sw "cd ~/git/sw7/"
 
 #Git
+function d
+    git diff-index --quiet HEAD -- OR clear; git --no-pager diff --patch-with-stat
+end
+#Switch branch
+function go
+    git checkout $argv 2> /dev/null; and return; or git checkout -b $argv
+end
 alias pull "git pull"
 alias push "git push"
 alias st "git status -s"
