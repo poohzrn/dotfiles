@@ -256,7 +256,7 @@ bash_get_git_info () {
 }
 
 # Define the sexy-bash-prompt
-PS1="\[$bash_user_color\]\u\[$bash_reset\]\
+PS1="\[$bash_user_color\]\u\
 \[$bash_preposition_color\]@\[$bash_reset\]\
 \[$bash_device_color\]\h\[$bash_reset\] \
 \[$bash_dir_color\][\w]\[$bash_reset\]\

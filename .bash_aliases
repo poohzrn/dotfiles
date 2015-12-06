@@ -17,6 +17,7 @@ alias update-vim-plugins='~/git/dotfiles/scripts/updatevim.sh'
 alias set-wallpaper='feh --bg-fill ~/.wallpaper.jpg'
 alias update='sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q'
 alias clean='sudo apt-get autoclean; sudo apt-get clean; sudo apt-get autoremove'
+alias fuckdebian='sudo acpid -d &'
 
 #Display
 alias vga='xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1; set-wallpaper;'
@@ -56,4 +57,3 @@ alias lo='git shortlog --summary --numbered'
 co(){
     git checkout -b $1 2> /dev/null || git checkout $1
 }
-

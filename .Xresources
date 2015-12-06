@@ -13,8 +13,9 @@ XTerm*locale: True
 XTerm*utf8Title: True
 XTerm*renderFont: True
 XTerm*preeditType: Root
-XTerm*xftAntialias: true
+XTerm*xftAntialias: True
 XTerm*faceName: xft:Inconsolata-10
+XTerm*font: -*-pango:Source Code Pro-medium-r-normal--18-*-*-*-*-*-utf8
 
 ! Trim trailing spaces
 XTerm*trimSelection: true
@@ -65,7 +66,7 @@ XTerm*color15 : #EEEEEC
 rofi.hide-scrollbar : true
 rofi.font           : pango:Source Code Pro 10
 rofi.fuzzy          : true
-rofi.fg-active      : #5f676a
+rofi.fg-active      : #0000ff
 rofi.bg             : #000000
 rofi.hlbg           : #5f676a
 rofi.bc             : #333333
@@ -73,5 +74,5 @@ rofi.color-normal   : #333333 #222222 #888888
 rofi.kb-clear-line  : Control+d
 rofi.kb-mode-next   : Control+l
 rofi.kb-mode-previous:Control+h
-rofi.kb-row-up      : Control+k, Up
+rofi.kb-row-up      : Control+k, up
 rofi.kb-row-Down    : Control+j, down

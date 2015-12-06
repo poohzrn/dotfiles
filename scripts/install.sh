@@ -17,7 +17,6 @@ DOTFILES=(
     ".Xresources"
     ".i3/config"
     ".i3/i3status.conf"
-    ".xsessionrc"
     "scripts/lock.sh"
     "scripts/servermgmt.sh"
 )
@@ -36,5 +35,6 @@ case $OSTYPE in darwin*)
     ln -s ~/git/dotfiles/.bash_aliases_mac ~/.bash_aliases_mac
     ;; esac
 
+ln -sf ~/git/dotfiles/fish/config.fish ~/.config/fish/
 # Reload dotfiles
 source ~/.bashrc
