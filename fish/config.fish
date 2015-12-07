@@ -11,9 +11,14 @@ set __fish_git_prompt_char_stashstate '✔'
 set __fish_git_prompt_char_upstream_ahead '↑'
 set __fish_git_prompt_char_upstream_behind '↓'
 #(git status --porcelain  | wc -l | sed "s/ //g")
-#prompt
+#Colors
 set fish_color_cwd white --bold
+set fish_pager_color_prefix red
+set fish_search_match --background=red
+#Disable greeting
 set fish_greeting ''
+
+#prompt
 function fish_prompt
         set_color $fish_color_cwd
         printf '%s' (whoami)
