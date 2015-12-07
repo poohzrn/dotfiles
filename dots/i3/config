@@ -1,0 +1,176 @@
+# Define keys for workspaces
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 0
+set $wschrome w
+set $wsmail m
+set $wsskype comma
+set $wsspotify period
+set $wsevince p
+# Definie tags/names for workspaces
+set $tag1 1
+set $tag2 2
+set $tag3 3
+set $tag4 4
+set $tag5 5
+set $tag6 6
+set $tag7 7
+set $tag8 8
+set $tag9 9
+set $tag10 10
+set $tagchrome web
+set $tagmail mail
+set $tagskpe skype
+set $tagspotify spotify
+set $tagevince evince
+# switch to workspace
+bindsym $mod+$ws1 workspace $tag1
+bindsym $mod+$ws2 workspace $tag2
+bindsym $mod+$ws3 workspace $tag3
+bindsym $mod+$ws4 workspace $tag4
+bindsym $mod+$ws5 workspace $tag5
+bindsym $mod+$ws6 workspace $tag6
+bindsym $mod+$ws7 workspace $tag7
+bindsym $mod+$ws8 workspace $tag8
+bindsym $mod+$ws9 workspace $tag9
+bindsym $mod+$ws10 workspace $tag10
+bindsym $mod+$wsskype workspace $tagskpe
+bindsym $mod+$wsmail workspace $tagmail
+bindsym $mod+$wsspotify workspace $tagspotify
+bindsym $mod+$wschrome workspace $tagchrome
+bindsym $mod+$wsevince workspace $tagevince
+bindsym $mod+Tab workspace next
+# move focused container to workspace
+bindsym $mod+Shift+$ws1 move container to workspace $tag1
+bindsym $mod+Shift+$ws2 move container to workspace $tag2
+bindsym $mod+Shift+$ws3 move container to workspace $tag3
+bindsym $mod+Shift+$ws4 move container to workspace $tag4
+bindsym $mod+Shift+$ws5 move container to workspace $tag5
+bindsym $mod+Shift+$ws6 move container to workspace $tag6
+bindsym $mod+Shift+$ws7 move container to workspace $tag7
+bindsym $mod+Shift+$ws8 move container to workspace $tag8
+bindsym $mod+Shift+$ws9 move container to workspace $tag9
+bindsym $mod+Shift+$ws10 move container to workspace $tag10
+bindsym $mod+Shift+$wsskype move container to workspace $tagskype
+bindsym $mod+Shift+$wschrome move container to workspace $tagchrome
+bindsym $mod+Shift+$wsevince move container to workspace $tagevince
+
+#Move programs to corret workspaces
+for_window [class="Spotify"] border none, move container to workspace $tagspotify
+for_window [class="chromium"] move container to workspace $tagchrome
+for_window [class="Skype"] move container to workspace $tagskpe
+for_window [class="Icedove"] move container to workspace $tagmail
+for_window [class="Evince"] move container to workspace $tagevince
+
+# set mod key
+set $mod Mod1
+ 
+# Hide borders
+hide_edge_borders both
+new_window none
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+font pango:Source Code Pro 10
+# start a terminal
+bindsym $mod+t exec xterm
+bindsym $mod+c exec xterm
+
+# kill focused window
+bindsym $mod+q kill
+#
+# start rofi (a program launcher)
+bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob-hide-scrollbar
+bindsym $mod+Return exec rofi -show window -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob
+## Navigation
+# change focus
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+# move focused window
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+# Move workspaces between monitors
+bindsym $mod+Control+l move workspace to output right
+bindsym $mod+Control+h move workspace to output left
+# split in horizontal orientation
+bindsym $mod+b split h
+# split in vertical orientation
+bindsym $mod+v split v
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+g layout toggle split
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+# focus the parent container
+bindsym $mod+a focus parent
+# focus the child container
+#
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exit
+
+# resize window (you can also use the mouse for that)
+bindsym $mod+r mode "resize"
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+        bindsym h resize shrink width 5 px or 5 ppt
+        bindsym k resize grow height 5 px or 5 ppt
+        bindsym j resize shrink height 5 px or 5 ppt
+        bindsym l resize grow width 5 px or 5 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# lock i3
+bindsym XF86ScreenSaver exec "$HOME/scripts/lock.sh"
+#Volume up / down / mute
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioMute exec amixer -q set Master toggle
+bindsym $mod+Down exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
+bindsym $mod+Right exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
+bindsym $mod+Left exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+# Sreen brightness controls (brightness up, brightness down)
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+# Start i3bar
+bar {
+    status_command i3status     -c ~/.i3/i3status.conf
+    strip_workspace_numbers     no
+    font pango:Source Code Pro  8
+    position                    top
+	colors {
+        background          #000000
+        statusline          #ffffff
+        separator           #666666
+        # Type             border  background font
+        focused_workspace  #ffffff #ffffff #999999
+        active_workspace   #333333 #333333 #666666
+        inactive_workspace #333333 #333333 #666666
+        urgent_workspace   #990000 #990000 #ffffff
+	}
+}
+#Start at startup
+exec --no-startup-id i3-msg 'exec rescuetime'
+exec --no-startup-id i3-msg 'exec dropbox start'
+exec --no-startup-id i3-msg 'exec redshift -l 57:9 -t 5700:3600 -g 0.8 -m randr'
+exec --no-startup-id dropbox
+# wallpaper
+exec --no-startup-id feh --bg-fill ~/.wallpaper.jpg 
