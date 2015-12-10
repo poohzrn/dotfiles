@@ -1,3 +1,4 @@
+set -U fish_user_paths $fish_user_paths ~/git/dotfiles/scripts
 ## fish git prompt
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate 'yes'
@@ -40,10 +41,13 @@ function fuckdebian
     sudo acpid -d &
 end
 #bind caps to ESC when tapped, CTRL otherwise
-function make_capskey_usefull
-    xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
+# start X at login
+if status --is-login
+    if test -z "$DISPLAY" -a $XDG_VTNR -eq 1
+        exec startx -- -keeptty
+        xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
+    end
 end
-make_capskey_usefull
 #
 #Misc aliases
 alias c "clear"
