@@ -6,6 +6,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'bling/vim-airline'
     " A git wrapper
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-abolish'
+    Plug 'tpope/vim-repeat'
     " Code completeon engine for Vim
     Plug 'Valloric/YouCompleteMe'
     " Colorscheme
@@ -16,7 +18,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'ervandew/supertab'
     Plug 'majutsushi/tagbar'
-    Plug 'bling/vim-bufferline'
     Plug 'scrooloose/syntastic'
     Plug 'terryma/vim-multiple-cursors'
     Plug 'laurentgoudet/vim-howdoi'
@@ -24,7 +25,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
 call plug#end()
-"TODO
 
 filetype plugin indent on
 " disable .swp files

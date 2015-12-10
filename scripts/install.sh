@@ -20,7 +20,7 @@ if [[ -z $1 ]]; then
     exit
 fi
 if [[ $1 == "all" ]]; then
-    DOTS=($(find ../dots/* -type f -printf "%f\n"))
+    DOTS=($(find ~/git/dotfiles/dots/* -type f -printf "%f\n"))
     ln -sf ~/git/dotfiles/fish/config.fish ~/.config/fish/
 fi
 if [[ $1 == "X" ]]; then
@@ -31,7 +31,7 @@ if [[ $1 == "fish" ]]; then
     exit 0
 fi
 if [[ $1 == "bash" ]]; then
-    DOTS=($(find ../dots/bash* -type f -printf "%f\n"))
+    DOTS=($(find ~/git/dotfiles/dots/bash* -type f -printf "%f\n"))
 fi
 INSTALLDOTS
 

@@ -139,7 +139,7 @@ mode "resize" {
 }
 
 # lock i3
-bindsym XF86ScreenSaver exec "$HOME/scripts/lock.sh"
+bindsym XF86ScreenSaver exec "$HOME/git/dotfiles/scripts/lock.sh"
 #Volume up / down / mute
 bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
 bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
