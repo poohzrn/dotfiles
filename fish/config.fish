@@ -11,7 +11,7 @@ set __fish_git_prompt_char_stagedstate '→'
 set __fish_git_prompt_char_stashstate '✔'
 set __fish_git_prompt_char_upstream_ahead '↑'
 set __fish_git_prompt_char_upstream_behind '↓'
-#(git status --porcelain  | wc -l | sed "s/ //g")
+
 #Colors
 set fish_color_cwd white --bold
 set fish_pager_color_prefix red
@@ -55,6 +55,7 @@ alias g "cd ~/git; clear; ls"
 alias q "exit"
 alias r "ranger"
 alias update "sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q"
+alias xcape "xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'"
 #
 #acpid bug
 alias fuckdebian "sudo bash -c 'acpid -d &'"

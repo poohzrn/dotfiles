@@ -1,20 +1,12 @@
-
-"" ================ Plugins ==================
-
+"=== Plugins ===
 call plug#begin('~/.vim/plugged')
-    "Lean & mean status/tabline for vim that's light as air.
     Plug 'bling/vim-airline'
-    " A git wrapper
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-repeat'
-    " Code completeon engine for Vim
     Plug 'Valloric/YouCompleteMe'
-    " Colorscheme
     Plug 'tomasr/molokai'
-    " Latex tool box
     Plug 'LaTeX-Box-Team/LaTeX-Box'
-    " Vim-snippets depends on ultisnips
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
     Plug 'ervandew/supertab'
     Plug 'majutsushi/tagbar'
@@ -24,100 +16,133 @@ call plug#begin('~/.vim/plugged')
     Plug 'mbbill/undotree'
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
+    Plug 'mhinz/vim-startify'
 call plug#end()
+"!
 
+"=== Misc Settings ===
 filetype plugin indent on
-" disable .swp files
-set noswapfile
-set nobackup
-set nowb
-" enable syntax highlighting
-syntax enable
-syntax on
-" Display tabs and trailing spaces visually
-set list listchars=tab:\ \ ,trail:·
-" show line numbers
-set number
-" set tabs to have 4 spaces
-set ts=4
-" indent when moving to the next line while writing code
-set autoindent
-" expand tabs into spaces
-set expandtab
-" when using the >> or << commands, shift lines by 4 spaces
-set shiftwidth=4
-" show a visual line under the cursor's current line 
-set cursorline
-" show the matching part of the pair for [] {} and ()
-set showmatch
-" enable Air-Line
-set laststatus=2
-let g:airline_theme='simple'
-" enable 256 colors
-set t_Co=256
-let g:molokai_original = 1
-let g:rehash256 = 1
 let python_highlight_all = 1
 let g:tex_flavor='latex'
-colorscheme molokai
-" enable wild menu
+set noswapfile " disable .swp files
+set nobackup
+set nowb
+syntax enable " enable syntax highlighting
+syntax on
+set list listchars=tab:\ \ ,trail:· " Display tabs and trailing spaces visually
+set number " show line numbers
+set ts=4 " set tabs to have 4 spaces
+set autoindent " indent when moving to the next line while writing code
+set expandtab " expand tabs into spaces
+set shiftwidth=4 " when using the >> or << commands, shift lines by 4 spaces
+set cursorline " show a visual line under the cursor's current line 
+set showmatch
+set rtp+=/home/lasse/.fzf
+"!
+
+"=== Wild Menu ===
 set wildmenu
 set incsearch       " Find the next match as we type the search
 set hlsearch        " Highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 set nohlsearch      " Noh after search
-" Fantastic
+"!
+
+"=== Persistent Undo ===
+" Keep undo history across sessions, by storing in file.
+if has('persistent_undo')
+silent !mkdir ~/.vim/backups > /dev/null 2>&1
+set undodir=~/.vim/backups
+set undofile
+endif
+"!
+
+"=== plugin: 'bling/vim-airline' ===
+set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+let g:airline_theme='simple'
+"!
+
+"=== plugin: 'tomasr/molokai'===
+set t_Co=256
+colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
+"!
+
+"=== plugin: 'scrooloose/syntastic' ===
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
-"let g:syntastic_mode_map = { 'passive_filetypes': ['tex'] }
 let g:syntastic_check_on_wq = 0
-"
-" Trigger configuration. 
+let g:syntastic_ignore_files = ['/tmp/', '\m\c\.h$']
+let g:syntastic_mode_map = { 'mode': 'active',
+   \ 'active_filetypes': [''],
+   \ 'passive_filetypes': ['*'] }
+"!
+
+"=== plugin: 'SirVer/ultisnips' ===
+   " Trigger configuration.
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"!
 
-set pastetoggle=<F2>
-set rtp+=/home/lasse/.fzf
-"
-"" ================ Persistent Undo ==================
-" Keep undo history across sessions, by storing in file.
-if has('persistent_undo')
-  silent !mkdir ~/.vim/backups > /dev/null 2>&1
-  set undodir=~/.vim/backups
-  set undofile
-endif
-
-"
-" YMCA
+"=== plugin: 'Valloric/YouCompleteMe' ===
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"!
+
+"=== plugin: 'ervandew/supertab' ===
 let g:SuperTabDefaultCompletionType = '<C-n>'
-" Key bindings
+"!
+
+"=== plugin: 'mhinz/vim-startify' ===
+
+let g:startify_bookmarks = [ {'c': '~/git/dotfiles/dots/vimrc'} ]
+let g:startify_list_order = [
+      \ ['   Files'],       'files' ,
+      \ ['   Directory '],   'dir',
+      \ ['   Sessions '],  'sessions',
+      \ ['   Bookmarks '], 'bookmarks',
+      \ ]
+
+let g:startify_skiplist = [
+      \ 'COMMIT_EDITMSG',
+      \ ]
+"!
+
+"=== Key Mapping ===
+" Command mode
+cnoremap , :
+cnoremap <C-a> <Home>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <C-d> <Delete>
+cnoremap <C-e> <End>
+" Normal mode
+set pastetoggle=<F2>
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
 nnoremap , :
 nnoremap ½ $
 vnoremap ½ $
 nnoremap <space> <NOP>
-"
 "Use FZF (Fazt Zearch Fandme)
 nnoremap <C-t> :FZF<CR>
+nnoremap <C-p> :FZF<CR>
 nnoremap <C-b> :Buffers<CR>
 noremap <space><space> zz
-" Handy shortcuts
-" save and close
-noremap xx :x<CR>
-
 " Commit amazingly super FaZssT
 noremap cc :Gcommit %:p <CR>i
+" Insert mode
+inoremap <CR>f <esc>
+"!
 
-"
+"=== Leader Mapping ===
 " Follow the Leader
 let mapleader="\<Space>"
 nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
@@ -137,7 +162,6 @@ nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>o qp
 nnoremap <Leader>p @p
-"
 " Tabbing und buffering
 noremap <Leader>tl :tabnext<CR>
 noremap <Leader>th :tabprev<CR>
@@ -146,11 +170,17 @@ noremap <Leader>td :tabclose<CR>
 noremap <Leader>bh :bprevious<CR>
 noremap <Leader>bl :bnext<CR>
 noremap <Leader>bd :bdelete<CR>
-"
-" LOS COMANDOS MODE
-cnoremap , :
-cnoremap <C-a> <Home>
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
-cnoremap <C-d> <Delete>
-cnoremap <C-e> <End>
+"!
+
+"=== Folding in vimrc ===
+function! Vimfold()
+    setl fillchars=fold:\ 
+    setl foldmethod=syntax
+    setl foldlevelstart=1
+    syn region foldBraces start=/"==.*/ end=/"!/ transparent fold keepend extend
+    function! FoldText()
+        return substitute(getline(v:foldstart), '{ w.*', '{...}', '')
+    endfunction
+    setl foldtext=FoldText()
+endfunction
+"!
