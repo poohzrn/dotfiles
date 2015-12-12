@@ -15,7 +15,7 @@ set $wsskype comma
 set $wsspotify period
 set $wsevince p
 # Definie tags/names for workspaces
-set $tag1 1
+set $tag1 1
 set $tag2 2
 set $tag3 3
 set $tag4 4
@@ -25,11 +25,11 @@ set $tag7 7
 set $tag8 8
 set $tag9 "&#xf104;"
 set $tag10 "&#xf17c;"
-set $tagchrome "&#xf281;"
+set $tagchrome 
 set $tagmail mail
-set $tagskpe "&#xf17e;"
-set $tagspotify "&#xf193;"
-set $tagevince "&#xf15b;"
+set $tagskpe 
+set $tagspotify 
+set $tagevince 
 # switch to workspace
 bindsym $mod+$ws1 workspace $tag1
 bindsym $mod+$ws2 workspace $tag2
@@ -154,7 +154,7 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 bar {
     status_command i3status     -c ~/.i3/i3status.conf
     strip_workspace_numbers     no
-    font pango:Source Code Pro  8
+    font pango:Source Code Pro , FontAwesome 8
     position                    top
 	colors {
         background          #000000
