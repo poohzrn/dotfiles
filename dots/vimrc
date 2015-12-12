@@ -1,6 +1,5 @@
 "=== Plugins ===
 call plug#begin('~/.vim/plugged')
-    Plug 'bling/vim-airline'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-repeat'
@@ -17,6 +16,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'mhinz/vim-startify'
+    Plug 'itchyny/lightline.vim'
+    Plug 'ap/vim-buftabline'
+    Plug 'terryma/vim-expand-region'
 call plug#end()
 "!
 
@@ -58,12 +60,14 @@ set undofile
 endif
 "!
 
-"=== plugin: 'bling/vim-airline' ===
+"=== plugin: 'itchyny/lightline.vim' ===
 set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:airline_theme='simple'
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ }
 "!
 
 "=== plugin: 'tomasr/molokai'===
@@ -113,6 +117,12 @@ let g:startify_list_order = [
 let g:startify_skiplist = [
       \ 'COMMIT_EDITMSG',
       \ ]
+"!
+
+"=== plugin: terryma/vim-expand-region ===
+map v <Plug>(expand_region_expand)
+map <C-v> <Plug>(expand_region_shrink)
+
 "!
 
 "=== Key Mapping ===

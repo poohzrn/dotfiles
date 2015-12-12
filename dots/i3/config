@@ -23,13 +23,13 @@ set $tag5 5
 set $tag6 6
 set $tag7 7
 set $tag8 8
-set $tag9 9
-set $tag10 10
-set $tagchrome web
+set $tag9 "&#xf104;"
+set $tag10 "&#xf17c;"
+set $tagchrome "&#xf281;"
 set $tagmail mail
-set $tagskpe skype
-set $tagspotify spotify
-set $tagevince evince
+set $tagskpe "&#xf17e;"
+set $tagspotify "&#xf193;"
+set $tagevince "&#xf15b;"
 # switch to workspace
 bindsym $mod+$ws1 workspace $tag1
 bindsym $mod+$ws2 workspace $tag2
