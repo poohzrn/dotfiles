@@ -97,3 +97,7 @@ alias lo "git shortlog --summary --numbered"
 function git_dirty_count
     set -g git_dirty_count (git status --porcelain  | wc -l | sed "s/ //g")
 end
+set -l GRUVBOX_SCRIPT ~/.vim/bundle/plugged/gruvbox_256palette.sh
+if test -f $GRUVBOX_SCRIPT
+  bash $GRUVBOX_SCRIPT
+end

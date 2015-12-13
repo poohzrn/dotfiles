@@ -61,6 +61,33 @@ XTerm*translations: #override \
 	Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD)
 
 xterm*charClass: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35:48
-! map the tab key to escape in xterm (becase we can!)
-! xterm.vt100.translations: #override\n\
-!        <Key>Tab: string("\033")\n\
+xterm*color24:  #076678
+xterm*color66:  #427b58
+xterm*color88:  #9d0006
+xterm*color96:  #8f3f71
+xterm*color100: #79740e
+xterm*color108: #8ec07c
+xterm*color109: #83a598
+xterm*color130: #af3a03
+xterm*color136: #b57614
+xterm*color142: #b8bb26
+xterm*color167: #fb4934
+xterm*color175: #d3869b
+xterm*color208: #fe8019
+xterm*color214: #fabd2f
+xterm*color223: #ebdbb2
+xterm*color228: #f2e5bc
+xterm*color229: #fbf1c7
+xterm*color230: #f9f5d7
+xterm*color234: #1d2021
+xterm*color235: #282828
+xterm*color236: #32302f
+xterm*color237: #3c3836
+xterm*color239: #504945
+xterm*color241: #665c54
+xterm*color243: #7c6f64
+xterm*color244: #928374
+xterm*color245: #928374
+xterm*color246: #a89984
+xterm*color248: #bdae93
+xterm*color250: #d5c4a1

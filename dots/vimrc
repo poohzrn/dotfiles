@@ -20,6 +20,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim'
     Plug 'ap/vim-buftabline'
     Plug 'terryma/vim-expand-region'
+    Plug 'morhetz/gruvbox'
 call plug#end()
 "!
 
@@ -67,15 +68,14 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor_light',
+      \ 'colorscheme': 'gruvbox',
       \ }
 "!
 
-"=== plugin: 'tomasr/molokai'===
+"=== plugin: 'morhetz/gruvbox' ===
 set t_Co=256
-colorscheme molokai
-let g:molokai_original = 1
-let g:rehash256 = 1
+colorscheme gruvbox
+set background=dark
 "!
 
 "=== plugin: 'scrooloose/syntastic' ===
