@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-abolish'
     Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-surround'
     Plug 'Valloric/YouCompleteMe'
     Plug 'tomasr/molokai'
     Plug 'LaTeX-Box-Team/LaTeX-Box'
@@ -25,7 +26,7 @@ call plug#end()
 "=== Misc Settings ===
 filetype plugin indent on
 let python_highlight_all = 1
-let g:tex_flavor='latex'
+let g:tex_flavor="latex"
 set noswapfile " disable .swp files
 set nobackup
 set nowb
@@ -66,7 +67,7 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor',
+      \ 'colorscheme': 'PaperColor_light',
       \ }
 "!
 
