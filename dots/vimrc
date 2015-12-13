@@ -153,6 +153,12 @@ noremap <space><space> zz
 noremap cc :Gcommit %:p <CR>i
 " Insert mode
 inoremap <CR>f <esc>
+" Visual mode
+" Mappings for split
+noremap <c-j> <c-w>j
+noremap <c-h> <c-w>h
+noremap <c-k> <c-w>k
+noremap <c-l> <c-w>l
 "!
 
 "=== Leader Mapping ===
