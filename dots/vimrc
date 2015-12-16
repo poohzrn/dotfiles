@@ -1,64 +1,27 @@
 "=== Plugins ===
 call plug#begin('~/.vim/plugged')
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-abolish'
-    Plug 'tpope/vim-repeat'
-    Plug 'tpope/vim-surround'
-    Plug 'Valloric/YouCompleteMe'
-    Plug 'LaTeX-Box-Team/LaTeX-Box'
+    Plug 'tpope/vim-fugitive'           "Git integration
+    Plug 'tpope/vim-abolish'            "snake_case(crs) MixedCase(crm) camelCase(crc)
+    Plug 'tpope/vim-repeat'             " . for abolish and surround
+    Plug 'tpope/vim-surround'           "surround e.g. cs''
+    Plug 'Valloric/YouCompleteMe'       "Yes you do
+    Plug 'LaTeX-Box-Team/LaTeX-Box'     "Compile latex - <\leader>m
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    Plug 'ervandew/supertab'
-    Plug 'majutsushi/tagbar'
-    Plug 'scrooloose/syntastic'
-    Plug 'terryma/vim-multiple-cursors'
-    Plug 'laurentgoudet/vim-howdoi'
-    Plug 'mbbill/undotree'
+    Plug 'ervandew/supertab'            "Super tab
+    Plug 'majutsushi/tagbar'            "See tags <\leader>t
+    Plug 'scrooloose/syntastic'         "Must-have
+    Plug 'terryma/vim-multiple-cursors' "Multiple cursers <c-n> /<c-x>
+    Plug 'mbbill/undotree'              "A undo tree
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'
-    Plug 'mhinz/vim-startify'
-    Plug 'itchyny/lightline.vim'
-    Plug 'ap/vim-buftabline'
-    Plug 'terryma/vim-expand-region'
-    Plug 'morhetz/gruvbox'
+    Plug 'junegunn/fzf.vim'             "Fuzzy search files
+    Plug 'mhinz/vim-startify'           "Vim sessions
+    Plug 'itchyny/lightline.vim'        "Neat information line
+    Plug 'ap/vim-buftabline'            "See current buffers
+    Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
+    Plug 'morhetz/gruvbox'              "Colorscheme
+    Plug 'scrooloose/nerdtree'          "Fileexplorer
+    Plug 'scrooloose/nerdcommenter'     "Commenter ex. <\leader>cn
 call plug#end()
-"!
-
-"=== Misc Settings ===
-filetype plugin indent on
-let python_highlight_all = 1
-let g:tex_flavor="latex"
-set noswapfile " disable .swp files
-set nobackup
-set nowb
-syntax enable " enable syntax highlighting
-syntax on
-set list listchars=tab:\ \ ,trail:· " Display tabs and trailing spaces visually
-set number " show line numbers
-set ts=4 " set tabs to have 4 spaces
-set autoindent " indent when moving to the next line while writing code
-set expandtab " expand tabs into spaces
-set shiftwidth=4 " when using the >> or << commands, shift lines by 4 spaces
-set cursorline " show a visual line under the cursor's current line 
-set showmatch
-set rtp+=/home/lasse/.fzf
-"!
-
-"=== Wild Menu ===
-set wildmenu
-set incsearch       " Find the next match as we type the search
-set hlsearch        " Highlight searches by default
-set ignorecase      " Ignore case when searching...
-set smartcase       " ...unless we type a capital
-set nohlsearch      " Noh after search
-"!
-
-"=== Persistent Undo ===
-" Keep undo history across sessions, by storing in file.
-if has('persistent_undo')
-silent !mkdir ~/.vim/backups > /dev/null 2>&1
-set undodir=~/.vim/backups
-set undofile
-endif
 "!
 
 "=== plugin: 'itchyny/lightline.vim' ===
@@ -120,12 +83,50 @@ let g:startify_skiplist = [
 "!
 
 "=== plugin: terryma/vim-expand-region ===
-map v <Plug>(expand_region_expand)
-map <c-v> <Plug>(expand_region_shrink)
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> n :call VisualSelection('f', '')<CR>
 vnoremap <silent> * :call VisualSelection('b', '')<CR>
+"!
+
+"=== Misc Settings ===
+filetype plugin indent on
+let python_highlight_all = 1
+let g:tex_flavor='latex'
+set noswapfile      "disable .swp files
+set nobackup        "disable .swp files
+set nowb            "disable .swp files
+syntax enable       "enable syntax highlighting
+syntax on
+set list listchars=tab:\ \ ,trail:·     "Display tabs and trailing spaces visually
+set number          "show line numbers
+set ts=4            "set tabs to have 4 spaces
+set autoindent      "indent when moving to the next line while writing code
+set expandtab       "expand tabs into spaces
+set shiftwidth=4    "when using the >> or << commands, shift lines by 4 spaces
+set cursorline      "show a visual line under the cursor's current line 
+set showmatch
+set rtp+=/home/lasse/.fzf
+"!
+
+"=== Wild Menu ===
+set wildmenu
+set incsearch       " Find the next match as we type the search
+set hlsearch        " Highlight searches by default
+set ignorecase      " Ignore case when searching...
+set smartcase       " ...unless we type a capital
+set nohlsearch      " Noh after search
+"!
+
+"=== Persistent Undo ===
+" Keep undo history across sessions, by storing in file.
+if has('persistent_undo')
+silent !mkdir ~/.vim/backups > /dev/null 2>&1
+set undodir=~/.vim/backups
+set undofile
+endif
 "!
 
 "=== Key Mapping ===
@@ -142,17 +143,24 @@ nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
 nnoremap , :
 nnoremap ½ $
-vnoremap ½ $
 nnoremap <space> <NOP>
+nnoremap <c-j> <c-w>j
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-k> <c-w>k
+noremap <space><space> zz
 "Use FZF (Fazt Zearch Fandme)
 nnoremap <C-t> :FZF<CR>
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-b> :Buffers<CR>
-noremap <space><space> zz
 " Commit amazingly super FaZssT
 noremap cc :Gcommit %:p <CR>i
+
+noremap <cr><cr> :NERDTree <CR>
 " Insert mode
 inoremap <CR>f <esc>
+" Visual mode
+vnoremap ½ $
 "!
 
 "=== Leader Mapping ===
@@ -183,6 +191,13 @@ noremap <Leader>td :tabclose<CR>
 noremap <Leader>bh :bprevious<CR>
 noremap <Leader>bl :bnext<CR>
 noremap <Leader>bd :bdelete<CR>
+" Copy and pasting using the " register
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+nmap <Leader>p "+p
+nmap <Leader>P "+P
 "!
 
 "=== Folding in vimrc ===
@@ -197,8 +212,8 @@ function! Vimfold()
     setl foldtext=FoldText()
 endfunction
 "!
-"=== Visual Selection ===
 
+"=== Visual Selection ===
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
     execute "normal! vgvy"

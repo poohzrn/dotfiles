@@ -40,6 +40,9 @@ end
 function fuckdebian
     sudo acpid -d &
 end
+function makeCapsEsc
+    xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
+end
 #bind caps to ESC when tapped, CTRL otherwise
 # start X at login
 if status --is-login
