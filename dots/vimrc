@@ -154,6 +154,7 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-k> <c-w>k
 noremap <space><space> zz
+noremap <Del> :bd <CR>
 "Use FZF (Fazt Zearch Fandme)
 nnoremap <C-t> :FZF<CR>
 nnoremap <C-p> :FZF<CR>
