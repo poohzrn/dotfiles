@@ -58,6 +58,7 @@ alias g "cd ~/git; clear; ls"
 alias q "exit"
 alias r "ranger"
 alias update "sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q"
+alias updatevim "g; cd vim; git pull; configurevim; make clean; make; sudo make install"
 alias xcape "xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'"
 #
 #acpid bug
@@ -96,6 +97,7 @@ alias st "git status -s"
 alias l "git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n20"
 alias gl "git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(bold red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n"
 alias lo "git shortlog --summary --numbered"
+alias configurevim "./configure --enable-pythoninterp --enable-cscop --enable-gui=autoe --enable-gtk2-check --enable-gnome-check --with-features=huge"
 
 function git_dirty_count
     set -g git_dirty_count (git status --porcelain  | wc -l | sed "s/ //g")

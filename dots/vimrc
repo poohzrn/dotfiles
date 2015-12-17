@@ -69,7 +69,10 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 
 "=== plugin: 'mhinz/vim-startify' ===
 
-let g:startify_bookmarks = [ {'c': '~/git/dotfiles/dots/vimrc'} ]
+let g:startify_bookmarks = [
+    \ {'c': '~/git/dotfiles/dots/vimrc'},
+    \ {'f': '~/git/dotfiles/fish/config.fish'},
+    \ ]
 let g:startify_list_order = [
       \ ['   Bookmarks '], 'bookmarks',
       \ ['   Sessions '],  'sessions',
@@ -141,6 +144,8 @@ cnoremap <C-e> <End>
 set pastetoggle=<F2>
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
+nnoremap <F11> :Startify<CR>
+nnoremap <F12> :NERDTree<CR>
 nnoremap , :
 nnoremap ½ $
 nnoremap <space> <NOP>
@@ -182,7 +187,7 @@ nnoremap <Leader>k gkzz
 nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>o qp
-nnoremap <Leader>p @p
+nnoremap <Leader>pp @p
 " Tabbing und buffering
 noremap <Leader>tl :tabnext<CR>
 noremap <Leader>th :tabprev<CR>
