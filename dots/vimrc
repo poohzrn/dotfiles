@@ -167,6 +167,11 @@ noremap <cr><cr> :NERDTree <CR>
 inoremap <CR>f <esc>
 " Visual mode
 vnoremap ½ $
+" Mappings for split
+noremap <c-j> <c-w>j
+noremap <c-h> <c-w>h
+noremap <c-k> <c-w>k
+noremap <c-l> <c-w>l
 "!
 
 "=== Leader Mapping ===
