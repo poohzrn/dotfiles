@@ -21,9 +21,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'morhetz/gruvbox'              "Colorscheme
     Plug 'scrooloose/nerdtree'          "Fileexplorer
     Plug 'scrooloose/nerdcommenter'     "Commenter ex. <\leader>cn
+    Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
 call plug#end()
 "!
 
+"=== plugin: 'xolox/vim-notes' ===
+let g:notes_directories = ['~/Dropbox/notes']
+let g:notes_suffix = '.txt'
+let g:notes_word_boundaries = 1
+"!
 "=== plugin: 'itchyny/lightline.vim' ===
 set laststatus=2
 set statusline+=%#warningmsg#
@@ -70,7 +76,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 "=== plugin: 'mhinz/vim-startify' ===
 
 let g:startify_bookmarks = [
-    \ {'c': '~/git/dotfiles/dots/vimrc'},
+    \ {'v': '~/git/dotfiles/dots/vimrc'},
     \ {'f': '~/git/dotfiles/fish/config.fish'},
     \ ]
 let g:startify_list_order = [
@@ -144,6 +150,7 @@ cnoremap <C-e> <End>
 set pastetoggle=<F2>
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
+nnoremap <F3> :RecentNotes<CR>
 nnoremap <F11> :Startify<CR>
 nnoremap <F12> :NERDTree<CR>
 nnoremap , :
@@ -203,12 +210,12 @@ noremap <Leader>bh :bprevious<CR>
 noremap <Leader>bl :bnext<CR>
 noremap <Leader>bd :bdelete<CR>
 " Copy and pasting using the " register
-vmap <Leader>y "+y
-vmap <Leader>d "+d
-vmap <Leader>p "+p
-vmap <Leader>P "+P
-nmap <Leader>p "+p
-nmap <Leader>P "+P
+vmap yy "+y
+vmap dd "+d
+vmap pp "+p
+vmap PP "+P
+nmap pp "+p
+nmap PP "+P
 "!
 
 "=== Folding in vimrc ===
