@@ -22,7 +22,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdtree'          "Fileexplorer
     Plug 'scrooloose/nerdcommenter'     "Commenter ex. <\leader>cn
     Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
+    Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 call plug#end()
+"!
+"=== plugin: 'mhinz/vim-sayonara' ===
+let g:sayonara_confirm_quit = 1
+noremap <Del> :Sayonara!<CR>
+nnoremap <leader>q :Sayonara!<cr>
+nnoremap <leader>Q :Sayonara<cr>
 "!
 
 "=== plugin: 'xolox/vim-notes' ===
@@ -30,6 +37,7 @@ let g:notes_directories = ['~/Dropbox/notes']
 let g:notes_suffix = '.txt'
 let g:notes_word_boundaries = 1
 "!
+
 "=== plugin: 'itchyny/lightline.vim' ===
 set laststatus=2
 set statusline+=%#warningmsg#
@@ -74,7 +82,6 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 "!
 
 "=== plugin: 'mhinz/vim-startify' ===
-
 let g:startify_bookmarks = [
     \ {'v': '~/git/dotfiles/dots/vimrc'},
     \ {'f': '~/git/dotfiles/fish/config.fish'},
@@ -89,15 +96,6 @@ let g:startify_list_order = [
 let g:startify_skiplist = [
       \ 'COMMIT_EDITMSG',
       \ ]
-"!
-
-"=== plugin: terryma/vim-expand-region ===
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> n :call VisualSelection('f', '')<CR>
-vnoremap <silent> * :call VisualSelection('b', '')<CR>
 "!
 
 "=== Misc Settings ===
@@ -138,63 +136,61 @@ set undofile
 endif
 "!
 
+"=== Plugin Toggle ===
+"vim-expand-region
+    vmap v <Plug>(expand_region_expand)
+    vmap <C-v> <Plug>(expand_region_shrink)
+"VisualSelection
+    vnoremap <silent> n :call VisualSelection('f', '')<CR>
+    vnoremap <silent> * :call VisualSelection('b', '')<CR>
+"vim-fugitive
+    nnoremap <Leader>gd :Gdiff <CR>
+    nnoremap <Leader>st :Gstatus <CR>
+    noremap cc :Gcommit %:p <CR>i
+"fzf.vim
+    nnoremap <C-t> :FZF<CR>
+    nnoremap <C-p> :FZF<CR>
+    nnoremap <C-b> :Buffers<CR>
+"nerdtree
+    nnoremap <F12> :NERDTree<CR>
+    noremap <cr><cr> :NERDTree <CR>
+"vim-startify
+    nnoremap <F11> :Startify<CR>
+"vim-notes
+    nnoremap <F3> :RecentNotes<CR>
+"tagbar
+    nnoremap <Leader>t :TagbarToggle<CR>
+"LaTex-Box
+    nnoremap <Leader>m :Latexmk<CR>
+"undotree
+    nnoremap <Leader>u :UndotreeToggle<CR><C-w>h
+"Syntastic
+    nnoremap <Leader>sy :SyntasticToggleMode <CR>
+"!
+
 "=== Key Mapping ===
-" Command mode
-cnoremap , :
-cnoremap <C-a> <Home>
-cnoremap <C-h> <Left>
-cnoremap <C-l> <Right>
-cnoremap <C-d> <Delete>
-cnoremap <C-e> <End>
 " Normal mode
 set pastetoggle=<F2>
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
-nnoremap <F3> :RecentNotes<CR>
-nnoremap <F11> :Startify<CR>
-nnoremap <F12> :NERDTree<CR>
 nnoremap , :
 nnoremap ½ $
+vnoremap ½ $
 nnoremap <space> <NOP>
+noremap <space><space> zz
 nnoremap <c-j> <c-w>j
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-k> <c-w>k
-noremap <space><space> zz
-noremap <Del> :bd <CR>
-"Use FZF (Fazt Zearch Fandme)
-nnoremap <C-t> :FZF<CR>
-nnoremap <C-p> :FZF<CR>
-nnoremap <C-b> :Buffers<CR>
-" Commit amazingly super FaZssT
-noremap cc :Gcommit %:p <CR>i
-
-noremap <cr><cr> :NERDTree <CR>
 " Insert mode
 inoremap <CR>f <esc>
-" Visual mode
-vnoremap ½ $
-" Mappings for split
-noremap <c-j> <c-w>j
-noremap <c-h> <c-w>h
-noremap <c-k> <c-w>k
-noremap <c-l> <c-w>l
-"!
-
-"=== Leader Mapping ===
 " Follow the Leader
 let mapleader="\<Space>"
 nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
-nnoremap <Leader>sy :SyntasticToggleMode <CR>
-nnoremap <Leader>u :UndotreeToggle<CR><C-w>h
-nnoremap <Leader>gd :Gdiff <CR>
-nnoremap <Leader>st :Gstatus <CR>
 nnoremap <Leader>r z=
 nnoremap <Leader>w ]s
 nnoremap <Leader>b [s
 nnoremap <Leader>s :w <CR>
-nnoremap <Leader>m :Latexmk<CR>
-nnoremap <Leader>t :TagbarToggle<CR>
 nnoremap <Leader>j gjzz
 nnoremap <Leader>k gkzz
 nnoremap <Leader>h :bprevious<CR>
@@ -209,6 +205,10 @@ noremap <Leader>td :tabclose<CR>
 noremap <Leader>bh :bprevious<CR>
 noremap <Leader>bl :bnext<CR>
 noremap <Leader>bd :bdelete<CR>
+noremap <c-j> <c-w>j
+noremap <c-h> <c-w>h
+noremap <c-k> <c-w>k
+noremap <c-l> <c-w>l
 " Copy and pasting using the " register
 vmap yy "+y
 vmap dd "+d
@@ -216,6 +216,13 @@ vmap pp "+p
 vmap PP "+P
 nmap pp "+p
 nmap PP "+P
+" Command mode
+cnoremap , :
+cnoremap <C-a> <Home>
+cnoremap <C-h> <Left>
+cnoremap <C-l> <Right>
+cnoremap <C-d> <Delete>
+cnoremap <C-e> <End>
 "!
 
 "=== Folding in vimrc ===
