@@ -27,16 +27,20 @@ call plug#end()
 "!
 "=== plugin: 'mhinz/vim-sayonara' ===
 let g:sayonara_confirm_quit = 1
-noremap <Del> :Sayonara!<CR>
-nnoremap <leader>q :Sayonara!<cr>
-nnoremap <leader>Q :Sayonara<cr>
 "!
 
+"=== plugin: 'LaTeX-Box-Team/LaTeX-Box'
+let g:LatexBox_latexmk_async = 1
+let g:LatexBox_viewer = "evince"
+let g:LatexBox_quickfix = 4
+"!
 "=== plugin: 'xolox/vim-notes' ===
 let g:notes_directories = ['~/Dropbox/notes']
 let g:notes_suffix = '.txt'
 let g:notes_word_boundaries = 1
-"!
+let g:LatexBox_show_warnings = 0
+let g:LatexBox_ignore_warnings
+                        \ = ['Underfull', 'Overfull', 'specifier changed to', 'You should put a space in front of parenthesis']
 
 "=== plugin: 'itchyny/lightline.vim' ===
 set laststatus=2
@@ -116,6 +120,7 @@ set shiftwidth=4    "when using the >> or << commands, shift lines by 4 spaces
 set cursorline      "show a visual line under the cursor's current line 
 set showmatch
 set rtp+=/home/lasse/.fzf
+set switchbuf=usetab
 "!
 
 "=== Wild Menu ===
@@ -137,23 +142,21 @@ endif
 "!
 
 "=== Plugin Toggle ===
+"vim-sayonara
+    nnoremap <silent> <BS> :Sayonara!<CR>
+    nnoremap <silent> <S-BS> :Sayonara<cr>
 "vim-expand-region
     vmap v <Plug>(expand_region_expand)
     vmap <C-v> <Plug>(expand_region_shrink)
-"VisualSelection
-    vnoremap <silent> n :call VisualSelection('f', '')<CR>
-    vnoremap <silent> * :call VisualSelection('b', '')<CR>
 "vim-fugitive
     nnoremap <Leader>gd :Gdiff <CR>
     nnoremap <Leader>st :Gstatus <CR>
     noremap cc :Gcommit %:p <CR>i
 "fzf.vim
-    nnoremap <C-t> :FZF<CR>
     nnoremap <C-p> :FZF<CR>
     nnoremap <C-b> :Buffers<CR>
 "nerdtree
     nnoremap <F12> :NERDTree<CR>
-    noremap <cr><cr> :NERDTree <CR>
 "vim-startify
     nnoremap <F11> :Startify<CR>
 "vim-notes
@@ -161,7 +164,7 @@ endif
 "tagbar
     nnoremap <Leader>t :TagbarToggle<CR>
 "LaTex-Box
-    nnoremap <Leader>m :Latexmk<CR>
+    nnoremap <Leader>m :Latexmk<CR>:LatexView<CR>
 "undotree
     nnoremap <Leader>u :UndotreeToggle<CR><C-w>h
 "Syntastic
@@ -170,10 +173,10 @@ endif
 
 "=== Key Mapping ===
 " Normal mode
-set pastetoggle=<F2>
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
 nnoremap , :
+inoremap ½ $
 nnoremap ½ $
 vnoremap ½ $
 nnoremap <space> <NOP>
@@ -198,17 +201,20 @@ nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>o qp
 nnoremap <Leader>pp @p
 " Tabbing und buffering
-noremap <Leader>tl :tabnext<CR>
-noremap <Leader>th :tabprev<CR>
 noremap <Leader>tn :tabnew<space>
 noremap <Leader>td :tabclose<CR>
-noremap <Leader>bh :bprevious<CR>
-noremap <Leader>bl :bnext<CR>
+nnoremap <Leader>bh :sbprevious<CR>
+nnoremap <Leader>bl :sbnext<CR>
 noremap <Leader>bd :bdelete<CR>
 noremap <c-j> <c-w>j
 noremap <c-h> <c-w>h
 noremap <c-k> <c-w>k
 noremap <c-l> <c-w>l
+" resizing
+nnoremap <Leader>rh :vertical resize +10 <CR>
+nnoremap <Leader>rl :vertical resize -10 <CR>
+nnoremap <Leader>rj :resize +10 <CR>
+nnoremap <Leader>rk :resize -10 <CR>
 " Copy and pasting using the " register
 vmap yy "+y
 vmap dd "+d
@@ -223,6 +229,12 @@ cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <C-d> <Delete>
 cnoremap <C-e> <End>
+" Terminal mode
+tnoremap <Esc> <C-\><C-n>
+tnoremap <A-h> <C-\><C-n><C-w>h
+tnoremap <A-j> <C-\><C-n><C-w>j
+tnoremap <A-k> <C-\><C-n><C-w>k
+tnoremap <A-l> <C-\><C-n><C-w>l
 "!
 
 "=== Folding in vimrc ===
@@ -259,3 +271,4 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+"!
