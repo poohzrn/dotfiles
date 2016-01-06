@@ -14,7 +14,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'mbbill/undotree'              "A undo tree
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'             "Fuzzy search files
-    Plug 'mhinz/vim-startify'           "Vim sessions
     Plug 'itchyny/lightline.vim'        "Neat information line
     Plug 'ap/vim-buftabline'            "See current buffers
     Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
@@ -23,6 +22,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdcommenter'     "Commenter ex. <\leader>cn
     Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
     Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+    "Plug 'mhinz/vim-startify'           "Vim sessions
 call plug#end()
 "!
 "=== plugin: 'mhinz/vim-sayonara' ===
@@ -30,17 +30,18 @@ let g:sayonara_confirm_quit = 1
 "!
 
 "=== plugin: 'LaTeX-Box-Team/LaTeX-Box'
-let g:LatexBox_latexmk_async = 1
+let g:tex_flavor='latex'
+let g:LatexBox_latexmk_async = 0
 let g:LatexBox_viewer = "evince"
-let g:LatexBox_quickfix = 4
+let g:LatexBox_quickfix = 0
+let g:LatexBox_show_warnings = 0
+let g:LatexBox_ignore_warnings
+                        \ = ['Underfull', 'Overfull', 'specifier changed to', 'You should put a space in front of parenthesis']
 "!
 "=== plugin: 'xolox/vim-notes' ===
 let g:notes_directories = ['~/Dropbox/notes']
 let g:notes_suffix = '.txt'
 let g:notes_word_boundaries = 1
-let g:LatexBox_show_warnings = 0
-let g:LatexBox_ignore_warnings
-                        \ = ['Underfull', 'Overfull', 'specifier changed to', 'You should put a space in front of parenthesis']
 
 "=== plugin: 'itchyny/lightline.vim' ===
 set laststatus=2
@@ -59,10 +60,10 @@ set background=dark
 "!
 
 "=== plugin: 'scrooloose/syntastic' ===
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_always_populate_loc_list = 0
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_wq = 1
 let g:syntastic_ignore_files = ['/tmp/', '\m\c\.h$']
 let g:syntastic_mode_map = { 'mode': 'active',
    \ 'active_filetypes': [''],
@@ -105,7 +106,6 @@ let g:startify_skiplist = [
 "=== Misc Settings ===
 filetype plugin indent on
 let python_highlight_all = 1
-let g:tex_flavor='latex'
 set noswapfile      "disable .swp files
 set nobackup        "disable .swp files
 set nowb            "disable .swp files
@@ -149,26 +149,26 @@ endif
     vmap v <Plug>(expand_region_expand)
     vmap <C-v> <Plug>(expand_region_shrink)
 "vim-fugitive
-    nnoremap <Leader>gd :Gdiff <CR>
-    nnoremap <Leader>st :Gstatus <CR>
-    noremap cc :Gcommit %:p <CR>i
+    nnoremap <silent><Leader>gd :Gdiff <CR>
+    nnoremap <silent><Leader>st :Gstatus <CR>
+    nnoremap <silent>cc :Gcommit %:p <CR>i
 "fzf.vim
     nnoremap <C-p> :FZF<CR>
     nnoremap <C-b> :Buffers<CR>
 "nerdtree
-    nnoremap <F12> :NERDTree<CR>
+    nnoremap <silent><F12> :NERDTreeToggle <CR>
 "vim-startify
-    nnoremap <F11> :Startify<CR>
+    nnoremap <silent><F11> :Startify <CR>
 "vim-notes
-    nnoremap <F3> :RecentNotes<CR>
+    nnoremap <silent><F3> :RecentNotes <CR>
 "tagbar
-    nnoremap <Leader>t :TagbarToggle<CR>
+    nnoremap <silent><Leader>t :TagbarToggle <CR>
 "LaTex-Box
-    nnoremap <Leader>m :Latexmk<CR>:LatexView<CR>
+    nnoremap <silent><Leader>m :Latexmk <CR>
 "undotree
-    nnoremap <Leader>u :UndotreeToggle<CR><C-w>h
+    nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
 "Syntastic
-    nnoremap <Leader>sy :SyntasticToggleMode <CR>
+    nnoremap <Leader>sy :SyntasticToggleMode<CR>
 "!
 
 "=== Key Mapping ===
@@ -199,7 +199,8 @@ nnoremap <Leader>k gkzz
 nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>o qp
-nnoremap <Leader>pp @p
+nnoremap <Leader>p @p
+
 " Tabbing und buffering
 noremap <Leader>tn :tabnew<space>
 noremap <Leader>td :tabclose<CR>

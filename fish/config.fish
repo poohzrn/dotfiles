@@ -37,6 +37,9 @@ end
 function vga
 	xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1 $argv;
 end
+function hdmi
+	xrandr --output LVDS1 --auto --primary --output HDMI3 --auto --right-of LVDS1 $argv;
+end
 function fuckdebian
     sudo acpid -d &
 end
