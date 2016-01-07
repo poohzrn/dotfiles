@@ -16,60 +16,74 @@ set __fish_git_prompt_char_upstream_behind '↓'
 set fish_color_cwd white --bold
 set fish_pager_color_prefix red
 set fish_search_match --background=red
+
 #Disable greeting
 set fish_greeting ''
 
-#prompt
+#Fancy red / white / bold fish shell
 function fish_prompt
-        set_color $fish_color_cwd
-        printf '%s' (whoami)
-        set_color red --bold
-        printf '@'
-        set_color $fish_color_cwd
-        printf '%s'(hostname)
-        set_color $fish_color_cwd
-        printf ' %s' (prompt_pwd)
-        set_color normal
-        printf '%s\n~>' (__fish_git_prompt)
-       set_color normal
+    set_color $fish_color_cwd   ; printf '%s' (whoami)
+    set_color red --bold        ; printf '@'
+    set_color $fish_color_cwd   ; printf '%s'(hostname) ; printf ' '
+    set_color $fish_color_cwd   ; printf '%s' (prompt_pwd)
+    set_color normal            ; printf '%s\n~>' (__fish_git_prompt)
+    set_color normal
 end
+
+##Misc functions
 #Enable VGA output
 function vga
 	xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1 $argv;
 end
+#Enable DVI output
 function hdmi
 	xrandr --output LVDS1 --auto --primary --output HDMI3 --auto --right-of LVDS1 $argv;
 end
+#Enable acpid & debug
 function fuckdebian
     sudo acpid -d &
 end
+#Bind CapsLock to ESC if tapped CTRL otherwise; neat
 function makeCapsEsc
     xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
 end
-#bind caps to ESC when tapped, CTRL otherwise
+#Git-log;
+function l
+    git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n20
+end
+#Git-diff;
+function d
+    git diff-index --quiet HEAD -- OR clear; git --no-pager diff --patch-with-stat
+end
+#Switch branch;
+function go
+    git checkout $argv 2> /dev/null; and return; or git checkout -b $argv
+end
+# List installed packages sorted by size
+function packages
+    dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
+end
+#~> ~> ~> ~> ~> ~> ~> ~> ~> ~>
+
 # start X at login
 if status --is-login
     if test -z "$DISPLAY" -a $XDG_VTNR -eq 1
         exec startx -- -keeptty
-        xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
+        makeCapsEsc
     end
 end
-#
+
 #Misc aliases
 alias c "clear"
-alias g "cd ~/git; clear; ls"
+alias g "cd  ~/git; clear; ls"
 alias q "exit"
 alias r "ranger"
 alias vim "nvim"
 alias update "sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q"
 alias updatevim "g; cd vim; git pull; configurevim; make clean; make; sudo make install"
-alias xcape "xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'"
-#
-#acpid bug
-alias fuckdebian "sudo bash -c 'acpid -d &'"
+
 #Display
 alias set-wallpaper "feh --bg-fill ~/.wallpaper.jpg"
-alias vga "xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1;  set-wallpaper"
 
 #Some more alias to avoid making mistakes:
 alias rm "rm -i"
@@ -86,19 +100,10 @@ alias dmgmt "tmux kill-session -t mgmt"
 
 #Uni
 alias sw "cd ~/git/sw7/"
-
-#Git
-function d
-    git diff-index --quiet HEAD -- OR clear; git --no-pager diff --patch-with-stat
-end
-#Switch branch
-function go
-    git checkout $argv 2> /dev/null; and return; or git checkout -b $argv
-end
+#Git aliases
 alias pull "git pull"
 alias push "git push"
 alias st "git status -s"
-alias l "git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n20"
 alias gl "git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(bold red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n"
 alias lo "git shortlog --summary --numbered"
 alias configurevim "./configure --enable-pythoninterp --enable-cscop --enable-gui=autoe --enable-gtk2-check --enable-gnome-check --with-features=huge"
