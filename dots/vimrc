@@ -3,17 +3,15 @@ call plug#begin('~/.vim/plugged')
     Plug 'tpope/vim-fugitive'           "Git integration
     Plug 'tpope/vim-abolish'            "snake_case(crs) MixedCase(crm) camelCase(crc)
     Plug 'tpope/vim-repeat'             " . for abolish and surround
-    Plug 'tpope/vim-surround'           "surround e.g. cs''
     Plug 'Valloric/YouCompleteMe'       "Yes you do
-    Plug 'LaTeX-Box-Team/LaTeX-Box'     "Compile latex - <\leader>m
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-    Plug 'ervandew/supertab'            "Super tab
-    Plug 'majutsushi/tagbar'            "See tags <\leader>t
-    Plug 'scrooloose/syntastic'         "Must-have
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
     Plug 'terryma/vim-multiple-cursors' "Multiple cursers <c-n> /<c-x>
+    Plug 'scrooloose/syntastic'         "Must-have
+    Plug 'LaTeX-Box-Team/LaTeX-Box'     "Compile latex - <\leader>m
+    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
+    Plug 'ervandew/supertab'            "Super tab
     Plug 'mbbill/undotree'              "A undo tree
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-    Plug 'junegunn/fzf.vim'             "Fuzzy search files
+    Plug 'majutsushi/tagbar'            "See tags <\leader>t
     Plug 'itchyny/lightline.vim'        "Neat information line
     Plug 'ap/vim-buftabline'            "See current buffers
     Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
@@ -22,7 +20,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'scrooloose/nerdcommenter'     "Commenter ex. <\leader>cn
     Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
     Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-    "Plug 'mhinz/vim-startify'           "Vim sessions
+    Plug 'mhinz/vim-startify'           "Vim sessions
 call plug#end()
 "!
 "=== plugin: 'mhinz/vim-sayonara' ===
@@ -172,6 +170,8 @@ endif
 "!
 
 "=== Key Mapping ===
+"Reload vimrc
+nnoremap <F5> :so ~/git/dotfiles/dots/vimrc<CR>
 " Normal mode
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
@@ -202,27 +202,27 @@ nnoremap <Leader>o qp
 nnoremap <Leader>p @p
 
 " Tabbing und buffering
-noremap <Leader>tn :tabnew<space>
-noremap <Leader>td :tabclose<CR>
+nnoremap <Leader>tn :tabnew<space>
+nnoremap <Leader>td :tabclose<CR>
 nnoremap <Leader>bh :sbprevious<CR>
 nnoremap <Leader>bl :sbnext<CR>
-noremap <Leader>bd :bdelete<CR>
-noremap <c-j> <c-w>j
-noremap <c-h> <c-w>h
-noremap <c-k> <c-w>k
-noremap <c-l> <c-w>l
+nnoremap <Leader>bd :bdelete<CR>
+nnoremap <c-j> <c-w>j
+nnoremap <c-h> <c-w>h
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
 " resizing
 nnoremap <Leader>rh :vertical resize +10 <CR>
 nnoremap <Leader>rl :vertical resize -10 <CR>
 nnoremap <Leader>rj :resize +10 <CR>
 nnoremap <Leader>rk :resize -10 <CR>
 " Copy and pasting using the " register
-vmap yy "+y
-vmap dd "+d
-vmap pp "+p
-vmap PP "+P
-nmap pp "+p
-nmap PP "+P
+vnoremap yy "+y
+vnoremap dd "+d
+vnoremap pp "+p
+vnoremap PP "+P
+nnoremap pp "+p
+nnoremap PP "+P
 " Command mode
 cnoremap , :
 cnoremap <C-a> <Home>
