@@ -1,6 +1,11 @@
 " Plugins {{{1 "
 call plug#begin('~/.vim/plugged')
-" Plugin: 'vim-fugitive' {{{2
+Plug 'tpope/vim-abolish'            "snake_case(crs) MixedCase(crm) camelCase(crc)
+Plug 'tpope/vim-repeat'             " . for abolish and surround
+Plug 'terryma/vim-multiple-cursors' "Multiple cursers
+Plug 'ap/vim-buftabline'            "See current buffers
+Plug 'scrooloose/nerdcommenter'     "Commenter
+"" Plugin: 'vim-fugitive' {{{2
 "vim-fugitive
 Plug 'tpope/vim-fugitive'           "Git integration
 nnoremap <silent><Leader>gd :Gdiff <CR>
@@ -9,8 +14,6 @@ nnoremap <silent><Leader>gp :Gpull<CR>
 nnoremap <silent>cc :Gcommit %:p <CR>i
 "Neomake
 " 2}}} "
-Plug 'tpope/vim-abolish'            "snake_case(crs) MixedCase(crm) camelCase(crc)
-Plug 'tpope/vim-repeat'             " . for abolish and surround
 " Plugin: 'Valloric/YouCompleteMe' {{{2
 Plug 'Valloric/YouCompleteMe'       "Yes you do
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
@@ -29,7 +32,6 @@ let g:fzf_action = {
 \ 'ctrl-x': 'split',
 \ 'ctrl-v': 'vsplit' }
 "2}}}
-Plug 'terryma/vim-multiple-cursors' "Multiple cursers <c-n> /<c-x>
 "{{{2 Plugin: 'LaTeX-Box-Team/LaTeX-Box'
 Plug 'LaTeX-Box-Team/LaTeX-Box'     "Compile latex - <\leader>m
 let g:tex_flavor='latex'
@@ -54,23 +56,15 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 Plug 'mbbill/undotree'              "A undo tree
 nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
 " 2}}} "
-Plug 'ap/vim-buftabline'            "See current buffers
 " Plugin: 'terryma/vim-expand-region' {{{2
 Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
 vmap v <Plug>(expand_region_expand)
 vmap <C-v> <Plug>(expand_region_shrink)
 " 2}}} "
-"{{{2 Plugin: 'morhetz/gruvbox'
-Plug 'morhetz/gruvbox'              "Colorscheme
-set t_Co=256
-colorscheme gruvbox
-set background=dark
-"2}}}
 " Plugin: 'scrooloose/nerdtree' {{{2 "
 Plug 'scrooloose/nerdtree'          "Fileexplorer
 nnoremap <silent><F12> :NERDTreeToggle <CR>
 " 2}}} "
-Plug 'scrooloose/nerdcommenter'     "Commenter ex. <\leader>cn
 "{{{2 Plugin: 'xolox/vim-notes'
 Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
 nnoremap <silent><F3> :RecentNotes <CR>
@@ -115,13 +109,18 @@ let g:neoterm_size=70
 let g:neoterm_position='vertical'
 let g:neoterm_keep_term_open = 1
 " 2}}} "
+"{{{2 Plugin: 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'              "Colorscheme
+set t_Co=256
+set background=dark
+"2}}}
 "{{{2 Plugin: 'itchyny/lightline.vim'
-"Plug 'itchyny/lightline.vim'        "Neat information line
+Plug 'itchyny/lightline.vim'        "Neat information line
 set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
 let g:lightline = {
-\ 'colorscheme': 'blue',
+\ 'colorscheme': 'gruvbox',
 \ }
 "2}}}
 call plug#end()
@@ -247,4 +246,5 @@ tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
 " }}} "
 "1}}}
+colorscheme gruvbox
 " vim: fdm=marker
