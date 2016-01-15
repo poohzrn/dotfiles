@@ -78,7 +78,6 @@ alias c "clear"
 alias g "cd  ~/git; clear; ls"
 alias q "exit"
 alias r "ranger"
-alias vim "nvim"
 alias update "sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q"
 alias updatevim "g; cd vim; git pull; configurevim; make clean; make; sudo make install"
 

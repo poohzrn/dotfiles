@@ -1,112 +1,134 @@
-"=== Plugins ===
+" Plugins {{{1 "
 call plug#begin('~/.vim/plugged')
-    Plug 'tpope/vim-fugitive'           "Git integration
-    Plug 'tpope/vim-abolish'            "snake_case(crs) MixedCase(crm) camelCase(crc)
-    Plug 'tpope/vim-repeat'             " . for abolish and surround
-    Plug 'Valloric/YouCompleteMe'       "Yes you do
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-    Plug 'terryma/vim-multiple-cursors' "Multiple cursers <c-n> /<c-x>
-    Plug 'LaTeX-Box-Team/LaTeX-Box'     "Compile latex - <\leader>m
-    Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
-    Plug 'ervandew/supertab'            "Super tab
-    Plug 'mbbill/undotree'              "A undo tree
-    Plug 'itchyny/lightline.vim'        "Neat information line
-    Plug 'ap/vim-buftabline'            "See current buffers
-    Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
-    Plug 'morhetz/gruvbox'              "Colorscheme
-    Plug 'scrooloose/nerdtree'          "Fileexplorer
-    Plug 'scrooloose/nerdcommenter'     "Commenter ex. <\leader>cn
-    Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
-    Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-    Plug 'mhinz/vim-startify'           "Vim sessions
-    Plug 'benekastah/neomake'           "asynchronous :make
-    Plug 'kassio/neoterm'               "term
-call plug#end()
-"!
-
-"=== plugin: 'kassio/neoterm' ===
-let g:neoterm_size=70
-let g:neoterm_position='vertical'
-let g:neoterm_keep_term_open = 1
-"!
-"=== plugin: 'junegunn/fzf.vim' ===
-let g:fzf_layout = { 'up': '40%' }
+" Plugin: 'vim-fugitive' {{{2
+"vim-fugitive
+Plug 'tpope/vim-fugitive'           "Git integration
+nnoremap <silent><Leader>gd :Gdiff <CR>
+nnoremap <silent><Leader>st :Gstatus <CR>
+nnoremap <silent><Leader>gp :Gpull<CR>
+nnoremap <silent>cc :Gcommit %:p <CR>i
+"Neomake
+" 2}}} "
+Plug 'tpope/vim-abolish'            "snake_case(crs) MixedCase(crm) camelCase(crc)
+Plug 'tpope/vim-repeat'             " . for abolish and surround
+" Plugin: 'Valloric/YouCompleteMe' {{{2
+Plug 'Valloric/YouCompleteMe'       "Yes you do
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+"2}}}
+"{{{2 Plugin: 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+nnoremap <c-p> :FZF<CR>
+nnoremap <c-b> :Windows<CR>
+nnoremap <silent><Leader>fl :BLines <cr>
+nnoremap <silent><Leader>ft :Tags <cr>
+nnoremap <silent><Leader>fm :Maps<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 let g:fzf_action = {
-  \ 'ctrl-t': 'tab split',
-  \ 'ctrl-x': 'split',
-  \ 'ctrl-v': 'vsplit' }
-"!
-
-"=== plugin: 'benekastah/neomake' ===
-let g:neomake_open_list = 0
-"!
-
-"=== plugin: 'mhinz/vim-sayonara' ===
-let g:sayonara_confirm_quit = 1
-"!
-
-"=== plugin: 'LaTeX-Box-Team/LaTeX-Box'
+\ 'ctrl-t': 'tab split',
+\ 'ctrl-x': 'split',
+\ 'ctrl-v': 'vsplit' }
+"2}}}
+Plug 'terryma/vim-multiple-cursors' "Multiple cursers <c-n> /<c-x>
+"{{{2 Plugin: 'LaTeX-Box-Team/LaTeX-Box'
+Plug 'LaTeX-Box-Team/LaTeX-Box'     "Compile latex - <\leader>m
 let g:tex_flavor='latex'
 let g:LatexBox_latexmk_async = 0
 let g:LatexBox_viewer = "evince"
 let g:LatexBox_quickfix = 0
 let g:LatexBox_show_warnings = 0
 let g:LatexBox_ignore_warnings
-                        \ = ['Underfull', 'Overfull', 'specifier changed to', 'You should put a space in front of parenthesis']
-"!
-"=== plugin: 'xolox/vim-notes' ===
+                \ = ['Underfull', 'Overfull', 'specifier changed to', 'You should put a space in front of parenthesis']
+"2}}}
+" Plugin: 'SirVer/ultisnips' {{{2
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"2}}}
+" Plugin: 'ervandew/supertab' {{{2
+Plug 'ervandew/supertab'            "Super tab
+let g:SuperTabDefaultCompletionType = '<C-n>'
+"2}}}
+" Plugin: 'mbbill/undotree' {{{2 "
+Plug 'mbbill/undotree'              "A undo tree
+nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
+" 2}}} "
+Plug 'ap/vim-buftabline'            "See current buffers
+" Plugin: 'terryma/vim-expand-region' {{{2
+Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+" 2}}} "
+"{{{2 Plugin: 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'              "Colorscheme
+set t_Co=256
+colorscheme gruvbox
+set background=dark
+"2}}}
+" Plugin: 'scrooloose/nerdtree' {{{2 "
+Plug 'scrooloose/nerdtree'          "Fileexplorer
+nnoremap <silent><F12> :NERDTreeToggle <CR>
+" 2}}} "
+Plug 'scrooloose/nerdcommenter'     "Commenter ex. <\leader>cn
+"{{{2 Plugin: 'xolox/vim-notes'
+Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
+nnoremap <silent><F3> :RecentNotes <CR>
 let g:notes_directories = ['~/Dropbox/notes']
 let g:notes_suffix = '.txt'
 let g:notes_word_boundaries = 1
+" 2}}} "
+"{{{2 Plugin: 'mhinz/vim-sayonara'
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+nnoremap <silent> <BS> :Sayonara!<CR>
+nnoremap <silent> <S-BS> :Sayonara<cr>
+let g:sayonara_confirm_quit = 1
+"2}}}
+" Plugin: 'mhinz/vim-startify' {{{2
+Plug 'mhinz/vim-startify'           "Vim sessions
+nnoremap <silent><F11> :Startify <CR>
+let g:startify_bookmarks = [
+\ {'v': '~/git/dotfiles/dots/vimrc'},
+\ {'f': '~/git/dotfiles/fish/config.fish'},
+\ ]
+let g:startify_list_order = [
+\ ['   Bookmarks '], 'bookmarks',
+\ ['   Sessions '],  'sessions',
+\ ['   Directory '],   'dir',
+\ ['   Files'],       'files' ,
+\ ]
 
-"=== plugin: 'itchyny/lightline.vim' ===
+let g:startify_skiplist = [
+\ 'COMMIT_EDITMSG',
+\ ]
+"2}}}
+"{{{2 Plugin: 'benekastah/neomake'
+Plug 'benekastah/neomake'           "asynchronous :make
+nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
+nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
+let g:neomake_open_list = 0
+"2}}}
+" Plugin: 'kassio/neoterm' {{{2 "
+Plug 'kassio/neoterm'               "term
+nnoremap <silent><Leader>t :Ttoggle<CR>
+let g:neoterm_size=70
+let g:neoterm_position='vertical'
+let g:neoterm_keep_term_open = 1
+" 2}}} "
+"{{{2 Plugin: 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'        "Neat information line
 set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
 let g:lightline = {
-          \ 'colorscheme': 'gruvbox',
-      \ }
-"!
+\ 'colorscheme': 'blue',
+\ }
+"2}}}
+call plug#end()
 
-"=== plugin: 'morhetz/gruvbox' ===
-set t_Co=256
-colorscheme gruvbox
-set background=dark
-"!
-"=== plugin: 'SirVer/ultisnips' ===
-   " Trigger configuration.
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"!
-
-"=== plugin: 'Valloric/YouCompleteMe' ===
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-"!
-
-"=== plugin: 'ervandew/supertab' ===
-let g:SuperTabDefaultCompletionType = '<C-n>'
-"!
-
-"=== plugin: 'mhinz/vim-startify' ===
-let g:startify_bookmarks = [
-    \ {'v': '~/git/dotfiles/dots/vimrc'},
-    \ {'f': '~/git/dotfiles/fish/config.fish'},
-    \ ]
-let g:startify_list_order = [
-      \ ['   Bookmarks '], 'bookmarks',
-      \ ['   Sessions '],  'sessions',
-      \ ['   Directory '],   'dir',
-      \ ['   Files'],       'files' ,
-      \ ]
-
-let g:startify_skiplist = [
-      \ 'COMMIT_EDITMSG',
-      \ ]
-"!
-
+" 1}}} "
+" Settings {{{ "
+" General Settings {{{2 "
 "=== Misc Settings ===
 filetype plugin indent on
 let python_highlight_all = 1
@@ -125,80 +147,60 @@ set cursorline      "show a visual line under the cursor's current line
 set showmatch
 set rtp+=/home/lasse/.fzf
 set switchbuf=usetab
-"!
-
-"=== Wild Menu ===
+" 2}}} "
+" Wild menu and search {{{2 "
 set wildmenu
 set incsearch       " Find the next match as we type the search
 set hlsearch        " Highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 set nohlsearch      " Noh after search
-"!
-
-"=== Persistent Undo ===
+"2}}}
+" Persistent Undo {{{2 "
 " Keep undo history across sessions, by storing in file.
 if has('persistent_undo')
 silent !mkdir ~/.vim/backups > /dev/null 2>&1
 set undodir=~/.vim/backups
 set undofile
 endif
-"!
+"2}}}
+" Folding {{{2 "
+if &foldmethod ==# ''
+  set foldmethod=syntax
+endif
+set foldlevel=0
+set foldcolumn=0
+set foldtext=TxtFoldText()
 
-"=== Plugin Toggle ===
-"vim-sayonara
-    nnoremap <silent> <BS> :Sayonara!<CR>
-    nnoremap <silent> <S-BS> :Sayonara<cr>
-"vim-expand-region
-    vmap v <Plug>(expand_region_expand)
-    vmap <C-v> <Plug>(expand_region_shrink)
-"vim-fugitive
-    nnoremap <silent><Leader>gd :Gdiff <CR>
-    nnoremap <silent><Leader>st :Gstatus <CR>
-    nnoremap <silent>cc :Gcommit %:p <CR>i
-"fzf.vim
-    nnoremap <c-p> :FZF<CR>
-    nnoremap <c-b> :Windows<CR>
-    nnoremap <silent><Leader>fl :BLines <cr>
-    nnoremap <silent><Leader>ft :Tags <cr>
-    inoremap <expr> <c-l> fzf#vim#complete#word({'left': '15%'})
-    inoremap <expr> <c-k> fzf#vim#windows({'left': '15%'})
+function! TxtFoldText()
+  let level = repeat('-', min([v:foldlevel-1,3])) . '+'
+  let title = substitute(getline(v:foldstart), '{\{3}\d\?\s*', '', '')
+  let title = substitute(title, '^["#! ]\+', '', '')
+  return printf('%-4s %-s', level, title)
+endfunction
 
-"nerdtree
-    nnoremap <silent><F12> :NERDTreeToggle <CR>
-"vim-startify
-    nnoremap <silent><F11> :Startify <CR>
-"vim-notes
-    nnoremap <silent><F3> :RecentNotes <CR>
-"Neomake
-    nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
-    nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
-"undotree
-    nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
-"neoterm
-    nnoremap <silent><Leader>t :Ttoggle<CR>
-"!
+" Navigate folds
+nnoremap zf zMzvzz
+nnoremap zj zcjzvzz
+nnoremap zk zckzvzz
 
-"=== Key Mapping ===
-"Reload vimrc
+" 2}}} "
+" }}} Settings "
+"{{{1 Key Mapping
+let mapleader="\<Space>"
+nnoremap <F4> :e ~/git/dotfiles/dots/vimrc<CR>
 nnoremap <F5> :so ~/git/dotfiles/dots/vimrc<CR>
-" Normal mode
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
 nnoremap , :
-inoremap ½ $
-nnoremap ½ $
-vnoremap ½ $
-nnoremap <space> <NOP>
+nnoremap <space> <nop>
 noremap <space><space> zz
 nnoremap <c-j> <c-w>j
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <c-k> <c-w>k
-" Insert mode
 inoremap <CR>f <esc>
 " Follow the Leader
-let mapleader="\<Space>"
 nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
 nnoremap <Leader>r z=
 nnoremap <Leader>w ]s
@@ -210,76 +212,39 @@ nnoremap <Leader>h :bprevious<CR>
 nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>o qp
 nnoremap <Leader>p @p
-
 " Tabbing und buffering
 nnoremap <Leader>tn :tabnew<space>
 nnoremap <Leader>td :tabclose<CR>
 nnoremap <Leader>bh :sbprevious<CR>
 nnoremap <Leader>bl :sbnext<CR>
 nnoremap <Leader>bd :bdelete<CR>
-nnoremap <c-j> <c-w>j
-nnoremap <c-h> <c-w>h
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
-" resizing
+" Resizing {{{ "
 nnoremap <Leader>rh :vertical resize +10 <CR>
 nnoremap <Leader>rl :vertical resize -10 <CR>
 nnoremap <Leader>rj :resize +10 <CR>
 nnoremap <Leader>rk :resize -10 <CR>
-" Copy and pasting using the " register
+" }}} Resizing "
+" Copy/Pase {{{ "
 vnoremap yy "+y
 vnoremap dd "+d
 vnoremap pp "+p
 vnoremap PP "+P
 nnoremap pp "+p
 nnoremap PP "+P
-" Command mode
-cnoremap , :
+" }}} Copy/Pase "
+" Mode: Command {{{ "
 cnoremap <C-a> <Home>
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <C-d> <Delete>
 cnoremap <C-e> <End>
-" Terminal mode
+" }}} "
+" Mode: Terminal {{{ "
 tnoremap <Esc> <C-\><C-n>
 tnoremap <A-h> <C-\><C-n><C-w>h
 tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
-"!
-
-"=== Folding in vimrc ===
-function! Vimfold()
-    setl fillchars=fold:\ 
-    setl foldmethod=syntax
-    setl foldlevelstart=1
-    syn region foldBraces start=/"==.*/ end=/"!/ transparent fold keepend extend
-    function! FoldText()
-        return substitute(getline(v:foldstart), '{ w.*', '{...}', '')
-    endfunction
-    setl foldtext=FoldText()
-endfunction
-"!
-
-"=== Visual Selection ===
-function! VisualSelection(direction, extra_filter) range
-    let l:saved_reg = @"
-    execute "normal! vgvy"
-
-    let l:pattern = escape(@", '\\/.*$^~[]')
-    let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-    if a:direction == 'b'
-        execute "normal ?" . l:pattern . "^M"
-    elseif a:direction == 'gv'
-        call CmdLine("Ag \"" . l:pattern . "\" " )
-    elseif a:direction == 'replace'
-        call CmdLine("%s" . '/'. l:pattern . '/')
-    elseif a:direction == 'f'
-        execute "normal /" . l:pattern . "^M"
-    endif
-
-    let @/ = l:pattern
-    let @" = l:saved_reg
-endfunction
-"!
+" }}} "
+"1}}}
+" vim: fdm=marker
