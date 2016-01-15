@@ -30,6 +30,8 @@ let g:neoterm_position='vertical'
 let g:neoterm_keep_term_open = 1
 "!
 "=== plugin: 'junegunn/fzf.vim' ===
+let g:fzf_layout = { 'up': '40%' }
+nmap <leader><tab> <plug>(fzf-maps-n)
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
@@ -155,8 +157,13 @@ endif
     nnoremap <silent><Leader>st :Gstatus <CR>
     nnoremap <silent>cc :Gcommit %:p <CR>i
 "fzf.vim
-    nnoremap <C-p> :FZF<CR>
-    nnoremap <C-b> :Buffers<CR>
+    nnoremap <c-p> :FZF<CR>
+    nnoremap <c-b> :Windows<CR>
+    nnoremap <silent><Leader>fl :BLines <cr>
+    nnoremap <silent><Leader>ft :Tags <cr>
+    inoremap <expr> <c-l> fzf#vim#complete#word({'left': '15%'})
+    inoremap <expr> <c-k> fzf#vim#windows({'left': '15%'})
+
 "nerdtree
     nnoremap <silent><F12> :NERDTreeToggle <CR>
 "vim-startify
@@ -178,7 +185,6 @@ nnoremap <F5> :so ~/git/dotfiles/dots/vimrc<CR>
 " Normal mode
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
-nnoremap / :BLines<CR>
 nnoremap , :
 inoremap ½ $
 nnoremap ½ $
