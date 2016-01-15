@@ -6,12 +6,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'Valloric/YouCompleteMe'       "Yes you do
     Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
     Plug 'terryma/vim-multiple-cursors' "Multiple cursers <c-n> /<c-x>
-    Plug 'scrooloose/syntastic'         "Must-have
     Plug 'LaTeX-Box-Team/LaTeX-Box'     "Compile latex - <\leader>m
     Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
     Plug 'ervandew/supertab'            "Super tab
     Plug 'mbbill/undotree'              "A undo tree
-    Plug 'majutsushi/tagbar'            "See tags <\leader>t
     Plug 'itchyny/lightline.vim'        "Neat information line
     Plug 'ap/vim-buftabline'            "See current buffers
     Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
@@ -21,8 +19,27 @@ call plug#begin('~/.vim/plugged')
     Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
     Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
     Plug 'mhinz/vim-startify'           "Vim sessions
+    Plug 'benekastah/neomake'           "asynchronous :make
+    Plug 'kassio/neoterm'               "term
 call plug#end()
 "!
+
+"=== plugin: 'kassio/neoterm' ===
+let g:neoterm_size=70
+let g:neoterm_position='vertical'
+let g:neoterm_keep_term_open = 1
+"!
+"=== plugin: 'junegunn/fzf.vim' ===
+let g:fzf_action = {
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+"!
+
+"=== plugin: 'benekastah/neomake' ===
+let g:neomake_open_list = 0
+"!
+
 "=== plugin: 'mhinz/vim-sayonara' ===
 let g:sayonara_confirm_quit = 1
 "!
@@ -44,10 +61,9 @@ let g:notes_word_boundaries = 1
 "=== plugin: 'itchyny/lightline.vim' ===
 set laststatus=2
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+          \ 'colorscheme': 'gruvbox',
       \ }
 "!
 
@@ -56,18 +72,6 @@ set t_Co=256
 colorscheme gruvbox
 set background=dark
 "!
-
-"=== plugin: 'scrooloose/syntastic' ===
-let g:syntastic_always_populate_loc_list = 0
-let g:syntastic_auto_loc_list = 0
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
-let g:syntastic_ignore_files = ['/tmp/', '\m\c\.h$']
-let g:syntastic_mode_map = { 'mode': 'active',
-   \ 'active_filetypes': [''],
-   \ 'passive_filetypes': ['*'] }
-"!
-
 "=== plugin: 'SirVer/ultisnips' ===
    " Trigger configuration.
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -159,14 +163,13 @@ endif
     nnoremap <silent><F11> :Startify <CR>
 "vim-notes
     nnoremap <silent><F3> :RecentNotes <CR>
-"tagbar
-    nnoremap <silent><Leader>t :TagbarToggle <CR>
-"LaTex-Box
-    nnoremap <silent><Leader>m :Latexmk <CR>
+"Neomake
+    nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
+    nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
 "undotree
     nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
-"Syntastic
-    nnoremap <Leader>sy :SyntasticToggleMode<CR>
+"neoterm
+    nnoremap <silent><Leader>t :Ttoggle<CR>
 "!
 
 "=== Key Mapping ===
@@ -175,6 +178,7 @@ nnoremap <F5> :so ~/git/dotfiles/dots/vimrc<CR>
 " Normal mode
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F9> :!python %<CR>
+nnoremap / :BLines<CR>
 nnoremap , :
 inoremap ½ $
 nnoremap ½ $
