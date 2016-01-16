@@ -90,8 +90,8 @@ Plug 'mhinz/vim-startify'           "Vim sessions
 nnoremap <silent><F11> :Startify <CR>
 let g:startify_session_dir = '~/.vim/session'
 let g:startify_bookmarks = [
-\ {'v': '~/git/dotfiles/dots/init.vim'},
-\ {'f': '~/git/dotfiles/fish/config.fish'},
+\ {'v': '~/git/dotfiles/vimrc'},
+\ {'f': '~/git/dotfiles/config.fish'},
 \ ]
 let g:startify_list_order = [
 \ ['   Bookmarks '], 'bookmarks',
