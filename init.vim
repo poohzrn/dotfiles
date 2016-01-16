@@ -1,14 +1,15 @@
 " Plugins {{{1 "
 call plug#begin()
-"" Plugin: 'vim-fugitive' {{{2
-"vim-fugitive
+" Plugin: 'vim-tomorrow-theme' {{{
+Plug 'chriskempson/vim-tomorrow-theme'          "Theme
+"}}} "
+" Plugin: 'vim-fugitive' {{{2
 Plug 'tpope/vim-fugitive'           "Git integration
 nnoremap <silent><Leader>gd :Gdiff <CR>
 nnoremap <silent><Leader>st :Gstatus <CR>
 nnoremap <silent><Leader>gp :Gpull<CR>
 nnoremap <silent>cc :Gcommit %:p <CR>i
-"Neomake
-" 2}}} "
+"2}}} "
 "{{{2 Plugin: 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <c-p> :FZF<CR>
@@ -94,6 +95,7 @@ let g:sayonara_confirm_quit = 1
 " Plugin: 'mhinz/vim-startify' {{{2
 Plug 'mhinz/vim-startify'           "Vim sessions
 nnoremap <silent><F11> :Startify <CR>
+let g:startify_session_dir = '~/.vim/session'
 let g:startify_bookmarks = [
 \ {'v': '~/git/dotfiles/dots/init.vim'},
 \ {'f': '~/git/dotfiles/fish/config.fish'},
@@ -113,6 +115,7 @@ Plug 'benekastah/neomake'           "asynchronous :make
 nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
 nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
 let g:neomake_open_list = 0
+let g:neomake_python_enabled_makers = ['pep8', 'pylint']
 "2}}}
 " Plugin: 'kassio/neoterm' {{{2 "
 Plug 'kassio/neoterm'               "term
@@ -125,8 +128,7 @@ let g:neoterm_keep_term_open = 1
 call plug#end()
 
 " 1}}} "
-" Settings {{{ "
-" General Settings {{{2 "
+" General Settings {{{ "
 "=== Misc Settings ===
 filetype plugin indent on
 let python_highlight_all = 1
@@ -145,45 +147,62 @@ set cursorline      "show a visual line under the cursor's current line
 set showmatch
 set rtp+=/home/lasse/.fzf
 set switchbuf=usetab
-" 2}}} "
-" Wild menu and search {{{2 "
+" }}} "
+" Wild menu and search {{{ "
 set wildmenu
 set incsearch       " Find the next match as we type the search
 set hlsearch        " Highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 set nohlsearch      " Noh after search
-"2}}}
-" Persistent Undo {{{2 "
+set gdefault        " when on, the :substitute flag 'g' is default on
+"}}}
+" Persistent Undo {{{ "
 " Keep undo history across sessions, by storing in file.
 if has('persistent_undo')
-silent !mkdir ~/.vim/backups > /dev/null 2>&1
+    if empty(glob('~/.vim/backups'))
+        silent !mkdir ~/.vim/backups > /dev/null 2>&1 " takes a lot of time.. :<
+    endif
 set undodir=~/.vim/backups
 set undofile
 endif
-"2}}}
-" Folding {{{2 "
+"}}}
+" Folding {{{ "
 if &foldmethod ==# ''
   set foldmethod=syntax
 endif
 set foldlevel=0
 set foldcolumn=0
 set foldtext=TxtFoldText()
-
 function! TxtFoldText()
   let level = repeat('-', min([v:foldlevel-1,3])) . '+'
   let title = substitute(getline(v:foldstart), '{\{3}\d\?\s*', '', '')
   let title = substitute(title, '^["#! ]\+', '', '')
   return printf('%-4s %-s', level, title)
 endfunction
-
 " Navigate folds
 nnoremap zf zMzvzz
 nnoremap zj zcjzvzz
 nnoremap zk zckzvzz
 
-" 2}}} "
-" }}} Settings "
+" }}} "
+"  Return to same line {{{ "
+augroup line_return
+au!
+au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \     execute 'normal! g`"zvzz' |
+    \ endif
+augroup END
+" }}} "
+" Cursor configuration {{{
+" Use a blinking upright bar cursor in Insert mode, a solid block in normal
+" and a blinking underline in replace mode
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let &t_SI = "\<Esc>[5 q"
+let &t_SR = "\<Esc>[3 q"
+let &t_EI = "\<Esc>[ q"
+" }}}"
 "{{{1 Key Mapping
 let mapleader="\<Space>"
 nnoremap <F2> :set invpaste paste?<CR>
@@ -216,6 +235,11 @@ nnoremap <Leader>td :tabclose<CR>
 nnoremap <Leader>bh :sbprevious<CR>
 nnoremap <Leader>bl :sbnext<CR>
 nnoremap <Leader>bd :bdelete<CR>
+" Create splits with empty buffers in all directions
+nnoremap <Leader>nh :leftabove  vnew<CR>
+nnoremap <Leader>nl :rightbelow vnew<CR>
+nnoremap <Leader>nk :leftabove  new<CR>
+nnoremap <Leader>nj :rightbelow new<CR>
 " Resizing {{{ "
 nnoremap <Leader>rh :vertical resize +10 <CR>
 nnoremap <Leader>rl :vertical resize -10 <CR>
@@ -244,6 +268,6 @@ tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
 " }}} "
-    "1}}}
+"1}}}
 colorscheme gruvbox
 " vim: fdm=marker
