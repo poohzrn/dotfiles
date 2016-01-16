@@ -1,4 +1,5 @@
 set -U fish_user_paths $fish_user_paths ~/git/dotfiles/scripts
+
 ## fish git prompt
 set __fish_git_prompt_showdirtystate 'yes'
 set __fish_git_prompt_showstashstate 'yes'

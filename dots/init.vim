@@ -1,10 +1,5 @@
 " Plugins {{{1 "
-call plug#begin('~/.vim/plugged')
-Plug 'tpope/vim-abolish'            "snake_case(crs) MixedCase(crm) camelCase(crc)
-Plug 'tpope/vim-repeat'             " . for abolish and surround
-Plug 'terryma/vim-multiple-cursors' "Multiple cursers
-Plug 'ap/vim-buftabline'            "See current buffers
-Plug 'scrooloose/nerdcommenter'     "Commenter
+call plug#begin()
 "" Plugin: 'vim-fugitive' {{{2
 "vim-fugitive
 Plug 'tpope/vim-fugitive'           "Git integration
@@ -14,11 +9,6 @@ nnoremap <silent><Leader>gp :Gpull<CR>
 nnoremap <silent>cc :Gcommit %:p <CR>i
 "Neomake
 " 2}}} "
-" Plugin: 'Valloric/YouCompleteMe' {{{2
-Plug 'Valloric/YouCompleteMe'       "Yes you do
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-"2}}}
 "{{{2 Plugin: 'junegunn/fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <c-p> :FZF<CR>
@@ -42,6 +32,34 @@ let g:LatexBox_show_warnings = 0
 let g:LatexBox_ignore_warnings
                 \ = ['Underfull', 'Overfull', 'specifier changed to', 'You should put a space in front of parenthesis']
 "2}}}
+" Plugin: 'terryma/vim-expand-region' {{{2
+Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+" 2}}} "
+Plug 'ap/vim-buftabline'            "See current buffers
+" Plugin: 'mbbill/undotree' {{{2 "
+Plug 'mbbill/undotree'              "A undo tree
+nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
+" 2}}} "
+" Plugin: 'scrooloose/nerdtree' {{{2 "
+Plug 'scrooloose/nerdtree'          "Fileexplorer
+nnoremap <silent><F1> :NERDTreeToggle <CR>
+" 2}}} "
+"{{{2 Plugin: 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'              "Colorscheme
+set t_Co=256
+set background=dark
+"2}}}
+"{{{2 Plugin: 'itchyny/lightline.vim'
+Plug 'itchyny/lightline.vim'        "Neat information line
+set laststatus=2
+set statusline+=%#warningmsg#
+set statusline+=%*
+let g:lightline = {
+\ 'colorscheme': 'gruvbox',
+\ }
+"2}}}
 " Plugin: 'SirVer/ultisnips' {{{2
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -52,19 +70,14 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 Plug 'ervandew/supertab'            "Super tab
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "2}}}
-" Plugin: 'mbbill/undotree' {{{2 "
-Plug 'mbbill/undotree'              "A undo tree
-nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
+" Plugin: 'Shougo/deoplete.nvim' {{{2 "
+Plug 'Shougo/deoplete.nvim'
+let g:deoplete#enable_at_startup = 1
 " 2}}} "
-" Plugin: 'terryma/vim-expand-region' {{{2
-Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-" 2}}} "
-" Plugin: 'scrooloose/nerdtree' {{{2 "
-Plug 'scrooloose/nerdtree'          "Fileexplorer
-nnoremap <silent><F12> :NERDTreeToggle <CR>
-" 2}}} "
+Plug 'tpope/vim-abolish'            "snake_case(crs) MixedCase(crm) camelCase(crc)
+Plug 'tpope/vim-repeat'             " . for abolish and surround
+Plug 'terryma/vim-multiple-cursors' "Multiple cursers
+Plug 'scrooloose/nerdcommenter'     "Commenter
 "{{{2 Plugin: 'xolox/vim-notes'
 Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
 nnoremap <silent><F3> :RecentNotes <CR>
@@ -82,14 +95,13 @@ let g:sayonara_confirm_quit = 1
 Plug 'mhinz/vim-startify'           "Vim sessions
 nnoremap <silent><F11> :Startify <CR>
 let g:startify_bookmarks = [
-\ {'v': '~/git/dotfiles/dots/vimrc'},
+\ {'v': '~/git/dotfiles/dots/init.vim'},
 \ {'f': '~/git/dotfiles/fish/config.fish'},
 \ ]
 let g:startify_list_order = [
 \ ['   Bookmarks '], 'bookmarks',
-\ ['   Sessions '],  'sessions',
-\ ['   Directory '],   'dir',
 \ ['   Files'],       'files' ,
+\ ['   Sessions '],  'sessions',
 \ ]
 
 let g:startify_skiplist = [
@@ -109,20 +121,7 @@ let g:neoterm_size=70
 let g:neoterm_position='vertical'
 let g:neoterm_keep_term_open = 1
 " 2}}} "
-"{{{2 Plugin: 'morhetz/gruvbox'
-Plug 'morhetz/gruvbox'              "Colorscheme
-set t_Co=256
-set background=dark
-"2}}}
-"{{{2 Plugin: 'itchyny/lightline.vim'
-Plug 'itchyny/lightline.vim'        "Neat information line
-set laststatus=2
-set statusline+=%#warningmsg#
-set statusline+=%*
-let g:lightline = {
-\ 'colorscheme': 'gruvbox',
-\ }
-"2}}}
+
 call plug#end()
 
 " 1}}} "
@@ -187,9 +186,9 @@ nnoremap zk zckzvzz
 " }}} Settings "
 "{{{1 Key Mapping
 let mapleader="\<Space>"
-nnoremap <F4> :e ~/git/dotfiles/dots/vimrc<CR>
-nnoremap <F5> :so ~/git/dotfiles/dots/vimrc<CR>
 nnoremap <F2> :set invpaste paste?<CR>
+nnoremap <F4> :e $MYVIMRC<CR>
+nnoremap <F5> :so $MYVIMRC<CR>
 nnoremap <F9> :!python %<CR>
 nnoremap , :
 nnoremap <space> <nop>
@@ -245,6 +244,6 @@ tnoremap <A-j> <C-\><C-n><C-w>j
 tnoremap <A-k> <C-\><C-n><C-w>k
 tnoremap <A-l> <C-\><C-n><C-w>l
 " }}} "
-"1}}}
+    "1}}}
 colorscheme gruvbox
 " vim: fdm=marker
