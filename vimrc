@@ -68,10 +68,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 Plug 'ervandew/supertab'            "Super tab
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "2}}}
-" Plugin: 'Shougo/deoplete.nvim' {{{2 "
-Plug 'Shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup = 1
-" 2}}} "
 Plug 'tpope/vim-abolish'            "snake_case(crs) MixedCase(crm) camelCase(crc)
 Plug 'tpope/vim-repeat'             " . for abolish and surround
 Plug 'terryma/vim-multiple-cursors' "Multiple cursers
@@ -107,20 +103,6 @@ let g:startify_skiplist = [
 \ 'COMMIT_EDITMSG',
 \ ]
 "2}}}
-"{{{2 Plugin: 'benekastah/neomake'
-Plug 'benekastah/neomake'           "asynchronous :make
-nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
-nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
-let g:neomake_open_list = 0
-let g:neomake_python_enabled_makers = ['pep8', 'pylint']
-"2}}}
-" Plugin: 'kassio/neoterm' {{{2 "
-Plug 'kassio/neoterm'               "term
-nnoremap <silent><Leader>t :Ttoggle<CR>
-let g:neoterm_size=70
-let g:neoterm_position='vertical'
-let g:neoterm_keep_term_open = 1
-" 2}}} "
 
 call plug#end()
 
@@ -257,13 +239,6 @@ cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <C-d> <Delete>
 cnoremap <C-e> <End>
-" }}} "
-" Mode: Terminal {{{ "
-tnoremap <Esc> <C-\><C-n>
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
 " }}} "
 "1}}}
 colorscheme gruvbox
