@@ -1,5 +1,10 @@
 " Plugins {{{1 "
 call plug#begin()
+" Plugin: 'vim-preview' {{{
+Plug 'greyblake/vim-preview'          "Markdown preview
+"Settings for vim-preview
+
+"}}} "
 " Plugin: 'vim-fugitive' {{{2
 Plug 'tpope/vim-fugitive'           "Git integration
 nnoremap <silent><Leader>gd :Gdiff <CR>

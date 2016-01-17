@@ -84,8 +84,8 @@ Plug 'tpope/vim-repeat'          " .
 "Settings for vim-repeat
 
 "}}} "
-" Plugin: 'vim-multiple-cursers' {{{
-Plug 'terryma/vim-multiple-cursers'          "Multiple cursers
+" Plugin: 'vim-multiple-cursors' {{{
+Plug 'terryma/vim-multiple-cursors'          "Multiple cursers
 "Settings for vim-multiple-cursers
 
 "}}} "
