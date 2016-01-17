@@ -2,11 +2,14 @@
 - shell:
     - [mkdir -p ~/git]
     - [mkdir -p ~/downloads]
-    - [mkdir -p ~/.config/]
+    - [mkdir -p ~/.config]
 - link:
+    ~/.Xresources: Xresources
+    ~/.tmux.conf: tmux.conf
     ~/.vimrc: vimrc
     ~/.config/nvim/init.vim:
         create: true
+        force: true
         path: init.vim
     ~/.vim/UltiSnips:
         create: true
@@ -16,11 +19,8 @@
         path: snippets/
     ~/.config/fish/config.fish:
         create: true
-        path: config.fish
-    ~/.tmux.conf:
         force: true
-        path: tmux.conf
+        path: config.fish
     ~/.i3:
         force: true
         path: i3/
-    ~/.Xresources: Xresources
