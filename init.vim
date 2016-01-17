@@ -1,13 +1,10 @@
 " Plugins {{{1 "
 call plug#begin()
-" Plugin: 'vim-fugitive' {{{2
-Plug 'tpope/vim-fugitive'           "Git integration
-nnoremap <silent><Leader>gd :Gdiff <CR>
-nnoremap <silent><Leader>st :Gstatus <CR>
-nnoremap <silent><Leader>gp :Gpull<CR>
-nnoremap <silent>cc :Gcommit %:p <CR>i
-"2}}} "
-"{{{2 Plugin: 'junegunn/fzf.vim'
+" Plugin: 'deoplete.nvim' {{{
+Plug 'Shougo/deoplete.nvim'
+let g:deoplete#enable_at_startup = 1
+" }}} "
+"{{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <c-p> :FZF<CR>
 nnoremap <c-b> :Windows<CR>
@@ -19,8 +16,8 @@ let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
 \ 'ctrl-x': 'split',
 \ 'ctrl-v': 'vsplit' }
-"2}}}
-"{{{2 Plugin: 'LaTeX-Box-Team/LaTeX-Box'
+"}}}
+"{{{Plugin: 'LaTeX-Box'
 Plug 'LaTeX-Box-Team/LaTeX-Box'     "Compile latex - <\leader>m
 let g:tex_flavor='latex'
 let g:LatexBox_latexmk_async = 0
@@ -29,27 +26,8 @@ let g:LatexBox_quickfix = 0
 let g:LatexBox_show_warnings = 0
 let g:LatexBox_ignore_warnings
                 \ = ['Underfull', 'Overfull', 'specifier changed to', 'You should put a space in front of parenthesis']
-"2}}}
-" Plugin: 'terryma/vim-expand-region' {{{2
-Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-" 2}}} "
-Plug 'ap/vim-buftabline'            "See current buffers
-" Plugin: 'mbbill/undotree' {{{2 "
-Plug 'mbbill/undotree'              "A undo tree
-nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
-" 2}}} "
-" Plugin: 'scrooloose/nerdtree' {{{2 "
-Plug 'scrooloose/nerdtree'          "Fileexplorer
-nnoremap <silent><F1> :NERDTreeToggle <CR>
-" 2}}} "
-"{{{2 Plugin: 'morhetz/gruvbox'
-Plug 'morhetz/gruvbox'              "Colorscheme
-set t_Co=256
-set background=dark
-"2}}}
-"{{{2 Plugin: 'itchyny/lightline.vim'
+"}}}
+"{{{Plugin: 'lightline.vim'
 Plug 'itchyny/lightline.vim'        "Neat information line
 set laststatus=2
 set statusline+=%#warningmsg#
@@ -57,39 +35,74 @@ set statusline+=%*
 let g:lightline = {
 \ 'colorscheme': 'gruvbox',
 \ }
-"2}}}
-" Plugin: 'SirVer/ultisnips' {{{2
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"2}}}
-" Plugin: 'ervandew/supertab' {{{2
-Plug 'ervandew/supertab'            "Super tab
-let g:SuperTabDefaultCompletionType = '<C-n>'
-"2}}}
-" Plugin: 'Shougo/deoplete.nvim' {{{2 "
-Plug 'Shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup = 1
-" 2}}} "
-Plug 'tpope/vim-abolish'            "snake_case(crs) MixedCase(crm) camelCase(crc)
-Plug 'tpope/vim-repeat'             " . for abolish and surround
-Plug 'terryma/vim-multiple-cursors' "Multiple cursers
-Plug 'scrooloose/nerdcommenter'     "Commenter
-"{{{2 Plugin: 'xolox/vim-notes'
+"}}}
+"{{{Plugin: 'gruvbox'
+Plug 'morhetz/gruvbox'              "Colorscheme
+set t_Co=256
+set background=dark
+"}}}
+"{{{Plugin: 'neomake'
+Plug 'benekastah/neomake'           "asynchronous :make
+nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
+nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
+let g:neomake_open_list = 0
+let g:neomake_python_enabled_makers = ['pep8', 'pylint']
+"}}}
+" Plugin: 'nerdcommenter' {{{
+Plug 'scrooloose/nerdcommenter'          "Commenter
+"Settings for nerdcommenter
+
+"}}} "
+" Plugin: 'nerdtree' {{{
+Plug 'scrooloose/nerdtree'          "Fileexplorer
+nnoremap <silent><F1> :NERDTreeToggle <CR>
+" }}} "
+" Plugin: 'vim-expand-region' {{{2
+Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)
+" }}} "
+" Plugin: 'vim-fugitive' {{{
+Plug 'tpope/vim-fugitive'           "Git integration
+nnoremap <silent><Leader>gd :Gdiff <CR>
+nnoremap <silent><Leader>st :Gstatus <CR>
+nnoremap <silent><Leader>gp :Gpull<CR>
+nnoremap <silent>cc :Gcommit %:p <CR>i
+"}}} "
+" Plugin: 'vim-buftabline' {{{
+Plug 'ap/vim-buftabline'          "See current buffers
+"Settings for vim-buftabline
+
+"}}} "
+" Plugin: 'vim-abolish' {{{
+Plug 'tpope/vim-abolish'          "snake_case(crs) MixedCase(crm) camelCase(crc)
+"Settings for vim-abolish
+
+"}}} "
+" Plugin: 'vim-repeat' {{{
+Plug 'tpope/vim-repeat'          " .
+"Settings for vim-repeat
+
+"}}} "
+" Plugin: 'vim-multiple-cursers' {{{
+Plug 'terryma/vim-multiple-cursers'          "Multiple cursers
+"Settings for vim-multiple-cursers
+
+"}}} "
+"{{{Plugin: 'vim-notes'
 Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
 nnoremap <silent><F3> :RecentNotes <CR>
 let g:notes_directories = ['~/Dropbox/notes']
 let g:notes_suffix = '.txt'
 let g:notes_word_boundaries = 1
-" 2}}} "
-"{{{2 Plugin: 'mhinz/vim-sayonara'
+" }}} "
+"{{{Plugin: 'vim-sayonara'
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 nnoremap <silent> <BS> :Sayonara!<CR>
 nnoremap <silent> <S-BS> :Sayonara<cr>
 let g:sayonara_confirm_quit = 1
-"2}}}
-" Plugin: 'mhinz/vim-startify' {{{2
+"}}}
+" Plugin: 'vim-startify' {{{
 Plug 'mhinz/vim-startify'           "Vim sessions
 nnoremap <silent><F11> :Startify <CR>
 let g:startify_session_dir = '~/.vim/session'
@@ -106,24 +119,22 @@ let g:startify_list_order = [
 let g:startify_skiplist = [
 \ 'COMMIT_EDITMSG',
 \ ]
-"2}}}
-"{{{2 Plugin: 'benekastah/neomake'
-Plug 'benekastah/neomake'           "asynchronous :make
-nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
-nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
-let g:neomake_open_list = 0
-let g:neomake_python_enabled_makers = ['pep8', 'pylint']
-"2}}}
-" Plugin: 'kassio/neoterm' {{{2 "
-Plug 'kassio/neoterm'               "term
-nnoremap <silent><Leader>t :Ttoggle<CR>
-let g:neoterm_size=70
-let g:neoterm_position='vertical'
-let g:neoterm_keep_term_open = 1
-" 2}}} "
-
+"}}}
+" Plugin: 'supertab' {{{
+Plug 'ervandew/supertab'            "Super tab
+let g:SuperTabDefaultCompletionType = '<C-n>'
+"}}}
+" Plugin: 'ultisnips' {{{
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+"}}}
+" Plugin: 'undotree' {{{ "
+Plug 'mbbill/undotree'              "A undo tree
+nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
+" }}} "
 call plug#end()
-
 " 1}}} "
 " General Settings {{{ "
 "=== Misc Settings ===
