@@ -1,0 +1,26 @@
+- clean: ['~']
+- shell:
+    - [mkdir -p ~/git]
+    - [mkdir -p ~/downloads]
+    - [mkdir -p ~/.config/]
+- link:
+    ~/.vimrc: vimrc
+    ~/.config/nvim/init.vim:
+        create: true
+        path: init.vim
+    ~/.vim/UltiSnips:
+        create: true
+        path: snippets/
+    ~/.config/nvim/UltiSnips:
+        create: true
+        path: snippets/
+    ~/.config/fish/config.fish:
+        create: true
+        path: config.fish
+    ~/.tmux.conf:
+        force: true
+        path: tmux.conf
+    ~/.i3:
+        force: true
+        path: i3/
+    ~/.Xresources: Xresources

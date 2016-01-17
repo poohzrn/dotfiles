@@ -89,7 +89,7 @@ bindsym $mod+q kill
 # start rofi (a program launcher)
 bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob-hide-scrollbar
 bindsym $mod+Return exec rofi -show window -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob
-bindsym $mod+u exec ~/.i3/toggle-xkbmap
+bindsym $mod+u exec ~/git/dotfiles/scripts/toggle-xkbmap.sh
 ## Navigation
 # change focus
 bindsym $mod+h focus left
