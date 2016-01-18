@@ -1,4 +1,4 @@
-set -U fish_user_paths $fish_user_paths ~/git/dotfiles/scripts
+#set -U fish_user_paths $fish_user_paths ~/git/dotfiles/scripts
 set -U EDITOR nvim
 #Colors
 set fish_color_cwd white --bold
@@ -43,6 +43,15 @@ end
 function fuckdebian
     sudo acpid -d &
 end
+function dock
+    ~/git/dotfiles/scripts/thinkpad-undock.sh ; ~/git/dotfiles/scripts/thinkpad-dock.sh
+end
+#Update git folders
+function updategit
+    for folder in (ls ~/git/); 
+        cd ~/git/$folder; echo "updating $folder"; git pull;
+    end
+end
 #Bind CapsLock to ESC if tapped CTRL otherwise; neat
 function makeCapsEsc
     xcape -e 'Caps_Lock=Escape;Control_L=Escape;Control_R=Escape'
@@ -75,6 +84,8 @@ alias set-wallpaper "feh --bg-fill ~/.wallpaper.jpg"
 alias rm "rm -i"
 alias cp "cp -i"
 alias mv "mv -i"
+#  Music
+alias spotify "chromium https://play.spotify.com/browse"
 #  }}} Misc aliases #
 
 #  Tmux Aliases {{{ #
