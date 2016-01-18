@@ -7,7 +7,7 @@ let g:deoplete#enable_at_startup = 1
 "{{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <c-p> :FZF<CR>
-nnoremap <c-b> :Windows<CR>
+nnoremap <c-b> :Buffers<CR>
 nnoremap <silent><Leader>fl :BLines <cr>
 nnoremap <silent><Leader>ft :Tags <cr>
 nnoremap <silent><Leader>fm :Maps<cr>
