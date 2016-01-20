@@ -17,16 +17,6 @@ let g:fzf_action = {
 \ 'ctrl-x': 'split',
 \ 'ctrl-v': 'vsplit' }
 "}}}
-"{{{Plugin: 'LaTeX-Box'
-Plug 'LaTeX-Box-Team/LaTeX-Box'     "Compile latex - <\leader>m
-let g:tex_flavor='latex'
-let g:LatexBox_latexmk_async = 0
-let g:LatexBox_viewer = "evince"
-let g:LatexBox_quickfix = 0
-let g:LatexBox_show_warnings = 0
-let g:LatexBox_ignore_warnings
-                \ = ['Underfull', 'Overfull', 'specifier changed to', 'You should put a space in front of parenthesis']
-"}}}
 "{{{Plugin: 'lightline.vim'
 Plug 'itchyny/lightline.vim'        "Neat information line
 set laststatus=2
@@ -111,15 +101,20 @@ let g:startify_bookmarks = [
 \ {'f': '~/git/dotfiles/config.fish'},
 \ ]
 let g:startify_list_order = [
-\ ['   Bookmarks '], 'bookmarks',
-\ ['   Files'],       'files' ,
 \ ['   Sessions '],  'sessions',
+\ ['   Files'],       'files' ,
+\ ['   Bookmarks '], 'bookmarks',
 \ ]
 
 let g:startify_skiplist = [
 \ 'COMMIT_EDITMSG',
 \ ]
 "}}}
+" Plugin: 'vimtex' {{{
+Plug 'lervag/vimtex'          "A modern vim plugin for editing LaTeX
+"Settings for vimtex
+
+"}}} "
 " Plugin: 'supertab' {{{
 Plug 'ervandew/supertab'            "Super tab
 let g:SuperTabDefaultCompletionType = '<C-n>'
