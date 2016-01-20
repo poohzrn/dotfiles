@@ -1,5 +1,6 @@
-#set -U fish_user_paths $fish_user_paths ~/git/dotfiles/scripts
+#set -U fish_user_paths $fish_user_paths $GITFOLDER/dotfiles/scripts
 set -U EDITOR nvim
+set -U GITFOLDER ~/git
 #Colors
 set fish_color_cwd white --bold
 set fish_pager_color_prefix red
@@ -44,12 +45,12 @@ function fuckdebian
     sudo acpid -d &
 end
 function dock
-    ~/git/dotfiles/scripts/thinkpad-undock.sh ; ~/git/dotfiles/scripts/thinkpad-dock.sh
+    $GITFOLDER/dotfiles/scripts/thinkpad-undock.sh ; $GITFOLDER/dotfiles/scripts/thinkpad-dock.sh
 end
 #Update git folders
 function updategit
-    for folder in (ls ~/git/); 
-        cd ~/git/$folder; echo "updating $folder"; git pull;
+    for folder in (ls $GITFOLDER);
+        cd $GITFOLDER/$folder; echo "updating $folder"; git pull;
     end
 end
 #Bind CapsLock to ESC if tapped CTRL otherwise; neat
@@ -73,10 +74,12 @@ end
 
 #  Misc aliases {{{ # 
 alias c "clear"
-alias g "cd  ~/git; clear; ls"
+alias g "cd  $GITFOLDER; clear; ls"
 alias q "exit"
 alias r "ranger"
 alias update "sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q"
+alias install "sudo apt-get install --no-install-recommends"
+alias remove "sudo apt-get autoremove --purge"
 alias updatevim "g; cd vim; git pull; configurevim; make clean; make; sudo make install"
 #Display
 alias set-wallpaper "feh --bg-fill ~/.wallpaper.jpg"
@@ -98,7 +101,7 @@ alias dmgmt "tmux kill-session -t mgmt"
 #  }}} Tmux Aliases #
 
 #Uni
-alias sw "cd ~/git/sw7/"
+alias sw "cd $GITFOLDER/sw7/"
 
 #  Git {{{
 alias pull "git pull"
