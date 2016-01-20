@@ -1,6 +1,10 @@
-#set -U fish_user_paths $fish_user_paths $GITFOLDER/dotfiles/scripts
 set -U EDITOR nvim
 set -U GITFOLDER ~/git
+#  Monitors {{{ #
+set -U LAPMONITOR LVDS1
+set -U LMONITOR VGA1
+set -U RMONITOR HDMI3
+#  }}} Monitors #
 #Colors
 set fish_color_cwd white --bold
 set fish_pager_color_prefix red
@@ -34,18 +38,26 @@ end
 #  Misc functions {{{ #
 #Enable VGA output
 function vga
-	xrandr --output LVDS1 --auto --primary --output VGA1 --auto --right-of LVDS1 $argv;
+	xrandr --output $LAPMONITOR --auto --primary --output VGA1 --auto --right-of $LAPMONITOR $argv;
 end
 #Enable DVI output
 function hdmi
-	xrandr --output LVDS1 --auto --primary --output HDMI3 --auto --right-of LVDS1 $argv;
+	xrandr --output $LAPMONITOR --auto --primary;
+    xrandr --output $RMONITOR --auto --right-of $LAPMONITOR $argv;
 end
-#Enable acpid & debug
-function fuckdebian
-    sudo acpid -d &
-end
+#Docking setup
 function dock
-    $GITFOLDER/dotfiles/scripts/thinkpad-undock.sh ; $GITFOLDER/dotfiles/scripts/thinkpad-dock.sh
+    xrandr --output $LAPMONITOR --off;
+    eval xrandr --output $LMONITOR --auto --primary;
+    eval xrandr --output $RMONITOR --auto --left-of $LMONITOR;
+    set-wallpaper;
+end
+#notdocking setup
+function undock
+    eval xrandr --output $RMONITOR --off;
+    eval xrandr --output $LMONITOR --off;
+    xrandr --output $LAPMONITOR --auto --primary;
+    set-wallpaper;
 end
 #Update git folders
 function updategit
@@ -72,16 +84,12 @@ if status --is-login
     end
 end
 
-#  Misc aliases {{{ # 
+#  Misc aliases {{{ #
 alias c "clear"
 alias g "cd  $GITFOLDER; clear; ls"
 alias q "exit"
 alias r "ranger"
-alias update "sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q"
-alias install "sudo apt-get install --no-install-recommends"
-alias remove "sudo apt-get autoremove --purge"
 alias updatevim "g; cd vim; git pull; configurevim; make clean; make; sudo make install"
-#Display
 alias set-wallpaper "feh --bg-fill ~/.wallpaper.jpg"
 #Some more alias to avoid making mistakes:
 alias rm "rm -i"
@@ -90,14 +98,19 @@ alias mv "mv -i"
 #  Music
 alias spotify "chromium https://play.spotify.com/browse"
 #  }}} Misc aliases #
+#  APT {{{ #
+alias update "sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q"
+alias install "sudo apt-get install --no-install-recommends"
+alias remove "sudo apt-get autoremove --purge"
+#  }}} APT #
 
 #  Tmux Aliases {{{ #
 alias tma "tmux attach-session -t"
 alias tmux "tmux -2" #256 color
 alias tmuxls "tmux list-sessions"
 alias tmate "tmate -2" #256 color
-alias mgmt "~/scripts/servermgmt.sh"
-alias dmgmt "tmux kill-session -t mgmt"
+alias tmgm "~/scripts/servermgmt.sh"
+alias tdmgm "tmux kill-session -t mgmt"
 #  }}} Tmux Aliases #
 
 #Uni
