@@ -99,6 +99,7 @@ let g:startify_session_dir = '~/.vim/session'
 let g:startify_bookmarks = [
 \ {'v': '~/git/dotfiles/init.vim'},
 \ {'f': '~/git/dotfiles/config.fish'},
+\ {'t': '~/git/dotfiles/tmux.conf'},
 \ ]
 let g:startify_list_order = [
 \ ['   Sessions '],  'sessions',
@@ -211,7 +212,6 @@ let mapleader="\<Space>"
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F4> :e $MYVIMRC<CR>
 nnoremap <F5> :so $MYVIMRC<CR>
-nnoremap <F9> :!python %<CR>
 nnoremap , :
 nnoremap <space> <nop>
 noremap <space><space> zz
