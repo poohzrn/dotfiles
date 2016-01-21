@@ -83,7 +83,7 @@ Plug 'terryma/vim-multiple-cursors'          "Multiple cursers
 Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
 nnoremap <silent><F3> :RecentNotes <CR>
 let g:notes_directories = ['~/Dropbox/notes']
-let g:notes_suffix = '.txt'
+let g:notes_suffix = '.md'
 let g:notes_word_boundaries = 1
 " }}} "
 "{{{Plugin: 'vim-sayonara'
@@ -114,7 +114,14 @@ let g:startify_skiplist = [
 " Plugin: 'vimtex' {{{
 Plug 'lervag/vimtex'          "A modern vim plugin for editing LaTeX
 "Settings for vimtex
-
+"Toggle comilation
+nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
+"Errors
+nnoremap <silent> <Leader>le :call vimtex#latexmk#errors()<CR>
+"Lables
+nnoremap <silent> <Leader>ll :call vimtex#labels#toggle()<CR>
+"TOC
+nnoremap <silent> <Leader>lt :call vimtex#toc#toggle()<CR>
 "}}} "
 " Plugin: 'supertab' {{{
 Plug 'ervandew/supertab'            "Super tab
