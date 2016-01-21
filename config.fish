@@ -1,4 +1,5 @@
 set -U EDITOR nvim
+set -U XDG_CONFIG_HOME $HOME/.config
 set -U GITFOLDER ~/git
 #  Monitors {{{ #
 set -U LAPMONITOR LVDS1
@@ -72,6 +73,21 @@ end
 # List installed packages sorted by size
 function packages
     dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
+end
+function sudo
+    if test "$argv" = !!
+        eval command sudo $history[1]
+    else
+        command sudo $argv
+    end
+end
+
+function sudo
+    if test "$argv" = !!
+        eval command sudo $history[1]
+    else
+        command sudo $argv
+    end
 end
 #  }}} Misc functions #
 #~> ~> ~> ~> ~> ~> ~> ~> ~> ~>
