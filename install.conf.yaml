@@ -21,6 +21,10 @@
         create: true
         force: true
         path: config.fish
+    ~/.config/synergy/synergy.conf:
+        create: true
+        force: true
+        path: synergy.conf
     ~/.i3:
         force: true
         path: i3/
