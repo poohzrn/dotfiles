@@ -152,5 +152,5 @@ function go
     git checkout $argv 2> /dev/null; and return; or git checkout -b $argv
 end
 #  }}} Git
-alias configurevim "./configure --enable-pythoninterp --enable-cscop --enable-gui=autoe --enable-gtk2-check --enable-gnome-check --with-features=huge"
+alias configurevim "./configure --enable-python3interp --enable-cscop --enable-gui=autoe --enable-gtk2-check --enable-gnome-check --with-features=huge"
 #vim: fdm=marker
