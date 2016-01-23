@@ -37,6 +37,8 @@ nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
 nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
 let g:neomake_open_list = 0
 let g:neomake_python_enabled_makers = ['pep8', 'pylint']
+let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
+autocmd! BufWritePost * Neomake
 "}}}
 " Plugin: 'nerdcommenter' {{{
 Plug 'scrooloose/nerdcommenter'          "Commenter
@@ -122,6 +124,10 @@ nnoremap <silent> <Leader>le :call vimtex#latexmk#errors()<CR>
 nnoremap <silent> <Leader>ll :call vimtex#labels#toggle()<CR>
 "TOC
 nnoremap <silent> <Leader>lt :call vimtex#toc#toggle()<CR>
+
+let g:vimtex_view_general_viewer = 'evince'
+let g:vimtex_view_general_options_latexmk = '--unique'
+
 "}}} "
 " Plugin: 'supertab' {{{
 Plug 'ervandew/supertab'            "Super tab
