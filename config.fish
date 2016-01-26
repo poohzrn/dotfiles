@@ -115,7 +115,7 @@ alias mv "mv -i"
 alias spotify "chromium https://play.spotify.com/browse"
 #  }}} Misc aliases #
 #  APT {{{ #
-alias update "sudo apt-get update; sudo apt-get upgrade; vim -c :PlugUpdate -c :q -c :q"
+alias update "sudo apt-get update; sudo apt-get upgrade;" #vim -c :PlugUpdate -c :q -c :q"
 alias install "sudo apt-get install --no-install-recommends"
 alias remove "sudo apt-get autoremove --purge"
 #  }}} APT #
