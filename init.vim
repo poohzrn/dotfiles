@@ -3,6 +3,7 @@ call plug#begin()
 " Plugin: 'deoplete.nvim' {{{
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
 " }}} "
 "{{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
@@ -134,6 +135,11 @@ Plug 'ervandew/supertab'            "Super tab
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "}}}
 " Plugin: 'ultisnips' {{{
+" Plugin: 'Repository name' {{{
+Plug 'Git user/Repository name'          "new-plugin
+"Settings for Repository name
+
+"}}} "
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -256,6 +262,9 @@ nnoremap <Leader>nh :leftabove  vnew<CR>
 nnoremap <Leader>nl :rightbelow vnew<CR>
 nnoremap <Leader>nk :leftabove  new<CR>
 nnoremap <Leader>nj :rightbelow new<CR>
+" For completion completion
+inoremap <C-j> <C-N>
+inoremap <C-k> <C-P>
 " Resizing {{{ "
 nnoremap <Leader>rh :vertical resize +10 <CR>
 nnoremap <Leader>rl :vertical resize -10 <CR>
