@@ -1,3 +1,4 @@
+let mapleader="\<Space>"
 " Plugins {{{1 "
 call plug#begin()
 " Plugin: 'deoplete.nvim' {{{
@@ -227,7 +228,6 @@ let &t_SR = "\<Esc>[3 q"
 let &t_EI = "\<Esc>[ q"
 " }}}"
 "{{{1 Key Mapping
-let mapleader="\<Space>"
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F4> :e $MYVIMRC<CR>
 nnoremap <F5> :so $MYVIMRC<CR>
