@@ -10,8 +10,8 @@ let g:deoplete#enable_smart_case = 1
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <c-p> :FZF<CR>
 nnoremap <c-b> :Buffers<CR>
-nnoremap <silent><Leader>fl :BLines <cr>
-nnoremap <silent><Leader>ft :Tags <cr>
+nnoremap <c-[> :Tags <cr>
+nnoremap <silent><Leader>bl :BLines <cr>
 nnoremap <silent><Leader>fm :Maps<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
 let g:fzf_action = {
@@ -25,8 +25,22 @@ set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
 let g:lightline = {
-\ 'colorscheme': 'gruvbox',
-\ }
+      \ 'colorscheme': 'gruvbox',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"RO":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ }
 "}}}
 "{{{Plugin: 'gruvbox'
 Plug 'morhetz/gruvbox'              "Colorscheme
@@ -38,7 +52,7 @@ Plug 'benekastah/neomake'           "asynchronous :make
 nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
 nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
 let g:neomake_open_list = 0
-let g:neomake_python_enabled_makers = ['pep8', 'pylint']
+let g:neomake_python_enabled_makers = ['pep8']
 let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
 autocmd! BufWritePost * Neomake
 "}}}
@@ -62,11 +76,14 @@ nnoremap <silent><Leader>gd :Gdiff <CR>
 nnoremap <silent><Leader>st :Gstatus <CR>
 nnoremap <silent><Leader>gp :Gpull<CR>
 nnoremap <silent>cc :Gcommit %:p <CR>i
+nnoremap <silent>ca :Gcommit %:p --amend <CR>jo*
 "}}} "
 " Plugin: 'vim-buftabline' {{{
 Plug 'ap/vim-buftabline'          "See current buffers
 "Settings for vim-buftabline
-
+set hidden
+nnoremap <Leader>h :bprev<CR>
+nnoremap <Leader>l :bnext<CR>
 "}}} "
 " Plugin: 'vim-abolish' {{{
 Plug 'tpope/vim-abolish'          "snake_case(crs) MixedCase(crm) camelCase(crc)
@@ -86,7 +103,7 @@ Plug 'terryma/vim-multiple-cursors'          "Multiple cursers
 "{{{Plugin: 'vim-notes'
 Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
 nnoremap <silent><F3> :RecentNotes <CR>
-let g:notes_directories = ['~/Dropbox/notes']
+let g:notes_directories = ['~/git/private/notes']
 let g:notes_suffix = '.md'
 let g:notes_word_boundaries = 1
 " }}} "
@@ -136,11 +153,6 @@ Plug 'ervandew/supertab'            "Super tab
 let g:SuperTabDefaultCompletionType = '<C-n>'
 "}}}
 " Plugin: 'ultisnips' {{{
-" Plugin: 'Repository name' {{{
-Plug 'Git user/Repository name'          "new-plugin
-"Settings for Repository name
-
-"}}} "
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
@@ -247,8 +259,6 @@ nnoremap <Leader>b [s
 nnoremap <Leader>s :w <CR>
 nnoremap <Leader>j gjzz
 nnoremap <Leader>k gkzz
-nnoremap <Leader>h :bprevious<CR>
-nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>o qp
 nnoremap <Leader>p @p
 " Tabbing und buffering
