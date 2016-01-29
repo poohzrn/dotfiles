@@ -171,7 +171,7 @@ bar {
 #Start at startup
 exec --no-startup-id i3-msg 'exec rescuetime'
 exec --no-startup-id i3-msg 'exec udiskie'
-exec --no-startup-id i3-msg 'exec synergys -c /home/lasse/.config/synergy/synergy.conf --daemon --restart'
+exec --no-startup-id i3-msg 'exec synergy -c /home/lasse/.config/synergy/synergy.conf'
 exec --no-startup-id i3-msg 'exec ~/.dropbox-dist/dropboxd'
 exec --no-startup-id i3-msg 'exec redshift -l 57:9 -t 5700:3600 -g 0.8 -m randr'
 exec --no-startup-id dropbox
