@@ -151,6 +151,8 @@ bindsym $mod+Left exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.sp
 # Sreen brightness controls (brightness up, brightness down)
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86KbdBrightnessDown exec "echo 0 | tee -a /sys/class/leds/smc::kbd_backlight/brightness"
+bindsym XF86KbdBrightnessUp exec "echo 100 | tee -a /sys/class/leds/smc::kbd_backlight/brightness"
 # Start i3bar
 bar {
     status_command i3status     -c ~/.i3/i3status.conf
