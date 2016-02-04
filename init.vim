@@ -10,7 +10,6 @@ let g:deoplete#enable_smart_case = 1
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <c-p> :FZF<CR>
 nnoremap <c-b> :Buffers<CR>
-nnoremap <c-[> :Tags <cr>
 nnoremap <silent><Leader>bl :BLines <cr>
 nnoremap <silent><Leader>fm :Maps<cr>
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -100,13 +99,6 @@ Plug 'terryma/vim-multiple-cursors'          "Multiple cursers
 "Settings for vim-multiple-cursers
 
 "}}} "
-"{{{Plugin: 'vim-notes'
-Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
-nnoremap <silent><F3> :RecentNotes <CR>
-let g:notes_directories = ['~/git/private/notes']
-let g:notes_suffix = '.md'
-let g:notes_word_boundaries = 1
-" }}} "
 "{{{Plugin: 'vim-sayonara'
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 nnoremap <silent> <BS> :Sayonara!<CR>
