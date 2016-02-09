@@ -1,9 +1,6 @@
+let mapleader="\<Space>"
 " Plugins {{{1 "
 call plug#begin()
-" Plugin: 'deoplete.nvim' {{{
-Plug 'Shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup = 1
-" }}} "
 "{{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <c-p> :FZF<CR>
@@ -24,19 +21,26 @@ set statusline+=%#warningmsg#
 set statusline+=%*
 let g:lightline = {
 \ 'colorscheme': 'gruvbox',
-\ }
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component': {
+      \   'readonly': '%{&filetype=="help"?"":&readonly?"RO":""}',
+      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+      \ },
+      \ 'component_visible_condition': {
+      \   'readonly': '(&filetype!="help"&& &readonly)',
+      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+      \ },
+      \ }
 "}}}
 "{{{Plugin: 'gruvbox'
 Plug 'morhetz/gruvbox'              "Colorscheme
 set t_Co=256
 set background=dark
-"}}}
-"{{{Plugin: 'neomake'
-Plug 'benekastah/neomake'           "asynchronous :make
-nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
-nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
-let g:neomake_open_list = 0
-let g:neomake_python_enabled_makers = ['pep8', 'pylint']
 "}}}
 " Plugin: 'nerdcommenter' {{{
 Plug 'scrooloose/nerdcommenter'          "Commenter
@@ -62,7 +66,9 @@ nnoremap <silent>cc :Gcommit %:p <CR>i
 " Plugin: 'vim-buftabline' {{{
 Plug 'ap/vim-buftabline'          "See current buffers
 "Settings for vim-buftabline
-
+set hidden
+nnoremap <Leader>h :bprev<CR>
+nnoremap <Leader>l :bnext<CR>
 "}}} "
 " Plugin: 'vim-abolish' {{{
 Plug 'tpope/vim-abolish'          "snake_case(crs) MixedCase(crm) camelCase(crc)
@@ -79,40 +85,26 @@ Plug 'terryma/vim-multiple-cursors'          "Multiple cursers
 "Settings for vim-multiple-cursers
 
 "}}} "
-"{{{Plugin: 'vim-notes'
-Plug 'xolox/vim-notes' | Plug 'xolox/vim-misc' " Vim notes
-nnoremap <silent><F3> :RecentNotes <CR>
-let g:notes_directories = ['~/Dropbox/notes']
-let g:notes_suffix = '.txt'
-let g:notes_word_boundaries = 1
-" }}} "
 "{{{Plugin: 'vim-sayonara'
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 nnoremap <silent> <BS> :Sayonara!<CR>
 nnoremap <silent> <S-BS> :Sayonara<cr>
 let g:sayonara_confirm_quit = 1
 "}}}
-" Plugin: 'vim-startify' {{{
-Plug 'mhinz/vim-startify'           "Vim sessions
-nnoremap <silent><F11> :Startify <CR>
-let g:startify_session_dir = '~/.vim/session'
-let g:startify_bookmarks = [
-\ {'v': '~/git/dotfiles/init.vim'},
-\ {'f': '~/git/dotfiles/config.fish'},
-\ ]
-let g:startify_list_order = [
-\ ['   Bookmarks '], 'bookmarks',
-\ ['   Files'],       'files' ,
-\ ['   Sessions '],  'sessions',
-\ ]
-
-let g:startify_skiplist = [
-\ 'COMMIT_EDITMSG',
-\ ]
-"}}}
 " Plugin: 'vimtex' {{{
 Plug 'lervag/vimtex'          "A modern vim plugin for editing LaTeX
 "Settings for vimtex
+"Toggle comilation
+nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
+"Errors
+nnoremap <silent> <Leader>le :call vimtex#latexmk#errors()<CR>
+"Lables
+nnoremap <silent> <Leader>ll :call vimtex#labels#toggle()<CR>
+"TOC
+nnoremap <silent> <Leader>lt :call vimtex#toc#toggle()<CR>
+
+let g:vimtex_view_general_viewer = 'evince'
+let g:vimtex_view_general_options_latexmk = '--unique'
 
 "}}} "
 " Plugin: 'supertab' {{{
@@ -129,6 +121,14 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 Plug 'mbbill/undotree'              "A undo tree
 nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
 " }}} "
+" Plugin: 'YouCompleteMe' {{{
+Plug 'Valloric/YouCompleteMe'          " Codecompletion
+"Settings for YouCompleteMe
+"make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+"}}} "
 call plug#end()
 " 1}}} "
 " General Settings {{{ "
@@ -202,13 +202,11 @@ augroup END
 " Cursor configuration {{{
 " Use a blinking upright bar cursor in Insert mode, a solid block in normal
 " and a blinking underline in replace mode
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let &t_SI = "\<Esc>[5 q"
 let &t_SR = "\<Esc>[3 q"
 let &t_EI = "\<Esc>[ q"
 " }}}"
 "{{{1 Key Mapping
-let mapleader="\<Space>"
 nnoremap <F2> :set invpaste paste?<CR>
 nnoremap <F4> :e $MYVIMRC<CR>
 nnoremap <F5> :so $MYVIMRC<CR>
@@ -229,8 +227,6 @@ nnoremap <Leader>b [s
 nnoremap <Leader>s :w <CR>
 nnoremap <Leader>j gjzz
 nnoremap <Leader>k gkzz
-nnoremap <Leader>h :bprevious<CR>
-nnoremap <Leader>l :bnext<CR>
 nnoremap <Leader>o qp
 nnoremap <Leader>p @p
 " Tabbing und buffering
@@ -244,6 +240,9 @@ nnoremap <Leader>nh :leftabove  vnew<CR>
 nnoremap <Leader>nl :rightbelow vnew<CR>
 nnoremap <Leader>nk :leftabove  new<CR>
 nnoremap <Leader>nj :rightbelow new<CR>
+" For completion completion
+inoremap <C-j> <C-N>
+inoremap <C-k> <C-P>
 " Resizing {{{ "
 nnoremap <Leader>rh :vertical resize +10 <CR>
 nnoremap <Leader>rl :vertical resize -10 <CR>

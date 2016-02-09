@@ -5,7 +5,12 @@ call plug#begin()
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
+let g:deoplete#enable_refresh_always = 1
 let g:deoplete#max_list = 20
+
+let g:deoplete#omni#input_patterns = {}
+let g:deoplete#omni#input_patterns.python = ''
+let g:deoplete#omni#functions = {}
 " }}} "
 "{{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
@@ -54,6 +59,9 @@ nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
 let g:neomake_open_list = 0
 let g:neomake_python_enabled_makers = ['pep8']
 let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
+let g:neomake_cpp_clang_maker = {
+            \ 'args': ['-std=c++11'],
+            \}
 autocmd! BufWritePost * Neomake
 "}}}
 " Plugin: 'nerdcommenter' {{{
@@ -188,6 +196,7 @@ set cursorline      "show a visual line under the cursor's current line
 set showmatch
 set rtp+=/home/lasse/.fzf
 set switchbuf=usetab
+set so=8            "8 lines to the curser
 " }}} "
 " Wild menu and search {{{ "
 set wildmenu
