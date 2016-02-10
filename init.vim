@@ -175,10 +175,16 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 "}}} "
+" Plugin: 'vim-markdown-folding' {{{
+Plug 'nelstrom/vim-markdown-folding'          " Fold markdown documents
+"Settings for vim-markdown-folding
+
+"}}} "
 call plug#end()
 " 1}}} "
 " General Settings {{{ "
 "=== Misc Settings ===
+set nocompatible
 filetype plugin indent on
 let python_highlight_all = 1
 set noswapfile      "disable .swp files
