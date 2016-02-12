@@ -1,6 +1,7 @@
 let mapleader="\<Space>"
-" Plugins {{{1 "
+" Plugins {{{ "
 call plug#begin()
+" Completion {{{ "
 " Plugin: 'deoplete.nvim' {{{
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
@@ -12,6 +13,38 @@ let g:deoplete#omni#input_patterns = {}
 let g:deoplete#omni#input_patterns.python = ''
 let g:deoplete#omni#functions = {}
 " }}}
+" Plugin: 'ultisnips' {{{
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
+"let g:UltiSnipsExpandTrigger="<tab>"
+"let g:UltiSnipsJumpForwardTrigger="<tab>"
+"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" }}}
+" Plugin: 'neosnippet' {{{
+Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets'
+"Settings for neosnippet/neosnippet-snippets
+" For completion completion
+inoremap <C-j> <C-N>
+inoremap <C-k> <C-P>
+" Plugin key-mappings.
+imap <C-f>     <Plug>(neosnippet_expand_or_jump)
+smap <C-f>     <Plug>(neosnippet_expand_or_jump)
+xmap <C-f>     <Plug>(neosnippet_expand_target)
+" SuperTab like snippets behavior.
+imap <expr><TAB>
+ \ pumvisible() ? "\<C-n>" :
+ \ neosnippet#expandable_or_jumpable() ?
+ \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB>
+ \ neosnippet#expandable_or_jumpable() ?
+ \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+" For conceal markers.
+if has('conceal')
+  set conceallevel=2 concealcursor=niv
+endif
+
+"}}} "
+" }}} Completion "
 " {{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <C-p> :FZF<CR>
@@ -106,7 +139,7 @@ Plug 'tpope/vim-repeat'          " .
 " Plugin: 'vim-markdown-folding' {{{
 Plug 'nelstrom/vim-markdown-folding'          " Fold markdown documents
 "Settings for vim-markdown-folding
-
+let g:markdown_fold_style = 'nested'
 " }}}
 " Plugin: 'vim-over' {{{
 Plug 'osyo-manga/vim-over'          " :substitute preview
@@ -157,34 +190,12 @@ let g:vimtex_view_general_viewer = 'evince'
 let g:vimtex_view_general_options_latexmk = '--unique'
 
 " }}}
-" Plugin: 'supertab' {{{
-Plug 'ervandew/supertab'            "Super tab
-let g:SuperTabDefaultCompletionType = '<C-n>'
-" }}}
-" Plugin: 'ultisnips' {{{
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" }}}
 " Plugin: 'undotree' {{{
 Plug 'mbbill/undotree'              "A undo tree
 nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
 " }}}
-" Plugin: 'jedi-vim' {{{
-Plug 'davidhalter/jedi-vim'          "autocompletion
-"Settings for jedi-vim
-let g:jedi#use_splits_not_buffers = "left"
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-" }}}
 call plug#end()
-" 1}}}
+" }}}
 " General Settings {{{
 "=== Misc Settings ===
 set nocompatible
@@ -240,6 +251,7 @@ function! TxtFoldText()
   return printf('%-4s %-s', level, title)
 endfunction
 " Navigate folds
+nnoremap <Tab> za
 nnoremap zf zMzvzz
 nnoremap zj zcjzvzz
 nnoremap zk zckzvzz
@@ -295,9 +307,6 @@ nnoremap <Leader>nh :leftabove  vnew<CR>
 nnoremap <Leader>nl :rightbelow vnew<CR>
 nnoremap <Leader>nk :leftabove  new<CR>
 nnoremap <Leader>nj :rightbelow new<CR>
-" For completion completion
-inoremap <C-j> <C-N>
-inoremap <C-k> <C-P>
 "1}}}
 " Resizing {{{
 nnoremap <Leader>rh :vertical resize +10 <CR>
@@ -312,7 +321,7 @@ vnoremap pp "+p
 vnoremap PP "+P
 nnoremap pp "+p
 nnoremap PP "+P
-" }}} Copy/Pase "
+" }}} Copy/Paste "
 " Mode: Command {{{
 cnoremap <C-a> <Home>
 cnoremap <C-h> <Left>
