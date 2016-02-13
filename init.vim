@@ -1,62 +1,26 @@
 let mapleader="\<Space>"
 " Plugins {{{ "
 call plug#begin()
-" Completion {{{ "
+" Completion {{{2 "
 " Plugin: 'deoplete.nvim' {{{
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_refresh_always = 1
-let g:deoplete#max_list = 20
-
-let g:deoplete#omni#input_patterns = {}
-let g:deoplete#omni#input_patterns.python = ''
-let g:deoplete#omni#functions = {}
+let g:deoplete#max_list = 10
+" }}}
+" Plugin: 'supertab' {{{
+Plug 'ervandew/supertab'            "Super tab
+let g:SuperTabDefaultCompletionType = '<C-n>'
 " }}}
 " Plugin: 'ultisnips' {{{
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
-"let g:UltiSnipsExpandTrigger="<tab>"
-"let g:UltiSnipsJumpForwardTrigger="<tab>"
-"let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}
-" Plugin: 'neosnippet' {{{
-Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets'
-"Settings for neosnippet/neosnippet-snippets
-" For completion completion
-inoremap <C-j> <C-N>
-inoremap <C-k> <C-P>
-" Plugin key-mappings.
-imap <C-f>     <Plug>(neosnippet_expand_or_jump)
-smap <C-f>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-f>     <Plug>(neosnippet_expand_target)
-" SuperTab like snippets behavior.
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB>
- \ neosnippet#expandable_or_jumpable() ?
- \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
-endif
-
-"}}} "
-" }}} Completion "
-" {{{ Plugin: 'fzf.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-nnoremap <C-p> :FZF<CR>
-nnoremap <C-b> :Buffers<CR>
-nnoremap <silent><Leader>bl :BLines <CR>
-nnoremap <silent><Leader>fm :Maps<CR>
-nmap <leader><tab> <plug>(fzf-maps-n)
-let g:fzf_action = {
-\ 'ctrl-t': 'tab split',
-\ 'ctrl-x': 'split',
-\ 'ctrl-v': 'vsplit' }
-" }}}
+" 2}}} Completion "
+" UI {{{ "
 " {{{Plugin: 'lightline.vim'
 Plug 'itchyny/lightline.vim'        "Neat information line
 set laststatus=2
@@ -85,6 +49,54 @@ Plug 'morhetz/gruvbox'              "Colorscheme
 set t_Co=256
 set background=dark
 " }}}
+" Plugin: 'vim-buftabline' {{{
+Plug 'ap/vim-buftabline'          "See current buffers
+"Settings for vim-buftabline
+set hidden
+nnoremap <Leader>h :bprev<CR>
+nnoremap <Leader>l :bnext<CR>
+" }}}
+" Plugin: 'vim-markdown-folding' {{{
+Plug 'nelstrom/vim-markdown-folding'          " Fold markdown documents
+"Settings for vim-markdown-folding
+
+" }}}
+" Plugin: 'nerdtree' {{{
+Plug 'scrooloose/nerdtree'          "Fileexplorer
+nnoremap <silent><F1> :NERDTreeToggle <CR>
+" }}}
+" Plugin: 'undotree' {{{
+Plug 'mbbill/undotree'              "A undo tree
+nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
+" }}}
+" }}} UI "
+"  utilities {{{ "
+" Plugin: 'vim-over' {{{
+Plug 'osyo-manga/vim-over'          " :substitute preview
+"Settings for vim-over
+nnoremap <C-s> :OverCommandLine <CR>%s:
+
+" }}}
+" {{{ Plugin: 'fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+nnoremap <C-p> :FZF<CR>
+nnoremap <C-b> :Buffers<CR>
+nnoremap <silent><Leader>bl :BLines <CR>
+nnoremap <silent><Leader>fm :Maps<CR>
+nmap <leader><tab> <plug>(fzf-maps-n)
+let g:fzf_action = {
+\ 'ctrl-t': 'tab split',
+\ 'ctrl-x': 'split',
+\ 'ctrl-v': 'vsplit' }
+" }}}
+" Plugin: 'vim-fugitive' {{{
+Plug 'tpope/vim-fugitive'           "Git integration
+nnoremap <silent><Leader>gd :Gdiff <CR>
+nnoremap <silent><Leader>st :Gstatus <CR>
+nnoremap <silent><Leader>gp :Gpull<CR>
+nnoremap <silent>cc :Gcommit %:p <CR>i
+nnoremap <silent>ca :Gcommit %:p --amend <CR>jo*
+" }}}
 " {{{Plugin: 'neomake'
 Plug 'benekastah/neomake'           "asynchronous :make
 nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
@@ -97,82 +109,10 @@ let g:neomake_cpp_clang_maker = {
             \}
 autocmd! BufWritePost * Neomake
 " }}}
-" Plugin: 'nerdcommenter' {{{
-Plug 'scrooloose/nerdcommenter'          "Commenter
-"Settings for nerdcommenter
-
-" }}}
-" Plugin: 'nerdtree' {{{
-Plug 'scrooloose/nerdtree'          "Fileexplorer
-nnoremap <silent><F1> :NERDTreeToggle <CR>
-" }}}
-" Plugin: 'vim-expand-region' {{{2
-Plug 'terryma/vim-expand-region'    "Expand visual region v/<C-v>
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-" }}}
-" Plugin: 'vim-fugitive' {{{
-Plug 'tpope/vim-fugitive'           "Git integration
-nnoremap <silent><Leader>gd :Gdiff <CR>
-nnoremap <silent><Leader>st :Gstatus <CR>
-nnoremap <silent><Leader>gp :Gpull<CR>
-nnoremap <silent>cc :Gcommit %:p <CR>i
-nnoremap <silent>ca :Gcommit %:p --amend <CR>jo*
-" }}}
-" Plugin: 'vim-buftabline' {{{
-Plug 'ap/vim-buftabline'          "See current buffers
-"Settings for vim-buftabline
-set hidden
-nnoremap <Leader>h :bprev<CR>
-nnoremap <Leader>l :bnext<CR>
-" }}}
-" Plugin: 'vim-abolish' {{{
-Plug 'tpope/vim-abolish'          "snake_case(crs) MixedCase(crm) camelCase(crc)
-"Settings for vim-abolish
-
-" }}}
 " Plugin: 'vim-repeat' {{{
 Plug 'tpope/vim-repeat'          " .
 "Settings for vim-repeat
 
-" }}}
-" Plugin: 'vim-markdown-folding' {{{
-Plug 'nelstrom/vim-markdown-folding'          " Fold markdown documents
-"Settings for vim-markdown-folding
-let g:markdown_fold_style = 'nested'
-" }}}
-" Plugin: 'vim-over' {{{
-Plug 'osyo-manga/vim-over'          " :substitute preview
-"Settings for vim-over
-
-"global search/replace
-nnoremap <C-s> :OverCommandLine <CR>%s::g<left><left>
-
-" }}}
-" {{{Plugin: 'vim-sayonara'
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-nnoremap <silent> <BS> :Sayonara!<CR>
-nnoremap <silent> <S-BS> :Sayonara<CR>
-let g:sayonara_confirm_quit = 1
-" }}}
-" Plugin: 'vim-startify' {{{
-Plug 'mhinz/vim-startify'           "Vim sessions
-nnoremap <silent><F11> :Startify <CR>
-let g:startify_session_dir = '~/.vim/session'
-let g:startify_bookmarks = [
-\ {'v': '~/git/dotfiles/init.vim'},
-\ {'f': '~/git/dotfiles/config.fish'},
-\ {'t': '~/git/dotfiles/tmux.conf'},
-\ ]
-let g:startify_list_order = [
-\ ['   Sessions '],  'sessions',
-\ ['   Files'],       'files' ,
-\ ['   Bookmarks '], 'bookmarks',
-\ ]
-
-let g:startify_skiplist = [
-\ 'COMMIT_EDITMSG',
-\ ]
 " }}}
 " Plugin: 'vimtex' {{{
 Plug 'lervag/vimtex'          "A modern vim plugin for editing LaTeX
@@ -190,12 +130,9 @@ let g:vimtex_view_general_viewer = 'evince'
 let g:vimtex_view_general_options_latexmk = '--unique'
 
 " }}}
-" Plugin: 'undotree' {{{
-Plug 'mbbill/undotree'              "A undo tree
-nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
-" }}}
+" }}} utilities "
 call plug#end()
-" }}}
+" }}} Plugins "
 " General Settings {{{
 "=== Misc Settings ===
 set nocompatible
@@ -215,7 +152,6 @@ set shiftwidth=4    "when using the >> or << commands, shift lines by 4 spaces
 set cursorline      "show a visual line under the cursor's current line
 set showmatch
 set rtp+=/home/lasse/.fzf
-set switchbuf=usetab
 set so=8            "8 lines to the curser
 " }}}
 " Wild menu and search {{{
@@ -226,15 +162,15 @@ set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 set nohlsearch      " Noh after search
 set gdefault        " when on, the :substitute flag 'g' is default on
+nmap <silent> <BS> :set hlsearch!<CR>
+nmap <expr>  S  ':%s/' . @/ . '//g<LEFT><LEFT>'
 " }}}
 " Persistent Undo {{{
 " Keep undo history across sessions, by storing in file.
 if has('persistent_undo')
-    if empty(glob('~/.vim/backups'))
-        silent !mkdir ~/.vim/backups > /dev/null 2>&1 " takes a lot of time.. :<
-    endif
-set undodir=~/.vim/backups
-set undofile
+    silent !mkdir -p ~/.vim/backups
+    set undodir=~/.vim/backups
+    set undofile
 endif
 " }}}
 " Folding {{{
@@ -251,7 +187,7 @@ function! TxtFoldText()
   return printf('%-4s %-s', level, title)
 endfunction
 " Navigate folds
-nnoremap <Tab> za
+nmap <tab> za
 nnoremap zf zMzvzz
 nnoremap zj zcjzvzz
 nnoremap zk zckzvzz
@@ -307,6 +243,9 @@ nnoremap <Leader>nh :leftabove  vnew<CR>
 nnoremap <Leader>nl :rightbelow vnew<CR>
 nnoremap <Leader>nk :leftabove  new<CR>
 nnoremap <Leader>nj :rightbelow new<CR>
+" For completion completion
+inoremap <C-j> <C-N>
+inoremap <C-k> <C-P>
 "1}}}
 " Resizing {{{
 nnoremap <Leader>rh :vertical resize +10 <CR>
@@ -321,7 +260,7 @@ vnoremap pp "+p
 vnoremap PP "+P
 nnoremap pp "+p
 nnoremap PP "+P
-" }}} Copy/Paste "
+" }}} Copy/Pase "
 " Mode: Command {{{
 cnoremap <C-a> <Home>
 cnoremap <C-h> <Left>
