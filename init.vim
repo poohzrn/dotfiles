@@ -94,8 +94,8 @@ Plug 'tpope/vim-fugitive'           "Git integration
 nnoremap <silent><Leader>gd :Gdiff <CR>
 nnoremap <silent><Leader>st :Gstatus <CR>
 nnoremap <silent><Leader>gp :Gpull<CR>
-nnoremap <silent>cc :Gcommit %:p <CR>i
-nnoremap <silent>ca :Gcommit %:p --amend <CR>jo*
+nnoremap <silent>gc :Gcommit %:p <CR>i
+nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
 " }}}
 " {{{Plugin: 'neomake'
 Plug 'benekastah/neomake'           "asynchronous :make
@@ -130,12 +130,19 @@ let g:vimtex_view_general_viewer = 'evince'
 let g:vimtex_view_general_options_latexmk = '--unique'
 
 " }}}
+" Plugin: 'vim-unimpaired' {{{
+Plug 'tpope/vim-unimpaired'          "pairs of handy bracket mappings
+"Settings for vim-unimpaired
+
+"}}} "
 " }}} utilities "
 call plug#end()
 " }}} Plugins "
 " General Settings {{{
 "=== Misc Settings ===
 set nocompatible
+set smarttab
+set lazyredraw
 filetype plugin indent on
 let python_highlight_all = 1
 set noswapfile      "disable .swp files
@@ -153,6 +160,11 @@ set cursorline      "show a visual line under the cursor's current line
 set showmatch
 set rtp+=/home/lasse/.fzf
 set so=8            "8 lines to the curser
+set awa             "Write the contents of the file, auto
+"https://github.com/tpope/vim-sensible/blob/master/plugin/sensible.vim#L57-#L59
+if v:version > 703 || v:version == 703 && has("patch541")
+  set formatoptions+=j " Delete comment character when joining commented lines
+endif
 " }}}
 " Wild menu and search {{{
 set wildmenu
@@ -160,10 +172,11 @@ set incsearch       " Find the next match as we type the search
 set hlsearch        " Highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
-set nohlsearch      " Noh after search
+"set nohlsearch      " Noh after search
 set gdefault        " when on, the :substitute flag 'g' is default on
-nmap <silent> <BS> :set hlsearch!<CR>
-nmap <expr>  S  ':%s/' . @/ . '//g<LEFT><LEFT>'
+nmap <silent> hs :set hlsearch!<CR>
+" Replace previous search
+nmap  S %s///g<left><left>
 " }}}
 " Persistent Undo {{{
 " Keep undo history across sessions, by storing in file.
@@ -261,6 +274,12 @@ vnoremap PP "+P
 nnoremap pp "+p
 nnoremap PP "+P
 " }}} Copy/Pase "
+" vim-conf-reload {{{ "
+augroup VimReload
+    autocmd!
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+" }}} vim-conf-reload "
 " Mode: Command {{{
 cnoremap <C-a> <Home>
 cnoremap <C-h> <Left>
