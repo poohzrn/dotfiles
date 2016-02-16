@@ -59,7 +59,7 @@ nnoremap <Leader>l :bnext<CR>
 " Plugin: 'vim-markdown-folding' {{{
 Plug 'nelstrom/vim-markdown-folding'          " Fold markdown documents
 "Settings for vim-markdown-folding
-
+let g:markdown_fold_style = 'nested'
 " }}}
 " Plugin: 'nerdtree' {{{
 Plug 'scrooloose/nerdtree'          "Fileexplorer
@@ -288,11 +288,13 @@ cnoremap <C-d> <Delete>
 cnoremap <C-e> <End>
 " }}}
 " Mode: Terminal {{{
-tnoremap <Esc> <C-\><C-n>
-tnoremap <A-h> <C-\><C-n><C-w>h
-tnoremap <A-j> <C-\><C-n><C-w>j
-tnoremap <A-k> <C-\><C-n><C-w>k
-tnoremap <A-l> <C-\><C-n><C-w>l
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <A-h> <C-\><C-n><C-w>h
+    tnoremap <A-j> <C-\><C-n><C-w>j
+    tnoremap <A-k> <C-\><C-n><C-w>k
+    tnoremap <A-l> <C-\><C-n><C-w>l
+endif
 " }}}
 colorscheme gruvbox
 " vim: fdm=marker
