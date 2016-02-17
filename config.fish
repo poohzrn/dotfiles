@@ -106,6 +106,7 @@ alias g "cd  $GITFOLDER; clear; ls"
 alias q "exit"
 alias r "ranger"
 alias updatevim "g; cd vim; git pull; configurevim; make clean; make; sudo make install"
+alias updateneovim "g; cd neovim; git pull; rm -r -y build; make clean; make CMAKE_BUILD_TYPE=Release; sudo make install"
 alias set-wallpaper "feh --bg-fill ~/.wallpaper.jpg"
 #Some more alias to avoid making mistakes:
 alias rm "rm -i"
@@ -130,7 +131,7 @@ alias tdmgm "tmux kill-session -t mgmt"
 #  }}} Tmux Aliases #
 
 #Uni
-alias sw "cd $GITFOLDER/sw7/"
+alias sw "cd $GITFOLDER/sw8/"
 
 #  Git {{{
 alias pull "git pull"
