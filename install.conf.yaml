@@ -3,6 +3,11 @@
     - [mkdir -p ~/git]
     - [mkdir -p ~/downloads]
     - [mkdir -p ~/.config]
+    - [mkdir -p ~/.tmux/plugins]
+    -
+      command: if [ -d ~/git/tpm ]; then cd ~/git/tpm && git pull; else cd ~/git && git clone https://github.com/tmux-plugins/tpm; fi
+      command: ln -sf ~/git/tpm ~/.tmux/plugins/tpm
+      stdout: true
 - link:
     ~/.Xresources: Xresources
     ~/.tmux.conf: tmux.conf
