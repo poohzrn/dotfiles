@@ -1,7 +1,16 @@
 let mapleader="\<Space>"
 " Plugins {{{ "
 call plug#begin()
-" Completion {{{2 "
+" Plugin: 'braceless.vim' {{{
+Plug 'tweekmonster/braceless.vim'          "Text objects, folding Python and other indented languages.
+"Settings for braceless.vim
+autocmd FileType python BracelessEnable +indent +fold +highlight
+"}}} "
+" Plugin: 'jedi-vim' {{{
+Plug 'davidhalter/jedi-vim'          "new-plugin
+"Settings for jedi-vim
+
+"}}} "
 " Plugin: 'deoplete.nvim' {{{
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
@@ -19,8 +28,6 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " }}}
-" 2}}} Completion "
-" UI {{{ "
 " {{{Plugin: 'lightline.vim'
 Plug 'itchyny/lightline.vim'        "Neat information line
 set laststatus=2
@@ -69,8 +76,6 @@ nnoremap <silent><F1> :NERDTreeToggle <CR>
 Plug 'mbbill/undotree'              "A undo tree
 nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
 " }}}
-" }}} UI "
-"  utilities {{{ "
 " Plugin: 'vim-over' {{{
 Plug 'osyo-manga/vim-over'          " :substitute preview
 "Settings for vim-over
@@ -135,7 +140,6 @@ Plug 'tpope/vim-unimpaired'          "pairs of handy bracket mappings
 "Settings for vim-unimpaired
 
 "}}} "
-" }}} utilities "
 call plug#end()
 " }}} Plugins "
 " General Settings {{{
