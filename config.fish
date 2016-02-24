@@ -1,4 +1,5 @@
 set -U EDITOR nvim
+set -U editor nvim
 set -U GIT_EDITOR nvim
 set -U XDG_CONFIG_HOME $HOME/.config
 set -U GITFOLDER ~/git
