@@ -23,7 +23,7 @@ Plug 'ervandew/supertab'            "Super tab
 let g:SuperTabDefaultCompletionType = '<C-n>'
 " }}}
 " Plugin: 'ultisnips' {{{
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
@@ -69,8 +69,20 @@ Plug 'nelstrom/vim-markdown-folding'          " Fold markdown documents
 let g:markdown_fold_style = 'nested'
 " }}}
 " Plugin: 'nerdtree' {{{
-Plug 'scrooloose/nerdtree'          "Fileexplorer
+Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
 nnoremap <silent><F1> :NERDTreeToggle <CR>
+set shell=sh
+let g:NERDTreeIndicatorMapCustom = {
+    \ "Modified"  : "M",
+    \ "Staged"    : "S",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ "Unknown"   : "?"
+    \ }
 " }}}
 " Plugin: 'undotree' {{{
 Plug 'mbbill/undotree'              "A undo tree
@@ -133,6 +145,11 @@ nnoremap <silent> <Leader>lt :call vimtex#toc#toggle()<CR>
 
 let g:vimtex_view_general_viewer = 'evince'
 let g:vimtex_view_general_options_latexmk = '--unique'
+let g:vimtex_complete_recursive_bib = 1
+let g:vimtex_complete_enabled = 1
+autocmd FileType tex set foldmethod=expr
+autocmd FileType tex set foldexpr=vimtex#fold#level(v:lnum)
+autocmd FileType tex set foldtext=vimtex#fold#text()
 
 " }}}
 " Plugin: 'vim-unimpaired' {{{
