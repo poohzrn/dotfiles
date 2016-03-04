@@ -68,26 +68,6 @@ Plug 'nelstrom/vim-markdown-folding'          " Fold markdown documents
 "Settings for vim-markdown-folding
 let g:markdown_fold_style = 'nested'
 " }}}
-" Plugin: 'nerdtree' {{{
-Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-nnoremap <silent><F1> :NERDTreeToggle <CR>
-set shell=sh
-let g:NERDTreeIndicatorMapCustom = {
-    \ "Modified"  : "M",
-    \ "Staged"    : "S",
-    \ "Untracked" : "✭",
-    \ "Renamed"   : "➜",
-    \ "Unmerged"  : "═",
-    \ "Deleted"   : "✖",
-    \ "Dirty"     : "✗",
-    \ "Clean"     : "✔︎",
-    \ "Unknown"   : "?"
-    \ }
-" }}}
-" Plugin: 'undotree' {{{
-Plug 'mbbill/undotree'              "A undo tree
-nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
-" }}}
 " Plugin: 'vim-over' {{{
 Plug 'osyo-manga/vim-over'          " :substitute preview
 "Settings for vim-over
@@ -96,7 +76,10 @@ nnoremap <C-s> :OverCommandLine <CR>%s:
 " }}}
 " {{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-nnoremap <C-p> :FZF<CR>
+"TODO: set <c-f> according to CWD
+"TODO: ala; <C-f> is_git_folder ? GitFiles : Files
+nnoremap <C-f> :Files<CR>
+nnoremap <C-g> :GitFiles<CR>
 nnoremap <C-b> :Buffers<CR>
 nnoremap <silent><Leader>bl :BLines <CR>
 nnoremap <silent><Leader>fm :Maps<CR>
@@ -105,6 +88,7 @@ let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
 \ 'ctrl-x': 'split',
 \ 'ctrl-v': 'vsplit' }
+let g:fzf_layout = { 'down': '20%' }
 " }}}
 " Plugin: 'vim-fugitive' {{{
 Plug 'tpope/vim-fugitive'           "Git integration
@@ -119,7 +103,7 @@ Plug 'benekastah/neomake'           "asynchronous :make
 nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
 nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
 let g:neomake_open_list = 0
-let g:neomake_python_enabled_makers = ['pep8']
+let g:neomake_python_enabled_makers = ['pep8', 'flake8']
 let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
 let g:neomake_cpp_clang_maker = {
             \ 'args': ['-std=c++11'],
@@ -245,10 +229,9 @@ let &t_SR = "\<Esc>[3 q"
 let &t_EI = "\<Esc>[ q"
 " }}}"
 " {{{1 Key Mapping
-nnoremap <F2> :set invpaste paste?<CR>
+nnoremap <silent> <F2> :set invpaste paste?<CR>
 nnoremap <F4> :e $MYVIMRC<CR>
-nnoremap <F5> :so $MYVIMRC<CR>
-nnoremap , :
+nnoremap <CR> :
 nnoremap <space> <nop>
 noremap <space><space> zz
 nnoremap <C-j> <c-w>j
@@ -298,7 +281,7 @@ nnoremap PP "+P
 " vim-conf-reload {{{ "
 augroup VimReload
     autocmd!
-    autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    "autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
 " }}} vim-conf-reload "
 " Mode: Command {{{
@@ -311,9 +294,11 @@ cnoremap <C-e> <End>
 " Mode: Terminal {{{
 if has('nvim')
     tnoremap <Esc> <C-\><C-n>
+    tnoremap <C-f> <C-c>
     tnoremap <A-h> <C-\><C-n><C-w>h
     tnoremap <A-j> <C-\><C-n><C-w>j
     tnoremap <A-k> <C-\><C-n><C-w>k
+    tnoremap <A-l> <C-\><C-n><C-w>l
     tnoremap <A-l> <C-\><C-n><C-w>l
 endif
 " }}}
