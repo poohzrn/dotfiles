@@ -134,6 +134,7 @@ alias tdmgm "tmux kill-session -t mgmt"
 
 #Uni
 alias sw "cd $GITFOLDER/sw8/"
+alias swc "cd $GITFOLDER/sw8-code/"
 
 #  Git {{{
 alias pull "git pull"
@@ -156,4 +157,9 @@ function go
 end
 #  }}} Git
 alias configurevim "./configure --enable-pythoninterp --enable-cscop --enable-gui=autoe --enable-gtk2-check --enable-gnome-check --with-features=huge"
+# django {{{
+alias djr "python3 manage.py runserver"
+alias djt "python3 manage.py test"
+alias djm "python3 manage.py makemigrations meetPeople; python3 manage.py migrate"
+# }}} django
 #vim: fdm=marker
