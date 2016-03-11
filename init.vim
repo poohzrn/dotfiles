@@ -7,7 +7,7 @@ Plug 'tweekmonster/braceless.vim'          "Text objects, folding Python and oth
 autocmd FileType python BracelessEnable +indent +fold +highlight
 "}}} "
 " Plugin: 'jedi-vim' {{{
-Plug 'davidhalter/jedi-vim'          "new-plugin
+Plug 'davidhalter/jedi-vim', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
 "Settings for jedi-vim
 
 "}}} "
@@ -113,10 +113,9 @@ autocmd! BufWritePost * Neomake
 " Plugin: 'vim-repeat' {{{
 Plug 'tpope/vim-repeat'          " .
 "Settings for vim-repeat
-
 " }}}
 " Plugin: 'vimtex' {{{
-Plug 'lervag/vimtex'          "A modern vim plugin for editing LaTeX
+Plug 'lervag/vimtex', {'for': 'latex' }          "A modern vim plugin for editing LaTeX
 "Settings for vimtex
 "Toggle comilation
 nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
@@ -278,12 +277,16 @@ vnoremap PP "+P
 nnoremap pp "+p
 nnoremap PP "+P
 " }}} Copy/Pase "
-" vim-conf-reload {{{ "
+" Au groups {{{ "
 augroup VimReload
     autocmd!
-    "autocmd BufWritePost $MYVIMRC source $MYVIMRC
+    autocmd BufWritePost $MYVIMRC source $MYVIMRC
 augroup END
-" }}} vim-conf-reload "
+
+augroup ClearHighLight
+    autocmd BufWrite * set nohlsearch
+augroup end
+" }}} Au groups "
 " Mode: Command {{{
 cnoremap <C-a> <Home>
 cnoremap <C-h> <Left>
