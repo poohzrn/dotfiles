@@ -4,7 +4,7 @@ call plug#begin()
 " Plugin: 'braceless.vim' {{{
 Plug 'tweekmonster/braceless.vim'          "Text objects, folding Python and other indented languages.
 "Settings for braceless.vim
-autocmd FileType python BracelessEnable +indent +fold +highlight
+autocmd FileType python BracelessEnable +indent +highlight
 "}}} "
 " Plugin: 'jedi-vim' {{{
 Plug 'davidhalter/jedi-vim', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
