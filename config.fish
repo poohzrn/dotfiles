@@ -160,6 +160,6 @@ alias configurevim "./configure --enable-pythoninterp --enable-cscop --enable-gu
 # django {{{
 alias djr "python3 manage.py runserver"
 alias djt "python3 manage.py test"
-alias djm "python3 manage.py makemigrations meetPeople; python3 manage.py migrate"
+alias djm "python3 manage.py makemigrations meetpeople; python3 manage.py migrate"
 # }}} django
 #vim: fdm=marker
