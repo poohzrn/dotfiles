@@ -32,8 +32,8 @@ Plug 'itchyny/lightline.vim'        "Neat information line
 set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
+       " \ 'colorscheme': 'gruvbox',
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
@@ -129,11 +129,6 @@ autocmd FileType tex set foldexpr=vimtex#fold#level(v:lnum)
 autocmd FileType tex set foldtext=vimtex#fold#text()
 
 " }}}
-" Plugin: 'vim-unimpaired' {{{
-Plug 'tpope/vim-unimpaired'          "pairs of handy bracket mappings
-"Settings for vim-unimpaired
-
-"}}} "
 " Plugin: 'vim-commentary' {{{
 Plug 'tpope/vim-commentary', {'on': '<Plug>Commentary'}          "comments
 "Settings for vim-commentary
