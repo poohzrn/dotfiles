@@ -17,10 +17,10 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_refresh_always = 1
 " }}}
-" Plugin: 'supertab' {{{
-Plug 'ervandew/supertab'            "Super tab
-let g:SuperTabDefaultCompletionType = '<C-n>'
-" }}}
+" " Plugin: 'supertab' {{{
+" Plug 'ervandew/supertab'            "Super tab
+" let g:SuperTabDefaultCompletionType = '<C-n>'
+" " }}}
 " Plugin: 'ultisnips' {{{
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -61,11 +61,6 @@ Plug 'ap/vim-buftabline'          "See current buffers
 set hidden
 nnoremap <Leader>h :bprev<CR>
 nnoremap <Leader>l :bnext<CR>
-" }}}
-" Plugin: 'vim-markdown-folding' {{{
-Plug 'nelstrom/vim-markdown-folding'          " Fold markdown documents
-"Settings for vim-markdown-folding
-let g:markdown_fold_style = 'nested'
 " }}}
 " Plugin: 'vim-over' {{{
 Plug 'osyo-manga/vim-over'          " :substitute preview
@@ -140,10 +135,13 @@ Plug 'tpope/vim-unimpaired'          "pairs of handy bracket mappings
 
 "}}} "
 " Plugin: 'vim-commentary' {{{
-Plug 'tpope/vim-commentary'          "comments
+Plug 'tpope/vim-commentary', {'on': '<Plug>Commentary'}          "comments
 "Settings for vim-commentary
-nnoremap cc :Commentary<CR>
-vnoremap cc :Commentary<CR>
+if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
+  xmap cc  <Plug>Commentary
+  nmap cc  <Plug>Commentary
+  omap cc  <Plug>Commentary
+endif
 "}}} "
 call plug#end()
 " }}} Plugins "
