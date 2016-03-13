@@ -310,6 +310,8 @@ function! ToggleNeomakeList()
         let g:neomake_open_list=1
         lopen
         echo "neomake_open_list=" . g:neomake_open_list
+    elseif empty(getloclist(0))
+        echo "no loclist"
     else
         let g:neomake_open_list=0
         lclose
