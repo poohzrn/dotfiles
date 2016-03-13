@@ -306,7 +306,7 @@ endif
 " }}}
 " neomakeListToggle {{{ "
 function! ToggleNeomakeList()
-    if g:neomake_open_list==0
+    if g:neomake_open_list==0 && !empty(getloclist(0))
         let g:neomake_open_list=1
         lopen
         echo "neomake_open_list=" . g:neomake_open_list
