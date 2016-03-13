@@ -142,7 +142,8 @@ Plug 'tpope/vim-unimpaired'          "pairs of handy bracket mappings
 " Plugin: 'vim-commentary' {{{
 Plug 'tpope/vim-commentary'          "comments
 "Settings for vim-commentary
-
+nnoremap cc :Commentary<CR>
+vnoremap cc :Commentary<CR>
 "}}} "
 call plug#end()
 " }}} Plugins "
