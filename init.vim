@@ -139,6 +139,11 @@ Plug 'tpope/vim-unimpaired'          "pairs of handy bracket mappings
 "Settings for vim-unimpaired
 
 "}}} "
+" Plugin: 'vim-commentary' {{{
+Plug 'tpope/vim-commentary'          "comments
+"Settings for vim-commentary
+
+"}}} "
 call plug#end()
 " }}} Plugins "
 " General Settings {{{
