@@ -7,7 +7,7 @@ Plug 'tweekmonster/braceless.vim'          "Text objects, folding Python and oth
 autocmd FileType python BracelessEnable +indent +highlight
 "}}} "
 " Plugin: 'jedi-vim' {{{
-Plug 'davidhalter/jedi-vim', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'davidhalter/jedi', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
 "Settings for jedi-vim
 
 "}}} "
@@ -16,7 +16,6 @@ Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_refresh_always = 1
-let g:deoplete#max_list = 10
 " }}}
 " Plugin: 'supertab' {{{
 Plug 'ervandew/supertab'            "Super tab
@@ -100,8 +99,8 @@ nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
 " }}}
 " {{{Plugin: 'neomake'
 Plug 'benekastah/neomake'           "asynchronous :make
-nnoremap <silent><Leader>m :let g:neomake_open_list = 0<CR> :Neomake <CR>
-nnoremap <silent><Leader>ml :let g:neomake_open_list = 1<CR> :Neomake <CR>
+"Toggle neomake list
+nnoremap <F12> :call ToggleNeomakeList()<CR>
 let g:neomake_open_list = 0
 let g:neomake_python_enabled_makers = ['pep8', 'flake8']
 let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
@@ -305,5 +304,18 @@ if has('nvim')
     tnoremap <A-l> <C-\><C-n><C-w>l
 endif
 " }}}
+" neomakeListToggle {{{ "
+function! ToggleNeomakeList()
+    if g:neomake_open_list==0
+        let g:neomake_open_list=1
+        lopen
+        echo "neomake_open_list=" . g:neomake_open_list
+    else
+        let g:neomake_open_list=0
+        lclose
+        echo "neomake_open_list=" . g:neomake_open_list
+    endif
+endfunction
+" }}} neomakeListToggle
 colorscheme gruvbox
 " vim: fdm=marker
