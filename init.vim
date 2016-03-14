@@ -70,13 +70,11 @@ nnoremap <C-s> :OverCommandLine <CR>%s:
 " }}}
 " {{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-"TODO: set <c-f> according to CWD
-"TODO: ala; <C-f> is_git_folder ? GitFiles : Files
-nnoremap <C-f> :Files<CR>
-nnoremap <C-g> :GitFiles<CR>
-nnoremap <C-b> :Buffers<CR>
-nnoremap <silent><Leader>bl :BLines <CR>
-nnoremap <silent><Leader>fm :Maps<CR>
+nnoremap <C-f><C-f> :Files<CR>
+nnoremap <C-f><C-g> :GitFiles<CR>
+nnoremap <C-f><C-a> :Ag<CR>
+nnoremap <C-f><C-b> :BLines <CR>
+
 nmap <leader><tab> <plug>(fzf-maps-n)
 let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
