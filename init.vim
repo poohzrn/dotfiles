@@ -32,8 +32,8 @@ Plug 'itchyny/lightline.vim'        "Neat information line
 set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
-       " \ 'colorscheme': 'gruvbox',
 let g:lightline = {
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
@@ -226,7 +226,6 @@ let &t_EI = "\<Esc>[ q"
 " {{{1 Key Mapping
 nnoremap <silent> <F2> :set invpaste paste?<CR>
 nnoremap <F4> :e $MYVIMRC<CR>
-nnoremap <CR> :
 nnoremap <space> <nop>
 noremap <space><space> zz
 nnoremap <C-j> <c-w>j
