@@ -63,7 +63,7 @@ nnoremap <Leader>h :bprev<CR>
 nnoremap <Leader>l :bnext<CR>
 " }}}
 " Plugin: 'vim-over' {{{
-Plug 'osyo-manga/vim-over'          " :substitute preview
+Plug 'osyo-manga/vim-over', {'on': 'OverCommandLine'}         " :substitute preview
 "Settings for vim-over
 nnoremap <C-s> :OverCommandLine <CR>%s:
 
@@ -281,6 +281,11 @@ augroup END
 augroup ClearHighLight
     autocmd BufWrite * set nohlsearch
 augroup end
+augroup cursororline_only_on_focus
+    autocmd!
+    autocmd WinEnter * set cursorline
+    autocmd WinLeave * set nocursorline
+augroup END
 " }}} Au groups "
 " Mode: Command {{{
 cnoremap <C-a> <Home>
