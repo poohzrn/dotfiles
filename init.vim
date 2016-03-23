@@ -21,12 +21,12 @@ let g:deoplete#enable_refresh_always = 1
 " Plug 'ervandew/supertab'            "Super tab
 " let g:SuperTabDefaultCompletionType = '<C-n>'
 " " }}}
-" " Plugin: 'ultisnips' {{{
-" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-" " }}}
+" Plugin: 'ultisnips' {{{
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" }}}
 " {{{Plugin: 'lightline.vim'
 Plug 'itchyny/lightline.vim'        "Neat information line
 set laststatus=2
@@ -134,27 +134,6 @@ if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
   xmap cc  <Plug>Commentary
   nmap cc  <Plug>Commentary
   omap cc  <Plug>Commentary
-endif
-"}}} "
-" Plugin: 'neosnippet.vim' {{{
-Plug 'Shougo/neosnippet.vim' | Plug 'Shougo/neosnippet-snippets'         "new-plugin
-"Settings for neosnippet.vim
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-xmap <C-k>     <Plug>(neosnippet_expand_target)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB>
- \ pumvisible() ? "\<C-n>" :
- \ neosnippet#expandable_or_jumpable() ?
- \    "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For conceal markers.
-if has('conceal')
-  set conceallevel=2 concealcursor=niv
 endif
 "}}} "
 call plug#end()
@@ -276,8 +255,8 @@ nnoremap <Leader>nl :rightbelow vnew<CR>
 nnoremap <Leader>nk :leftabove  new<CR>
 nnoremap <Leader>nj :rightbelow new<CR>
 " For completion completion
-" inoremap <C-j> <C-N>
-" inoremap <C-k> <C-P>
+inoremap <C-j> <C-N>
+inoremap <C-k> <C-P>
 "1}}}
 " Resizing {{{
 nnoremap <Leader>rh :vertical resize +10 <CR>
