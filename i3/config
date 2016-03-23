@@ -88,7 +88,7 @@ bindsym $mod+q kill
 #
 # start rofi (a program launcher)
 bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob-hide-scrollbar
-bindsym $mod+Return exec rofi -show window -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob
+#bindsym $mod+Return exec rofi -show window -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob
 bindsym $mod+u exec ~/git/dotfiles/scripts/toggle-xkbmap.sh
 ## Navigation
 # change focus
@@ -135,7 +135,20 @@ mode "resize" {
         bindsym k resize grow height 5 px or 5 ppt
         bindsym j resize shrink height 5 px or 5 ppt
         bindsym l resize grow width 5 px or 5 ppt
-
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+s mode "rotate"
+mode "rotate" {
+        bindsym h exec "xrandr --output VGA1 --rotate left"
+        bindsym k exec "xrandr --output VGA1 --rotate inverted"
+        bindsym j exec "xrandr --output VGA1 --rotate normal"
+        bindsym l exec "xrandr --output VGA1 --rotate right"
+        bindsym Shift+h exec "xrandr --output HDMI3 --rotate left"
+        bindsym Shift+k exec "xrandr --output HDMI3 --rotate inverted"
+        bindsym Shift+j exec "xrandr --output HDMI3 --rotate normal"
+        bindsym Shift+l exec "xrandr --output HDMI3 --rotate right"
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
