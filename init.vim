@@ -257,6 +257,7 @@ nnoremap <Leader>nj :rightbelow new<CR>
 " For completion completion
 inoremap <C-j> <C-N>
 inoremap <C-k> <C-P>
+nnoremap <Leader>del :call StripTrailingWhitespace()<CR>
 "1}}}
 " Resizing {{{
 nnoremap <Leader>rh :vertical resize +10 <CR>
