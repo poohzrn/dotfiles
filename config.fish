@@ -55,6 +55,10 @@ function dock
     eval xrandr --output $RMONITOR --auto --left-of $LMONITOR;
     set-wallpaper;
 end
+function vga-above
+	xrandr --output $LAPMONITOR --auto --primary;
+    xrandr --output $LMONITOR --auto --above $LAPMONITOR $argv;
+end
 #notdocking setup
 function undock
     eval xrandr --output $RMONITOR --off;
