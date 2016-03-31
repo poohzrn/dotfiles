@@ -11,11 +11,11 @@ set $ws9 9
 set $ws10 0
 set $wschrome w
 set $wsmail m
-set $wsskype comma
+set $wsdiscord comma
 set $wsspotify period
 set $wsevince p
 # Definie tags/names for workspaces
-set $tag1 1
+set $tag1 "1 tmux &#xf121;"
 set $tag2 2
 set $tag3 3
 set $tag4 4
@@ -25,11 +25,11 @@ set $tag7 7
 set $tag8 8
 set $tag9 "&#xf104;"
 set $tag10 "&#xf17c;"
-set $tagchrome 
+set $tagchrome "chromium "
 set $tagmail mail
-set $tagskpe 
-set $tagspotify 
-set $tagevince 
+set $tagdiscord "discord &#xf259;"
+set $tagspotify "music &#xf025;"
+set $tagevince "evince &#xf1c1;"
 # switch to workspace
 bindsym $mod+$ws1 workspace $tag1
 bindsym $mod+$ws2 workspace $tag2
@@ -41,7 +41,7 @@ bindsym $mod+$ws7 workspace $tag7
 bindsym $mod+$ws8 workspace $tag8
 bindsym $mod+$ws9 workspace $tag9
 bindsym $mod+$ws10 workspace $tag10
-bindsym $mod+$wsskype workspace $tagskpe
+bindsym $mod+$wsdiscord workspace $tagdiscord
 bindsym $mod+$wsmail workspace $tagmail
 bindsym $mod+$wsspotify workspace $tagspotify
 bindsym $mod+$wschrome workspace $tagchrome
@@ -58,20 +58,22 @@ bindsym $mod+Shift+$ws7 move container to workspace $tag7
 bindsym $mod+Shift+$ws8 move container to workspace $tag8
 bindsym $mod+Shift+$ws9 move container to workspace $tag9
 bindsym $mod+Shift+$ws10 move container to workspace $tag10
-bindsym $mod+Shift+$wsskype move container to workspace $tagskype
+bindsym $mod+Shift+$wsdiscord move container to workspace $tagdiscord
 bindsym $mod+Shift+$wschrome move container to workspace $tagchrome
 bindsym $mod+Shift+$wsevince move container to workspace $tagevince
 
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace $tagspotify
 for_window [class="chromium"] move container to workspace $tagchrome
-for_window [class="Skype"] move container to workspace $tagskpe
+for_window [class="discord"] move container to workspace $tagdiscord
 for_window [class="Icedove"] move container to workspace $tagmail
 for_window [class="Evince"] move container to workspace $tagevince
+for_window [class="discord-canary"] move container to workspace $tagevince
+for_window [class="xterm"] move container to workspace $ws1
 
 # set mod key
 set $mod Mod1
- 
+
 # Hide borders
 hide_edge_borders both
 new_window none
@@ -188,9 +190,11 @@ bar {
 #Start at startup
 exec --no-startup-id i3-msg 'exec rescuetime'
 exec --no-startup-id i3-msg 'exec udiskie'
-exec --no-startup-id i3-msg 'exec synergy -c /home/lasse/.config/synergy/synergy.conf'
+exec --no-startup-id i3-msg 'exec discord-canary'
+#exec --no-startup-id i3-msg 'exec synergy -c /home/lasse/.config/synergy/synergy.conf'
 exec --no-startup-id i3-msg 'exec ~/.dropbox-dist/dropboxd'
 exec --no-startup-id i3-msg 'exec redshift -l 57:9 -t 5700:3600 -g 0.8 -m randr'
 exec --no-startup-id dropbox
 # wallpaper
-exec --no-startup-id feh --bg-fill ~/.wallpaper.jpg 
+exec --no-startup-id feh --bg-fill ~/.wallpaper.jpg
+exec --no-startup-id ~/git/dotfiles/scripts/toggle-xkbmap.sh
