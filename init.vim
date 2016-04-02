@@ -140,7 +140,6 @@ call plug#end()
 " }}} Plugins "
 " General Settings {{{
 "=== Misc Settings ===
-set nocompatible
 set smarttab
 set lazyredraw
 filetype plugin indent on

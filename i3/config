@@ -138,7 +138,7 @@ mode "resize" {
         bindsym j resize shrink height 5 px or 5 ppt
         bindsym l resize grow width 5 px or 5 ppt
         # back to normal: Enter or Escape
-        bindsym Return mode "default"
+        bindsym $mod+r mode "default"
         bindsym Escape mode "default"
 }
 bindsym $mod+s mode "rotate"
@@ -152,7 +152,7 @@ mode "rotate" {
         bindsym $mod+j exec "xrandr --output HDMI3 --rotate normal"
         bindsym $mod+l exec "xrandr --output HDMI3 --rotate right"
         # back to normal: Enter or Escape
-        bindsym Return mode "default"
+        bindsym $mod+s mode "default"
         bindsym Escape mode "default"
 }
 
