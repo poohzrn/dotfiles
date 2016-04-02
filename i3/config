@@ -69,7 +69,7 @@ for_window [class="discord"] move container to workspace $tagdiscord
 for_window [class="Icedove"] move container to workspace $tagmail
 for_window [class="Evince"] move container to workspace $tagevince
 for_window [class="discord-canary"] move container to workspace $tagevince
-for_window [class="xterm"] move container to workspace $ws1
+assign [class="^XTerm$"] $tag1
 
 # set mod key
 set $mod Mod1
@@ -127,7 +127,7 @@ bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exit
+bindsym $mod+Shift+e exec --no-startup-id ~/.tmux/plugins/tmux-resurrect/scripts/save.sh && i3-msg exit
 
 # resize window (you can also use the mouse for that)
 bindsym $mod+r mode "resize"
@@ -147,10 +147,10 @@ mode "rotate" {
         bindsym k exec "xrandr --output VGA1 --rotate inverted"
         bindsym j exec "xrandr --output VGA1 --rotate normal"
         bindsym l exec "xrandr --output VGA1 --rotate right"
-        bindsym Shift+h exec "xrandr --output HDMI3 --rotate left"
-        bindsym Shift+k exec "xrandr --output HDMI3 --rotate inverted"
-        bindsym Shift+j exec "xrandr --output HDMI3 --rotate normal"
-        bindsym Shift+l exec "xrandr --output HDMI3 --rotate right"
+        bindsym $mod+h exec "xrandr --output HDMI3 --rotate left"
+        bindsym $mod+k exec "xrandr --output HDMI3 --rotate inverted"
+        bindsym $mod+j exec "xrandr --output HDMI3 --rotate normal"
+        bindsym $mod+l exec "xrandr --output HDMI3 --rotate right"
         # back to normal: Enter or Escape
         bindsym Return mode "default"
         bindsym Escape mode "default"
@@ -159,8 +159,8 @@ mode "rotate" {
 # lock i3
 bindsym XF86ScreenSaver exec "$HOME/git/dotfiles/scripts/lock.sh"
 #Volume up / down / mute
-bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
+bindsym XF86AudioRaiseVolume exec amixer -q set -c 0 Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set -c 0 Master 2dB- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 bindsym $mod+Down exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
 bindsym $mod+Right exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
@@ -188,13 +188,14 @@ bar {
 	}
 }
 #Start at startup
+#exec --no-startup-id i3-msg 'exec synergy -c /home/lasse/.config/synergy/synergy.conf'
 exec --no-startup-id i3-msg 'exec rescuetime'
 exec --no-startup-id i3-msg 'exec udiskie'
 exec --no-startup-id i3-msg 'exec discord-canary'
-#exec --no-startup-id i3-msg 'exec synergy -c /home/lasse/.config/synergy/synergy.conf'
+exec --no-startup-id i3-msg 'exec chromium'
 exec --no-startup-id i3-msg 'exec ~/.dropbox-dist/dropboxd'
 exec --no-startup-id i3-msg 'exec redshift -l 57:9 -t 5700:3600 -g 0.8 -m randr'
-exec --no-startup-id dropbox
-# wallpaper
+exec --no-startup-id i3-msg 'exec xterm tmux'
+exec --no-startup-id ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh
 exec --no-startup-id feh --bg-fill ~/.wallpaper.jpg
 exec --no-startup-id ~/git/dotfiles/scripts/toggle-xkbmap.sh
