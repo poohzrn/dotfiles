@@ -78,7 +78,7 @@ nnoremap <C-f><C-b> :BLines <CR>
 nmap <leader><tab> <plug>(fzf-maps-n)
 let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
-\ 'ctrl-x': 'split',
+\ 'ctrl-s': 'split',
 \ 'ctrl-v': 'vsplit' }
 let g:fzf_layout = { 'down': '20%' }
 " }}}
@@ -276,6 +276,14 @@ nnoremap PP "+P
 augroup VimReload
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
+augroup END
+
+augroup VIMRC
+  autocmd!
+  autocmd BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+  autocmd BufReadPost * silent! execute 'normal! g`"zzzv'
+  autocmd BufWritePost * if &diff | diffupdate | endif
+  autocmd InsertLeave * if bufname('%') != "[Command Line]" | pclose | endif
 augroup END
 
 augroup ClearHighLight

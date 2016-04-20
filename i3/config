@@ -156,6 +156,8 @@ mode "rotate" {
         bindsym Escape mode "default"
 }
 
+# Dock / no dock
+bindsym $mod+F7 exec "$HOME/git/dotfiles/scripts/screen.sh"
 # lock i3
 bindsym XF86ScreenSaver exec "$HOME/git/dotfiles/scripts/lock.sh"
 #Volume up / down / mute
