@@ -11,16 +11,23 @@ Plug 'davidhalter/jedi', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for':
 "Settings for jedi-vim
 
 "}}} "
+" Plugin: 'autopep8' {{{
+Plug 'tell-k/vim-autopep8', {'for': 'python'}          "autopep8
+"Settings for autopep
+let g:autopep8_disable_show_diff=1
+
+
+"}}} "
 " Plugin: 'deoplete.nvim' {{{
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 let g:deoplete#enable_refresh_always = 1
 " }}}
-" " Plugin: 'supertab' {{{
-" Plug 'ervandew/supertab'            "Super tab
-" let g:SuperTabDefaultCompletionType = '<C-n>'
-" " }}}
+" Plugin: 'supertab' {{{
+Plug 'ervandew/supertab'            "Super tab
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" }}}
 " Plugin: 'ultisnips' {{{
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -94,8 +101,14 @@ nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
 Plug 'benekastah/neomake'           "asynchronous :make
 "Toggle neomake list
 nnoremap <F12> :call ToggleNeomakeList()<CR>
-let g:neomake_open_list = 0
-let g:neomake_python_enabled_makers = ['pep8', 'flake8']
+let g:neomake_error_sign = {
+    \ 'texthl': 'ErrorMsg',
+    \ }
+let g:neomake_warning_sign = {
+    \ 'texthl': 'WarningMsg',
+    \ }
+let g:neomake_open_list = 2
+let g:neomake_python_enabled_makers = ['pylint']
 let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
 let g:neomake_cpp_clang_maker = {
             \ 'args': ['-std=c++11'],
@@ -107,9 +120,13 @@ Plug 'tpope/vim-repeat'          " .
 "Settings for vim-repeat
 " }}}
 " Plugin: 'vimtex' {{{
-Plug 'lervag/vimtex', {'for': 'latex' }          "A modern vim plugin for editing LaTeX
+Plug 'lervag/vimtex', {'for': 'tex' }          "A modern vim plugin for editing LaTeX
 "Settings for vimtex
 "Toggle comilation
+augroup SET_TEX
+    " this one is which you're most likely to use?
+    autocmd BufRead,BufNewFile *.tex set ft=tex
+augroup end
 nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
 "Errors
 nnoremap <silent> <Leader>le :call vimtex#latexmk#errors()<CR>
@@ -118,13 +135,24 @@ nnoremap <silent> <Leader>ll :call vimtex#labels#toggle()<CR>
 "TOC
 nnoremap <silent> <Leader>lt :call vimtex#toc#toggle()<CR>
 
-let g:vimtex_view_general_viewer = 'evince'
-let g:vimtex_view_general_options_latexmk = '--unique'
-let g:vimtex_complete_recursive_bib = 1
-let g:vimtex_complete_enabled = 1
-autocmd FileType tex set foldmethod=expr
-autocmd FileType tex set foldexpr=vimtex#fold#level(v:lnum)
-autocmd FileType tex set foldtext=vimtex#fold#text()
+let g:vimtex_latexmk_options = '-synctex=1'
+set foldtext=vimtex#fold#text()
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_latexmk_progname = 'nvr'
+if !exists('g:neocomplete#sources#omni#input_patterns')
+let g:neocomplete#sources#omni#input_patterns = {}
+endif
+let g:neocomplete#sources#omni#input_patterns.tex =
+    \ '\v\\%('
+    \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+    \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
+    \ . '|hyperref\s*\[[^]]*'
+    \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+    \ . '|%(include%(only)?|input)\s*\{[^}]*'
+    \ . '|\a*(gls|Gls|GLS)(pl)?\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+    \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
+    \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
+    \ . ')'
 
 " }}}
 " Plugin: 'vim-commentary' {{{
@@ -205,15 +233,6 @@ nnoremap zj zcjzvzz
 nnoremap zk zckzvzz
 
 " }}}
-"  Return to same line {{{
-augroup line_return
-au!
-au BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \     execute 'normal! g`"zvzz' |
-    \ endif
-augroup END
-" }}}
 " Cursor configuration {{{
 " Use a blinking upright bar cursor in Insert mode, a solid block in normal
 " and a blinking underline in replace mode
@@ -273,6 +292,15 @@ nnoremap pp "+p
 nnoremap PP "+P
 " }}} Copy/Pase "
 " Au groups {{{ "
+"  Return to same line {{{
+augroup line_return
+au!
+au BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \     execute 'normal! g`"zvzz' |
+    \ endif
+augroup END
+" }}}
 augroup VimReload
     autocmd!
     autocmd BufWritePost $MYVIMRC source $MYVIMRC
@@ -329,7 +357,7 @@ function! ToggleNeomakeList()
 endfunction
 " }}} neomakeListToggle
 " StripTrailingWhitespace {{{ "
-function StripTrailingWhitespace()
+function! StripTrailingWhitespace()
   if !&binary && &filetype != 'diff'
     normal mz
     normal Hmy

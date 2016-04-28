@@ -52,7 +52,7 @@ end
 function dock
     xrandr --output $LAPMONITOR --off;
     eval xrandr --output $LMONITOR --auto --primary;
-    eval xrandr --output $RMONITOR --auto --left-of $LMONITOR;
+    eval xrandr --output $RMONITOR --auto --left-of $LMONITOR --rotate left;
     set-wallpaper;
 end
 function vga-above
@@ -160,7 +160,7 @@ function go
     git checkout $argv 2> /dev/null; and return; or git checkout -b $argv
 end
 #  }}} Git
-alias configurevim "./configure --enable-pythoninterp --enable-cscop --enable-gui=autoe --enable-gtk2-check --enable-gnome-check --with-features=huge"
+alias configurevim "./configure --enable-pythoninterp --enable-cscop --enable-gui=autoe --enable-gtk2-check --enable-gnome-check --with-features=huge +termtruecolor"
 # django {{{
 alias djr "python3 manage.py runserver"
 alias djt "python3 manage.py test"

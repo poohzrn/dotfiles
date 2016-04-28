@@ -37,18 +37,10 @@ xtere*eightBitControl: false
 xterm*eightBitOutput: true
 ! -- Enables True-Type rendering:
 xterm*renderFont: true
-xterm*faceName: Source Code Pro
-xterm*faceNameDoublesize: Source Code Pro
+xterm*faceName: Sauce Code Pro:size=10
+xterm*faceNameDoublesize: Sauce Code Pro
 xterm*wideChars: true
-xterm*wideFont: Source Code Pro
-! -- Define the size increments used when changing font size
-xterm*faceSize: 10
-xterm*faceSize1: 6
-xterm*faceSize2: 8
-xterm*faceSize3: 12
-xterm*faceSize4: 16
-xterm*faceSize5: 20
-xterm*faceSize6: 24
+xterm*wideFont: Sauce Code Pro
 ! -- Scroll multiple lines at a time for faster redrawing:
 xterm*jumpScroll: true
 xterm*multiScroll: true

@@ -1,26 +1,46 @@
 let mapleader="\<Space>"
 " Plugins {{{1 "
 call plug#begin()
-"{{{ Plugin: 'fzf.vim'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-nnoremap <c-p> :FZF<CR>
-nnoremap <c-b> :Buffers<CR>
-nnoremap <silent><Leader>fl :BLines <cr>
-nnoremap <silent><Leader>ft :Tags <cr>
-nnoremap <silent><Leader>fm :Maps<cr>
-nmap <leader><tab> <plug>(fzf-maps-n)
-let g:fzf_action = {
-\ 'ctrl-t': 'tab split',
-\ 'ctrl-x': 'split',
-\ 'ctrl-v': 'vsplit' }
-"}}}
-"{{{Plugin: 'lightline.vim'
+" Plugin: 'braceless.vim' {{{
+Plug 'tweekmonster/braceless.vim'          "Text objects, folding Python and other indented languages.
+"Settings for braceless.vim
+autocmd FileType python BracelessEnable +indent +highlight
+"}}} "
+" Plugin: 'jedi-vim' {{{
+Plug 'davidhalter/jedi', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
+"Settings for jedi-vim
+
+"}}} "
+" Plugin: 'autopep8' {{{
+Plug 'tell-k/vim-autopep8', {'for': 'python'}          "autopep8
+"Settings for autopep
+let g:autopep8_disable_show_diff=1
+
+
+"}}} "
+" Plugin: 'deoplete.nvim' {{{
+Plug 'Shougo/deoplete.nvim'
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#enable_refresh_always = 1
+" }}}
+" Plugin: 'supertab' {{{
+Plug 'ervandew/supertab'            "Super tab
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" }}}
+" Plugin: 'ultisnips' {{{
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+" }}}
+" {{{Plugin: 'lightline.vim'
 Plug 'itchyny/lightline.vim'        "Neat information line
 set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
 let g:lightline = {
-\ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
@@ -36,63 +56,71 @@ let g:lightline = {
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ },
       \ }
-"}}}
-"{{{Plugin: 'gruvbox'
+" }}}
+" {{{Plugin: 'gruvbox'
 Plug 'morhetz/gruvbox'              "Colorscheme
 set t_Co=256
 set background=dark
-"}}}
-" Plugin: 'nerdcommenter' {{{
-Plug 'scrooloose/nerdcommenter'          "Commenter
-"Settings for nerdcommenter
-
-"}}} "
-" Plugin: 'nerdtree' {{{
-Plug 'scrooloose/nerdtree'          "Fileexplorer
-nnoremap <silent><F1> :NERDTreeToggle <CR>
-" }}} "
-" Plugin: 'vim-expand-region' {{{2
-Plug 'terryma/vim-expand-region'    "Expand visual region v/<c-v>
-vmap v <Plug>(expand_region_expand)
-vmap <C-v> <Plug>(expand_region_shrink)
-" }}} "
-" Plugin: 'vim-fugitive' {{{
-Plug 'tpope/vim-fugitive'           "Git integration
-nnoremap <silent><Leader>gd :Gdiff <CR>
-nnoremap <silent><Leader>st :Gstatus <CR>
-nnoremap <silent><Leader>gp :Gpull<CR>
-nnoremap <silent>cc :Gcommit %:p <CR>i
-"}}} "
+" }}}
 " Plugin: 'vim-buftabline' {{{
 Plug 'ap/vim-buftabline'          "See current buffers
 "Settings for vim-buftabline
 set hidden
 nnoremap <Leader>h :bprev<CR>
 nnoremap <Leader>l :bnext<CR>
-"}}} "
-" Plugin: 'vim-abolish' {{{
-Plug 'tpope/vim-abolish'          "snake_case(crs) MixedCase(crm) camelCase(crc)
-"Settings for vim-abolish
+" }}}
+" Plugin: 'vim-over' {{{
+Plug 'osyo-manga/vim-over', {'on': 'OverCommandLine'}         " :substitute preview
+"Settings for vim-over
+nnoremap <C-s> :OverCommandLine <CR>%s:
 
-"}}} "
+" }}}
+" {{{ Plugin: 'fzf.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
+nnoremap <C-f><C-f> :Files<CR>
+nnoremap <C-f><C-g> :GitFiles<CR>
+nnoremap <C-f><C-a> :Ag<CR>
+nnoremap <C-f><C-b> :BLines <CR>
+
+nmap <leader><tab> <plug>(fzf-maps-n)
+let g:fzf_action = {
+\ 'ctrl-t': 'tab split',
+\ 'ctrl-s': 'split',
+\ 'ctrl-v': 'vsplit' }
+let g:fzf_layout = { 'down': '20%' }
+" }}}
+" Plugin: 'vim-fugitive' {{{
+Plug 'tpope/vim-fugitive'           "Git integration
+nnoremap <silent><Leader>gd :Gdiff <CR>
+nnoremap <silent><Leader>st :Gstatus <CR>
+nnoremap <silent><Leader>gp :Gpull<CR>
+nnoremap <silent>gc :Gcommit %:p <CR>i
+nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
+" }}}
+" {{{Plugin: 'neomake'
+Plug 'benekastah/neomake'           "asynchronous :make
+"Toggle neomake list
+nnoremap <F12> :call ToggleNeomakeList()<CR>
+let g:neomake_error_sign = {
+    \ 'texthl': 'ErrorMsg',
+    \ }
+let g:neomake_warning_sign = {
+    \ 'texthl': 'WarningMsg',
+    \ }
+let g:neomake_open_list = 2
+let g:neomake_python_enabled_makers = ['pylint']
+let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
+let g:neomake_cpp_clang_maker = {
+            \ 'args': ['-std=c++11'],
+            \}
+autocmd! BufWritePost * Neomake
+" }}}
 " Plugin: 'vim-repeat' {{{
 Plug 'tpope/vim-repeat'          " .
 "Settings for vim-repeat
-
-"}}} "
-" Plugin: 'vim-multiple-cursors' {{{
-Plug 'terryma/vim-multiple-cursors'          "Multiple cursers
-"Settings for vim-multiple-cursers
-
-"}}} "
-"{{{Plugin: 'vim-sayonara'
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-nnoremap <silent> <BS> :Sayonara!<CR>
-nnoremap <silent> <S-BS> :Sayonara<cr>
-let g:sayonara_confirm_quit = 1
-"}}}
+" }}}
 " Plugin: 'vimtex' {{{
-Plug 'lervag/vimtex'          "A modern vim plugin for editing LaTeX
+Plug 'lervag/vimtex', {'for': 'tex' }          "A modern vim plugin for editing LaTeX
 "Settings for vimtex
 "Toggle comilation
 nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
@@ -103,31 +131,24 @@ nnoremap <silent> <Leader>ll :call vimtex#labels#toggle()<CR>
 "TOC
 nnoremap <silent> <Leader>lt :call vimtex#toc#toggle()<CR>
 
-let g:vimtex_view_general_viewer = 'evince'
-let g:vimtex_view_general_options_latexmk = '--unique'
+let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_latexmk_progname = 'nvr'
+" let g:vimtex_view_general_options_latexmk = '--unique'
+" let g:vimtex_complete_recursive_bib = 1
+" let g:vimtex_complete_enabled = 1
+" autocmd FileType tex set foldmethod=expr
+" autocmd FileType tex set foldexpr=vimtex#fold#level(v:lnum)
+" autocmd FileType tex set foldtext=vimtex#fold#text()
 
-"}}} "
-" Plugin: 'supertab' {{{
-Plug 'ervandew/supertab'            "Super tab
-let g:SuperTabDefaultCompletionType = '<C-n>'
-"}}}
-" Plugin: 'ultisnips' {{{
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets' 
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
-"}}}
-" Plugin: 'undotree' {{{ "
-Plug 'mbbill/undotree'              "A undo tree
-nnoremap <silent><Leader>u :UndotreeToggle <CR><C-w>h
-" }}} "
-" Plugin: 'YouCompleteMe' {{{
-Plug 'Valloric/YouCompleteMe'          " Codecompletion
-"Settings for YouCompleteMe
-"make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" }}}
+" Plugin: 'vim-commentary' {{{
+Plug 'tpope/vim-commentary', {'on': '<Plug>Commentary'}          "comments
+"Settings for vim-commentary
+if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
+  xmap cc  <Plug>Commentary
+  nmap cc  <Plug>Commentary
+  omap cc  <Plug>Commentary
+endif
 "}}} "
 call plug#end()
 " 1}}} "
