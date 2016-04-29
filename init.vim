@@ -80,14 +80,14 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegu
 nnoremap <C-f><C-f> :Files<CR>
 nnoremap <C-f><C-g> :GitFiles<CR>
 nnoremap <C-f><C-a> :Ag<CR>
-nnoremap <C-f><C-b> :BLines <CR>
+nnoremap <C-f><C-l> :BLines <CR>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
 let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
 \ 'ctrl-s': 'split',
 \ 'ctrl-v': 'vsplit' }
-let g:fzf_layout = { 'down': '20%' }
+let g:fzf_layout = { 'up': '25%' }
 " }}}
 " Plugin: 'vim-fugitive' {{{
 Plug 'tpope/vim-fugitive'           "Git integration
