@@ -160,7 +160,7 @@ function go
     git checkout $argv 2> /dev/null; and return; or git checkout -b $argv
 end
 #  }}} Git
-alias configurevim "./configure --enable-pythoninterp --enable-cscop --enable-gui=autoe --enable-gtk2-check --enable-gnome-check --with-features=huge +termtruecolor"
+alias configurevim "./configure --enable-pythoninterp --enable-cscop --enable-gui=autoe --enable-gtk2-check --enable-gnome-check --with-features=huge +termtruecolor --enable-pythoninterp --enable-python3interp"
 # django {{{
 alias djr "python3 manage.py runserver"
 alias djt "python3 manage.py test"

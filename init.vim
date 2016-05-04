@@ -2,21 +2,15 @@ let mapleader="\<Space>"
 " Plugins {{{ "
 call plug#begin()
 " Plugin: 'braceless.vim' {{{
-Plug 'tweekmonster/braceless.vim'          "Text objects, folding Python and other indented languages.
-"Settings for braceless.vim
+Plug 'tweekmonster/braceless.vim'         "Text objects, folding Python and other indented languages.
 autocmd FileType python BracelessEnable +indent +highlight
 "}}} "
 " Plugin: 'jedi-vim' {{{
 Plug 'davidhalter/jedi', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
-"Settings for jedi-vim
-
 "}}} "
 " Plugin: 'autopep8' {{{
 Plug 'tell-k/vim-autopep8', {'for': 'python'}          "autopep8
-"Settings for autopep
 let g:autopep8_disable_show_diff=1
-
-
 "}}} "
 " Plugin: 'deoplete.nvim' {{{
 Plug 'Shougo/deoplete.nvim'
@@ -64,16 +58,13 @@ set background=dark
 " }}}
 " Plugin: 'vim-buftabline' {{{
 Plug 'ap/vim-buftabline'          "See current buffers
-"Settings for vim-buftabline
 set hidden
 nnoremap <Leader>h :bprev<CR>
 nnoremap <Leader>l :bnext<CR>
 " }}}
 " Plugin: 'vim-over' {{{
 Plug 'osyo-manga/vim-over', {'on': 'OverCommandLine'}         " :substitute preview
-"Settings for vim-over
 nnoremap <C-s> :OverCommandLine <CR>%s:
-
 " }}}
 " {{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
@@ -81,13 +72,14 @@ nnoremap <C-f><C-f> :Files<CR>
 nnoremap <C-f><C-g> :GitFiles<CR>
 nnoremap <C-f><C-a> :Ag<CR>
 nnoremap <C-f><C-l> :BLines <CR>
+nnoremap <C-f><C-t> :Tags <CR>
 
 nmap <leader><tab> <plug>(fzf-maps-n)
 let g:fzf_action = {
 \ 'ctrl-t': 'tab split',
 \ 'ctrl-s': 'split',
 \ 'ctrl-v': 'vsplit' }
-let g:fzf_layout = { 'up': '25%' }
+let g:fzf_layout = { 'down': '25%' }
 " }}}
 " Plugin: 'vim-fugitive' {{{
 Plug 'tpope/vim-fugitive'           "Git integration
@@ -117,14 +109,11 @@ autocmd! BufWritePost * Neomake
 " }}}
 " Plugin: 'vim-repeat' {{{
 Plug 'tpope/vim-repeat'          " .
-"Settings for vim-repeat
 " }}}
 " Plugin: 'vimtex' {{{
 Plug 'lervag/vimtex', {'for': 'tex' }          "A modern vim plugin for editing LaTeX
-"Settings for vimtex
 "Toggle comilation
 augroup SET_TEX
-    " this one is which you're most likely to use?
     autocmd BufRead,BufNewFile *.tex set ft=tex
 augroup end
 nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
@@ -135,12 +124,30 @@ nnoremap <silent> <Leader>ll :call vimtex#labels#toggle()<CR>
 "TOC
 nnoremap <silent> <Leader>lt :call vimtex#toc#toggle()<CR>
 
-let g:vimtex_latexmk_options = '-synctex=1'
+let g:tex_flavor = 'latex'
 set foldtext=vimtex#fold#text()
-let g:vimtex_view_general_viewer = 'zathura'
-let g:vimtex_latexmk_progname = 'nvr'
+let g:vimtex_fold_enabled = 1
+let g:vimtex_fold_manual = 1
+let g:vimtex_fold_sections = [
+			\ 'part',
+			\ 'chapter',
+			\ 'section',
+			\ 'subsection',
+			\ 'subsubsection',
+			\ 'question',
+			\ ]
+let g:vimtex_quickfix_ignored_warnings = [
+      \ 'Underfull',
+      \ 'Overfull',
+      \ 'Vertical rules in tables',
+      \ 'specifier changed to',
+      \ 'LaTeX Font Warning',
+      \ ]
+let g:vimtex_viewer_zathura = 1
+autocmd FileType tex let b:vimtex_main = 'main.tex'
+
 if !exists('g:neocomplete#sources#omni#input_patterns')
-let g:neocomplete#sources#omni#input_patterns = {}
+    let g:neocomplete#sources#omni#input_patterns = {}
 endif
 let g:neocomplete#sources#omni#input_patterns.tex =
     \ '\v\\%('
@@ -157,12 +164,18 @@ let g:neocomplete#sources#omni#input_patterns.tex =
 " }}}
 " Plugin: 'vim-commentary' {{{
 Plug 'tpope/vim-commentary', {'on': '<Plug>Commentary'}          "comments
-"Settings for vim-commentary
 if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
   xmap cc  <Plug>Commentary
   nmap cc  <Plug>Commentary
   omap cc  <Plug>Commentary
 endif
+"}}} "
+" Plugin: 'targets.vim' {{{
+Plug 'wellle/targets.vim'          "additional text objects
+"}}} "
+" Plugin: 'quick-scope' {{{
+Plug 'vim-scripts/quick-scope'          "Highlights the optimal characters to target for the f key and family
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 "}}} "
 call plug#end()
 " }}} Plugins "
