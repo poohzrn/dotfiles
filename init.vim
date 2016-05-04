@@ -144,6 +144,7 @@ let g:vimtex_quickfix_ignored_warnings = [
       \ 'LaTeX Font Warning',
       \ ]
 let g:vimtex_viewer_zathura = 1
+let g:vimtex_view_general_viewer = 'zathura'
 autocmd FileType tex let b:vimtex_main = 'main.tex'
 
 if !exists('g:neocomplete#sources#omni#input_patterns')
