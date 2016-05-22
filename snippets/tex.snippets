@@ -19,4 +19,15 @@ endsnippet
 snippet dit "Insert \item[stuff]" b
 \item[$1] $0
 endsnippet
-# vim: fdm=snippet:
+
+snippet input "\input" b
+\input{$0}
+endsnippet
+
+snippet bf "bold" b
+\bf{${VISUAL}}$0
+endsnippet
+
+snippet todo "Do it now or later" b
+\todo{$1} $0
+endsnippet

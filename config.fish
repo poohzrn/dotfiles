@@ -55,6 +55,12 @@ function dock
     eval xrandr --output $RMONITOR --auto --left-of $LMONITOR --rotate left;
     set-wallpaper;
 end
+function dock2
+    xrandr --output $LAPMONITOR --off;
+    eval xrandr --output $LMONITOR --auto --primary;
+    eval xrandr --output $RMONITOR --auto --left-of $LMONITOR;
+    set-wallpaper;
+end
 function vga-above
 	xrandr --output $LAPMONITOR --auto --primary;
     xrandr --output $LMONITOR --auto --above $LAPMONITOR $argv;

@@ -34,7 +34,7 @@ set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'jellybeans',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
@@ -53,11 +53,13 @@ let g:lightline = {
 " }}}
 " {{{Plugin: 'gruvbox'
 Plug 'morhetz/gruvbox'              "Colorscheme
-set t_Co=256
-set background=dark
 " }}}
+" Plugin: 'neovim-colors-solarized-truecolor-only' {{{
+Plug 'frankier/neovim-colors-solarized-truecolor-only'          "Colorscheme
+
+"}}} "
 " Plugin: 'vim-buftabline' {{{
-Plug 'ap/vim-buftabline'          "See current buffers
+"Plug 'ap/vim-buftabline'          "See current buffers
 set hidden
 nnoremap <Leader>h :bprev<CR>
 nnoremap <Leader>l :bnext<CR>
@@ -73,6 +75,8 @@ nnoremap <C-f><C-g> :GitFiles<CR>
 nnoremap <C-f><C-a> :Ag<CR>
 nnoremap <C-f><C-l> :BLines <CR>
 nnoremap <C-f><C-t> :Tags <CR>
+nnoremap <C-f><C-w> :Buffers <CR>
+cnoremap W w
 
 nmap <leader><tab> <plug>(fzf-maps-n)
 let g:fzf_action = {
@@ -115,6 +119,7 @@ Plug 'lervag/vimtex', {'for': 'tex' }          "A modern vim plugin for editing 
 "Toggle comilation
 augroup SET_TEX
     autocmd BufRead,BufNewFile *.tex set ft=tex
+    autocmd BufRead,BufNewFile *.tex set spell spelllang=en_us
 augroup end
 nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
 "Errors
@@ -145,12 +150,12 @@ let g:vimtex_quickfix_ignored_warnings = [
       \ ]
 let g:vimtex_viewer_zathura = 1
 let g:vimtex_view_general_viewer = 'zathura'
-autocmd FileType tex let b:vimtex_main = 'main.tex'
+autocmd FileType tex let b:vimtex_main = 'master.tex'
 
-if !exists('g:neocomplete#sources#omni#input_patterns')
-    let g:neocomplete#sources#omni#input_patterns = {}
+if !exists('g:deoplete#omni_patterns')
+  let g:deoplete#omni_patterns = {}
 endif
-let g:neocomplete#sources#omni#input_patterns.tex =
+let g:deoplete#omni_patterns.tex =
     \ '\v\\%('
     \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
     \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
@@ -160,7 +165,7 @@ let g:neocomplete#sources#omni#input_patterns.tex =
     \ . '|\a*(gls|Gls|GLS)(pl)?\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
     \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
     \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
-    \ . ')'
+    \ . ')\m'
 
 " }}}
 " Plugin: 'vim-commentary' {{{
@@ -177,6 +182,10 @@ Plug 'wellle/targets.vim'          "additional text objects
 " Plugin: 'quick-scope' {{{
 Plug 'vim-scripts/quick-scope'          "Highlights the optimal characters to target for the f key and family
 let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+"}}} "
+" Plugin: 'vim-gitgutter' {{{
+Plug 'airblade/vim-gitgutter'          "diff
+
 "}}} "
 call plug#end()
 " }}} Plugins "
@@ -233,6 +242,7 @@ if &foldmethod ==# ''
 endif
 set foldlevel=0
 set foldcolumn=0
+set foldlevelstart=1
 set foldtext=TxtFoldText()
 function! TxtFoldText()
   let level = repeat('-', min([v:foldlevel-1,3])) . '+'
@@ -381,5 +391,10 @@ function! StripTrailingWhitespace()
   endif
 endfunction
 " }}} StripTrailingWhitespace "
+" ColorScheme {{{ "
+set termguicolors
+set t_Co=256
+set background=dark
 colorscheme gruvbox
+" }}} ColorScheme "
 " vim: fdm=marker

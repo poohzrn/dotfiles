@@ -70,7 +70,7 @@ for_window [class="Icedove"] move container to workspace $tagmail
 for_window [class="Evince"] move container to workspace $tagevince
 for_window [class="zathura"] move container to workspace $tagevince
 for_window [class="discord-canary"] move container to workspace $tagevince
-assign [class="^XTerm$"] $tag1
+# assign [class="^XTerm$"] $tag1
 assign [class="^Zathura$"] $tagevince
 
 # set mod key
