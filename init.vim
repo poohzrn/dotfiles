@@ -34,7 +34,7 @@ set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
 let g:lightline = {
-      \ 'colorscheme': 'jellybeans',
+      \ 'colorscheme': 'gruvbox',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
@@ -61,8 +61,8 @@ Plug 'frankier/neovim-colors-solarized-truecolor-only'          "Colorscheme
 " Plugin: 'vim-buftabline' {{{
 "Plug 'ap/vim-buftabline'          "See current buffers
 set hidden
-nnoremap <Leader>h :bprev<CR>
-nnoremap <Leader>l :bnext<CR>
+nnoremap <leader>h :bprev<CR>
+nnoremap <leader>l :bnext<CR>
 " }}}
 " Plugin: 'vim-over' {{{
 Plug 'osyo-manga/vim-over', {'on': 'OverCommandLine'}         " :substitute preview
@@ -70,12 +70,13 @@ nnoremap <C-s> :OverCommandLine <CR>%s:
 " }}}
 " {{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-nnoremap <C-f><C-f> :Files<CR>
-nnoremap <C-f><C-g> :GitFiles<CR>
-nnoremap <C-f><C-a> :Ag<CR>
-nnoremap <C-f><C-l> :BLines <CR>
-nnoremap <C-f><C-t> :Tags <CR>
-nnoremap <C-f><C-w> :Buffers <CR>
+nnoremap <leader>ff :Files<CR>
+nnoremap <leader>fg :GitFiles<CR>
+nnoremap <leader>fa :Ag<CR>
+nnoremap <leader>fl :BLines <CR>
+nnoremap <leader>ft :Tags <CR>
+nnoremap <leader>fw :Buffers <CR>
+nnoremap <leader>fh :History <CR>
 cnoremap W w
 
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -87,9 +88,9 @@ let g:fzf_layout = { 'down': '25%' }
 " }}}
 " Plugin: 'vim-fugitive' {{{
 Plug 'tpope/vim-fugitive'           "Git integration
-nnoremap <silent><Leader>gd :Gdiff <CR>
-nnoremap <silent><Leader>st :Gstatus <CR>
-nnoremap <silent><Leader>gp :Gpull<CR>
+nnoremap <silent><leader>gd :Gdiff <CR>
+nnoremap <silent><leader>st :Gstatus <CR>
+nnoremap <silent><leader>gp :Gpull<CR>
 nnoremap <silent>gc :Gcommit %:p <CR>i
 nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
 " }}}
@@ -120,14 +121,15 @@ Plug 'lervag/vimtex', {'for': 'tex' }          "A modern vim plugin for editing 
 augroup SET_TEX
     autocmd BufRead,BufNewFile *.tex set ft=tex
     autocmd BufRead,BufNewFile *.tex set spell spelllang=en_us
+    autocmd BufRead,BufNewFile *.tex setlocal formatoptions-=a
 augroup end
 nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
 "Errors
-nnoremap <silent> <Leader>le :call vimtex#latexmk#errors()<CR>
+nnoremap <silent> <leader>le :call vimtex#latexmk#errors()<CR>
 "Lables
-nnoremap <silent> <Leader>ll :call vimtex#labels#toggle()<CR>
+nnoremap <silent> <leader>ll :call vimtex#labels#toggle()<CR>
 "TOC
-nnoremap <silent> <Leader>lt :call vimtex#toc#toggle()<CR>
+nnoremap <silent> <leader>lt :call vimtex#toc#toggle()<CR>
 
 let g:tex_flavor = 'latex'
 set foldtext=vimtex#fold#text()
@@ -146,10 +148,13 @@ let g:vimtex_quickfix_ignored_warnings = [
       \ 'Overfull',
       \ 'Vertical rules in tables',
       \ 'specifier changed to',
+      \ 'Command terminated with space.',
       \ 'LaTeX Font Warning',
       \ ]
 let g:vimtex_viewer_zathura = 1
 let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_quickfix_autojump = 1
+let g:vimtex_quickfix_mode = 1
 autocmd FileType tex let b:vimtex_main = 'master.tex'
 
 if !exists('g:deoplete#omni_patterns')
@@ -185,6 +190,10 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 "}}} "
 " Plugin: 'vim-gitgutter' {{{
 Plug 'airblade/vim-gitgutter'          "diff
+
+"}}} "
+" Plugin: 'seoul256.vim' {{{
+Plug 'junegunn/seoul256.vim'          "new-plugin
 
 "}}} "
 call plug#end()
@@ -275,37 +284,39 @@ nnoremap <C-h> <c-w>h
 nnoremap <C-l> <c-w>l
 nnoremap <C-k> <c-w>k
 inoremap <CR>f <esc>
-" Follow the Leader
-nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
-nnoremap <Leader>r z=
-nnoremap <Leader>w ]s
-nnoremap <Leader>b [s
-nnoremap <Leader>s :w <CR>
-nnoremap <Leader>j gjzz
-nnoremap <Leader>k gkzz
-nnoremap <Leader>o qp
-nnoremap <Leader>p @p
+" Follow the leader
+nnoremap <leader>sp :setlocal spell! spelllang=en_us<CR>
+nnoremap <leader>r z=
+nnoremap <leader>w ]s
+nnoremap <leader>b [s
+nnoremap <leader>s :w <CR>
+nnoremap <leader>j gjzz
+nnoremap <leader>k gkzz
+nnoremap <leader>o qp
+nnoremap <leader>p @p
 " Tabbing und buffering
-nnoremap <Leader>tn :tabnew<space>
-nnoremap <Leader>td :tabclose<CR>
-nnoremap <Leader>bh :sbprevious<CR>
-nnoremap <Leader>bl :sbnext<CR>
-nnoremap <Leader>bd :bdelete<CR>
+nnoremap <leader>tn :tabnew<space>
+nnoremap <leader>td :tabclose<CR>
+nnoremap <leader>bh :sbprevious<CR>
+nnoremap <leader>bl :sbnext<CR>
+nnoremap <leader>bd :bdelete<CR>
 " Create splits with empty buffers in all directions
-nnoremap <Leader>nh :leftabove  vnew<CR>
-nnoremap <Leader>nl :rightbelow vnew<CR>
-nnoremap <Leader>nk :leftabove  new<CR>
-nnoremap <Leader>nj :rightbelow new<CR>
+nnoremap <leader>nh :leftabove  vnew<CR>
+nnoremap <leader>nl :rightbelow vnew<CR>
+nnoremap <leader>nk :leftabove  new<CR>
+nnoremap <leader>nj :rightbelow new<CR>
 " For completion completion
 inoremap <C-j> <C-N>
 inoremap <C-k> <C-P>
-nnoremap <Leader>del :call StripTrailingWhitespace()<CR>
+nnoremap <leader>del :call StripTrailingWhitespace()<CR>
+" Explorer
+nnoremap <F11> :Lexplore<CR>
 "1}}}
 " Resizing {{{
-nnoremap <Leader>rh :vertical resize +10 <CR>
-nnoremap <Leader>rl :vertical resize -10 <CR>
-nnoremap <Leader>rj :resize +10 <CR>
-nnoremap <Leader>rk :resize -10 <CR>
+nnoremap <leader>rh :vertical resize +10 <CR>
+nnoremap <leader>rl :vertical resize -10 <CR>
+nnoremap <leader>rj :resize +10 <CR>
+nnoremap <leader>rk :resize -10 <CR>
 " }}} Resizing "
 " Copy/Paste {{{
 vnoremap yy "+y
@@ -336,6 +347,7 @@ augroup VIMRC
   autocmd BufReadPost * silent! execute 'normal! g`"zzzv'
   autocmd BufWritePost * if &diff | diffupdate | endif
   autocmd InsertLeave * if bufname('%') != "[Command Line]" | pclose | endif
+  " autocmd * qf wincmd L
 augroup END
 
 augroup ClearHighLight
