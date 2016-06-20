@@ -8,6 +8,10 @@ autocmd FileType python BracelessEnable +indent +highlight
 " Plugin: 'jedi-vim' {{{
 Plug 'davidhalter/jedi', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
 "}}} "
+" Plugin: 'django-plus.vim' {{{
+Plug 'tweekmonster/django-plus.vim', {'for': 'python'}          "Django
+
+"}}} "
 " Plugin: 'autopep8' {{{
 Plug 'tell-k/vim-autopep8', {'for': 'python'}          "autopep8
 let g:autopep8_disable_show_diff=1
@@ -54,10 +58,6 @@ let g:lightline = {
 " {{{Plugin: 'gruvbox'
 Plug 'morhetz/gruvbox'              "Colorscheme
 " }}}
-" Plugin: 'neovim-colors-solarized-truecolor-only' {{{
-Plug 'frankier/neovim-colors-solarized-truecolor-only'          "Colorscheme
-
-"}}} "
 " Plugin: 'vim-buftabline' {{{
 "Plug 'ap/vim-buftabline'          "See current buffers
 set hidden
@@ -70,13 +70,13 @@ nnoremap <C-s> :OverCommandLine <CR>%s:
 " }}}
 " {{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
-nnoremap <leader>ff :Files<CR>
-nnoremap <leader>fg :GitFiles<CR>
-nnoremap <leader>fa :Ag<CR>
-nnoremap <leader>fl :BLines <CR>
-nnoremap <leader>ft :Tags <CR>
-nnoremap <leader>fw :Buffers <CR>
-nnoremap <leader>fh :History <CR>
+nnoremap <C-f><C-f> :Files<CR>
+nnoremap <C-f><C-g> :GitFiles<CR>
+nnoremap <C-f><C-a> :Ag<CR>
+nnoremap <C-f><C-l> :BLines <CR>
+nnoremap <C-f><C-t> :Tags <CR>
+nnoremap <C-f><C-w> :Buffers <CR>
+nnoremap <C-f><C-h> :History <CR>
 cnoremap W w
 
 nmap <leader><tab> <plug>(fzf-maps-n)
@@ -122,6 +122,8 @@ augroup SET_TEX
     autocmd BufRead,BufNewFile *.tex set ft=tex
     autocmd BufRead,BufNewFile *.tex set spell spelllang=en_us
     autocmd BufRead,BufNewFile *.tex setlocal formatoptions-=a
+    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>v :VimtexView<CR>
+    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>c :VimtexCompile<CR>
 augroup end
 nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
 "Errors
@@ -192,9 +194,13 @@ let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
 Plug 'airblade/vim-gitgutter'          "diff
 
 "}}} "
-" Plugin: 'seoul256.vim' {{{
-Plug 'junegunn/seoul256.vim'          "new-plugin
+" Plugin: 'godown-vim' {{{
+Plug 'davinche/godown-vim', {'for': 'markdown'}          "Markdown Previewer
+" should the preview be shown automatically when a markdown buffer is opened
+let g:godown_autorun = 0
 
+" the port to run the Godown server on
+let g:godown_port = 1337
 "}}} "
 call plug#end()
 " }}} Plugins "
