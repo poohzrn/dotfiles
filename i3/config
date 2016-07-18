@@ -14,7 +14,6 @@ set $wsmail m
 set $wsdiscord comma
 set $wsspotify period
 set $wsevince p
-set $wssteam y
 # Definie tags/names for workspaces
 set $tag1 "1 tmux &#xf121;"
 set $tag2 2
@@ -47,7 +46,6 @@ bindsym $mod+$wsmail workspace $tagmail
 bindsym $mod+$wsspotify workspace $tagspotify
 bindsym $mod+$wschrome workspace $tagchrome
 bindsym $mod+$wsevince workspace $tagevince
-bindsym $mod+$wssteam workspace $tagsteam
 bindsym $mod+Tab workspace next
 # move focused container to workspace
 bindsym $mod+Shift+$ws1 move container to workspace $tag1

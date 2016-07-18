@@ -1,9 +1,9 @@
-set -U EDITOR nvim
-set -U editor nvim
-set -U GIT_EDITOR nvim
-set -U XDG_CONFIG_HOME $HOME/.config
-set -U GITFOLDER ~/git
-set -U fish_user_paths $fish_user_paths ~/git/dasht/bin
+set -x EDITOR nvim
+set -x editor nvim
+set -x GIT_EDITOR nvim
+set -x XDG_CONFIG_HOME $HOME/.config
+set -x FISH_CONFIG $HOME/git/dotfiles/config.fish
+set -x GITFOLDER ~/git
 #  Monitors {{{ #
 set -U LAPMONITOR LVDS1
 set -U LMONITOR VGA1
