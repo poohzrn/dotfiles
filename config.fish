@@ -114,6 +114,7 @@ if status --is-login
 end
 
 #  Misc aliases {{{ #
+alias sl "ls"
 alias c "clear"
 alias g "cd  $GITFOLDER; clear; ls"
 alias q "exit"
