@@ -3,6 +3,7 @@
     - [mkdir -p ~/git]
     - [mkdir -p ~/downloads]
     - [mkdir -p ~/.config]
+    - [mkdir -p ~/.config/i3blocks]
     - [mkdir -p ~/.tmux/plugins]
     - [mkdir -p ~/.ncmpcpp]
     -
@@ -34,6 +35,7 @@
     ~/.i3:
         force: true
         path: i3/
-    ~/.ncmpcpp:
+    ~/.config/i3blocks/config:
+        create: true
         force: true
-        path: ncmpcpp/
+        path: i3blocks.conf

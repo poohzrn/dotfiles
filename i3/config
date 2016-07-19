@@ -176,7 +176,7 @@ bindsym XF86KbdBrightnessDown exec "echo 0 | tee -a /sys/class/leds/smc::kbd_bac
 bindsym XF86KbdBrightnessUp exec "echo 100 | tee -a /sys/class/leds/smc::kbd_backlight/brightness"
 # Start i3bar
 bar {
-    status_command i3status     -c ~/.i3/i3status.conf
+    status_command i3blocks -c ~/.config/i3blocks/config    # -c ~/.i3/i3status.conf
     strip_workspace_numbers     no
     font pango:Source Code Pro 10, FontAwesome 8
     position                    top
