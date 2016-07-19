@@ -113,6 +113,11 @@ if status --is-login
     end
 end
 
+# abbh {{{ #
+abbr -a why "aptitude why"
+abbr -a apt "sudo apt"
+#}}}
+
 #  Misc aliases {{{ #
 alias sl "ls"
 alias c "clear"
