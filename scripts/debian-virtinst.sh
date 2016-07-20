@@ -8,24 +8,18 @@ SUPPORTED="(testing|Debian8.5)"
 ARCH=amd64
 SITE=${DEBIAN_SITE:-http://dk.archive.ubuntu.com/debian/}
 DISKIMG_DIR=${DISKIMG_DIR:-$HOME/images}
-ISO_DIR=${UBUNTU_ISO_DIR:-$HOME/iso/}
+ISO_DIR=${ISO_DIR:-$HOME/iso/}
 NTPSERVER=${NTPSERVER:-dk.pool.ntp.org}
 
-#Defaults: 
+#Defaults:
 USERNAME=linux
 # Unless password is specified NAME is used for password by default
 #PASSWORD=
 NUM_CPU=1
-MEMORY=4096
+MEMORY=512
 DISKSIZE=10G
 DISKFORMAT=qcow2
 
-# You can use the following keyword
-# %ISO_DIR%
-# %ARCH%
-# %RELEASE_NAME% : precise, quantal, ....
-# %RELEASE_VERSION% : 12.04, 12.10, ....
-# %RELEASE_FULLVER% (including minor version for LTS) : 12.04.3, 10.04.4
 ISO_LOCATION_FORMAT_DEFAULT=%ISO_DIR%/%RELEASE_FULLVER%-%ARCH%.iso
 ISO_LOCATION_FORMAT=${ISO_LOCATION_FORMAT:-$ISO_LOCATION_FORMAT_DEFAULT}
 
@@ -41,19 +35,17 @@ Options:
   -s DISKSIZE   : QEMU image size, e.g., 50G (default: $DISKSIZE)
   -u USERNAME   : Username of the default user (default: $USERNAME)
   -p PASSWORD   : Password for the default user (default: $PASSWORD)
-  -P            : Do not use preseed.cfg
 
 Configurations:
   DISKIMG_DIR=$DISKIMG_DIR
   SITE=$SITE
-  PROXY=$PROXY
   ISO_DIR=$ISO_DIR
   ISO_LOCATION_FORMAT=$ISO_LOCATION_FORMAT
 EOF
     exit 1
 }
 
-while getopts "a:c:m:f:s:u:p:Ph" OPT; do
+while getopts "a:c:m:f:s:u:p" OPT; do
     case $OPT in
         a) ARCH=$OPTARG
            if [ "$ARCH" != "i386" -a "$ARCH" != "amd64" ]; then
@@ -72,7 +64,6 @@ while getopts "a:c:m:f:s:u:p:Ph" OPT; do
         s) DISKSIZE=$OPTARG; ;;
         u) USERNAME=$OPTARG; ;;
         p) PASSWORD=$OPTARG; ;;
-        P) NO_PRESEED=true; ;;
         ?) usage
            ;;
     esac

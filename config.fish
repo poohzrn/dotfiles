@@ -3,7 +3,9 @@ set -x editor nvim
 set -x GIT_EDITOR nvim
 set -x XDG_CONFIG_HOME $HOME/.config
 set -x FISH_CONFIG $HOME/git/dotfiles/config.fish
+set -x SCRIPTS $HOME/git/dotfiles/scripts
 set -x GITFOLDER ~/git
+set -gx PATH /sbin $PATH
 #  Monitors {{{ #
 set -U LAPMONITOR LVDS1
 set -U LMONITOR VGA1
@@ -116,6 +118,7 @@ end
 # abbh {{{ #
 abbr -a why "aptitude why"
 abbr -a apt "sudo apt"
+abbr -a as "aptitude search"
 #}}}
 
 #  Misc aliases {{{ #
