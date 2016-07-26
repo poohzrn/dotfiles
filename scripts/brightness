@@ -1,0 +1,7 @@
+#! /bin/bash
+OUTPUT="$(xbacklight -get-1)"
+if [[ $OUTPUT == *"No"* ]]; then
+    echo "no brightness"
+else
+    printf " %.0f " $OUTPUT
+fi

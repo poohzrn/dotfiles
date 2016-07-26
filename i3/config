@@ -1,3 +1,8 @@
+# SIGNALS for i3blocks
+set $VOLUME_SIGNAL 10
+set $BRIGHTNESS_SIGNAL 11
+set $KEYBOARD_SIGNAL 12
+set $MUSIC_SIGNAL 13
 # Define keys for workspaces
 set $ws1 1
 set $ws2 2
@@ -92,8 +97,7 @@ bindsym $mod+q kill
 #
 # start rofi (a program launcher)
 bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob-hide-scrollbar
-#bindsym $mod+Return exec rofi -show window -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob
-bindsym $mod+u exec ~/git/dotfiles/scripts/toggle-xkbmap.sh
+bindsym $mod+u exec ~/git/dotfiles/scripts/toggle-xkbmap.sh && pkill -RTMIN+$KEYBOARD_SIGNAL i3blocks
 ## Navigation
 # change focus
 bindsym $mod+h focus left
@@ -163,15 +167,16 @@ bindsym $mod+F7 exec "$HOME/git/dotfiles/scripts/screen.sh"
 # lock i3
 bindsym XF86ScreenSaver exec "$HOME/git/dotfiles/scripts/lock.sh"
 #Volume up / down / mute
-bindsym XF86AudioRaiseVolume exec amixer -q set -c 0 Master 2dB+ unmute
-bindsym XF86AudioLowerVolume exec amixer -q set -c 0 Master 2dB- unmute
-bindsym XF86AudioMute exec amixer -q set Master toggle
-bindsym $mod+Down exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause"
-bindsym $mod+Right exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next"
-bindsym $mod+Left exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous"
+bindsym XF86AudioRaiseVolume exec amixer -q set -c 0 Master 2dB+ unmute && pkill -RTMIN+$VOLUME_SIGNAL i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q set -c 0 Master 2dB- unmute && pkill -RTMIN+$VOLUME_SIGNAL i3blocks
+bindsym XF86AudioMute exec amixer -q set Master toggle && pkill -RTMIN+$VOLUME_SIGNAL i3blocks
+bindsym $mod+Down exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause && pkill -RTMIN+$MUSIC_SIGNAL i3blocks"
+bindsym $mod+Right exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next && pkill -RTMIN+$MUSIC_SIGNAL i3blocks"
+bindsym $mod+Left exec "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous && pkill -RTMIN+$MUSIC_SIGNAL i3blocks"
 # Sreen brightness controls (brightness up, brightness down)
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5 && pkill -RTMIN+$BRIGHTNESS_SIGNAL i3blocks
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5 && pkill -RTMIN+$BRIGHTNESS_SIGNAL i3blocks
+
 bindsym XF86KbdBrightnessDown exec "echo 0 | tee -a /sys/class/leds/smc::kbd_backlight/brightness"
 bindsym XF86KbdBrightnessUp exec "echo 100 | tee -a /sys/class/leds/smc::kbd_backlight/brightness"
 # Start i3bar

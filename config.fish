@@ -7,9 +7,9 @@ set -x SCRIPTS $HOME/git/dotfiles/scripts
 set -x GITFOLDER ~/git
 set -gx PATH /sbin $PATH
 #  Monitors {{{ #
-set -U LAPMONITOR LVDS1
-set -U LMONITOR VGA1
-set -U RMONITOR HDMI3
+set -U LAPMONITOR LVDS-1
+set -U LMONITOR VGA-1
+set -U RMONITOR HDMI-3
 #  }}} Monitors #
 #Colors
 set fish_color_cwd white --bold
