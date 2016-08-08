@@ -17,6 +17,7 @@ set $ws10 0
 set $wschrome w
 set $wsmail m
 set $wsdiscord comma
+set $wsskype slash
 set $wsspotify period
 set $wsevince p
 # Definie tags/names for workspaces
@@ -35,6 +36,7 @@ set $tagmail mail
 set $tagdiscord "discord &#xf259;"
 set $tagspotify "music &#xf025;"
 set $tagevince "pdf &#xf1c1;"
+set $tagskype "skype"
 # switch to workspace
 bindsym $mod+$ws1 workspace $tag1
 bindsym $mod+$ws2 workspace $tag2
@@ -51,6 +53,7 @@ bindsym $mod+$wsmail workspace $tagmail
 bindsym $mod+$wsspotify workspace $tagspotify
 bindsym $mod+$wschrome workspace $tagchrome
 bindsym $mod+$wsevince workspace $tagevince
+bindsym $mod+$wsskype workspace $tagskype
 bindsym $mod+Tab workspace next
 # move focused container to workspace
 bindsym $mod+Shift+$ws1 move container to workspace $tag1
@@ -66,6 +69,7 @@ bindsym $mod+Shift+$ws10 move container to workspace $tag10
 bindsym $mod+Shift+$wsdiscord move container to workspace $tagdiscord
 bindsym $mod+Shift+$wschrome move container to workspace $tagchrome
 bindsym $mod+Shift+$wsevince move container to workspace $tagevince
+bindsym $mod+Shift+$wsskype move container to workspace $tagskype
 
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace $tagspotify
@@ -75,6 +79,7 @@ for_window [class="Icedove"] move container to workspace $tagmail
 for_window [class="Evince"] move container to workspace $tagevince
 for_window [class="zathura"] move container to workspace $tagevince
 for_window [class="discord-canary"] move container to workspace $tagevince
+for_window [class="skype"] move container to workspace $tagevince
 # assign [class="^XTerm$"] $tag1
 assign [class="^Zathura$"] $tagevince
 

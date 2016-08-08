@@ -202,6 +202,10 @@ let g:godown_autorun = 0
 " the port to run the Godown server on
 let g:godown_port = 1337
 "}}} "
+" Plugin: 'vim-hilow' {{{
+Plug 'olambo/vim-hilow'          "vim motions
+
+"}}} "
 call plug#end()
 " }}} Plugins "
 " General Settings {{{

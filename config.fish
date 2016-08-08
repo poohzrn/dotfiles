@@ -7,9 +7,9 @@ set -x SCRIPTS $HOME/git/dotfiles/scripts
 set -x GITFOLDER ~/git
 set -gx PATH /sbin $PATH
 #  Monitors {{{ #
-set -U LAPMONITOR LVDS-1
-set -U LMONITOR VGA-1
-set -U RMONITOR HDMI-3
+set -U LAPMONITOR LVDS1
+set -U LMONITOR VGA1
+set -U RMONITOR HDMI3
 #  }}} Monitors #
 #Colors
 set fish_color_cwd white --bold
@@ -182,4 +182,12 @@ alias djr "python3 manage.py runserver"
 alias djt "python3 manage.py test"
 alias djm "python3 manage.py makemigrations meetpeople; python3 manage.py migrate"
 # }}} django
+
+function weather --argument-names 'city'
+    if test -n "$city"
+        curl wttr.in/$argv
+    else
+		curl wttr.in
+	end
+end
 #vim: fdm=marker
