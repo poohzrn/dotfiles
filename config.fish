@@ -119,6 +119,7 @@ end
 abbr -a why "aptitude why"
 abbr -a apt "sudo apt"
 abbr -a as "aptitude search"
+abbr -a G "ls -l | grep -i"
 #}}}
 
 #  Misc aliases {{{ #
