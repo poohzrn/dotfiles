@@ -183,6 +183,8 @@ alias djr "python3 manage.py runserver"
 alias djt "python3 manage.py test"
 alias djm "python3 manage.py makemigrations meetpeople; python3 manage.py migrate"
 # }}} django
+alias sonosm "python3 $GITFOLDER/dotfiles/scripts/sonos-ctl.py mute"
+alias sonosu "python3 $GITFOLDER/dotfiles/scripts/sonos-ctl.py unmute"
 
 function weather --argument-names 'city'
     if test -n "$city"
