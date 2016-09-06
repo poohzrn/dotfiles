@@ -5,7 +5,6 @@
     - [mkdir -p ~/.config]
     - [mkdir -p ~/.config/i3blocks]
     - [mkdir -p ~/.tmux/plugins]
-    - [mkdir -p ~/.ncmpcpp]
     -
       command: if [ -d ~/git/tpm ]; then cd ~/git/tpm && git pull; else cd ~/git && git clone https://github.com/tmux-plugins/tpm; fi
       command: ln -sf ~/git/tpm ~/.tmux/plugins/tpm

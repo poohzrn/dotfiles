@@ -202,8 +202,13 @@ let g:godown_autorun = 0
 " the port to run the Godown server on
 let g:godown_port = 1337
 "}}} "
-" Plugin: 'vim-hilow' {{{
-Plug 'olambo/vim-hilow'          "vim motions
+" Plugin: 'vim-surround' {{{
+Plug 'tpope/vim-surround'          "surroundings
+" cs and cc are equivalent to s and S
+nmap s  <Plug>Ysurround
+nmap S  <Plug>YSurround
+xmap s  <Plug>VSurround
+xmap S  <Plug>VgSurround
 
 "}}} "
 call plug#end()
@@ -321,6 +326,9 @@ inoremap <C-k> <C-P>
 nnoremap <leader>del :call StripTrailingWhitespace()<CR>
 " Explorer
 nnoremap <F11> :Lexplore<CR>
+" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
 "1}}}
 " Resizing {{{
 nnoremap <leader>rh :vertical resize +10 <CR>
