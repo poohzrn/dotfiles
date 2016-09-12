@@ -299,6 +299,7 @@ nnoremap <C-h> <c-w>h
 nnoremap <C-l> <c-w>l
 nnoremap <C-k> <c-w>k
 inoremap <CR>f <esc>
+nnoremap <BS> <C-^>
 " Follow the leader
 nnoremap <leader>sp :setlocal spell! spelllang=en_us<CR>
 nnoremap <leader>r z=

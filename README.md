@@ -1,5 +1,5 @@
 # Dotfiles
 My dotfiles
 
-##Installation
+## Installation
 `./install`
