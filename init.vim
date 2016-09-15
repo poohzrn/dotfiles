@@ -38,7 +38,7 @@ set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
 let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
+      \ 'colorscheme': 'PaperColor_dark',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
@@ -209,6 +209,10 @@ nmap s  <Plug>Ysurround
 nmap S  <Plug>YSurround
 xmap s  <Plug>VSurround
 xmap S  <Plug>VgSurround
+
+"}}} "
+" Plugin: 'tender.vim' {{{
+Plug 'jacoborus/tender.vim'          "24-bit colorscheme
 
 "}}} "
 call plug#end()
@@ -424,8 +428,9 @@ endfunction
 " }}} StripTrailingWhitespace "
 " ColorScheme {{{ "
 set termguicolors
-set t_Co=256
+" set t_Co=256
 set background=dark
-colorscheme gruvbox
+colorscheme tender
 " }}} ColorScheme "
+
 " vim: fdm=marker
