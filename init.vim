@@ -252,6 +252,7 @@ set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
 "set nohlsearch      " Noh after search
 set gdefault        " when on, the :substitute flag 'g' is default on
+set rnu             " Relative line numbers
 nmap <silent> hs :set hlsearch!<CR>
 " Replace previous search
 nmap  S %s///g<left><left>
