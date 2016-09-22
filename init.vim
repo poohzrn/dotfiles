@@ -123,15 +123,12 @@ augroup SET_TEX
     autocmd BufRead,BufNewFile *.tex set spell spelllang=en_us
     autocmd BufRead,BufNewFile *.tex setlocal formatoptions-=a
     autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>v :VimtexView<CR>
-    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>c :VimtexCompile<CR>
+    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>c :VimtexCompileToggle<CR>
+    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>e :VimtexErrors<CR>
+    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>l :VimtexLabelsToggle<CR>
+    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>t :VimtexTocToggle<CR>
+
 augroup end
-nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
-"Errors
-nnoremap <silent> <leader>le :call vimtex#latexmk#errors()<CR>
-"Lables
-nnoremap <silent> <leader>ll :call vimtex#labels#toggle()<CR>
-"TOC
-nnoremap <silent> <leader>lt :call vimtex#toc#toggle()<CR>
 
 let g:tex_flavor = 'latex'
 set foldtext=vimtex#fold#text()
@@ -213,6 +210,10 @@ xmap S  <Plug>VgSurround
 "}}} "
 " Plugin: 'tender.vim' {{{
 Plug 'jacoborus/tender.vim'          "24-bit colorscheme
+
+"}}} "
+" Plugin: 'vim-markdown-toc' {{{
+Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}         "markdown toc
 
 "}}} "
 call plug#end()
