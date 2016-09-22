@@ -8,8 +8,8 @@ set -x GITFOLDER ~/git
 set -gx PATH /sbin $PATH
 #  Monitors {{{ #
 set -U LAPMONITOR LVDS1
-set -U LMONITOR VGA1
-set -U RMONITOR HDMI3
+set -U LMONITOR DP2
+set -U RMONITOR VGA1
 #  }}} Monitors #
 #Colors
 set fish_color_cwd white --bold
@@ -54,19 +54,13 @@ end
 #Docking setup
 function dock
     xrandr --output $LAPMONITOR --off;
-    eval xrandr --output $LMONITOR --auto --primary;
-    eval xrandr --output $RMONITOR --auto --left-of $LMONITOR --rotate left;
-    set-wallpaper;
-end
-function dock2
-    xrandr --output $LAPMONITOR --off;
-    eval xrandr --output $LMONITOR --auto --primary;
-    eval xrandr --output $RMONITOR --auto --left-of $LMONITOR;
+    eval xrandr --output $RMONITOR --auto;
+    eval xrandr --output $LMONITOR --auto --left-of $RMONITOR --primary;
     set-wallpaper;
 end
 function vga-above
 	xrandr --output $LAPMONITOR --auto --primary;
-    xrandr --output $LMONITOR --auto --above $LAPMONITOR $argv;
+    xrandr --output $RMONITOR --auto --above $LAPMONITOR $argv;
 end
 #notdocking setup
 function undock
@@ -154,7 +148,7 @@ alias tdmgm "tmux kill-session -t mgmt"
 #  }}} Tmux Aliases #
 
 #Uni
-alias sw "cd $GITFOLDER/sw8/"
+alias sw "cd $GITFOLDER/p9/"
 alias swc "cd $GITFOLDER/sw8-code/"
 
 #  Git {{{
