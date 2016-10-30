@@ -8,10 +8,6 @@ autocmd FileType python BracelessEnable +indent +highlight
 " Plugin: 'jedi-vim' {{{
 Plug 'davidhalter/jedi', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
 "}}} "
-" Plugin: 'django-plus.vim' {{{
-Plug 'tweekmonster/django-plus.vim', {'for': 'python'}          "Django
-
-"}}} "
 " Plugin: 'autopep8' {{{
 Plug 'tell-k/vim-autopep8', {'for': 'python'}          "autopep8
 let g:autopep8_disable_show_diff=1
@@ -58,12 +54,6 @@ let g:lightline = {
 " {{{Plugin: 'gruvbox'
 Plug 'morhetz/gruvbox'              "Colorscheme
 " }}}
-" Plugin: 'vim-buftabline' {{{
-"Plug 'ap/vim-buftabline'          "See current buffers
-set hidden
-nnoremap <leader>h :bprev<CR>
-nnoremap <leader>l :bnext<CR>
-" }}}
 " Plugin: 'vim-over' {{{
 Plug 'osyo-manga/vim-over', {'on': 'OverCommandLine'}         " :substitute preview
 nnoremap <C-s> :OverCommandLine <CR>%s:
@@ -106,7 +96,7 @@ let g:neomake_warning_sign = {
     \ }
 let g:neomake_open_list = 2
 let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
+let g:neomake_tex_enabled_makers = ['lacheck', 'chktex', 'proselint']
 let g:neomake_cpp_clang_maker = {
             \ 'args': ['-std=c++11'],
             \}
@@ -183,21 +173,9 @@ endif
 " Plugin: 'targets.vim' {{{
 Plug 'wellle/targets.vim'          "additional text objects
 "}}} "
-" Plugin: 'quick-scope' {{{
-Plug 'vim-scripts/quick-scope'          "Highlights the optimal characters to target for the f key and family
-let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
-"}}} "
 " Plugin: 'vim-gitgutter' {{{
 Plug 'airblade/vim-gitgutter'          "diff
 
-"}}} "
-" Plugin: 'godown-vim' {{{
-Plug 'davinche/godown-vim', {'for': 'markdown'}          "Markdown Previewer
-" should the preview be shown automatically when a markdown buffer is opened
-let g:godown_autorun = 0
-
-" the port to run the Godown server on
-let g:godown_port = 1337
 "}}} "
 " Plugin: 'vim-surround' {{{
 Plug 'tpope/vim-surround'          "surroundings
@@ -210,10 +188,6 @@ xmap S  <Plug>VgSurround
 "}}} "
 " Plugin: 'tender.vim' {{{
 Plug 'jacoborus/tender.vim'          "24-bit colorscheme
-
-"}}} "
-" Plugin: 'vim-markdown-toc' {{{
-Plug 'mzlogin/vim-markdown-toc', {'for': 'markdown'}         "markdown toc
 
 "}}} "
 call plug#end()
@@ -430,6 +404,8 @@ endfunction
 " }}} StripTrailingWhitespace "
 " ColorScheme {{{ "
 set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " set t_Co=256
 set background=dark
 colorscheme tender

@@ -9,7 +9,7 @@ set -gx PATH /sbin $PATH
 #  Monitors {{{ #
 set -U LAPMONITOR LVDS1
 set -U LMONITOR DP2
-set -U RMONITOR VGA1
+set -U RMONITOR DP1
 #  }}} Monitors #
 #Colors
 set fish_color_cwd white --bold
@@ -58,9 +58,19 @@ function dock
     eval xrandr --output $LMONITOR --auto --left-of $RMONITOR --primary;
     set-wallpaper;
 end
+function dock2
+    xrandr --output $LAPMONITOR --off;
+    eval xrandr --output $RMONITOR --rotate right --auto;
+    eval xrandr --output $LMONITOR --auto --left-of $RMONITOR --primary;
+    set-wallpaper;
+end
 function vga-above
-	xrandr --output $LAPMONITOR --auto --primary;
-    xrandr --output $RMONITOR --auto --above $LAPMONITOR $argv;
+	xrandr --output $LAPMONITOR --auto;
+    xrandr --output VGA1 --auto --primary --above $LAPMONITOR $argv;
+end
+function vga-double
+	xrandr --output $LAPMONITOR --auto;
+    xrandr --output VGA1 --primary $argv;
 end
 #notdocking setup
 function undock
