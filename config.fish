@@ -133,7 +133,7 @@ alias g "cd  $GITFOLDER; clear; ls"
 alias q "exit"
 alias r "ranger"
 alias updatevim "sudo -v; g; cd vim; git pull; configurevim; make clean; make; sudo make install"
-alias updateneovim "sudo -v; g; cd neovim; git pull; rm -rf build;  make clean; make CMAKE_BUILD_TYPE=Release; sudo make install"
+alias updateneovim "sudo -v; g; cd neovim; git pull; rm -rf build;  make clean; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install"
 alias set-wallpaper "feh --bg-fill ~/.wallpaper.jpg"
 #Some more alias to avoid making mistakes:
 alias rm "rm -i"
