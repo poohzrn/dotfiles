@@ -209,4 +209,15 @@ function weather --argument-names 'city'
 		curl wttr.in
 	end
 end
+# Changelog
+
+function clog --argument-names 'package'
+    if test -z $package
+        tail -3 /var/log/apt/history.log
+    else
+        zless "/usr/share/doc/$package/changelog.Debian.gz"
+    end
+end
+
+
 #vim: fdm=marker
