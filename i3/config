@@ -35,7 +35,7 @@ set $tagchrome "chromium "
 set $tagmail mail
 set $tagslack "slack &#xf259;"
 set $tagspotify "music &#xf025;"
-set $tagevince "pdf &#xf1c1;"
+set $tagpdf "pdf &#xf1c1;"
 set $tagskype "skype"
 # switch to workspace
 bindsym $mod+$ws1 workspace $tag1
@@ -52,7 +52,7 @@ bindsym $mod+$wsslack workspace $tagslack
 bindsym $mod+$wsmail workspace $tagmail
 bindsym $mod+$wsspotify workspace $tagspotify
 bindsym $mod+$wschrome workspace $tagchrome
-bindsym $mod+$wsevince workspace $tagevince
+bindsym $mod+$wsevince workspace $tagpdf
 bindsym $mod+$wsskype workspace $tagskype
 bindsym $mod+Tab workspace next
 # move focused container to workspace
@@ -68,7 +68,7 @@ bindsym $mod+Shift+$ws9 move container to workspace $tag9
 bindsym $mod+Shift+$ws10 move container to workspace $tag10
 bindsym $mod+Shift+$wsslack move container to workspace $tagslack
 bindsym $mod+Shift+$wschrome move container to workspace $tagchrome
-bindsym $mod+Shift+$wsevince move container to workspace $tagevince
+bindsym $mod+Shift+$wsevince move container to workspace $tagpdf
 bindsym $mod+Shift+$wsskype move container to workspace $tagskype
 
 #Move programs to corret workspaces
