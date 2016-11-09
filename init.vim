@@ -54,10 +54,6 @@ let g:lightline = {
 " {{{Plugin: 'gruvbox'
 Plug 'morhetz/gruvbox'              "Colorscheme
 " }}}
-" Plugin: 'vim-over' {{{
-Plug 'osyo-manga/vim-over', {'on': 'OverCommandLine'}         " :substitute preview
-nnoremap <C-s> :OverCommandLine <CR>%s:
-" }}}
 " {{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <C-f><C-f> :Files<CR>
@@ -117,7 +113,6 @@ augroup SET_TEX
     autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>e :VimtexErrors<CR>
     autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>l :VimtexLabelsToggle<CR>
     autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>t :VimtexTocToggle<CR>
-
 augroup end
 
 let g:tex_flavor = 'latex'
@@ -177,15 +172,6 @@ Plug 'wellle/targets.vim'          "additional text objects
 Plug 'airblade/vim-gitgutter'          "diff
 
 "}}} "
-" Plugin: 'vim-surround' {{{
-Plug 'tpope/vim-surround'          "surroundings
-" cs and cc are equivalent to s and S
-nmap s  <Plug>Ysurround
-nmap S  <Plug>YSurround
-xmap s  <Plug>VSurround
-xmap S  <Plug>VgSurround
-
-"}}} "
 " Plugin: 'tender.vim' {{{
 Plug 'jacoborus/tender.vim'          "24-bit colorscheme
 
@@ -219,6 +205,10 @@ if v:version > 703 || v:version == 703 && has("patch541")
   set formatoptions+=j " Delete comment character when joining commented lines
 endif
 " }}}
+if exists('&inccommand')
+  set inccommand=split
+  nnoremap <C-s> :%s:
+endif
 " Wild menu and search {{{
 set wildmenu
 set incsearch       " Find the next match as we type the search
