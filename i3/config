@@ -77,13 +77,12 @@ for_window [class="Spotify"] border none, move container to workspace $tagspotif
 for_window [class="chromium"] move container to workspace $tagchrome
 for_window [class="slack"] move container to workspace $tagslack
 for_window [class="Icedove"] move container to workspace $tagmail
-for_window [class="Evince"] move container to workspace $tagevince
-#for_window [class="zathura"] move container to workspace $tagevince
-for_window [class="slack"] move container to workspace $tagevince
-for_window [class="skype"] move container to workspace $tagevince
-assign [class="^slack$"] $tagslack
-# assign [class="^XTerm$"] $tag1
-#assign [class="^Zathura$"] $tagevince
+for_window [class="Evince"] move container to workspace $tagpdf
+#for_window [class="zathura"] move container to workspace $tagpdf
+for_window [class="Slack"] move container to workspace $tagslack
+for_window [class="skype"] move container to workspace $tagpdf
+assign [class="^Slack$"] $tagslack
+#assign [class="^Zathura$"] $tagpdf
 
 # set mod key
 set $mod Mod1
@@ -103,7 +102,8 @@ bindsym $mod+c exec xterm
 bindsym $mod+q kill
 #
 # start rofi (a program launcher)
-bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob-hide-scrollbar
+# bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -opacity "85" -bw 0 -bc "#222222" -bg "#000000" -fg "#888888" -hlbg "#5f676a"  -hlfg "#008fff" -font "pango:Source Code Pro 10" -hide-scrollbar -glob-hide-scrollbar
+bindsym $mod+space exec dmenu_run
 bindsym $mod+u exec ~/git/dotfiles/scripts/toggle-xkbmap.sh && pkill -RTMIN+$KEYBOARD_SIGNAL i3blocks
 ## Navigation
 # change focus
@@ -191,7 +191,7 @@ bar {
     status_command i3blocks -c ~/.config/i3blocks/config    # -c ~/.i3/i3status.conf
     strip_workspace_numbers     no
     font pango:Source Code Pro 10, FontAwesome 8
-    position                    top
+    # position                    top
 	colors {
         background          #000000
         statusline          #ffffff
