@@ -4,6 +4,7 @@
     - [mkdir -p ~/downloads]
     - [mkdir -p ~/.config]
     - [mkdir -p ~/.config/i3blocks]
+    - [mkdir -p ~/.config/i3]
     - [mkdir -p ~/.tmux/plugins]
     -
       command: if [ -d ~/git/tpm ]; then cd ~/git/tpm && git pull; else cd ~/git && git clone https://github.com/tmux-plugins/tpm; fi
@@ -31,9 +32,9 @@
         create: true
         force: true
         path: synergy.conf
-    ~/.i3:
+    ~/.config/i3/config:
         force: true
-        path: i3/
+        path: i3/config
     ~/.config/i3blocks/config:
         create: true
         force: true
