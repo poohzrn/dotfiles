@@ -55,6 +55,7 @@ bindsym $mod+$wschrome workspace $tagchrome
 bindsym $mod+$wsevince workspace $tagpdf
 bindsym $mod+$wsskype workspace $tagskype
 bindsym $mod+Tab workspace next
+bindsym $mod+shift+Tab workspace prev
 # move focused container to workspace
 bindsym $mod+Shift+$ws1 move container to workspace $tag1
 bindsym $mod+Shift+$ws2 move container to workspace $tag2
