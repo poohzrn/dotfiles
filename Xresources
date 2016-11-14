@@ -18,16 +18,12 @@ Xft.embolden: false
 ! --- xterm {{{1
 ! -----------------------------------------------------------------------------
 ! -- Basic settings, colors, & visuals (also fix too-dark blue)
+
 XTerm*termName: xterm-256color
 xterm*loginShell: true
 xterm*scrollBar: false
-xterm*background: grey9
-xterm*foreground: white
-xterm*cursorColor: red
 xterm*cursorUnderline: true
 xterm*cursorBlink: true
-xterm*color4: DodgerBlue1
-xterm*color12: SteelBlue1
 xterm*dynamicColors: true
 xterm*saveLines: 5000
 ! -- Allow utf8 in/out
@@ -37,7 +33,7 @@ xtere*eightBitControl: false
 xterm*eightBitOutput: true
 ! -- Enables True-Type rendering:
 xterm*renderFont: true
-xterm*faceName: Sauce Code Pro:size=10
+xterm*faceName: Sauce Code Pro:size=14
 xterm*faceNameDoublesize: Sauce Code Pro
 xterm*wideChars: true
 xterm*wideFont: Sauce Code Pro
@@ -53,33 +49,101 @@ XTerm*translations: #override \
 	Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD)
 
 xterm*charClass: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35:48
-xterm*color24:  #076678
-xterm*color66:  #427b58
-xterm*color88:  #9d0006
-xterm*color96:  #8f3f71
-xterm*color100: #79740e
-xterm*color108: #8ec07c
-xterm*color109: #83a598
-xterm*color130: #af3a03
-xterm*color136: #b57614
-xterm*color142: #b8bb26
-xterm*color167: #fb4934
-xterm*color175: #d3869b
-xterm*color208: #fe8019
-xterm*color214: #fabd2f
-xterm*color223: #ebdbb2
-xterm*color228: #f2e5bc
-xterm*color229: #fbf1c7
-xterm*color230: #f9f5d7
-xterm*color234: #1d2021
-xterm*color235: #282828
-xterm*color236: #32302f
-xterm*color237: #3c3836
-xterm*color239: #504945
-xterm*color241: #665c54
-xterm*color243: #7c6f64
-xterm*color244: #928374
-xterm*color245: #928374
-xterm*color246: #a89984
-xterm*color248: #bdae93
-xterm*color250: #d5c4a1
+/* !- red/black */
+/* xterm*background: grey9 */
+/* xterm*foreground: white */
+xterm*cursorColor: red
+/* xterm*color4: DodgerBlue1 */
+/* xterm*color12: SteelBlue1 */
+/* xterm*color24:  #076678 */
+/* xterm*color66:  #427b58 */
+/* xterm*color88:  #9d0006 */
+/* xterm*color96:  #8f3f71 */
+/* xterm*color100: #79740e */
+/* xterm*color108: #8ec07c */
+/* xterm*color109: #83a598 */
+/* xterm*color130: #af3a03 */
+/* xterm*color136: #b57614 */
+/* xterm*color142: #b8bb26 */
+/* xterm*color167: #fb4934 */
+/* xterm*color175: #d3869b */
+/* xterm*color208: #fe8019 */
+/* xterm*color214: #fabd2f */
+/* xterm*color223: #ebdbb2 */
+/* xterm*color228: #f2e5bc */
+/* xterm*color229: #fbf1c7 */
+/* xterm*color230: #f9f5d7 */
+/* xterm*color234: #1d2021 */
+/* xterm*color235: #282828 */
+/* xterm*color236: #32302f */
+/* xterm*color237: #3c3836 */
+/* xterm*color239: #504945 */
+/* xterm*color241: #665c54 */
+/* xterm*color243: #7c6f64 */
+/* xterm*color244: #928374 */
+/* xterm*color245: #928374 */
+/* xterm*color246: #a89984 */
+/* xterm*color248: #bdae93 */
+/* xterm*color250: #d5c4a1 */
+
+!! drop in Solarized colorscheme for Xresources/Xdefaults
+
+!!SOLARIZED HEX     16/8 TERMCOL  XTERM/HEX   L*A*B      RGB         HSB
+!!--------- ------- ---- -------  ----------- ---------- ----------- -----------
+!!base03    #002b36  8/4 brblack  234 #1c1c1c 15 -12 -12   0  43  54 193 100  21
+!!base02    #073642  0/4 black    235 #262626 20 -12 -12   7  54  66 192  90  26
+!!base01    #586e75 10/7 brgreen  240 #585858 45 -07 -07  88 110 117 194  25  46
+!!base00    #657b83 11/7 bryellow 241 #626262 50 -07 -07 101 123 131 195  23  51
+!!base0     #839496 12/6 brblue   244 #808080 60 -06 -03 131 148 150 186  13  59
+!!base1     #93a1a1 14/4 brcyan   245 #8a8a8a 65 -05 -02 147 161 161 180   9  63
+!!base2     #eee8d5  7/7 white    254 #e4e4e4 92 -00  10 238 232 213  44  11  93
+!!base3     #fdf6e3 15/7 brwhite  230 #ffffd7 97  00  10 253 246 227  44  10  99
+!!yellow    #b58900  3/3 yellow   136 #af8700 60  10  65 181 137   0  45 100  71
+!!orange    #cb4b16  9/3 brred    166 #d75f00 50  50  55 203  75  22  18  89  80
+!!red       #dc322f  1/1 red      160 #d70000 50  65  45 220  50  47   1  79  86
+!!magenta   #d33682  5/5 magenta  125 #af005f 50  65 -05 211  54 130 331  74  83
+!!violet    #6c71c4 13/5 brmagenta 61 #5f5faf 50  15 -45 108 113 196 237  45  77
+!!blue      #268bd2  4/4 blue      33 #0087ff 55 -10 -45  38 139 210 205  82  82
+!!cyan      #2aa198  6/6 cyan      37 #00afaf 60 -35 -05  42 161 152 175  74  63
+!!green     #859900  2/2 green     64 #5f8700 60 -20  65 133 153   0  68 100  60
+
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+xterm*background:            S_base03
+xterm*foreground:            S_base00
+xterm*fading:                40
+xterm*fadeColor:             S_base03
+/* xterm*cursorColor:           S_base1 */
+xterm*pointerColorBackground:S_base01
+xterm*pointerColorForeground:S_base1
+xterm*color0:                S_base02
+xterm*color8:                S_base03
+xterm*color1:                S_red
+xterm*color9:                S_orange
+xterm*color2:                S_green
+xterm*color10:               S_base01
+xterm*color3:                S_yellow
+xterm*color11:               S_base00
+xterm*color4:                S_blue
+xterm*color12:               S_base0
+xterm*color5:                S_magenta
+xterm*color13:               S_violet
+xterm*color6:                S_cyan
+xterm*color14:               S_base1
+xterm*color7:                S_base2
+xterm*color15:               S_base3

@@ -142,7 +142,6 @@ alias rm "rm -i"
 alias cp "cp -i"
 alias mv "mv -i"
 #  Music
-alias spotify "chromium https://play.spotify.com/browse"
 #  }}} Misc aliases #
 #  APT {{{ #
 alias update "sudo apt update; sudo apt upgrade" #vim -c :PlugUpdate -c :q -c :q"

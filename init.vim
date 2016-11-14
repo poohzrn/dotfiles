@@ -34,7 +34,7 @@ set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
 let g:lightline = {
-      \ 'colorscheme': 'PaperColor_dark',
+      \ 'colorscheme': 'solarized',
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ],
       \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
@@ -50,9 +50,6 @@ let g:lightline = {
       \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
       \ },
       \ }
-" }}}
-" {{{Plugin: 'gruvbox'
-Plug 'morhetz/gruvbox'              "Colorscheme
 " }}}
 " {{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
@@ -92,7 +89,7 @@ let g:neomake_warning_sign = {
     \ }
 let g:neomake_open_list = 2
 let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_tex_enabled_makers = ['lacheck', 'chktex', 'proselint']
+let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
 let g:neomake_cpp_clang_maker = {
             \ 'args': ['-std=c++11'],
             \}
@@ -172,8 +169,38 @@ Plug 'wellle/targets.vim'          "additional text objects
 Plug 'airblade/vim-gitgutter'          "diff
 
 "}}} "
+" Plugin: 'goyo.vim' {{{
+Plug 'junegunn/goyo.vim'          "yogo
+nnoremap <silent><F1> :Goyo<cr>
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+  set scrolloff=5
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+"}}} "
+
+" {{{Plugin: 'gruvbox'
+Plug 'morhetz/gruvbox'              "Colorscheme
+" }}}
 " Plugin: 'tender.vim' {{{
 Plug 'jacoborus/tender.vim'          "24-bit colorscheme
+
+"}}} "
+" Plugin: 'vim-colors-solarized' {{{
+Plug 'altercation/vim-colors-solarized'          "Solarized colorscheme for vim
 
 "}}} "
 call plug#end()
@@ -393,12 +420,13 @@ function! StripTrailingWhitespace()
 endfunction
 " }}} StripTrailingWhitespace "
 " ColorScheme {{{ "
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" set termguicolors
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 " set t_Co=256
-set background=dark
-colorscheme tender
+syntax enable
+set background=light
+colorscheme solarized
 " }}} ColorScheme "
 
 " vim: fdm=marker
