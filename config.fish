@@ -159,8 +159,8 @@ alias tdmgm "tmux kill-session -t mgmt"
 #  }}} Tmux Aliases #
 
 #Uni
-alias sw "cd $GITFOLDER/p9/"
-alias swc "cd $GITFOLDER/sw8-code/"
+alias sw "cd $GITFOLDER/p9/report"
+alias swc "cd $GITFOLDER/codep9/"
 
 #  Git {{{
 alias pull "git pull"
@@ -218,6 +218,10 @@ function clog --argument-names 'package'
     else
         zless "/usr/share/doc/$package/changelog.Debian.gz"
     end
+end
+function updatepippackages
+    eval pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip3 install -U
+    pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip install -U
 end
 
 

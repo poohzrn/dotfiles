@@ -1,10 +1,6 @@
 let mapleader="\<Space>"
 " Plugins {{{ "
 call plug#begin()
-" Plugin: 'braceless.vim' {{{
-Plug 'tweekmonster/braceless.vim'         "Text objects, folding Python and other indented languages.
-autocmd FileType python BracelessEnable +indent +highlight
-"}}} "
 " Plugin: 'jedi-vim' {{{
 Plug 'davidhalter/jedi', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
 "}}} "
@@ -68,6 +64,20 @@ let g:fzf_action = {
 \ 'ctrl-s': 'split',
 \ 'ctrl-v': 'vsplit' }
 let g:fzf_layout = { 'down': '25%' }
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
+
 " }}}
 " Plugin: 'vim-fugitive' {{{
 Plug 'tpope/vim-fugitive'           "Git integration
@@ -78,18 +88,19 @@ nnoremap <silent>gc :Gcommit %:p <CR>i
 nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
 " }}}
 " {{{Plugin: 'neomake'
-Plug 'benekastah/neomake'           "asynchronous :make
+Plug '~/git/neomake'           "asynchronous :make
 "Toggle neomake list
 nnoremap <F12> :call ToggleNeomakeList()<CR>
-let g:neomake_error_sign = {
-    \ 'texthl': 'ErrorMsg',
-    \ }
-let g:neomake_warning_sign = {
-    \ 'texthl': 'WarningMsg',
-    \ }
+" let g:neomake_error_sign = {
+"     \ 'texthl': 'ErrorMsg',
+"     \ }
+" let g:neomake_warning_sign = {
+"     \ 'texthl': 'WarningMsg',
+"     \ }
 let g:neomake_open_list = 2
-let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
+let g:neomake_tex_enabled_makers = ['lacheck', 'proselint']
+let g:neomake_md_enabled_makers = ['proselint']
+let g:neomake_python_enabled_makers = ['djangolint']
 let g:neomake_cpp_clang_maker = {
             \ 'args': ['-std=c++11'],
             \}
@@ -136,6 +147,7 @@ let g:vimtex_viewer_zathura = 1
 let g:vimtex_view_general_viewer = 'zathura'
 let g:vimtex_quickfix_autojump = 1
 let g:vimtex_quickfix_mode = 1
+
 autocmd FileType tex let b:vimtex_main = 'master.tex'
 
 if !exists('g:deoplete#omni_patterns')
@@ -170,7 +182,7 @@ Plug 'airblade/vim-gitgutter'          "diff
 
 "}}} "
 " Plugin: 'goyo.vim' {{{
-Plug 'junegunn/goyo.vim'          "yogo
+Plug 'junegunn/goyo.vim', {'on': 'Goyo'}          "yogo
 nnoremap <silent><F1> :Goyo<cr>
 function! s:goyo_enter()
   silent !tmux set status off
@@ -191,12 +203,11 @@ endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
 "}}} "
-
 " {{{Plugin: 'gruvbox'
-Plug 'morhetz/gruvbox'              "Colorscheme
+"Plug 'morhetz/gruvbox'              "Colorscheme
 " }}}
 " Plugin: 'tender.vim' {{{
-Plug 'jacoborus/tender.vim'          "24-bit colorscheme
+"Plug 'jacoborus/tender.vim'          "24-bit colorscheme
 
 "}}} "
 " Plugin: 'vim-colors-solarized' {{{
@@ -205,8 +216,20 @@ Plug 'altercation/vim-colors-solarized'          "Solarized colorscheme for vim
 "}}} "
 call plug#end()
 " }}} Plugins "
+" netrw {{{ "
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+" augroup ProjectDrawer
+"   autocmd!
+"   autocmd VimEnter * :Vexplore
+" augroup END
+" }}} netrw "
 " General Settings {{{
 "=== Misc Settings ===
+set path+=**
 set smarttab
 set lazyredraw
 filetype plugin indent on

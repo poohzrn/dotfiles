@@ -19,6 +19,7 @@ Xft.embolden: false
 ! -----------------------------------------------------------------------------
 ! -- Basic settings, colors, & visuals (also fix too-dark blue)
 
+xterm*lineSpace: 1
 XTerm*termName: xterm-256color
 xterm*loginShell: true
 xterm*scrollBar: false
@@ -33,7 +34,7 @@ xtere*eightBitControl: false
 xterm*eightBitOutput: true
 ! -- Enables True-Type rendering:
 xterm*renderFont: true
-xterm*faceName: Sauce Code Pro:size=14
+xterm*faceName: Sauce Code Pro:size=13
 xterm*faceNameDoublesize: Sauce Code Pro
 xterm*wideChars: true
 xterm*wideFont: Sauce Code Pro
@@ -49,10 +50,10 @@ XTerm*translations: #override \
 	Ctrl Shift <KeyPress> V: insert-selection(CLIPBOARD)
 
 xterm*charClass: 33:48,37-38:48,45-47:48,64:48,58:48,126:48,61:48,63:48,43:48,35:48
+/* xterm*cursorColor: red */
 /* !- red/black */
 /* xterm*background: grey9 */
 /* xterm*foreground: white */
-xterm*cursorColor: red
 /* xterm*color4: DodgerBlue1 */
 /* xterm*color12: SteelBlue1 */
 /* xterm*color24:  #076678 */
@@ -128,7 +129,7 @@ xterm*background:            S_base03
 xterm*foreground:            S_base00
 xterm*fading:                40
 xterm*fadeColor:             S_base03
-/* xterm*cursorColor:           S_base1 */
+xterm*cursorColor:           S_base1
 xterm*pointerColorBackground:S_base01
 xterm*pointerColorForeground:S_base1
 xterm*color0:                S_base02

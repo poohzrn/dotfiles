@@ -9,7 +9,7 @@ sudo mkdir -p /etc/acpi/events #Events -> see acpi_listen & man acpid
 #Actions and Events
 EVENTS=(
     "thinkpad-dock"
-    "thinkpad-undock" 
+    "thinkpad-undock"
     "thinkpad-lid-close"
     "thinkpad-lid-open")
 
@@ -23,7 +23,7 @@ ACTIONS=(
 for EVENT in "${EVENTS[@]}"
 do
     if [ ! -e /etc/acpi/events/$EVENT ]; then
-        sudo ln -s ~/git/dotfiles/thinkpad/events/$EVENT /etc/acpi/events/$EVENT
+        sudo ln -sf ~/git/dotfiles/thinkpad/events/$EVENT /etc/acpi/events/$EVENT
     fi
 done
 
@@ -31,6 +31,6 @@ done
 for ACTION in "${ACTIONS[@]}"
 do
     if [ ! -e /etc/acpi/actions/$ACTION ]; then
-        sudo ln -s ~/git/dotfiles/thinkpad/actions/$ACTION /etc/acpi/actions/$ACTION
+        sudo ln -sf ~/git/dotfiles/thinkpad/actions/$ACTION /etc/acpi/actions/$ACTION
     fi
 done
