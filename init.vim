@@ -183,7 +183,7 @@ Plug 'airblade/vim-gitgutter'          "diff
 "}}} "
 " Plugin: 'goyo.vim' {{{
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}          "yogo
-nnoremap <silent><F1> :Goyo<cr>
+noremap <silent><F1> :Goyo<cr>
 function! s:goyo_enter()
   silent !tmux set status off
   silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z

@@ -4,16 +4,20 @@ ${VISUAL}$0
 \end{enumerate}
 endsnippet
 
-snippet spar "Encapsulate text in parentheses" b
+snippet ( "Encapsulate text in parentheses" b
 (${VISUAL})$0
 endsnippet
 
 snippet "
-\`\`$2''$0
+\`\`${VISUAL}$0''
 endsnippet
 
-snippet itm "Insert \item .." b
-\item $0
+snippet emph
+\emph{${VISUAL}$0}
+endsnippet
+
+snippet item "Insert \item .." b
+\item {$0}
 endsnippet
 
 snippet dit "Insert \item[stuff]" b
@@ -32,10 +36,10 @@ snippet todo "Do it now or later" b
 \todo{$1} $0
 endsnippet
 
-snippet use "Useusepackage" b
+snippet use "usepackage" b
 \usepackage{$1}$0
 endsnippet
-snippet cit "Snippet" b
+snippet cite "cite" b
 ~\cite{$1}$0
 endsnippet
 snippet Table "ref to table" b
