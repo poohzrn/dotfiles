@@ -1,13 +1,20 @@
 let g:mapleader="\<Space>"
 " Plugins {{{ "
 call plug#begin()
+" Python Plugins {{{ "
 " Plugin: 'jedi-vim' {{{
-Plug 'davidhalter/jedi', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'davidhalter/jedi', {'for': 'python'}
+"}}} "
+" Plugin: 'deoplete-jedi' {{{
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
+
 "}}} "
 " Plugin: 'autopep8' {{{
 Plug 'tell-k/vim-autopep8', {'for': 'python'}          "autopep8
 let g:autopep8_disable_show_diff=1
 "}}} "
+
+" }}} Python Plugins "
 " Plugin: 'deoplete.nvim' {{{
 Plug 'Shougo/deoplete.nvim'
 let g:deoplete#enable_at_startup = 1
@@ -23,32 +30,6 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger='<tab>'
 let g:UltiSnipsJumpForwardTrigger='<tab>'
 let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
-" }}}
-" {{{Plugin: 'lightline.vim'
-Plug 'itchyny/lightline.vim'        "Neat information line
-set laststatus=2
-set statusline+=%#warningmsg#
-set statusline+=%*
-let g:lightline = {
-            \ 'colorscheme': 'solarized',
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ],
-            \             [ 'fugitive', 'readonly', 'filename', 'modified', 'ale'] ]
-            \ },
-            \ 'component_function': {
-            \    'ale' : 'AleStatusLine'
-            \ },
-            \ 'component': {
-            \   'readonly': '%{&filetype=="help"?"":&readonly?"RO":""}',
-            \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-            \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-            \ },
-            \ 'component_visible_condition': {
-            \   'readonly': '(&filetype!="help"&& &readonly)',
-            \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-            \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-            \ },
-            \ }
 " }}}
 " {{{ Plugin: 'fzf.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
@@ -67,8 +48,8 @@ let g:fzf_action = {
             \ 'ctrl-s': 'split',
             \ 'ctrl-v': 'vsplit' }
 let g:fzf_layout = { 'down': '25%' }
-let g:fzf_colors =
-            \ { 'fg':      ['fg', 'Normal'],
+let g:fzf_colors = {
+            \ 'fg':      ['fg', 'Normal'],
             \ 'bg':      ['bg', 'Normal'],
             \ 'hl':      ['fg', 'Comment'],
             \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
@@ -81,14 +62,6 @@ let g:fzf_colors =
             \ 'spinner': ['fg', 'Label'],
             \ 'header':  ['fg', 'Comment'] }
 
-" }}}
-" Plugin: 'vim-fugitive' {{{
-Plug 'tpope/vim-fugitive'           "Git integration
-nnoremap <silent><leader>gd :Gdiff <CR>
-nnoremap <silent><leader>st :Gstatus <CR>
-nnoremap <silent><leader>gp :Gpull<CR>
-nnoremap <silent>gc :Gcommit %:p <CR>i
-nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
 " }}}
 " {{{Plugin: 'neomake'
 " Plug 'neomake/neomake', {'for': 'tex'}           "asynchronous :make
@@ -104,7 +77,7 @@ nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
 Plug 'tpope/vim-repeat'          " .
 " }}}
 " Plugin: 'vimtex' {{{
-Plug 'lervag/vimtex', {'for': 'python' }          "A modern vim plugin for editing LaTeX
+Plug 'lervag/vimtex', {'for': 'text' }          "A modern vim plugin for editing LaTeX
 "Toggle comilation
 augroup SET_TEX
     autocmd BufRead,BufNewFile *.tex set ft=tex
@@ -166,10 +139,57 @@ let g:deoplete#omni_patterns.tex =
 " Plugin: 'targets.vim' {{{
 Plug 'wellle/targets.vim'          "additional text objects
 "}}} "
-" Plugin: 'vim-gitgutter' {{{
-Plug 'airblade/vim-gitgutter'          "diff
-
+" Plugin: 'ale' {{{
+Plug '~/ale'          "Async linter
+function! AleStatusLine() abort
+    return ALEGetStatusLine()
+endfunction
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_sign_column_always = 1
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%][%severity%]|%s'
+let g:ale_statusline_format = ['E:%d', 'W:%d', '']
+nmap <silent> <c-p> <Plug>(ale_previous_wrap)
+nmap <silent> <c-n> <Plug>(ale_next_wrap)
 "}}} "
+" Git Plugins {{{ "
+" Plugin: 'vim-fugitive' {{{
+Plug 'tpope/vim-fugitive'           "Git integration
+nnoremap <silent><leader>gd :Gdiff <CR>
+nnoremap <silent><leader>st :Gstatus <CR>
+nnoremap <silent><leader>gp :Gpull<CR>
+nnoremap <silent>gc :Gcommit %:p <CR>i
+nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
+" }}}
+Plug 'airblade/vim-gitgutter'
+" }}} Git Plugins "
+" UI {{{ "
+" {{{Plugin: 'lightline.vim'
+Plug 'itchyny/lightline.vim'        "Neat information line
+set laststatus=2
+set statusline+=%#warningmsg#
+set statusline+=%*
+let g:lightline = {
+            \ 'colorscheme': 'solarized',
+            \ 'active': {
+            \   'left': [ [ 'mode', 'paste' ],
+            \             [ 'fugitive', 'readonly', 'filename', 'modified', 'ale'] ]
+            \ },
+            \ 'component_function': {
+            \    'ale' : 'AleStatusLine'
+            \ },
+            \ 'component': {
+            \   'readonly': '%{&filetype=="help"?"":&readonly?"RO":""}',
+            \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
+            \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
+            \ },
+            \ 'component_visible_condition': {
+            \   'readonly': '(&filetype!="help"&& &readonly)',
+            \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
+            \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
+            \ },
+            \ }
+" }}}
 " Plugin: 'goyo.vim' {{{
 Plug 'junegunn/goyo.vim', {'on': 'Goyo'}          "yogo
 nnoremap <silent><F11> :Goyo<cr>
@@ -194,27 +214,23 @@ augroup GOYO
     autocmd! User GoyoEnter nested call <SID>goyo_enter()
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 augroup end
-        "}}} "
-" Plugin: 'vim-colors-solarized' {{{
-Plug 'altercation/vim-colors-solarized'          "Solarized colorscheme for vim
+"}}} "
+Plug 'altercation/vim-colors-solarized' "Solarized colorscheme for vim
 
-"}}} "
-" Plugin: 'ale' {{{
-Plug '~/ale'          "Async linter
-function! AleStatusLine() abort
-    return ALEGetStatusLine()
-endfunction
-let g:ale_echo_msg_error_str = 'E'
-let g:ale_sign_column_always = 1
-let g:ale_echo_msg_warning_str = 'W'
-let g:ale_echo_msg_format = '[%linter%][%severity%]|%s'
-let g:ale_statusline_format = ['E:%d', 'W:%d', '']
-nmap <silent> <c-p> <Plug>(ale_previous_wrap)
-nmap <silent> <c-n> <Plug>(ale_next_wrap)
-"}}} "
+" }}} UI "
 call plug#end()
 " }}} Plugins "
 " netrw {{{ "
+noremap <F1> :Lexplore<cr>
+" :<>
+augroup netrw_close
+    autocmd!
+    autocmd filetype netrw call NetrwClose()
+augroup END
+
+function! NetrwClose()
+    noremap <buffer> <F1> :bd<cr>
+endfunction
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 let g:netrw_browse_split = 4
@@ -306,7 +322,6 @@ let &t_EI = "\<Esc>[ q"
 " }}}"
 " {{{1 Key Mapping
 nnoremap <silent> <F2> :set invpaste paste?<CR>
-nnoremap <F4> :e $MYVIMRC<CR>
 nnoremap <space> <nop>
 noremap <space><space> zz
 nnoremap <C-j> <c-w>j
@@ -320,7 +335,6 @@ nnoremap <BS> <C-^>
 " Follow the leader
 nnoremap <leader>sp :setlocal spell! spelllang=en_us<CR>
 nnoremap <leader>spda :setlocal spell! spelllang=da<CR>
-nnoremap <CR><CR> :call FixWord()<CR>
 nnoremap <leader>w ]s
 nnoremap <leader>b [s
 nnoremap <leader>j gjzz
@@ -328,9 +342,6 @@ nnoremap <leader>k gkzz
 " For completion completion
 inoremap <C-j> <C-N>
 inoremap <C-k> <C-P>
-nnoremap <leader>del :call StripTrailingWhitespace()<CR>
-" Explorer
-noremap <F1> :Lexplore<CR>
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
@@ -340,6 +351,8 @@ function! FixWord() abort
         normal! 1z=
     endif
 endfunction
+command! FixWord :call FixWord()
+nnoremap <CR><CR> :FixWord<CR>
 "1}}}
 " Resizing {{{
 nnoremap <leader>rh :vertical resize +10 <CR>
@@ -355,8 +368,7 @@ vnoremap PP "+P
 nnoremap pp "+p
 nnoremap PP "+P
 " }}} Copy/Pase "
-" Au groups {{{ "
-"  Return to same line {{{
+"  Augroups {{{
 augroup line_return
     au!
     au BufReadPost *
@@ -364,13 +376,6 @@ augroup line_return
                 \     execute 'normal! g`"zvzz' |
                 \ endif
 augroup END
-" }}}
-"
-" augroup VimReload
-"     autocmd!
-"     autocmd BufWritePost $MYVIMRC source $MYVIMRC
-" augroup END
-
 augroup VIMRC
     autocmd!
     autocmd BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
@@ -379,7 +384,6 @@ augroup VIMRC
     autocmd InsertLeave * if bufname('%') != "[Command Line]" | pclose | endif
     " autocmd * qf wincmd L
 augroup END
-
 augroup ClearHighLight
     autocmd BufWrite * set nohlsearch
 augroup end
@@ -388,7 +392,7 @@ augroup cursororline_only_on_focus
         autocmd WinEnter * set cursorline
         autocmd WinLeave * set nocursorline
 augroup END
-" }}} Au groups "
+" }}} Augroups
 " Mode: Command {{{
 cnoremap <C-a> <Home>
 cnoremap <C-h> <Left>
@@ -433,11 +437,13 @@ function! StripTrailingWhitespace()
     endif
 endfunction
 command! StripTrailingWhitespace :call StripTrailingWhitespace()
+nnoremap <leader>del :StripTrailingWhitespace<CR>
+
 " }}} StripTrailingWhitespace "
 " Set Background {{{ "
 function! SetBackground() abort
     let l:time = abs(strftime("%H"))
-    if l:time >= 18 || l:time <= 9
+    if l:time >= abs(18) || l:time < abs(9)
         set background=dark
     else
         set background=light
