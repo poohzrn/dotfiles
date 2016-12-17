@@ -219,6 +219,7 @@ function clog --argument-names 'package'
     end
 end
 function updatepippackages
+    sudo -v;
     eval pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip3 install -U
     pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip install -U
 end

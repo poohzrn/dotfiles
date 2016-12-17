@@ -63,21 +63,21 @@ let g:fzf_colors = {
             \ 'header':  ['fg', 'Comment'] }
 
 " }}}
-" {{{Plugin: 'neomake'
-" Plug 'neomake/neomake', {'for': 'tex'}           "asynchronous :make
-" "Toggle neomake list
-" nnoremap <F12> :call ToggleNeomakeList()<CR>
-" let g:neomake_open_list = 0
-" let g:neomake_tex_enabled_makers = ['chktex', 'lacheck', 'proselint']
-" augroup NEOMAKE
-"     autocmd! BufWritePost * Neomake
-" augroup end
+"{{{ Plugin: 'neomake'
+Plug 'neomake/neomake', {'for': 'tex'}           "asynchronous :make
+"Toggle neomake list
+nnoremap <F12> :call ToggleNeomakeList()<CR>
+let g:neomake_open_list = 0
+let g:neomake_tex_enabled_makers = ['chktex', 'lacheck', 'proselint']
+augroup NEOMAKE
+    autocmd! BufWritePost *.tex Neomake
+augroup end
 " }}}
 " Plugin: 'vim-repeat' {{{
 Plug 'tpope/vim-repeat'          " .
 " }}}
 " Plugin: 'vimtex' {{{
-Plug 'lervag/vimtex', {'for': 'text' }          "A modern vim plugin for editing LaTeX
+Plug 'lervag/vimtex', {'for': 'tex' }          "A modern vim plugin for editing LaTeX
 "Toggle comilation
 augroup SET_TEX
     autocmd BufRead,BufNewFile *.tex set ft=tex
@@ -140,9 +140,11 @@ let g:deoplete#omni_patterns.tex =
 Plug 'wellle/targets.vim'          "additional text objects
 "}}} "
 " Plugin: 'ale' {{{
-Plug '~/ale'          "Async linter
+Plug 'w0rp/ale',  {'for': 'python'}          "Async linter
 function! AleStatusLine() abort
-    return ALEGetStatusLine()
+    if (&ft != 'tex')
+        return ALEGetStatusLine()
+    endif
 endfunction
 let g:ale_echo_msg_error_str = 'E'
 let g:ale_sign_column_always = 1
@@ -151,6 +153,12 @@ let g:ale_echo_msg_format = '[%linter%][%severity%]|%s'
 let g:ale_statusline_format = ['E:%d', 'W:%d', '']
 nmap <silent> <c-p> <Plug>(ale_previous_wrap)
 nmap <silent> <c-n> <Plug>(ale_next_wrap)
+"}}} "
+" Plugin: 'vimwiki' {{{
+Plug 'vimwiki/vimwiki'          "wikivim
+let g:vimwiki_list = [{'path': '~/vimwiki/',
+          \ 'template_path': '~/vimwiki/templates/',
+          \ 'template_ext': '.html'}]
 "}}} "
 " Git Plugins {{{ "
 " Plugin: 'vim-fugitive' {{{
@@ -161,7 +169,9 @@ nnoremap <silent><leader>gp :Gpull<CR>
 nnoremap <silent>gc :Gcommit %:p <CR>i
 nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
 " }}}
+" Plugin: 'vim-gitgutter' {{{
 Plug 'airblade/vim-gitgutter'
+"}}} "
 " }}} Git Plugins "
 " UI {{{ "
 " {{{Plugin: 'lightline.vim'
@@ -174,9 +184,6 @@ let g:lightline = {
             \ 'active': {
             \   'left': [ [ 'mode', 'paste' ],
             \             [ 'fugitive', 'readonly', 'filename', 'modified', 'ale'] ]
-            \ },
-            \ 'component_function': {
-            \    'ale' : 'AleStatusLine'
             \ },
             \ 'component': {
             \   'readonly': '%{&filetype=="help"?"":&readonly?"RO":""}',
@@ -215,9 +222,15 @@ augroup GOYO
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 augroup end
 "}}} "
-Plug 'altercation/vim-colors-solarized' "Solarized colorscheme for vim
+" Plugin: 'vim-colors-solarized {{{ "
+Plug 'altercation/vim-colors-solarized' 
+" }}} Plugin: 'vim-colors-solarized "
 
 " }}} UI "
+
+" Plugin: 'vim-mundo {{{ "
+Plug 'simnalamburt/vim-mundo' "Vim undo tree visualizer
+" }}}
 call plug#end()
 " }}} Plugins "
 " netrw {{{ "
