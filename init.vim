@@ -225,12 +225,15 @@ augroup end
 " Plugin: 'vim-colors-solarized {{{ "
 Plug 'altercation/vim-colors-solarized' 
 " }}} Plugin: 'vim-colors-solarized "
+" Plugin: 'despacio' {{{
+Plug 'alessandroyorba/despacio'          "colorscheme
 
+"}}} "
+" Plugin: 'winresizer' {{{
+Plug 'simeji/winresizer'
+
+"}}} "
 " }}} UI "
-
-" Plugin: 'vim-mundo {{{ "
-Plug 'simnalamburt/vim-mundo' "Vim undo tree visualizer
-" }}}
 call plug#end()
 " }}} Plugins "
 " netrw {{{ "
@@ -252,6 +255,7 @@ let g:netrw_winsize = 25
 " }}} netrw "
 " General Settings {{{
 "=== Misc Settings ===
+set diffopt+=vertical
 set path+=**
 set smarttab
 set lazyredraw
@@ -310,7 +314,7 @@ if &foldmethod ==# ''
 endif
 set foldlevel=0
 set foldcolumn=0
-set foldlevelstart=1
+set foldlevelstart=10
 set foldtext=TxtFoldText()
 function! TxtFoldText()
     let l:level = repeat('-', min([v:foldlevel-1,3])) . '+'
@@ -478,7 +482,7 @@ augroup END
 " }}}
 " ColorScheme {{{ "
 syntax enable
-colorscheme solarized
+colorscheme despacio
 " }}} ColorScheme "
 
 " vim: fdm=marker
