@@ -83,11 +83,6 @@ augroup SET_TEX
     autocmd BufRead,BufNewFile *.tex set ft=tex
     autocmd BufRead,BufNewFile *.tex set spell spelllang=en_us
     autocmd BufRead,BufNewFile *.tex setlocal formatoptions-=a
-    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>v :VimtexView<CR>
-    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>c :VimtexCompileToggle<CR>
-    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>e :VimtexErrors<CR>
-    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>l :VimtexLabelsToggle<CR>
-    autocmd BufRead,BufNewFile *.tex :map <buffer> <leader>t :VimtexTocToggle<CR>
     autocmd FileType tex let b:vimtex_main = 'master.tex'
 augroup end
 let g:tex_flavor = 'latex'
@@ -109,8 +104,12 @@ let g:vimtex_quickfix_ignored_warnings = [
             \ 'Command terminated with space.',
             \ 'LaTeX Font Warning',
             \ ]
-let g:vimtex_viewer_zathura = 1
-let g:vimtex_view_general_viewer = 'zathura'
+" let g:vimtex_viewer_zathura = 1
+" let g:vimtex_view_general_viewer = 'zathura'
+let g:vimtex_view_general_viewer = 'okular'
+let g:vimtex_view_general_options = '--unique @pdf\#src:@line@tex'
+let g:vimtex_view_general_options_latexmk = '--unique'
+
 let g:vimtex_quickfix_autojump = 1
 let g:vimtex_quickfix_mode = 2
 if !exists('g:deoplete#omni_patterns')
@@ -128,14 +127,14 @@ let g:deoplete#omni_patterns.tex =
             \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
             \ . ')\m'
     " }}}
-    " Plugin: 'vim-commentary' {{{
-    Plug 'tpope/vim-commentary', {'on': '<Plug>Commentary'}          "comments
-    if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
-        xmap cc  <Plug>Commentary
-        nmap cc  <Plug>Commentary
-        omap cc  <Plug>Commentary
-    endif
-    "}}} "
+" Plugin: 'vim-commentary' {{{
+Plug 'tpope/vim-commentary', {'on': '<Plug>Commentary'}          "comments
+if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
+    xmap cc  <Plug>Commentary
+    nmap cc  <Plug>Commentary
+    omap cc  <Plug>Commentary
+endif
+"}}} "
 " Plugin: 'targets.vim' {{{
 Plug 'wellle/targets.vim'          "additional text objects
 "}}} "
@@ -154,11 +153,8 @@ let g:ale_statusline_format = ['E:%d', 'W:%d', '']
 nmap <silent> <c-p> <Plug>(ale_previous_wrap)
 nmap <silent> <c-n> <Plug>(ale_next_wrap)
 "}}} "
-" Plugin: 'vimwiki' {{{
-Plug 'vimwiki/vimwiki'          "wikivim
-let g:vimwiki_list = [{'path': '~/vimwiki/',
-          \ 'template_path': '~/vimwiki/templates/',
-          \ 'template_ext': '.html'}]
+" Plugin: 'bexec' {{{
+Plug 'fboender/bexec'
 "}}} "
 " Git Plugins {{{ "
 " Plugin: 'vim-fugitive' {{{

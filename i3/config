@@ -17,7 +17,7 @@ set $ws10 0
 set $wschrome w
 set $wsmail m
 set $wsslack comma
-set $wsskype slash
+set $wssteam slash
 set $wsspotify period
 set $wsevince p
 # Definie tags/names for workspaces
@@ -31,12 +31,12 @@ set $tag7 7
 set $tag8 8
 set $tag9 "&#xf104;"
 set $tag10 "&#xf17c;"
-set $tagchrome "chromium "
+set $tagchrome "Chromium "
 set $tagmail mail
-set $tagslack "slack &#xf259;"
-set $tagspotify "music &#xf025;"
-set $tagpdf "pdf &#xf1c1;"
-set $tagskype "skype"
+set $socialtag "Social &#xf198;"
+set $tagspotify "Music &#xf025;"
+set $tagpdf "PDF &#xf1c1;"
+set $tagsteam "Game &#xf1b6;"
 # switch to workspace
 bindsym $mod+$ws1 workspace $tag1
 bindsym $mod+$ws2 workspace $tag2
@@ -48,12 +48,12 @@ bindsym $mod+$ws7 workspace $tag7
 bindsym $mod+$ws8 workspace $tag8
 bindsym $mod+$ws9 workspace $tag9
 bindsym $mod+$ws10 workspace $tag10
-bindsym $mod+$wsslack workspace $tagslack
+bindsym $mod+$wsslack workspace $socialtag
 bindsym $mod+$wsmail workspace $tagmail
 bindsym $mod+$wsspotify workspace $tagspotify
 bindsym $mod+$wschrome workspace $tagchrome
 bindsym $mod+$wsevince workspace $tagpdf
-bindsym $mod+$wsskype workspace $tagskype
+bindsym $mod+$wssteam workspace $tagsteam
 bindsym $mod+Tab workspace next
 bindsym $mod+shift+Tab workspace prev
 # move focused container to workspace
@@ -67,21 +67,26 @@ bindsym $mod+Shift+$ws7 move container to workspace $tag7
 bindsym $mod+Shift+$ws8 move container to workspace $tag8
 bindsym $mod+Shift+$ws9 move container to workspace $tag9
 bindsym $mod+Shift+$ws10 move container to workspace $tag10
-bindsym $mod+Shift+$wsslack move container to workspace $tagslack
+bindsym $mod+Shift+$wsslack move container to workspace $socialtag
 bindsym $mod+Shift+$wschrome move container to workspace $tagchrome
 bindsym $mod+Shift+$wsevince move container to workspace $tagpdf
-bindsym $mod+Shift+$wsskype move container to workspace $tagskype
+bindsym $mod+Shift+$wssteam move container to workspace $tagsteam
 
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace $tagspotify
 for_window [class="chromium"] move container to workspace $tagchrome
-for_window [class="slack"] move container to workspace $tagslack
+for_window [class="slack"] move container to workspace $socialtag
+for_window [class="discord"] move container to workspace $socialtag
 for_window [class="Icedove"] move container to workspace $tagmail
 for_window [class="Evince"] move container to workspace $tagpdf
 #for_window [class="zathura"] move container to workspace $tagpdf
-for_window [class="Slack"] move container to workspace $tagslack
-for_window [class="skype"] move container to workspace $tagpdf
-assign [class="^Slack$"] $tagslack
+for_window [class="Slack"] move container to workspace $socialtag
+for_window [class="steam"] move container to workspace $tagsteam
+assign [class="^Slack$"] $socialtag
+assign [class="^Discord$"] $socialtag
+assign [class="^Steam$"] $tagsteam
+assign [class="^steam$"] $tagsteam
+assign [class="^TeamViewer$"] $tag8
 #assign [class="^Zathura$"] $tagpdf
 
 # set mod key
