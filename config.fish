@@ -6,6 +6,7 @@ set -x FISH_CONFIG $HOME/git/dotfiles/config.fish
 set -x SCRIPTS $HOME/git/dotfiles/scripts
 set -x GITFOLDER ~/git
 set -gx PATH /sbin $PATH
+set -x FZF_DEFAULT_COMMAND = 'ag -g ""'
 #  Monitors {{{ #
 set -U LAPMONITOR LVDS1
 set -U LMONITOR DP2
@@ -58,6 +59,17 @@ function dock
     eval xrandr --output $LMONITOR --auto --left-of $RMONITOR --primary;
     set-wallpaper;
 end
+function dock-left
+    xrandr --output $LAPMONITOR --off;
+    eval xrandr --output $LMONITOR --auto --primary;
+    set-wallpaper;
+end
+function dock-right
+    xrandr --output $LAPMONITOR --off;
+    eval xrandr --output $RMONITOR --auto --primary;
+    set-wallpaper;
+end
+
 function dock2
     xrandr --output $LAPMONITOR --off;
     eval xrandr --output $RMONITOR --rotate right --auto;
@@ -71,6 +83,10 @@ end
 function vga-double
 	xrandr --output $LAPMONITOR --auto;
     xrandr --output VGA1 --primary $argv;
+end
+function dvi-double
+	xrandr --output $LAPMONITOR --auto;
+    xrandr --output $RMONITOR --primary $argv;
 end
 #notdocking setup
 function undock
@@ -127,6 +143,8 @@ abbr -a G "ls -l | grep -i"
 #}}}
 
 #  Misc aliases {{{ #
+alias python "/usr/bin/python3"
+alias pip "usr/bin/pip3"
 alias sl "ls"
 alias c "clear"
 alias g "cd  $GITFOLDER; clear; ls"

@@ -75,19 +75,22 @@ bindsym $mod+Shift+$wssteam move container to workspace $tagsteam
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace $tagspotify
 for_window [class="chromium"] move container to workspace $tagchrome
-for_window [class="slack"] move container to workspace $socialtag
 for_window [class="discord"] move container to workspace $socialtag
 for_window [class="Icedove"] move container to workspace $tagmail
 for_window [class="Evince"] move container to workspace $tagpdf
 #for_window [class="zathura"] move container to workspace $tagpdf
 for_window [class="Slack"] move container to workspace $socialtag
 for_window [class="steam"] move container to workspace $tagsteam
+for_window [class="citrixreciever"] move container to workspace $tagsteam
 assign [class="^Slack$"] $socialtag
+assign [class="^google-chrome$"] $tagchrome
+assign [class="*chrome*"] $tagchrome
+assign [class="^chromium$"] $tagchrome
 assign [class="^Discord$"] $socialtag
 assign [class="^Steam$"] $tagsteam
 assign [class="^steam$"] $tagsteam
 assign [class="^TeamViewer$"] $tag8
-#assign [class="^Zathura$"] $tagpdf
+assign [class="^evince$"] $tagpdf
 
 # set mod key
 set $mod Mod1
@@ -210,11 +213,12 @@ bar {
 }
 #Start at startup
 #exec --no-startup-id i3-msg 'exec synergy -c /home/lasse/.config/synergy/synergy.conf'
-exec --no-startup-id i3-msg 'exec rescuetime'
+# exec --no-startup-id i3-msg 'exec rescuetime'
 exec --no-startup-id i3-msg 'exec udiskie'
-exec --no-startup-id i3-msg 'exec chromium'
+exec --no-startup-id i3-msg 'exec wicd-client -t'
 exec --no-startup-id i3-msg 'exec ~/.dropbox-dist/dropboxd'
-exec --no-startup-id i3-msg 'exec xterm tmux'
+exec --no-startup-id i3-msg 'exec google-chrome'
+# exec --no-startup-id i3-msg 'exec xterm tmux'
 exec --no-startup-id i3-msg 'exec gtk-redshift -l 57:9 -t 5700:3600 -g 0.8 -m randr'
 exec --no-startup-id i3-msg 'exec slack'
 exec --no-startup-id feh --bg-fill ~/.wallpaper.jpg

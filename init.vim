@@ -83,6 +83,7 @@ augroup SET_TEX
     autocmd BufRead,BufNewFile *.tex set ft=tex
     autocmd BufRead,BufNewFile *.tex set spell spelllang=en_us
     autocmd BufRead,BufNewFile *.tex setlocal formatoptions-=a
+    autocmd BufWritePost,BufNewFile *.tex setlocal formatoptions-=a
     autocmd FileType tex let b:vimtex_main = 'master.tex'
 augroup end
 let g:tex_flavor = 'latex'
@@ -104,11 +105,11 @@ let g:vimtex_quickfix_ignored_warnings = [
             \ 'Command terminated with space.',
             \ 'LaTeX Font Warning',
             \ ]
-" let g:vimtex_viewer_zathura = 1
-" let g:vimtex_view_general_viewer = 'zathura'
-let g:vimtex_view_general_viewer = 'okular'
-let g:vimtex_view_general_options = '--unique @pdf\#src:@line@tex'
-let g:vimtex_view_general_options_latexmk = '--unique'
+let g:vimtex_viewer_zathura = 1
+let g:vimtex_view_general_viewer = 'zathura'
+" let g:vimtex_view_general_viewer = 'okular'
+" let g:vimtex_view_general_options = '--unique @pdf\#src:@line@tex'
+" let g:vimtex_view_general_options_latexmk = '--unique'
 
 let g:vimtex_quickfix_autojump = 1
 let g:vimtex_quickfix_mode = 2
@@ -156,6 +157,10 @@ nmap <silent> <c-n> <Plug>(ale_next_wrap)
 " Plugin: 'bexec' {{{
 Plug 'fboender/bexec'
 "}}} "
+" Plugin: 'tagbar' {{{
+Plug 'majutsushi/tagbar'
+nmap <F3> :TagbarToggle<CR>
+"}}} "
 " Git Plugins {{{ "
 " Plugin: 'vim-fugitive' {{{
 Plug 'tpope/vim-fugitive'           "Git integration
@@ -166,7 +171,7 @@ nnoremap <silent>gc :Gcommit %:p <CR>i
 nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
 " }}}
 " Plugin: 'vim-gitgutter' {{{
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 "}}} "
 " }}} Git Plugins "
 " UI {{{ "
@@ -218,8 +223,46 @@ augroup GOYO
     autocmd! User GoyoLeave nested call <SID>goyo_leave()
 augroup end
 "}}} "
+" Plugin: 'vim-startify' {{{
+Plug 'mhinz/vim-startify'
+let g:startify_custom_header = []
+let g:startify_session_dir = '~/.vim/session'
+nmap nnoremap <leader><F4> :Startify<CR>
+let g:startify_bookmarks = [
+            \ { 'c': '~/git/dotfiles/init.vim' },
+            \ { 'sw10': '~/git/sw10-report/README.md' },
+            \ ]
+let g:startify_skiplist = [
+      \ 'COMMIT_EDITMSG',
+      \ 'bundle/.*/doc',
+      \ ]
+let g:startify_list_order = ['sessions', 'bookmarks', 'dir', 'files', 'commands']
+let g:startify_list_order = [
+        \ ['   Sessions:'],
+        \ 'sessions',
+        \ ['   Bookmarks:'],
+        \ 'bookmarks',
+        \ ['   MRU in dir:'],
+        \ 'dir',
+        \ ['   MRU:'],
+        \ 'files',
+        \ ]
+let g:startify_change_to_dir          = 1
+let g:startify_change_to_vcs_root     = 1
+let g:startify_enable_special         = 0
+let g:startify_files_number           = 5
+let g:startify_fortune_use_unicode    = 1
+let g:startify_session_autoload       = 0
+let g:startify_session_persistence    = 1
+let g:startify_update_oldfiles        = 1
+let g:startify_use_env                = 1
+"}}} "
+" Plugin: 'vim-orgmode' {{{
+Plug 'jceb/vim-orgmode'
+
+"}}} "
 " Plugin: 'vim-colors-solarized {{{ "
-Plug 'altercation/vim-colors-solarized' 
+Plug 'altercation/vim-colors-solarized'
 " }}} Plugin: 'vim-colors-solarized "
 " Plugin: 'despacio' {{{
 Plug 'alessandroyorba/despacio'          "colorscheme
@@ -240,6 +283,10 @@ augroup netrw_close
     autocmd filetype netrw call NetrwClose()
 augroup END
 
+augroup nonvim
+   au!
+   au BufRead *.pdf sil exe "!zathura " . shellescape(expand("%:p")) . " &"| bd | let &ft=&ft
+augroup end
 function! NetrwClose()
     noremap <buffer> <F1> :bd<cr>
 endfunction
@@ -310,7 +357,7 @@ if &foldmethod ==# ''
 endif
 set foldlevel=0
 set foldcolumn=0
-set foldlevelstart=10
+set foldlevelstart=100
 set foldtext=TxtFoldText()
 function! TxtFoldText()
     let l:level = repeat('-', min([v:foldlevel-1,3])) . '+'
@@ -471,14 +518,14 @@ function! BackgroundToggle() abort
 endfunction
 command! BackgroundColorSet :call SetBackground()
 command! BackgroundColorToggle :call BackgroundToggle()
-augroup set_background_color
-    autocmd!
-    autocmd BufRead,BufNewFile,BufEnter * BackgroundColorSet
-augroup END
+" augroup set_background_color
+"     autocmd!
+"     " autocmd BufRead,BufNewFile,BufEnter * BackgroundColorSet
+" augroup END
 " }}}
 " ColorScheme {{{ "
 syntax enable
-colorscheme despacio
+colorscheme solarized
 " }}} ColorScheme "
 
 " vim: fdm=marker
