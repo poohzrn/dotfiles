@@ -321,6 +321,7 @@ set runtimepath+=/home/lasse/.fzf
 set scrolloff=8            "8 lines to the curser
 set autowriteall             "Write the contents of the file, auto
 "https://github.com/tpope/vim-sensible/blob/master/plugin/sensible.vim#L57-#L59
+set timeout timeoutlen=200 ttimeoutlen=200
 if v:version > 703 || v:version == 703 && has('patch541')
     set formatoptions+=j " Delete comment character when joining commented lines
 endif

@@ -3,10 +3,10 @@ set -x editor nvim
 set -x GIT_EDITOR nvim
 set -x XDG_CONFIG_HOME $HOME/.config
 set -x FISH_CONFIG $HOME/git/dotfiles/config.fish
+set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 set -x SCRIPTS $HOME/git/dotfiles/scripts
 set -x GITFOLDER ~/git
 set -gx PATH /sbin $PATH
-set -x FZF_DEFAULT_COMMAND = 'ag -g ""'
 #  Monitors {{{ #
 set -U LAPMONITOR LVDS1
 set -U LMONITOR DP2
