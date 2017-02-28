@@ -242,5 +242,10 @@ function updatepippackages
     pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip install -U
 end
 
+function tm --argument-names 'new'
+  set -lx session
+  set -lx newsession "$new"
+  set -lx session (tmux list-sessions -F "#{session_name}" | fzf --query="$new" --select-1 --exit-0) ; tmux attach-session -t $session ; or tmux new-session -s $newsession
+  end
 
 #vim: fdm=marker
