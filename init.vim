@@ -56,6 +56,9 @@ augroup NEOMAKE
     autocmd! BufWritePost *.tex Neomake
 augroup end
 " }}}
+" Plugin: Tmux navigator {{{ "
+Plug 'christoomey/vim-tmux-navigator'
+" }}} Tmux navigator "
 call plug#end()
 " }}} Plugins "
 " General Settings {{{
