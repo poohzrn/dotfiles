@@ -203,6 +203,7 @@ cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <C-d> <Delete>
 cnoremap <C-e> <End>
+cnoremap W w
 " }}}
 " FixWord {{{ "
 " Neat for tpyos
