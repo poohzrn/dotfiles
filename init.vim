@@ -32,7 +32,7 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 " Plugin: 'deoplete.nvim' {{{
 Plug 'Shougo/deoplete.nvim'
 set runtimepath+=~/.config/nvim/bundle/deoplete.nvim/
-" let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 " }}}
 " Plugin: 'vim-fugitive' {{{
@@ -63,6 +63,31 @@ augroup end
 " }}}
 "{{{ Plugin: 'vimtex'
 Plug 'lervag/vimtex', {'for': 'tex'}
+augroup SET_TEX
+      autocmd BufRead,BufNewFile *.tex set ft=tex
+      autocmd BufRead,BufNewFile *.tex set spell spelllang=en_us
+      autocmd BufRead,BufNewFile *.tex setlocal formatoptions-=a
+      autocmd FileType tex let b:vimtex_main = 'master.tex'
+      autocmd BufRead,BufNewFile *.tex let g:tex_flavor = 'latex'
+      set foldtext=vimtex#fold#text()
+      let g:vimtex_fold_enabled = 1
+      let g:vimtex_quickfix_autojump = 1
+      let g:vimtex_quickfix_mode = 2
+augroup end
+if !exists('g:deoplete#omni_patterns')
+     let g:deoplete#omni_patterns = {}
+endif
+let g:deoplete#omni_patterns.tex =
+             \ '\v\\%('
+             \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+             \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
+             \ . '|hyperref\s*\[[^]]*'
+             \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+             \ . '|%(include%(only)?|input)\s*\{[^}]*'
+             \ . '|\a*(gls|Gls|GLS)(pl)?\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+             \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
+              \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
+              \ . ')\m'
 " }}}
 " UI {{{ "
 " Plugin: 'vim-airline' {{{
