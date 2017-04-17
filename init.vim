@@ -15,6 +15,10 @@ Plug 'w0rp/ale',  {'for': 'python'}
 let g:ale_python_pylint_executable = 'python3'
 let g:ale_python_pylint_options = '-rcfile $HOME/.pylintrc'
 "}}} "
+" Plugin: 'python_fold' {{{
+Plug 'vim-scripts/python_fold'
+
+"}}} "
 let g:autopep8_disable_show_diff=1
 let g:python_host_prog  = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -56,6 +60,10 @@ augroup NEOMAKE
     autocmd! BufWritePost *.tex Neomake
 augroup end
 " }}}
+" Plugin: 'vimtex' {{{
+Plug 'lervag/vimtex'
+
+"}}} "
 call plug#end()
 " }}} Plugins "
 " General Settings {{{
