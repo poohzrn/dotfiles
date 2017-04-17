@@ -27,7 +27,8 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 " }}}
 " Plugin: 'deoplete.nvim' {{{
 Plug 'Shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup = 1
+set runtimepath+=~/.config/nvim/bundle/deoplete.nvim/
+" let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 " }}}
 " Plugin: 'vim-fugitive' {{{
@@ -51,11 +52,31 @@ endif
 "{{{ Plugin: 'neomake'
 Plug 'neomake/neomake', {'for': 'tex'}
 let g:neomake_open_list = 0
-let g:neomake_tex_enabled_makers = ['chktex', 'lacheck', 'proselint']
+let g:neomake_tex_enabled_makers = ['chktex', 'lacheck'] ", 'proselint']
 augroup NEOMAKE
     autocmd! BufWritePost *.tex Neomake
 augroup end
 " }}}
+"{{{ Plugin: 'vimtex'
+Plug 'lervag/vimtex', {'for': 'tex'}
+" }}}
+" UI {{{ "
+" Plugin: 'vim-airline' {{{
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+let g:airline_mode_map = {'n': 'N', 'i' : 'I', 'R': 'R', 'v': 'V', 'V': 'V'}
+if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep = '|'
+let g:airline_right_alt_sep = '|'
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = ''
+"}}} "
+" }}} UI "
 call plug#end()
 " }}} Plugins "
 " General Settings {{{
@@ -78,7 +99,7 @@ set expandtab       "expand tabs into spaces
 set shiftwidth=4    "when using the >> or << commands, shift lines by 4 spaces
 set cursorline      "show a visual line under the cursor's current line
 set showmatch
-set runtimepath+=/home/lasse/.fzf
+set runtimepath+=~/.fzf/
 set scrolloff=8            "8 lines to the curser
 set autowriteall             "Write the contents of the file, auto
 if v:version > 703 || v:version == 703 && has('patch541')
@@ -225,6 +246,27 @@ endfunction
 command! StripTrailingWhitespace :call StripTrailingWhitespace()
 nnoremap <leader>del :StripTrailingWhitespace<CR>
 " }}} StripTrailingWhitespace "
+" GetRunningOS {{{ "
+function! GetRunningOS()
+  if has("win32")
+    return "win"
+  endif
+  if has("unix")
+    if system('uname')=~'Darwin'
+      return "mac"
+    else
+      return "linux"
+    endif
+  endif
+endfunction
+" }}} GetRunningOS "
+" os x {{{ "
+if GetRunningOS() == 'mac'
+    set clipboard=unnamed
+    let g:python_host_prog = "/usr/local/bin/python"
+    let g:python3_host_prog = "/usr/local/bin/python3"
+endif
+" }}} os x "
 syntax enable
 colorscheme afterglow
 " vim: fdm=marker
