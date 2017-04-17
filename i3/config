@@ -221,5 +221,6 @@ exec --no-startup-id i3-msg 'exec google-chrome'
 # exec --no-startup-id i3-msg 'exec xterm tmux'
 exec --no-startup-id i3-msg 'exec gtk-redshift -l 57:9 -t 5700:3600 -g 0.8 -m randr'
 exec --no-startup-id i3-msg 'exec slack'
+exec --no-startup-id i3-msg 'exec xfce4-power-manager'
 exec --no-startup-id feh --bg-fill ~/.wallpaper.jpg
 # exec --no-startup-id ~/git/dotfiles/scripts/toggle-xkbmap.sh
