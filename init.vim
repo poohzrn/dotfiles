@@ -1,28 +1,22 @@
 let g:mapleader="\<Space>"
 " Plugins {{{ "
 call plug#begin()
-" colorschemes {{{ "
+Plug 'tpope/vim-fugitive'
+" Colorschemes: {{{
 Plug 'danilo-augusto/vim-afterglow'
 Plug 'altercation/vim-colors-solarized'
 Plug 'alessandroyorba/despacio'
-" }}} colorschemes "
-" python {{{
+" }}}
+" Python: {{{
 Plug 'davidhalter/jedi', {'for': 'python'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'tell-k/vim-autopep8', {'for': 'python'}
-" Plugin: 'ale' {{{
-Plug 'w0rp/ale',  {'for': 'python'}
-let g:ale_python_pylint_executable = 'python3'
-let g:ale_python_pylint_options = '-rcfile $HOME/.pylintrc'
-"}}} "
-" Plugin: 'python_fold' {{{
 Plug 'vim-scripts/python_fold'
-
-"}}} "
+" Plug 'python-mode/python-mode'
 let g:autopep8_disable_show_diff=1
 let g:python_host_prog  = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
-" }}} python
+" }}}
 " Plugin: 'ultisnips' {{{
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 let g:UltiSnipsExpandTrigger='<tab>'
@@ -35,16 +29,13 @@ set runtimepath+=~/.config/nvim/bundle/deoplete.nvim/
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#enable_smart_case = 1
 " }}}
-" Plugin: 'vim-fugitive' {{{
-Plug 'tpope/vim-fugitive'
-"}}} "
 " Plugin: 'FZF' {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <C-f><C-f> :Files<CR>
 nnoremap <C-f><C-g> :GitFiles<CR>
 nnoremap <C-f><C-a> :Ag<CR>
 let g:fzf_layout = { 'down': '25%' }
-"}}} "
+" }}}
 " Plugin: 'vim-commentary' {{{
 Plug 'tpope/vim-commentary', {'on': '<Plug>Commentary'}          "comments
 if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
@@ -52,16 +43,18 @@ if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
     nmap cc  <Plug>Commentary
     omap cc  <Plug>Commentary
 endif
-"}}} "
-"{{{ Plugin: 'neomake'
-Plug 'neomake/neomake', {'for': 'tex'}
-let g:neomake_open_list = 0
+" }}}
+" Plugin: 'neomake' {{{
+Plug 'neomake/neomake' ", {'for': 'tex'}
+" let g:neomake_open_list = 1
 let g:neomake_tex_enabled_makers = ['chktex', 'lacheck', 'proselint']
+let g:neomake_python_enabled_makers = ['pep8', 'pylint']
 augroup NEOMAKE
     autocmd! BufWritePost *.tex Neomake
+    autocmd! BufWritePost *.py Neomake
 augroup end
 " }}}
-"{{{ Plugin: 'vimtex'
+" Plugin: 'vimtex' {{{
 Plug 'lervag/vimtex', {'for': 'tex'}
 augroup SET_TEX
       autocmd BufRead,BufNewFile *.tex set ft=tex
@@ -104,10 +97,11 @@ let g:airline_symbols.linenr = ''
 let g:airline_symbols.spell = 'Ꞩ'
 let g:airline_symbols.notexists = '∄'
 let g:airline_symbols.whitespace = ''
-"}}} "
-" }}} UI "
+" }}}
+Plug 'junegunn/goyo.vim'
+" }}}
 call plug#end()
-" }}} Plugins "
+" }}}
 " General Settings {{{
 filetype plugin indent on
 set omnifunc=syntaxcomplete#Complete
@@ -201,6 +195,8 @@ nnoremap <leader>k gkzz
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+nnoremap j gj
+nnoremap k gk
 "1}}}
 " Persistent Undo {{{
 " Keep undo history across sessions, by storing in file.
@@ -297,5 +293,5 @@ if GetRunningOS() == 'mac'
 endif
 " }}} os x "
 syntax enable
-colorscheme afterglow
+colorscheme solarized
 " vim: fdm=marker

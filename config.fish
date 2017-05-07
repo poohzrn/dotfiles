@@ -119,23 +119,16 @@ function sudo
     end
 end
 
-function sudo
-    if test "$argv" = !!
-        eval command sudo $history[1]
-    else
-        command sudo $argv
-    end
-end
 #  }}} Misc functions #
 #~> ~> ~> ~> ~> ~> ~> ~> ~> ~>
 
 # start X at login
-if status --is-login
-    if test -z "$DISPLAY" -a $XDG_VTNR -eq 1
-        exec startx -- -keeptty
-        makeCapsEsc
-    end
-end
+# if status --is-login
+#     if test -z "$DISPLAY" -a $XDG_VTNR -eq 1
+#         exec startx -- -keeptty
+#         makeCapsEsc
+#     end
+# end
 
 # abbh {{{ #
 abbr -a why "aptitude why"
@@ -145,8 +138,6 @@ abbr -a G "ls -l | grep -i"
 #}}}
 
 #  Misc aliases {{{ #
-alias python "/usr/bin/python3"
-alias pip "usr/bin/pip3"
 alias sl "ls"
 alias c "clear"
 alias g "cd  $GITFOLDER; clear; ls"
