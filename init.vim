@@ -297,5 +297,5 @@ if GetRunningOS() == 'mac'
 endif
 " }}} os x "
 syntax enable
-colorscheme afterglow
+colorscheme solarized
 " vim: fdm=marker
