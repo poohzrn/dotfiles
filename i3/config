@@ -78,10 +78,11 @@ for_window [class="chromium"] move container to workspace $tagchrome
 for_window [class="discord"] move container to workspace $socialtag
 for_window [class="Icedove"] move container to workspace $tagmail
 for_window [class="Evince"] move container to workspace $tagpdf
-#for_window [class="zathura"] move container to workspace $tagpdf
+for_window [class="zathura"] move container to workspace $tagpdf
 for_window [class="Slack"] move container to workspace $socialtag
 for_window [class="steam"] move container to workspace $tagsteam
-for_window [class="citrixreciever"] move container to workspace $tagsteam
+for_window [class="Citrixreciever"] move container to workspace $tagsteam
+for_window [class="Thunar"] move container to workspace $tag10
 assign [class="^Slack$"] $socialtag
 assign [class="^google-chrome$"] $tagchrome
 assign [class="*chrome*"] $tagchrome
@@ -90,6 +91,8 @@ assign [class="^Discord$"] $socialtag
 assign [class="^Steam$"] $tagsteam
 assign [class="^steam$"] $tagsteam
 assign [class="^TeamViewer$"] $tag8
+assign [class="^Thunar$"] $tag10
+assign [class="^Citrixreciever$"] $tagsteam
 assign [class="^evince$"] $tagpdf
 
 # set mod key
@@ -222,5 +225,6 @@ exec --no-startup-id i3-msg 'exec google-chrome'
 exec --no-startup-id i3-msg 'exec gtk-redshift -l 57:9 -t 5700:3600 -g 0.8 -m randr'
 exec --no-startup-id i3-msg 'exec slack'
 exec --no-startup-id i3-msg 'exec xfce4-power-manager'
+exec --no-startup-id i3-msg 'exec Thunar'
 exec --no-startup-id feh --bg-fill ~/.wallpaper.jpg
 # exec --no-startup-id ~/git/dotfiles/scripts/toggle-xkbmap.sh

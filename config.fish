@@ -7,7 +7,7 @@ set -x FISH_CONFIG $HOME/git/dotfiles/config.fish
 # set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 set -x SCRIPTS $HOME/git/dotfiles/scripts
 set -x GITFOLDER ~/git
-set -gx PATH /sbin /Users/lasse/Library/Android/sdk /Users/lasse/Library/Android/sdk/tools /Users/lasse/Library/Android/sdk/platform-tools $PATH
+# set -gx PATH /sbin /Users/lasse/Library/Android/sdk /Users/lasse/Library/Android/sdk/tools /Users/lasse/Library/Android/sdk/platform-tools $PATH
 
 #  Monitors {{{ #
 set -U LAPMONITOR LVDS1
