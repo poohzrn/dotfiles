@@ -55,6 +55,17 @@ function hdmi
     xrandr --output $RMONITOR --auto --right-of $LAPMONITOR $argv;
 end
 #Docking setup
+
+function dvi-lap
+	eval xrandr --output $LAPMONITOR --auto;
+    eval xrandr --output $LMONITOR --auto --left-of $LAPMONITOR --primary;
+end
+
+function dvi
+	eval xrandr --output $LAPMONITOR --off;
+    eval xrandr --output $RMONITOR --auto --primary;
+end
+
 function dock
     xrandr --output $LAPMONITOR --off;
     eval xrandr --output $RMONITOR --auto;
@@ -123,12 +134,12 @@ end
 #~> ~> ~> ~> ~> ~> ~> ~> ~> ~>
 
 # start X at login
-# if status --is-login
-#     if test -z "$DISPLAY" -a $XDG_VTNR -eq 1
-#         exec startx -- -keeptty
-#         makeCapsEsc
-#     end
-# end
+if status --is-login
+    if test -z "$DISPLAY" -a $XDG_VTNR -eq 1
+        exec startx -- -keeptty
+        makeCapsEsc
+    end
+end
 
 # abbh {{{ #
 abbr -a why "aptitude why"
@@ -138,7 +149,8 @@ abbr -a G "ls -l | grep -i"
 #}}}
 
 #  Misc aliases {{{ #
-alias sl "ls"
+#alias sl "ls"
+alias sleep "pm-hibernate"
 alias c "clear"
 alias g "cd  $GITFOLDER; clear; ls"
 alias q "exit"
@@ -169,8 +181,8 @@ alias tdmgm "tmux kill-session -t mgmt"
 #  }}} Tmux Aliases #
 
 #Uni
-alias sw "cd $GITFOLDER/p9/report"
-alias swc "cd $GITFOLDER/codep9/"
+alias sw "cd $GITFOLDER/sw10-report/report"
+alias swc "cd $GITFOLDER/sw10-code/"
 
 #  Git {{{
 alias pull "git pull"
@@ -215,7 +227,7 @@ alias sonosu "python3 $GITFOLDER/dotfiles/scripts/sonos-ctl.py unmute"
 
 function weather --argument-names 'city'
     if test -n "$city"
-        curl wttr.in/$argv
+        curl wttr.in/~$argv
     else
 		curl wttr.in
 	end

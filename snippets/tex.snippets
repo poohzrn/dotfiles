@@ -15,6 +15,11 @@ endsnippet
 snippet emph
 \emph{${VISUAL}$0}
 endsnippet
+snippet itemize "itemize"
+	\begin{itemize}
+		\item $0
+	\end{itemize}
+endsnippet
 
 snippet item "Insert \item .." b
 \item {$0}
@@ -44,6 +49,9 @@ snippet cite "cite" b
 endsnippet
 snippet Table "ref to table" b
 Table~\ref{tab:$1}$0
+endsnippet
+snippet chapter "ref to chapter" b
+Chapter~\ref{cha:$1}$0
 endsnippet
 snippet Definition "ref to definition" b
 Definition~\ref{def:$1}$0

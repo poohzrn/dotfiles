@@ -12,7 +12,12 @@ Plug 'davidhalter/jedi', {'for': 'python'}
 Plug 'zchee/deoplete-jedi', {'for': 'python'}
 Plug 'tell-k/vim-autopep8', {'for': 'python'}
 Plug 'vim-scripts/python_fold'
-" Plug 'python-mode/python-mode'
+" Plugin: 'ale' {{{
+    Plug 'w0rp/ale'
+    let g:ale_linters = {'c': 'all'}
+    let g:ale_python_pylint_executable = 'python3'
+    let g:ale_python_pylint_options = '-rcfile $HOME/.pylintrc'
+" }}}
 let g:autopep8_disable_show_diff=1
 let g:python_host_prog  = '/usr/bin/python'
 let g:python3_host_prog = '/usr/bin/python3'
@@ -45,17 +50,18 @@ if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
 endif
 " }}}
 " Plugin: 'neomake' {{{
-Plug 'neomake/neomake' ", {'for': 'tex'}
+" Plug 'neomake/neomake', {'for': 'tex'}
 " let g:neomake_open_list = 1
-let g:neomake_tex_enabled_makers = ['chktex', 'lacheck', 'proselint']
-let g:neomake_python_enabled_makers = ['pep8', 'pylint']
-augroup NEOMAKE
-    autocmd! BufWritePost *.tex Neomake
-    autocmd! BufWritePost *.py Neomake
-augroup end
+" let g:neomake_tex_enabled_makers = ['chktex', 'lacheck', 'proselint']
+" let g:neomake_python_enabled_makers = ['pep8', 'pylint']
+" augroup NEOMAKE
+"     autocmd! BufWritePost *.tex Neomake
+"     autocmd! BufWritePost *.py Neomake
+" augroup end
 " }}}
 " Plugin: 'vimtex' {{{
 Plug 'lervag/vimtex', {'for': 'tex'}
+let g:vimtex_view_method = 'zathura'
 augroup SET_TEX
       autocmd BufRead,BufNewFile *.tex set ft=tex
       autocmd BufRead,BufNewFile *.tex set spell spelllang=en_us
@@ -82,6 +88,16 @@ let g:deoplete#omni_patterns.tex =
               \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
               \ . ')\m'
 " }}}
+" Plugin: 'Repository name' {{{
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete.vim', { 'branch': 'fuzzy' }
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+set completeopt+=preview
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+"}}} "
 " UI {{{ "
 " Plugin: 'vim-airline' {{{
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
@@ -195,8 +211,8 @@ nnoremap <leader>k gkzz
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
-nnoremap j gj
-nnoremap k gk
+" nnoremap j gj
+" nnoremap k gk
 "1}}}
 " Persistent Undo {{{
 " Keep undo history across sessions, by storing in file.

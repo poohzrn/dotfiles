@@ -31,12 +31,12 @@ set $tag7 7
 set $tag8 8
 set $tag9 "&#xf104;"
 set $tag10 "&#xf17c;"
-set $tagchrome "Chromium "
+set $tagchrome ""
 set $tagmail mail
-set $socialtag "Social &#xf198;"
-set $tagspotify "Music &#xf025;"
-set $tagpdf "PDF &#xf1c1;"
-set $tagsteam "Game &#xf1b6;"
+set $socialtag "&#xf198;"
+set $tagspotify "&#xf025;"
+set $tagpdf "&#xf1c1;"
+set $tagsteam "&#xf1b6;"
 # switch to workspace
 bindsym $mod+$ws1 workspace $tag1
 bindsym $mod+$ws2 workspace $tag2
@@ -74,7 +74,7 @@ bindsym $mod+Shift+$wssteam move container to workspace $tagsteam
 
 #Move programs to corret workspaces
 for_window [class="Spotify"] border none, move container to workspace $tagspotify
-for_window [class="chromium"] move container to workspace $tagchrome
+for_window [class="Chrome"] move container to workspace $tagchrome
 for_window [class="discord"] move container to workspace $socialtag
 for_window [class="Icedove"] move container to workspace $tagmail
 for_window [class="Evince"] move container to workspace $tagpdf
@@ -84,8 +84,9 @@ for_window [class="steam"] move container to workspace $tagsteam
 for_window [class="Citrixreciever"] move container to workspace $tagsteam
 for_window [class="Thunar"] move container to workspace $tag10
 assign [class="^Slack$"] $socialtag
-assign [class="^google-chrome$"] $tagchrome
-assign [class="*chrome*"] $tagchrome
+assign [class="^Google-Chrome$"] $tagchrome
+assign [class="^Google-chrome$"] $tagchrome
+assign [class="^Chrome$"] $tagchrome
 assign [class="^chromium$"] $tagchrome
 assign [class="^Discord$"] $socialtag
 assign [class="^Steam$"] $tagsteam
@@ -138,6 +139,9 @@ bindsym $mod+b split h
 bindsym $mod+v split v
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen
+# Toggle between dock mode and hide mode
+bindsym $mod+n bar mode toggle
+
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+g layout toggle split
 # toggle tiling / floating
