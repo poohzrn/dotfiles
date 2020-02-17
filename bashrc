@@ -1,0 +1,30 @@
+#vim: fdm=marker
+
+export GITFOLDER=~/git/
+alias sl="ls"
+alias sleep="pm-hibernate"
+alias c="clear"
+alias g="cd $GITFOLDER; clear; ls"
+alias q="exit"
+alias :q="exit"
+alias r="ranger"
+alias updatevim="sudo -v; g; cd vim; git pull; configurevim; make clean; make; sudo make install"
+alias updateneovim="sudo -v; g; cd neovim; git pull; rm -rf build;  make clean; make CMAKE_BUILD_TYPE=RelWithDebInfo; sudo make install"
+alias set-wallpaper="feh --bg-fill ~/.wallpaper.jpg"
+alias rm="rm -i"
+alias cp="cp -i"
+alias mv="mv -i"
+alias update="sudo apt update; sudo apt upgrade" #vim -c :PlugUpdate -c :q -c :q"
+alias install="sudo apt install --no-install-recommends"
+alias remove="sudo apt autoremove --purge"
+alias tma="tmux attach-session -t"
+alias tmux="tmux -2" #256 color
+alias tmuxls="tmux list-sessions"
+alias tmate="tmate -2" #256 color
+alias tmgm="~/scripts/servermgmt.sh"
+alias tdmgm="tmux kill-session -t mgmt"
+alias pull="git pull"
+alias push="git push"
+alias st="git status -s"
+alias gl="git log --graph --pretty=format:'%C(bold blue)%h %Creset%C(bold red)%an%Creset:%Creset %s %Cgreen(%cr)' --abbrev-commit --date=relative -n"
+alias lo="git shortlog --summary --numbered"

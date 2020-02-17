@@ -4,10 +4,8 @@ set -x ANDROID_SDK_ROOT /Users/lasse/Library/Android/sdk
 set -x GIT_EDITOR nvim
 set -x XDG_CONFIG_HOME $HOME/.config
 set -x FISH_CONFIG $HOME/git/dotfiles/config.fish
-# set -x FZF_DEFAULT_COMMAND 'rg --files --no-ignore --hidden --follow --glob "!.git/*"'
 set -x SCRIPTS $HOME/git/dotfiles/scripts
 set -x GITFOLDER ~/git
-# set -gx PATH /sbin /Users/lasse/Library/Android/sdk /Users/lasse/Library/Android/sdk/tools /Users/lasse/Library/Android/sdk/platform-tools $PATH
 
 #  Monitors {{{ #
 set -U LAPMONITOR LVDS1
@@ -23,24 +21,24 @@ set fish_search_match --background=red
 set fish_greeting ''
 
 #  Fish Prompt {{{ #
-function fish_prompt
-    set_color $fish_color_cwd   ; printf '%s' (whoami)
-    set_color red --bold        ; printf '@'
-    set_color $fish_color_cwd   ; printf '%s'(hostname) ; printf ' '
-    set_color $fish_color_cwd   ; printf '%s' (prompt_pwd)
-    set_color normal            ; printf '%s\n~>' (__fish_git_prompt)
-    set_color normal
-end
+# function fish_prompt
+#     set_color $fish_color_cwd   ; printf '%s' (whoami)
+#     set_color red --bold        ; printf '@'
+#     set_color $fish_color_cwd   ; printf '%s'(hostname) ; printf ' '
+#     set_color $fish_color_cwd   ; printf '%s' (prompt_pwd)
+#     set_color normal            ; printf '%s\n~>' (__fish_git_prompt)
+#     set_color normal
+# end
     #  Git integration {{{ #
-    set __fish_git_prompt_showdirtystate 'yes'
-    set __fish_git_prompt_showstashstate 'yes'
-    set __fish_git_prompt_showupstream 'yes'
-    set __fish_git_prompt_color_branch red
-    set __fish_git_prompt_char_dirtystate '⚡'
-    set __fish_git_prompt_char_stagedstate '→'
-    set __fish_git_prompt_char_stashstate '✔'
-    set __fish_git_prompt_char_upstream_ahead '↑'
-    set __fish_git_prompt_char_upstream_behind '↓'
+#    set __fish_git_prompt_showdirtystate 'yes'
+#    set __fish_git_prompt_showstashstate 'yes'
+#    set __fish_git_prompt_showupstream 'yes'
+#    set __fish_git_prompt_color_branch red
+#    set __fish_git_prompt_char_dirtystate '⚡'
+#    set __fish_git_prompt_char_stagedstate '→'
+#    set __fish_git_prompt_char_stashstate '✔'
+#    set __fish_git_prompt_char_upstream_ahead '↑'
+#    set __fish_git_prompt_char_upstream_behind '↓'
     #  }}} Git integration #
 #  }}} Fish Prompt #
 

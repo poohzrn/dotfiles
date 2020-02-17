@@ -2,18 +2,24 @@
 - shell:
     - [mkdir -p ~/git]
     - [mkdir -p ~/downloads]
+    - [mkdir -p ~/documents]
+    - [mkdir -p ~/notes]
     - [mkdir -p ~/.config]
     - [mkdir -p ~/.config/i3blocks]
     - [mkdir -p ~/.config/i3]
     - [mkdir -p ~/.tmux/plugins]
-    -
-      command: if [ -d ~/git/tpm ]; then cd ~/git/tpm && git pull; else cd ~/git && git clone https://github.com/tmux-plugins/tpm; fi
-      command: ln -sf ~/git/tpm ~/.tmux/plugins/tpm
-      stdout: true
+    # -
+# -     command: if [ -d ~/git/tpm ]; then cd ~/git/tpm && git pull; else cd ~/git && git clone https://github.com/tmux-plugins/tpm; fi
+#       command: ln -sf ~/git/tpm ~/.tmux/plugins/tpm
+#       stdout: true
 - link:
     ~/.Xresources: Xresources
     ~/.tmux.conf: tmux.conf
     ~/.vimrc: vimrc
+    ~/.bashrc: 
+        create: true
+        force: true
+        path: bashrc
     ~/.config/nvim/init.vim:
         create: true
         force: true
@@ -39,3 +45,16 @@
         create: true
         force: true
         path: i3blocks.conf
+    ~/git:
+        create: true
+        force: true
+        path: /mnt/c/work/
+    ~/documents:
+        create: true
+        force: true
+        path: /mnt/c/Users/laen/Documents/
+    ~/notes:
+        create: true
+        force: true
+        path: /mnt/c/Users/laen/Documents/notes/
+
