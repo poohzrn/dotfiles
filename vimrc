@@ -1,276 +1,218 @@
 let mapleader="\<Space>"
 " Plugins {{{1 "
 call plug#begin()
-" Plugin: 'braceless.vim' {{{
-Plug 'tweekmonster/braceless.vim'          "Text objects, folding Python and other indented languages.
-"Settings for braceless.vim
-autocmd FileType python BracelessEnable +indent +highlight
-"}}} "
-" Plugin: 'jedi-vim' {{{
-Plug 'davidhalter/jedi', {'for': 'python'} | Plug 'zchee/deoplete-jedi', {'for': 'python'}
-"Settings for jedi-vim
-
-"}}} "
-" Plugin: 'autopep8' {{{
-Plug 'tell-k/vim-autopep8', {'for': 'python'}          "autopep8
-"Settings for autopep
-let g:autopep8_disable_show_diff=1
-
-
-"}}} "
-" Plugin: 'deoplete.nvim' {{{
-Plug 'Shougo/deoplete.nvim'
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_refresh_always = 1
+Plug 'tpope/vim-fugitive'
+" Colorschemes: {{{
+Plug 'danilo-augusto/vim-afterglow'
+Plug 'altercation/vim-colors-solarized'
+Plug 'alessandroyorba/despacio'
 " }}}
-" Plugin: 'supertab' {{{
-Plug 'ervandew/supertab'            "Super tab
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" Python: {{{
+Plug 'davidhalter/jedi', {'for': 'python'}
+Plug 'zchee/deoplete-jedi', {'for': 'python'}
+Plug 'tell-k/vim-autopep8', {'for': 'python'}
+Plug 'vim-scripts/python_fold'
+" Plugin: 'ale' {{{
+    Plug 'w0rp/ale'
+    let g:ale_linters = {'c': 'all'}
+    let g:ale_python_pylint_executable = 'python3'
+    let g:ale_python_pylint_options = '-rcfile $HOME/.pylintrc'
+" }}}
+let g:autopep8_disable_show_diff=1
+let g:python_host_prog  = '/usr/bin/python'
+let g:python3_host_prog = '/usr/bin/python3'
 " }}}
 " Plugin: 'ultisnips' {{{
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+let g:UltiSnipsExpandTrigger='<tab>'
+let g:UltiSnipsJumpForwardTrigger='<tab>'
+let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 " }}}
-" {{{Plugin: 'lightline.vim'
-Plug 'itchyny/lightline.vim'        "Neat information line
-set laststatus=2
-set statusline+=%#warningmsg#
-set statusline+=%*
-let g:lightline = {
-      \ 'colorscheme': 'gruvbox',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'fugitive', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component': {
-      \   'readonly': '%{&filetype=="help"?"":&readonly?"RO":""}',
-      \   'modified': '%{&filetype=="help"?"":&modified?"+":&modifiable?"":"-"}',
-      \   'fugitive': '%{exists("*fugitive#head")?fugitive#head():""}'
-      \ },
-      \ 'component_visible_condition': {
-      \   'readonly': '(&filetype!="help"&& &readonly)',
-      \   'modified': '(&filetype!="help"&&(&modified||!&modifiable))',
-      \   'fugitive': '(exists("*fugitive#head") && ""!=fugitive#head())'
-      \ },
-      \ }
-" }}}
-" {{{Plugin: 'gruvbox'
-Plug 'morhetz/gruvbox'              "Colorscheme
-set t_Co=256
-set background=dark
-" }}}
-" Plugin: 'vim-buftabline' {{{
-Plug 'ap/vim-buftabline'          "See current buffers
-"Settings for vim-buftabline
-set hidden
-nnoremap <Leader>h :bprev<CR>
-nnoremap <Leader>l :bnext<CR>
-" }}}
-" Plugin: 'vim-over' {{{
-Plug 'osyo-manga/vim-over', {'on': 'OverCommandLine'}         " :substitute preview
-"Settings for vim-over
-nnoremap <C-s> :OverCommandLine <CR>%s:
-
-" }}}
-" {{{ Plugin: 'fzf.vim'
+" Plugin: 'FZF' {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
 nnoremap <C-f><C-f> :Files<CR>
 nnoremap <C-f><C-g> :GitFiles<CR>
 nnoremap <C-f><C-a> :Ag<CR>
-nnoremap <C-f><C-b> :BLines <CR>
-
-nmap <leader><tab> <plug>(fzf-maps-n)
-let g:fzf_action = {
-\ 'ctrl-t': 'tab split',
-\ 'ctrl-s': 'split',
-\ 'ctrl-v': 'vsplit' }
-let g:fzf_layout = { 'down': '20%' }
-" }}}
-" Plugin: 'vim-fugitive' {{{
-Plug 'tpope/vim-fugitive'           "Git integration
-nnoremap <silent><Leader>gd :Gdiff <CR>
-nnoremap <silent><Leader>st :Gstatus <CR>
-nnoremap <silent><Leader>gp :Gpull<CR>
-nnoremap <silent>gc :Gcommit %:p <CR>i
-nnoremap <silent>ga :Gcommit %:p --amend <CR>jo*
-" }}}
-" {{{Plugin: 'neomake'
-Plug 'benekastah/neomake'           "asynchronous :make
-"Toggle neomake list
-nnoremap <F12> :call ToggleNeomakeList()<CR>
-let g:neomake_error_sign = {
-    \ 'texthl': 'ErrorMsg',
-    \ }
-let g:neomake_warning_sign = {
-    \ 'texthl': 'WarningMsg',
-    \ }
-let g:neomake_open_list = 2
-let g:neomake_python_enabled_makers = ['pylint']
-let g:neomake_tex_enabled_makers = ['lacheck', 'chktex']
-let g:neomake_cpp_clang_maker = {
-            \ 'args': ['-std=c++11'],
-            \}
-autocmd! BufWritePost * Neomake
-" }}}
-" Plugin: 'vim-repeat' {{{
-Plug 'tpope/vim-repeat'          " .
-"Settings for vim-repeat
-" }}}
-" Plugin: 'vimtex' {{{
-Plug 'lervag/vimtex', {'for': 'tex' }          "A modern vim plugin for editing LaTeX
-"Settings for vimtex
-"Toggle comilation
-nnoremap <silent> <F6> :call vimtex#latexmk#toggle()<CR>
-"Errors
-nnoremap <silent> <Leader>le :call vimtex#latexmk#errors()<CR>
-"Lables
-nnoremap <silent> <Leader>ll :call vimtex#labels#toggle()<CR>
-"TOC
-nnoremap <silent> <Leader>lt :call vimtex#toc#toggle()<CR>
-
-let g:vimtex_view_general_viewer = 'zathura'
-let g:vimtex_latexmk_progname = 'nvr'
-" let g:vimtex_view_general_options_latexmk = '--unique'
-" let g:vimtex_complete_recursive_bib = 1
-" let g:vimtex_complete_enabled = 1
-" autocmd FileType tex set foldmethod=expr
-" autocmd FileType tex set foldexpr=vimtex#fold#level(v:lnum)
-" autocmd FileType tex set foldtext=vimtex#fold#text()
-
+let g:fzf_layout = { 'down': '25%' }
 " }}}
 " Plugin: 'vim-commentary' {{{
 Plug 'tpope/vim-commentary', {'on': '<Plug>Commentary'}          "comments
-"Settings for vim-commentary
 if !hasmapto('<Plug>Commentary') || maparg('gc','n') ==# ''
-  xmap cc  <Plug>Commentary
-  nmap cc  <Plug>Commentary
-  omap cc  <Plug>Commentary
+    xmap cc  <Plug>Commentary
+    nmap cc  <Plug>Commentary
+    omap cc  <Plug>Commentary
 endif
+" }}}
+" Plugin: 'vimtex' {{{
+Plug 'lervag/vimtex', {'for': 'tex'}
+let g:vimtex_view_method = 'zathura'
+augroup SET_TEX
+      autocmd BufRead,BufNewFile *.tex set ft=tex
+      autocmd BufRead,BufNewFile *.tex set spell spelllang=en_us
+      autocmd BufRead,BufNewFile *.tex setlocal formatoptions-=a
+      autocmd FileType tex let b:vimtex_main = 'master.tex'
+      autocmd BufRead,BufNewFile *.tex let g:tex_flavor = 'latex'
+      set foldtext=vimtex#fold#text()
+      let g:vimtex_fold_enabled = 1
+      let g:vimtex_quickfix_autojump = 1
+      let g:vimtex_quickfix_mode = 2
+augroup end
+if !exists('g:deoplete#omni_patterns')
+     let g:deoplete#omni_patterns = {}
+endif
+let g:deoplete#omni_patterns.tex =
+             \ '\v\\%('
+             \ . '\a*cite\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+             \ . '|\a*ref%(\s*\{[^}]*|range\s*\{[^,}]*%(}\{)?)'
+             \ . '|hyperref\s*\[[^]]*'
+             \ . '|includegraphics\*?%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+             \ . '|%(include%(only)?|input)\s*\{[^}]*'
+             \ . '|\a*(gls|Gls|GLS)(pl)?\a*%(\s*\[[^]]*\]){0,2}\s*\{[^}]*'
+             \ . '|includepdf%(\s*\[[^]]*\])?\s*\{[^}]*'
+              \ . '|includestandalone%(\s*\[[^]]*\])?\s*\{[^}]*'
+              \ . ')\m'
+" }}}
+" Plugin: 'Repository name' {{{
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete.vim', { 'branch': 'fuzzy' }
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<cr>"
+set completeopt+=preview
+imap <c-space> <Plug>(asyncomplete_force_refresh)
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 "}}} "
+" UI {{{ "
+" Plugin: 'vim-airline' {{{
+Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
+let g:airline_mode_map = {'n': 'N', 'i' : 'I', 'R': 'R', 'v': 'V', 'V': 'V'}
+if !exists('g:airline_symbols') | let g:airline_symbols = {} | endif
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_left_alt_sep = '|'
+let g:airline_right_alt_sep = '|'
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.maxlinenr = ''
+let g:airline_symbols.linenr = ''
+let g:airline_symbols.spell = 'Ꞩ'
+let g:airline_symbols.notexists = '∄'
+let g:airline_symbols.whitespace = ''
+" }}}
+Plug 'junegunn/goyo.vim'
+" }}}
 call plug#end()
 " 1}}} "
-" General Settings {{{ "
-"=== Misc Settings ===
+" General Settings {{{
 filetype plugin indent on
-let python_highlight_all = 1
+set omnifunc=syntaxcomplete#Complete
+set diffopt+=vertical
+set path+=**
+set smarttab
+filetype plugin indent on
 set noswapfile      "disable .swp files
 set nobackup        "disable .swp files
-set nowb            "disable .swp files
+set nowritebackup "disable .swp files
 syntax enable       "enable syntax highlighting
 syntax on
 set list listchars=tab:\ \ ,trail:·     "Display tabs and trailing spaces visually
 set number          "show line numbers
-set ts=4            "set tabs to have 4 spaces
+set tabstop=4       "set tabs to have 4 spaces
 set autoindent      "indent when moving to the next line while writing code
 set expandtab       "expand tabs into spaces
 set shiftwidth=4    "when using the >> or << commands, shift lines by 4 spaces
-set cursorline      "show a visual line under the cursor's current line 
+set cursorline      "show a visual line under the cursor's current line
 set showmatch
-set rtp+=/home/lasse/.fzf
-set switchbuf=usetab
-set so=8            "8 lines to the curser
-" }}} "
-" Wild menu and search {{{ "
+set runtimepath+=~/.fzf/
+set scrolloff=8            "8 lines to the curser
+set autowriteall             "Write the contents of the file, auto
+if v:version > 703 || v:version == 703 && has('patch541')
+    set formatoptions+=j " Delete comment character when joining commented lines
+endif
+if exists('&inccommand')
+    set inccommand=split
+    nnoremap <C-s> :%s:
+endif
+" General Settings}}}
+" Fold {{{
+nmap <tab> za
+nnoremap zf zMzvzz
+nnoremap zj zcjzvzz
+nnoremap zk zckzvzz
+if &foldmethod ==# ''
+    set foldmethod=syntax
+endif
+set foldlevel=0
+set foldcolumn=0
+set foldlevelstart=2
+set foldtext=TxtFoldText()
+function! TxtFoldText()
+    let l:level = repeat('-', min([v:foldlevel-1,3])) . '+'
+    let l:title = substitute(getline(v:foldstart), '{\{3}\d\?\s*', '', '')
+    let l:title = substitute(l:title, '^["#! ]\+', '', '')
+    return printf('%-4s %-s', l:level, l:title)
+endfunction
+" }}} Fold
+" Netrw {{{ "
+noremap <F1> :Lexplore<cr>
+"
+augroup netrw_close
+    autocmd!
+    autocmd filetype netrw call NetrwClose()
+augroup END
+function! NetrwClose()
+    noremap <buffer> <F1> :bd<cr>
+endfunction
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 4
+let g:netrw_altv = 1
+let g:netrw_winsize = 25
+" }}} Netrw "
+" Wild menu and search {{{
 set wildmenu
+set wildignore+=tags,*.pyc,*.aux,*.dvi,*.log,*.toc,*.bbl,*.blg,*.gz,*.out,*.thm,*.ps,*.idx,*.ilg,*.ind,*.fdb_latexmk,*.tdo,*.fls,*.lox,*.ist,*.pdf
 set incsearch       " Find the next match as we type the search
 set hlsearch        " Highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
-set nohlsearch      " Noh after search
 set gdefault        " when on, the :substitute flag 'g' is default on
-"}}}
-" Persistent Undo {{{ "
+set relativenumber  " Relative line numbers
+nmap <silent> hs :set hlsearch!<CR>
+" }}}
+" {{{1 Key Mapping
+nnoremap <silent> <F2> :set invpaste paste?<CR>
+noremap <space><space> zz
+nnoremap <C-j> <c-w>j
+nnoremap <C-h> <c-w>h
+nnoremap <C-l> <c-w>l
+nnoremap <C-k> <c-w>k
+inoremap <CR>f <esc>
+nnoremap <BS> <C-^>
+nnoremap <leader>sp :setlocal spell! spelllang=en_us<CR>
+nnoremap <leader>spda :setlocal spell! spelllang=da<CR>
+nnoremap <leader>j gjzz
+nnoremap <leader>k gkzz
+" Move visual block
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+" nnoremap j gj
+" nnoremap k gk
+"1}}}
+" Persistent Undo {{{
 " Keep undo history across sessions, by storing in file.
 if has('persistent_undo')
-    if empty(glob('~/.vim/backups'))
-        silent !mkdir ~/.vim/backups > /dev/null 2>&1 " takes a lot of time.. :<
-    endif
-set undodir=~/.vim/backups
-set undofile
+    silent !mkdir -p ~/.vim/backups
+    set undodir=~/.vim/backups
+    set undofile
 endif
-"}}}
-" Folding {{{ "
-if &foldmethod ==# ''
-  set foldmethod=syntax
-endif
-set foldlevel=0
-set foldcolumn=0
-set foldtext=TxtFoldText()
-function! TxtFoldText()
-  let level = repeat('-', min([v:foldlevel-1,3])) . '+'
-  let title = substitute(getline(v:foldstart), '{\{3}\d\?\s*', '', '')
-  let title = substitute(title, '^["#! ]\+', '', '')
-  return printf('%-4s %-s', level, title)
-endfunction
-" Navigate folds
-nnoremap zf zMzvzz
-nnoremap zj zcjzvzz
-nnoremap zk zckzvzz
-
-" }}} "
-"  Return to same line {{{ "
-augroup line_return
-au!
-au BufReadPost *
-    \ if line("'\"") > 0 && line("'\"") <= line("$") |
-    \     execute 'normal! g`"zvzz' |
-    \ endif
-augroup END
-" }}} "
+" }}}
 " Cursor configuration {{{
-" Use a blinking upright bar cursor in Insert mode, a solid block in normal
-" and a blinking underline in replace mode
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let &t_SI = "\<Esc>[5 q"
 let &t_SR = "\<Esc>[3 q"
 let &t_EI = "\<Esc>[ q"
 " }}}"
-"{{{1 Key Mapping
-nnoremap <F2> :set invpaste paste?<CR>
-nnoremap <F4> :e $MYVIMRC<CR>
-nnoremap <F5> :so $MYVIMRC<CR>
-nnoremap <F9> :!python %<CR>
-nnoremap , :
-nnoremap <space> <nop>
-noremap <space><space> zz
-nnoremap <c-j> <c-w>j
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-nnoremap <c-k> <c-w>k
-inoremap <CR>f <esc>
-" Follow the Leader
-nnoremap <Leader>sp :setlocal spell! spelllang=en_us<CR>
-nnoremap <Leader>r z=
-nnoremap <Leader>w ]s
-nnoremap <Leader>b [s
-nnoremap <Leader>s :w <CR>
-nnoremap <Leader>j gjzz
-nnoremap <Leader>k gkzz
-nnoremap <Leader>o qp
-nnoremap <Leader>p @p
-" Tabbing und buffering
-nnoremap <Leader>tn :tabnew<space>
-nnoremap <Leader>td :tabclose<CR>
-nnoremap <Leader>bh :sbprevious<CR>
-nnoremap <Leader>bl :sbnext<CR>
-nnoremap <Leader>bd :bdelete<CR>
-" Create splits with empty buffers in all directions
-nnoremap <Leader>nh :leftabove  vnew<CR>
-nnoremap <Leader>nl :rightbelow vnew<CR>
-nnoremap <Leader>nk :leftabove  new<CR>
-nnoremap <Leader>nj :rightbelow new<CR>
-" For completion completion
-inoremap <C-j> <C-N>
-inoremap <C-k> <C-P>
-" Resizing {{{ "
-nnoremap <Leader>rh :vertical resize +10 <CR>
-nnoremap <Leader>rl :vertical resize -10 <CR>
-nnoremap <Leader>rj :resize +10 <CR>
-nnoremap <Leader>rk :resize -10 <CR>
-" }}} Resizing "
-" Copy/Pase {{{ "
+" Copy/Paste {{{
 vnoremap yy "+y
 vnoremap dd "+d
 vnoremap pp "+p
@@ -278,13 +220,78 @@ vnoremap PP "+P
 nnoremap pp "+p
 nnoremap PP "+P
 " }}} Copy/Pase "
-" Mode: Command {{{ "
+" Line Return {{{
+augroup line_return
+    au!
+    au BufReadPost *
+                \ if line("'\"") > 0 && line("'\"") <= line("$") |
+                \     execute 'normal! g`"zvzz' |
+                \ endif
+augroup END
+" }}} Line Return
+" Mode: Terminal {{{
+if has('nvim')
+    tnoremap <Esc> <C-\><C-n>
+    tnoremap <C-f> <C-c>
+    tnoremap <A-h> <C-\><C-n><C-w>h
+    tnoremap <A-j> <C-\><C-n><C-w>j
+    tnoremap <A-k> <C-\><C-n><C-w>k
+    tnoremap <A-l> <C-\><C-n><C-w>l
+    tnoremap <A-l> <C-\><C-n><C-w>l
+endif
+" }}}
+" Mode: Command {{{
 cnoremap <C-a> <Home>
 cnoremap <C-h> <Left>
 cnoremap <C-l> <Right>
 cnoremap <C-d> <Delete>
 cnoremap <C-e> <End>
-" }}} "
-"1}}}
-colorscheme gruvbox
+cnoremap W w
+" }}}
+" FixWord {{{ "
+" Neat for tpyos
+function! FixWord() abort
+    if &spell
+        normal! 1z=
+    endif
+endfunction
+command! FixWord :call FixWord()
+nnoremap <CR><CR> :FixWord<CR>
+" }}} FixWord "
+" StripTrailingWhitespace {{{ "
+function! StripTrailingWhitespace()
+    if !&binary && &filetype != 'diff'
+        normal! mz
+        normal! Hmy
+        %s/\s\+$//e
+        normal! 'yz<CR>
+        normal! `z
+    endif
+endfunction
+command! StripTrailingWhitespace :call StripTrailingWhitespace()
+nnoremap <leader>del :StripTrailingWhitespace<CR>
+" }}} StripTrailingWhitespace "
+" GetRunningOS {{{ "
+function! GetRunningOS()
+  if has("win32")
+    return "win"
+  endif
+  if has("unix")
+    if system('uname')=~'Darwin'
+      return "mac"
+    else
+      return "linux"
+    endif
+  endif
+endfunction
+" }}} GetRunningOS "
+" os x {{{ "
+if GetRunningOS() == 'mac'
+    set clipboard=unnamed
+    let g:python_host_prog = "/usr/local/bin/python"
+    let g:python3_host_prog = "/usr/local/bin/python3"
+endif
+" }}} os x "
+syntax enable
+colorscheme afterglow
 " vim: fdm=marker

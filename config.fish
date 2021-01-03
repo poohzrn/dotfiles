@@ -20,27 +20,27 @@ set fish_search_match --background=red
 #Disable greeting
 set fish_greeting ''
 
-#  Fish Prompt {{{ #
-# function fish_prompt
-#     set_color $fish_color_cwd   ; printf '%s' (whoami)
-#     set_color red --bold        ; printf '@'
-#     set_color $fish_color_cwd   ; printf '%s'(hostname) ; printf ' '
-#     set_color $fish_color_cwd   ; printf '%s' (prompt_pwd)
-#     set_color normal            ; printf '%s\n~>' (__fish_git_prompt)
-#     set_color normal
-# end
-    #  Git integration {{{ #
-#    set __fish_git_prompt_showdirtystate 'yes'
-#    set __fish_git_prompt_showstashstate 'yes'
-#    set __fish_git_prompt_showupstream 'yes'
-#    set __fish_git_prompt_color_branch red
-#    set __fish_git_prompt_char_dirtystate '⚡'
-#    set __fish_git_prompt_char_stagedstate '→'
-#    set __fish_git_prompt_char_stashstate '✔'
-#    set __fish_git_prompt_char_upstream_ahead '↑'
-#    set __fish_git_prompt_char_upstream_behind '↓'
-    #  }}} Git integration #
-#  }}} Fish Prompt #
+ Fish Prompt {{{ #
+function fish_prompt
+    set_color $fish_color_cwd   ; printf '%s' (whoami)
+    set_color red --bold        ; printf '@'
+    set_color $fish_color_cwd   ; printf '%s'(hostname) ; printf ' '
+    set_color $fish_color_cwd   ; printf '%s' (prompt_pwd)
+    set_color normal            ; printf '%s\n~>' (__fish_git_prompt)
+    set_color normal
+end
+       Git integration {{{ #
+     set __fish_git_prompt_showdirtystate 'yes'
+     set __fish_git_prompt_showstashstate 'yes'
+     set __fish_git_prompt_showupstream 'yes'
+     set __fish_git_prompt_color_branch red
+     set __fish_git_prompt_char_dirtystate '⚡'
+     set __fish_git_prompt_char_stagedstate '→'
+     set __fish_git_prompt_char_stashstate '✔'
+     set __fish_git_prompt_char_upstream_ahead '↑'
+     set __fish_git_prompt_char_upstream_behind '↓'
+       }}} Git integration #
+   }}} Fish Prompt #
 
 #  Misc functions {{{ #
 #Enable VGA output

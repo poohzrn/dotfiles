@@ -45,20 +45,3 @@
         create: true
         force: true
         path: i3blocks.conf
-    ~/git:
-        create: true
-        force: true
-        path: /mnt/c/work/
-    ~/documents:
-        create: true
-        force: true
-        path: /mnt/c/Users/laen/Documents/
-    ~/notes:
-        create: true
-        force: true
-        path: /mnt/c/Users/laen/Documents/notes/
-    ~/downloads:
-        create: true
-        force: true
-        path: /mnt/c/Users/laen/Downloads/
-
