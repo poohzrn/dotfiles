@@ -20,7 +20,7 @@ set fish_search_match --background=red
 #Disable greeting
 set fish_greeting ''
 
- Fish Prompt {{{ #
+# Fish Prompt {{{ #
 function fish_prompt
     set_color $fish_color_cwd   ; printf '%s' (whoami)
     set_color red --bold        ; printf '@'
@@ -29,7 +29,7 @@ function fish_prompt
     set_color normal            ; printf '%s\n~>' (__fish_git_prompt)
     set_color normal
 end
-       Git integration {{{ #
+#       Git integration {{{ #
      set __fish_git_prompt_showdirtystate 'yes'
      set __fish_git_prompt_showstashstate 'yes'
      set __fish_git_prompt_showupstream 'yes'
@@ -39,8 +39,7 @@ end
      set __fish_git_prompt_char_stashstate '✔'
      set __fish_git_prompt_char_upstream_ahead '↑'
      set __fish_git_prompt_char_upstream_behind '↓'
-       }}} Git integration #
-   }}} Fish Prompt #
+#       }}} Git integration #
 
 #  Misc functions {{{ #
 #Enable VGA output

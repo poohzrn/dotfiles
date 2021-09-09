@@ -32,7 +32,7 @@ let g:UltiSnipsJumpBackwardTrigger='<s-tab>'
 Plug 'Shougo/deoplete.nvim'
 set runtimepath+=~/.config/nvim/bundle/deoplete.nvim/
 let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_smart_case = 1
+"let g:deoplete#enable_smart_case = 1
 " }}}
 " Plugin: 'FZF' {{{
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' } | Plug 'junegunn/fzf.vim'
